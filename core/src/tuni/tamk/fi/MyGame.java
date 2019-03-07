@@ -9,16 +9,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 // TODO: tee peli
 public class MyGame extends Game {
-	SpriteBatch batch;
-	MainMenu mainMenu;
-    OrthographicCamera camera;
+	private SpriteBatch batch;
+	private MainMenu mainMenu;
+	private EndlessLevel endlessLevel;
+    private OrthographicCamera camera;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 	    camera = new OrthographicCamera(16f, 9f);
-		mainMenu = new MainMenu(this);
-        setScreen(mainMenu);
+	    mainMenu = new MainMenu(this);
+	    endlessLevel = new EndlessLevel(this);
+	    setScreen(mainMenu);
 	}
 
     public SpriteBatch getBatch() {
