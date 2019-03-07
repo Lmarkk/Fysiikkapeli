@@ -17,7 +17,8 @@ public class MainMenu implements Screen {
     Rectangle playButtonRect;
     Rectangle tutorialButtonRect;
     Rectangle settingsButtonRect;
-    OrthographicCamera camera;
+    OrthographicCamera meterCamera;
+    OrthographicCamera pixelCamera;
     BitmapFont mainFont;
     Texture img;
 
@@ -31,9 +32,11 @@ public class MainMenu implements Screen {
         float buttonHeight = button.getHeight()/60f;
         float buttonWidth = button.getWidth()/30f;
 
-        camera = game.getCamera();
+        meterCamera = game.getCamera();
+        pixelCamera = new OrthographicCamera();
+        pixelCamera.setToOrtho(false, 1600, 900);
 
-
+        mainFont = new BitmapFont();
 
         playButtonRect = new Rectangle(4.5f, 3.2f, buttonWidth + 1f, buttonHeight + 0.5f);
         tutorialButtonRect = new Rectangle(1.5f, 1.3f, buttonWidth, buttonHeight);
@@ -51,10 +54,11 @@ public class MainMenu implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.setProjectionMatrix(camera.combined);
+        batch.setProjectionMatrix(meterCamera.combined);
         batch.draw(button, playButtonRect.x, playButtonRect.y, playButtonRect.getWidth(), playButtonRect.getHeight());
         batch.draw(button, tutorialButtonRect.x, tutorialButtonRect.y, tutorialButtonRect.getWidth(), tutorialButtonRect.getHeight());
         batch.draw(button, settingsButtonRect.x, settingsButtonRect.y, settingsButtonRect.getWidth(), settingsButtonRect.getHeight());
+        batch.setProjectionMatrix(pixelCamera.combined);
         batch.end();
     }
 
@@ -82,6 +86,7 @@ public class MainMenu implements Screen {
     public void dispose() {
         img.dispose();
         button.dispose();
+        mainFont.dispose();
 
     }
 }
