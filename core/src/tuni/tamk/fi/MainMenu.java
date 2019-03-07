@@ -60,6 +60,7 @@ public class MainMenu implements Screen {
         batch.draw(button, settingsButtonRect.x, settingsButtonRect.y, settingsButtonRect.getWidth(), settingsButtonRect.getHeight());
         batch.setProjectionMatrix(pixelCamera.combined);
         batch.end();
+        game.getTextRenderer().renderText("PLAY", 800f, 450f, game.getTextRenderer().getTitleFont());
     }
 
     @Override
