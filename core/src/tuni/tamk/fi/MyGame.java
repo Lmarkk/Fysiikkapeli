@@ -13,6 +13,7 @@ public class MyGame extends Game {
 	private MainMenu mainMenu;
 	private EndlessLevel endlessLevel;
     private OrthographicCamera camera;
+    private TextRenderer textRenderer;
 
 	@Override
 	public void create () {
@@ -21,8 +22,13 @@ public class MyGame extends Game {
 	    camera.setToOrtho(false, 16f, 9f);
 	    mainMenu = new MainMenu(this);
 	    endlessLevel = new EndlessLevel(this);
+	    textRenderer = new TextRenderer(batch);
 	    setScreen(mainMenu);
 	}
+
+    public TextRenderer getTextRenderer() {
+        return textRenderer;
+    }
 
     public SpriteBatch getBatch() {
         return batch;
