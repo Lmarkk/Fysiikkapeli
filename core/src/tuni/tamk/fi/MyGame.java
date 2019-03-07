@@ -17,7 +17,8 @@ public class MyGame extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-	    camera = new OrthographicCamera(16f, 9f);
+	    camera = new OrthographicCamera();
+	    camera.setToOrtho(false, 16f, 9f);
 	    mainMenu = new MainMenu(this);
 	    endlessLevel = new EndlessLevel(this);
 	    setScreen(mainMenu);
@@ -25,6 +26,10 @@ public class MyGame extends Game {
 
     public SpriteBatch getBatch() {
         return batch;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
     }
 
     @Override
