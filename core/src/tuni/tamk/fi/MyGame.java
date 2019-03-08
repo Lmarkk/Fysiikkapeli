@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MyGame extends Game {
 	private SpriteBatch batch;
 	private MainMenu mainMenu;
-	private EndlessLevel endlessLevel;
     private OrthographicCamera camera;
     private TextRenderer textRenderer;
 
@@ -21,7 +20,6 @@ public class MyGame extends Game {
 	    camera = new OrthographicCamera();
 	    camera.setToOrtho(false, 16f, 9f);
 	    mainMenu = new MainMenu(this);
-	    endlessLevel = new EndlessLevel(this);
 	    textRenderer = new TextRenderer(batch);
 	    setScreen(mainMenu);
 	}
