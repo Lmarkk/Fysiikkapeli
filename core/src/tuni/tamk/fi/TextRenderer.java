@@ -35,6 +35,16 @@ public class TextRenderer {
         batch.end();
     }
 
+    public BitmapFont createFont(String fontFile, int fontSize, Color borderColor, int borderWidth){
+        BitmapFont font;
+        FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(fontFile));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = fontSize;
+        parameter.borderColor = borderColor;
+        parameter.borderWidth = borderWidth;
+        font = gen.generateFont(parameter);
+        return font;
+    }
 
     public BitmapFont getTitleFont() {
         return titleFont;
