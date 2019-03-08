@@ -2,38 +2,33 @@ package tuni.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 public class MainMenu implements Screen {
 
     private MyGame game;
     private SpriteBatch batch;
-    Button playButton;
-    Button tutorialButton;
-    Button settingsButton;
-    Array<Button> buttonList;
-    OrthographicCamera camera;
-    BitmapFont mainFont;
+    private Button playButton;
+    private Button tutorialButton;
+    private Button settingsButton;
+    private Array<Button> buttonList;
+    private OrthographicCamera camera;
+    private BitmapFont font64;
+    private BitmapFont font100;
 
     public MainMenu(MyGame game) {
         this.game = game;
         batch = game.getBatch();
-
-        playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);
-        tutorialButton = new Button(game, "button.png", 1.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_TUTORIAL);
-        settingsButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_SETTINGS);
-        buttonList = new Array<Button>();
-        buttonList.add(playButton, tutorialButton, settingsButton);
-
         camera = game.getCamera();
 
-        mainFont = new BitmapFont();
+        createButtons();
+        font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
+        font100 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 100, Color.BLACK, 4);
 
     }
 
@@ -46,22 +41,31 @@ public class MainMenu implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        batch.begin();
-
         batch.setProjectionMatrix(camera.combined);
-        playButton.draw(batch);
-        tutorialButton.draw(batch);
-        settingsButton.draw(batch);
 
-        batch.end();
-        game.getTextRenderer().renderText("PLAY", 800f, 450f, game.getTextRenderer().getTitleFont());
+        renderButtons();
 
         for(Button button: buttonList) {
             button.pressFunction();
         }
     }
-
+    private void renderButtons(){
+        batch.begin();
+        playButton.draw(batch);
+        tutorialButton.draw(batch);
+        settingsButton.draw(batch);
+        batch.end();
+        game.getTextRenderer().renderText("PLAY", 800f, 500f, font100);
+        game.getTextRenderer().renderText("SETTINGS", 450f, 250f, font64);
+        game.getTextRenderer().renderText("TUTORIAL", 1150f, 250f, font64);
+    }
+    private void createButtons(){
+        playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);
+        tutorialButton = new Button(game, "button.png", 1.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_TUTORIAL);
+        settingsButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_SETTINGS);
+        buttonList = new Array<Button>();
+        buttonList.add(playButton, tutorialButton, settingsButton);
+    }
     @Override
     public void resize(int width, int height) {
 
@@ -87,7 +91,7 @@ public class MainMenu implements Screen {
         for(Button button: buttonList) {
             button.getButtonTexture().dispose();
         }
-        mainFont.dispose();
-
+        font64.dispose();
+        font100.dispose();
     }
 }

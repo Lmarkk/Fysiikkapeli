@@ -11,10 +11,10 @@ public class Button {
     static final int BUTTONTYPE_TUTORIAL = 2;
     static  final int BUTTONTYPE_SETTINGS = 3;
 
-    MyGame game;
-    int buttonType;
-    Rectangle buttonRect;
-    Texture buttonTexture;
+    private MyGame game;
+    private int buttonType;
+    private Rectangle buttonRect;
+    private Texture buttonTexture;
 
     public Button(MyGame g, String textureSource, float x, float y, float width, float height, int bType) {
         game = g;
