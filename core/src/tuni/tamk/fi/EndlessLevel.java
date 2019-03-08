@@ -1,6 +1,7 @@
 package tuni.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public class EndlessLevel extends BaseLevel {
@@ -14,6 +15,8 @@ public class EndlessLevel extends BaseLevel {
 
     @Override
     public void render(float delta) {
+        Gdx.gl.glClearColor(1, 0, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 //        for (Body body : bodies) {
 //            if(body.getUserData() != null){
 //                float radius = body.getFixtureList().get(0).getShape().getRadius();
