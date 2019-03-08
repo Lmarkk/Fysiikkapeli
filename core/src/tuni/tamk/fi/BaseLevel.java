@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class BaseLevel implements Screen {
-    private MyGame game;
+    MyGame game;
     SpriteBatch batch;
     Texture background;
     Ground ground;
@@ -26,7 +26,7 @@ public class BaseLevel implements Screen {
     private Vector2 touchEnd = new Vector2();
     private Vector2 throwDirection = new Vector2();
 
-    private Body currentProjectile = null;
+    private Body currentProjectile;
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -35,6 +35,9 @@ public class BaseLevel implements Screen {
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
+
+
+
         gameWorld.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
@@ -90,6 +93,10 @@ public class BaseLevel implements Screen {
             gameWorld.step(timeStep, 7, 2);
             accumulator -= timeStep;
         }
+    }
+
+    public void setCurrentProjectile(Body currentProjectile) {
+        this.currentProjectile = currentProjectile;
     }
 
     public World getGameWorld() {
