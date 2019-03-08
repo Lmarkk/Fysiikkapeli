@@ -17,6 +17,7 @@ public class BaseLevel implements Screen {
     private MyGame game;
     SpriteBatch batch;
     Texture background;
+    Ground ground;
     OrthographicCamera camera;
     private float accumulator;
     private float timeStep;
@@ -27,12 +28,13 @@ public class BaseLevel implements Screen {
 
     private Body currentProjectile = null;
 
-    public BaseLevel(MyGame g, String textureSource) {
+    public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
         camera = g.getCamera();
-        background = new Texture(textureSource);
+        background = new Texture(backgroundTextureSource);
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
+        ground = new Ground(game, this, groundTextureSource);
         gameWorld.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
@@ -89,6 +91,11 @@ public class BaseLevel implements Screen {
             accumulator -= timeStep;
         }
     }
+
+    public World getGameWorld() {
+        return gameWorld;
+    }
+
     @Override
     public void show() {
 

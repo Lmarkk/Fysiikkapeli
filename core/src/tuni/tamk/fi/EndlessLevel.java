@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
-        super(g, "phbackground.png");
+        super(g, "phbackground.png", "groundtexture.png");
     }
     @Override
     public void show() {
@@ -20,6 +20,7 @@ public class EndlessLevel extends BaseLevel {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(background, 0, 0, 16, 9);
+        ground.draw();
 //        for (Body body : bodies) {
 //            if(body.getUserData() != null){
 //                float radius = body.getFixtureList().get(0).getShape().getRadius();
