@@ -8,39 +8,32 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 
 public class MainMenu implements Screen {
 
     private MyGame game;
     private SpriteBatch batch;
-    Texture button;
-    Rectangle playButtonRect;
-    Rectangle tutorialButtonRect;
-    Rectangle settingsButtonRect;
-    OrthographicCamera meterCamera;
-    OrthographicCamera pixelCamera;
+    Button playButton;
+    Button tutorialButton;
+    Button settingsButton;
+    Array<Button> buttonList;
+    OrthographicCamera camera;
     BitmapFont mainFont;
-    Texture img;
 
     public MainMenu(MyGame game) {
         this.game = game;
         batch = game.getBatch();
 
-        img = new Texture("badlogic.jpg");
-        button = new Texture("button.png");
+        playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);
+        tutorialButton = new Button(game, "button.png", 1.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_TUTORIAL);
+        settingsButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_SETTINGS);
+        buttonList = new Array<Button>();
+        buttonList.add(playButton, tutorialButton, settingsButton);
 
-        float buttonHeight = button.getHeight()/60f;
-        float buttonWidth = button.getWidth()/30f;
-
-        meterCamera = game.getCamera();
-        pixelCamera = new OrthographicCamera();
-        pixelCamera.setToOrtho(false, 1600, 900);
+        camera = game.getCamera();
 
         mainFont = new BitmapFont();
-
-        playButtonRect = new Rectangle(4.5f, 3.2f, buttonWidth + 1f, buttonHeight + 0.5f);
-        tutorialButtonRect = new Rectangle(1.5f, 1.3f, buttonWidth, buttonHeight);
-        settingsButtonRect = new Rectangle(8.5f, 1.3f, buttonWidth, buttonHeight);
 
     }
 
@@ -53,20 +46,22 @@ public class MainMenu implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.setProjectionMatrix(meterCamera.combined);
-        renderButtons();
-    }
-    private void renderButtons(){
+
         batch.begin();
-        batch.draw(button, playButtonRect.x, playButtonRect.y, playButtonRect.getWidth(), playButtonRect.getHeight());
-        batch.draw(button, tutorialButtonRect.x, tutorialButtonRect.y, tutorialButtonRect.getWidth(), tutorialButtonRect.getHeight());
-        batch.draw(button, settingsButtonRect.x, settingsButtonRect.y, settingsButtonRect.getWidth(), settingsButtonRect.getHeight());
-//        batch.setProjectionMatrix(pixelCamera.combined);
+
+        batch.setProjectionMatrix(camera.combined);
+        playButton.draw(batch);
+        tutorialButton.draw(batch);
+        settingsButton.draw(batch);
+
         batch.end();
         game.getTextRenderer().renderText("PLAY", 800f, 450f, game.getTextRenderer().getTitleFont());
-        game.getTextRenderer().renderText("SETTINGS", 400f, 250f, game.getTextRenderer().getTitleFont());
-        game.getTextRenderer().renderText("TUTORIAL", 1100f, 250f, game.getTextRenderer().getTitleFont());
+
+        for(Button button: buttonList) {
+            button.pressFunction();
+        }
     }
+
     @Override
     public void resize(int width, int height) {
 
@@ -89,8 +84,9 @@ public class MainMenu implements Screen {
 
     @Override
     public void dispose() {
-        img.dispose();
-        button.dispose();
+        for(Button button: buttonList) {
+            button.getButtonTexture().dispose();
+        }
         mainFont.dispose();
 
     }
