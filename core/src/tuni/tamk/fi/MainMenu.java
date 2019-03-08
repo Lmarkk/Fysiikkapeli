@@ -53,16 +53,20 @@ public class MainMenu implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.begin();
         batch.setProjectionMatrix(meterCamera.combined);
+        renderButtons();
+    }
+    private void renderButtons(){
+        batch.begin();
         batch.draw(button, playButtonRect.x, playButtonRect.y, playButtonRect.getWidth(), playButtonRect.getHeight());
         batch.draw(button, tutorialButtonRect.x, tutorialButtonRect.y, tutorialButtonRect.getWidth(), tutorialButtonRect.getHeight());
         batch.draw(button, settingsButtonRect.x, settingsButtonRect.y, settingsButtonRect.getWidth(), settingsButtonRect.getHeight());
-        batch.setProjectionMatrix(pixelCamera.combined);
+//        batch.setProjectionMatrix(pixelCamera.combined);
         batch.end();
         game.getTextRenderer().renderText("PLAY", 800f, 450f, game.getTextRenderer().getTitleFont());
+        game.getTextRenderer().renderText("SETTINGS", 400f, 250f, game.getTextRenderer().getTitleFont());
+        game.getTextRenderer().renderText("TUTORIAL", 1100f, 250f, game.getTextRenderer().getTitleFont());
     }
-
     @Override
     public void resize(int width, int height) {
 
