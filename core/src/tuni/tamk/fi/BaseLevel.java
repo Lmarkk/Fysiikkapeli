@@ -2,6 +2,8 @@ package tuni.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -13,7 +15,9 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class BaseLevel implements Screen {
     private MyGame game;
-    private SpriteBatch batch;
+    SpriteBatch batch;
+    Texture background;
+    OrthographicCamera camera;
     private float accumulator;
     private float timeStep;
     private World gameWorld;
@@ -23,8 +27,10 @@ public class BaseLevel implements Screen {
 
     private Body currentProjectile = null;
 
-    public BaseLevel(MyGame g) {
+    public BaseLevel(MyGame g, String textureSource) {
         game = g;
+        camera = g.getCamera();
+        background = new Texture(textureSource);
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
         gameWorld.setContactListener(new ContactListener() {

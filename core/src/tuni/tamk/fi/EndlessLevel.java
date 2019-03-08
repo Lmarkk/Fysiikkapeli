@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
-        super(g);
+        super(g, "phbackground.png");
     }
     @Override
     public void show() {
@@ -17,6 +17,9 @@ public class EndlessLevel extends BaseLevel {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(background, 0, 0, 16, 9);
 //        for (Body body : bodies) {
 //            if(body.getUserData() != null){
 //                float radius = body.getFixtureList().get(0).getShape().getRadius();
@@ -39,6 +42,7 @@ public class EndlessLevel extends BaseLevel {
 //                        false);
 //            }
 //        }
+        batch.end();
         doPhysicsStep(Gdx.graphics.getDeltaTime());
     }
 
