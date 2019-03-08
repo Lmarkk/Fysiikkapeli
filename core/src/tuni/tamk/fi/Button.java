@@ -7,9 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class Button {
-    static  final int BUTTONTYPE_PLAY = 1;
+    static final int BUTTONTYPE_PLAY = 1;
     static final int BUTTONTYPE_TUTORIAL = 2;
-    static  final int BUTTONTYPE_SETTINGS = 3;
+    static final int BUTTONTYPE_SETTINGS = 3;
 
     private MyGame game;
     private int buttonType;
