@@ -18,7 +18,7 @@ public class MainMenu implements Screen {
     Button tutorialButton;
     Button settingsButton;
     Array<Button> buttonList;
-    OrthographicCamera meterCamera;
+    OrthographicCamera camera;
     BitmapFont mainFont;
 
     public MainMenu(MyGame game) {
@@ -31,7 +31,7 @@ public class MainMenu implements Screen {
         buttonList = new Array<Button>();
         buttonList.add(playButton, tutorialButton, settingsButton);
 
-        meterCamera = game.getCamera();
+        camera = game.getCamera();
 
         mainFont = new BitmapFont();
 
@@ -49,7 +49,7 @@ public class MainMenu implements Screen {
 
         batch.begin();
 
-        batch.setProjectionMatrix(meterCamera.combined);
+        batch.setProjectionMatrix(camera.combined);
         playButton.draw(batch);
         tutorialButton.draw(batch);
         settingsButton.draw(batch);
