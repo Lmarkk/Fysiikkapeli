@@ -48,11 +48,5 @@ public class Ground {
         groundFixtureDef.shape = polygonShape;
         return groundFixtureDef;
     }
-    public Texture getTexture() {
-        return groundTexture;
-    }
-    public Body getBody() {
-        return groundBody;
-    }
 }
 
