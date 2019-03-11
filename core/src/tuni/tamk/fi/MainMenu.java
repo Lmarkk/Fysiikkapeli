@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -18,6 +19,7 @@ public class MainMenu implements Screen {
     private Button settingsButton;
     private Array<Button> buttonList;
     private OrthographicCamera camera;
+    private Texture background;
     private BitmapFont font64;
     private BitmapFont font100;
 
@@ -29,7 +31,7 @@ public class MainMenu implements Screen {
         createButtons();
         font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
         font100 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 100, Color.BLACK, 4);
-
+        background = new Texture("phbackground.png");
     }
 
     @Override
@@ -42,6 +44,10 @@ public class MainMenu implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
+
+        batch.begin();
+        batch.draw(background, 0, 0, 16, 9);
+        batch.end();
 
         renderButtons();
 
