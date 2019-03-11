@@ -19,6 +19,7 @@ public class EndlessLevel extends BaseLevel {
 
     @Override
     public void render(float delta) {
+        super.render(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
@@ -26,28 +27,6 @@ public class EndlessLevel extends BaseLevel {
         batch.draw(background, 0, 0, 16, 9);
         blueBerry.draw();
         ground.draw();
-//        for (Body body : bodies) {
-//            if(body.getUserData() != null){
-//                float radius = body.getFixtureList().get(0).getShape().getRadius();
-//                Texture texture = (Texture) body.getUserData();
-//                batch.draw(texture,
-//                        body.getPosition().x - radius,
-//                        body.getPosition().y - radius,
-//                        radius,
-//                        radius,
-//                        radius * 2f,
-//                        radius * 2f,
-//                        1.0f,
-//                        1.0f,
-//                        body.getTransform().getRotation() * MathUtils.radiansToDegrees,
-//                        0,
-//                        0,
-//                        texture.getWidth(),
-//                        texture.getHeight(),
-//                        false,
-//                        false);
-//            }
-//        }
         batch.end();
         doPhysicsStep(Gdx.graphics.getDeltaTime());
     }
