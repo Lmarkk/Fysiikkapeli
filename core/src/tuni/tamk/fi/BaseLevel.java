@@ -27,7 +27,9 @@ public class BaseLevel implements Screen {
     private Vector2 touchEnd = new Vector2();
     private Vector2 throwDirection = new Vector2();
 
+    private boolean gameRunning = false;
     private Body currentProjectile;
+    private float startTimer = 0f;
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -61,14 +63,19 @@ public class BaseLevel implements Screen {
         Gdx.input.setInputProcessor(new MyInputProcessor() {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                touchStart = new Vector2(screenX, screenY);
+                if(isGameRunning()){
+                    touchStart = new Vector2(screenX / 100f, screenY / 100f);
+                }
+                System.out.println(touchStart);
                 return super.touchDown(screenX, screenY, pointer, button);
             }
 
             @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                touchEnd = new Vector2(screenX, screenY);
-                throwProjectile(currentProjectile);
+                if(isGameRunning()){
+                    touchEnd = new Vector2(screenX / 100f, screenY / 100f);
+                    throwProjectile(currentProjectile);
+                }
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -79,10 +86,14 @@ public class BaseLevel implements Screen {
         if(body != null){
             throwDirection = new Vector2(touchStart.sub(touchEnd));
             throwDirection.y *= -1;
-            System.out.println(throwDirection);
             body.applyLinearImpulse(throwDirection, body.getWorldCenter(), true);
         }
     }
+
+    public boolean isGameRunning() {
+        return gameRunning;
+    }
+
     public void doPhysicsStep(float deltaTime) {
         float frameTime = deltaTime;
         if(deltaTime > 1 / 4f) {
@@ -118,7 +129,12 @@ public class BaseLevel implements Screen {
 
     @Override
     public void render(float delta) {
-
+        if(!isGameRunning()){
+            startTimer += delta;
+            if(startTimer >= 0.1f){
+                gameRunning = true;
+            }
+        }
     }
 
     @Override
