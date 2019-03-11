@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -93,6 +94,13 @@ public class BaseLevel implements Screen {
             gameWorld.step(timeStep, 7, 2);
             accumulator -= timeStep;
         }
+    }
+    public void moveCam() {
+        Vector3 desiredPosition = new Vector3();
+        desiredPosition.x = currentProjectile.getPosition().x;
+        desiredPosition.y = 3f;
+        camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 5f);
+        camera.update();
     }
 
     public void setCurrentProjectile(Body currentProjectile) {

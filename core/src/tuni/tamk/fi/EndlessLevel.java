@@ -49,6 +49,7 @@ public class EndlessLevel extends BaseLevel {
 //            }
 //        }
         batch.end();
+        moveCam();
         doPhysicsStep(Gdx.graphics.getDeltaTime());
     }
 
