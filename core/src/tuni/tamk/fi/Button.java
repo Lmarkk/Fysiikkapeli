@@ -25,20 +25,18 @@ public class Button {
     public void draw(SpriteBatch batch) {
         batch.draw(buttonTexture, buttonRect.getX(), buttonRect.getY(), buttonRect.getWidth(), buttonRect.getHeight());
     }
-    public void pressFunction() {
-        if(Gdx.input.justTouched()) {
-            Vector3 touch = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-            game.getCamera().unproject(touch);
-            if(buttonRect.contains(touch.x, touch.y)) {
-                switch(buttonType){
-                    case BUTTONTYPE_PLAY:
-                        game.setScreen(new EndlessLevel(game));
-                        break;
-                    case BUTTONTYPE_TUTORIAL:
-                        break;
-                    case BUTTONTYPE_SETTINGS:
-                        break;
-                }
+    public void pressFunction(int x, int y) {
+        Vector3 touch = new Vector3(x, y, 0);
+        game.getCamera().unproject(touch);
+        if(buttonRect.contains(touch.x, touch.y)) {
+            switch(buttonType){
+                case BUTTONTYPE_PLAY:
+                    game.setScreen(new EndlessLevel(game));
+                    break;
+                case BUTTONTYPE_TUTORIAL:
+                    break;
+                case BUTTONTYPE_SETTINGS:
+                    break;
             }
         }
     }

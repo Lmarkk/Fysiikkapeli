@@ -32,6 +32,15 @@ public class MainMenu implements Screen {
         font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
         font100 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 100, Color.BLACK, 4);
         background = new Texture("phbackground.png");
+        Gdx.input.setInputProcessor(new MyInputProcessor() {
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                for(Button b: buttonList) {
+                    b.pressFunction(screenX, screenY);
+                }
+                return super.touchUp(screenX, screenY, pointer, button);
+            }
+        });
     }
 
     @Override
@@ -51,9 +60,6 @@ public class MainMenu implements Screen {
 
         renderButtons();
 
-        for(Button button: buttonList) {
-            button.pressFunction();
-        }
     }
     private void renderButtons(){
         batch.begin();
