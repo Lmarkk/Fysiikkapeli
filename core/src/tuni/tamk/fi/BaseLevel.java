@@ -1,6 +1,7 @@
 package tuni.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,11 +9,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+
+import java.util.ArrayList;
 
 public class BaseLevel implements Screen {
     MyGame game;
@@ -29,6 +33,11 @@ public class BaseLevel implements Screen {
     private boolean gameRunning = false;
     private Body currentProjectile;
     private float startTimer = 0f;
+    private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
+    private Vector2 projectileStartPos = new Vector2(2, 2);
+    private int currentProjectileIndex = 0;
+    private Vector2 cameraStartPosition = new Vector2(8f, 3);
+    private Vector2 cameraEndPosition = new Vector2(40f, 3);
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -38,6 +47,8 @@ public class BaseLevel implements Screen {
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
 
+        camera.position.set(cameraStartPosition, 0);
+        camera.update();
         gameWorld.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
@@ -82,6 +93,7 @@ public class BaseLevel implements Screen {
         if(body != null){
             throwDirection = new Vector2(touchStart.sub(touchEnd));
             throwDirection.y *= -1;
+            body.setType(BodyDef.BodyType.DynamicBody);
             body.applyLinearImpulse(throwDirection, body.getWorldCenter(), true);
         }
     }
@@ -110,14 +122,23 @@ public class BaseLevel implements Screen {
         Vector3 desiredPosition = new Vector3();
         desiredPosition.x = currentProjectile.getPosition().x;
         desiredPosition.y = 3f;
-        if(desiredPosition.x > 7.5f && desiredPosition.x < 40.5f) {
+        if(desiredPosition.x > cameraStartPosition.x && desiredPosition.x < cameraEndPosition.x) {
             camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
+            camera.update();
+        } else if(desiredPosition.x == projectileStartPos.x){
+            camera.position.slerp(new Vector3(cameraStartPosition.x, cameraStartPosition.y ,0), Gdx.graphics.getDeltaTime() * 10);
             camera.update();
         }
     }
 
-    public void setCurrentProjectile(Body currentProjectile) {
-        this.currentProjectile = currentProjectile;
+    public void setNextProjectile() {
+        if(currentProjectileIndex < projectiles.size()){
+            currentProjectile = projectiles.get(currentProjectileIndex).getBody();
+            currentProjectile.setTransform(projectileStartPos, 0f);
+            currentProjectileIndex++;
+        } else {
+            System.out.println("Out of projectiles");
+        }
     }
 
     public World getGameWorld() {
@@ -136,6 +157,9 @@ public class BaseLevel implements Screen {
             if(startTimer >= 0.1f){
                 gameRunning = true;
             }
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+            setNextProjectile();
         }
     }
 
@@ -164,5 +188,9 @@ public class BaseLevel implements Screen {
         gameWorld.dispose();
         background.dispose();
         game.dispose();
+    }
+
+    public ArrayList<ThrownObject> getProjectiles() {
+        return projectiles;
     }
 }
