@@ -83,7 +83,7 @@ public class MainMenu implements Screen {
         playButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("PLAY", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
         recipeButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("SETTINGS", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText("RECIPES", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         tutorialButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("TUTORIAL", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
     }
