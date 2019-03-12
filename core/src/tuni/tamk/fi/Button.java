@@ -29,19 +29,22 @@ public class Button {
     public void draw(SpriteBatch batch) {
         batch.draw(buttonTexture, buttonRect.getX(), buttonRect.getY(), buttonRect.getWidth(), buttonRect.getHeight());
     }
-    public void pressFunction(int x, int y) {
+    public boolean pressFunction(int x, int y) {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
         if(buttonRect.contains(touch.x, touch.y)) {
             switch(buttonType){
                 case BUTTONTYPE_PLAY:
                     game.setScreen(new EndlessLevel(game));
+                    System.out.println(buttonType);
                     break;
                 case BUTTONTYPE_TUTORIAL:
                     game.setScreen(new TutorialScreen(game));
+                    System.out.println(buttonType);
                     break;
                 case BUTTONTYPE_RECIPES:
                     game.setScreen(new RecipeMenu(game));
+                    System.out.println(buttonType);
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));
@@ -51,7 +54,9 @@ public class Button {
                 case BUTTONTYPE_PREVIMAGE:
                     break;
             }
+            return true;
         }
+        return false;
     }
     public void setTexture(int x, int y, boolean pressed) {
         if(pressed) {

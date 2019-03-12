@@ -47,7 +47,9 @@ public class MainMenu implements Screen {
             @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
                 for(Button b: buttonList) {
-                    b.pressFunction(screenX, screenY);
+                    if(b.pressFunction(screenX, screenY)){
+                        break;
+                    }
                     b.setTexture(screenX, screenY, false);
                 }
                 return super.touchUp(screenX, screenY, pointer, button);
