@@ -5,13 +5,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public class EndlessLevel extends BaseLevel {
-    ThrownObject blueBerry;
 
     public EndlessLevel(MyGame g) {
         super(g, "phbackground.png", "groundtexture.png");
-        blueBerry = new ThrownObject(game, this, "blueberry.png", ThrownObject.OBJECTSHAPE_CIRCLE);
-        setCurrentProjectile(blueBerry.getBody());
 
+        for (int i = 0; i < 10; i++) {
+            ThrownObject object = new ThrownObject(game, this, "blueberry.png", ThrownObject.OBJECTSHAPE_CIRCLE);
+            getProjectiles().add(object);
+        }
+        setNextProjectile();
         createBorderWall(1, 0);
         createBorderWall(46.5f, 0);
     }
@@ -26,7 +28,9 @@ public class EndlessLevel extends BaseLevel {
         batch.draw(background, 0, 0, 16, 9);
         batch.draw(background, 16, 0, 16, 9);
         batch.draw(background, 32, 0, 16, 9);
-        blueBerry.draw();
+        for (ThrownObject object: getProjectiles()) {
+            object.draw();
+        }
         ground.draw();
         batch.end();
         moveCam();
