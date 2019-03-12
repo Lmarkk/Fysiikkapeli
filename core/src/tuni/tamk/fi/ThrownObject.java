@@ -17,6 +17,7 @@ public class ThrownObject {
     private Body body;
     private float radius;
     private int objectShape;
+    private boolean thrown = false;
 
     public ThrownObject(MyGame g, BaseLevel b, String textureSource, int shape) {
         objectShape = shape;
@@ -67,5 +68,13 @@ public class ThrownObject {
 
     public Body getBody() {
         return body;
+    }
+
+    public boolean isThrown() {
+        return thrown;
+    }
+
+    public void setThrown(boolean thrown) {
+        this.thrown = thrown;
     }
 }
