@@ -110,8 +110,10 @@ public class BaseLevel implements Screen {
         Vector3 desiredPosition = new Vector3();
         desiredPosition.x = currentProjectile.getPosition().x;
         desiredPosition.y = 3f;
-        camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 5f);
-        camera.update();
+        if(desiredPosition.x > 8 && desiredPosition.x < 40) {
+            camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 5f);
+            camera.update();
+        }
     }
 
     public void setCurrentProjectile(Body currentProjectile) {
