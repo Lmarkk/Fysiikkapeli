@@ -11,6 +11,9 @@ public class EndlessLevel extends BaseLevel {
         super(g, "phbackground.png", "groundtexture.png");
         blueBerry = new ThrownObject(game, this, "blueberry.png", ThrownObject.OBJECTSHAPE_CIRCLE);
         setCurrentProjectile(blueBerry.getBody());
+
+        createBorderWall(1, 0);
+        createBorderWall(46.5f, 0);
     }
 
     @Override

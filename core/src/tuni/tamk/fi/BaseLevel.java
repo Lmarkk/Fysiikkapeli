@@ -94,6 +94,10 @@ public class BaseLevel implements Screen {
         return gameRunning;
     }
 
+    public void createBorderWall(float x, float y) {
+        BorderWall borderWall = new BorderWall(game, this, x, y);
+    }
+
     public void doPhysicsStep(float deltaTime) {
         float frameTime = deltaTime;
         if(deltaTime > 1 / 4f) {
@@ -110,8 +114,8 @@ public class BaseLevel implements Screen {
         Vector3 desiredPosition = new Vector3();
         desiredPosition.x = currentProjectile.getPosition().x;
         desiredPosition.y = 3f;
-        if(desiredPosition.x > 8 && desiredPosition.x < 40) {
-            camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 5f);
+        if(desiredPosition.x > 7.5f && desiredPosition.x < 40.5f) {
+            camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
             camera.update();
         }
     }
