@@ -26,7 +26,6 @@ public class BaseLevel implements Screen {
     private Vector2 touchStart = new Vector2();
     private Vector2 touchEnd = new Vector2();
     private Vector2 throwDirection = new Vector2();
-
     private boolean gameRunning = false;
     private Body currentProjectile;
     private float startTimer = 0f;
@@ -38,8 +37,6 @@ public class BaseLevel implements Screen {
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
-
-
 
         gameWorld.setContactListener(new ContactListener() {
             @Override
@@ -166,5 +163,7 @@ public class BaseLevel implements Screen {
     @Override
     public void dispose() {
         gameWorld.dispose();
+        background.dispose();
+        game.dispose();
     }
 }
