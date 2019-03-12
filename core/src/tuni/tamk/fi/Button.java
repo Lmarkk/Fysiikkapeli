@@ -8,7 +8,9 @@ import com.badlogic.gdx.math.Vector3;
 public class Button {
     static final int BUTTONTYPE_PLAY = 1;
     static final int BUTTONTYPE_TUTORIAL = 2;
-    static final int BUTTONTYPE_SETTINGS = 3;
+    static final int BUTTONTYPE_RECIPES = 3;
+    static final int BUTTONTYPE_SOUND = 4;
+    static final int BUTTONTYPE_MUSIC = 5;
 
     private MyGame game;
     private int buttonType;
@@ -34,7 +36,7 @@ public class Button {
                     break;
                 case BUTTONTYPE_TUTORIAL:
                     break;
-                case BUTTONTYPE_SETTINGS:
+                case BUTTONTYPE_RECIPES:
                     break;
             }
         }

@@ -79,6 +79,8 @@ public class MainMenu implements Screen {
         playButton.draw(batch);
         tutorialButton.draw(batch);
         recipeButton.draw(batch);
+        soundButton.draw(batch);
+        musicButton.draw(batch);
         batch.end();
         playButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("PLAY", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
@@ -88,9 +90,11 @@ public class MainMenu implements Screen {
         game.getTextRenderer().renderText("TUTORIAL", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
     }
     private void createButtons(){
+        soundButton = new Button(game, "button.png", 1.5f , 7, 1.2f, 1.2f, Button.BUTTONTYPE_SOUND);
+        musicButton = new Button(game, "button.png", 3.3f, 7, 1.2f, 1.2f, Button.BUTTONTYPE_MUSIC);
         playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);
         tutorialButton = new Button(game, "button.png", 1.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_TUTORIAL);
-        recipeButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_SETTINGS);
+        recipeButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_RECIPES);
         buttonList = new Array<Button>();
         buttonList.add(playButton, tutorialButton, recipeButton);
     }
