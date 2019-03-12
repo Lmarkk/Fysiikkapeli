@@ -25,6 +25,8 @@ public class EndlessLevel extends BaseLevel {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(background, 0, 0, 16, 9);
+        batch.draw(background, 16, 0, 16, 9);
+        batch.draw(background, 32, 0, 16, 9);
         blueBerry.draw();
         ground.draw();
         batch.end();

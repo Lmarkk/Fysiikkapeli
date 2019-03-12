@@ -15,6 +15,7 @@ public class Ground {
     Rectangle groundRect;
     SpriteBatch batch;
     Body groundBody;
+    float groundWidth = 48;
 
 
     public Ground(MyGame g, BaseLevel b, String textureSource) {
@@ -22,7 +23,7 @@ public class Ground {
         baseLevel = b;
         batch = game.getBatch();
         groundTexture = new Texture(textureSource);
-        groundRect = new Rectangle(0,-3,64,4);
+        groundRect = new Rectangle(0,-3,groundWidth,4);
         groundBody = baseLevel.getGameWorld().createBody(getGroundBodyDef());
         groundBody.createFixture(getGroundFixtureDef());
 
@@ -34,7 +35,7 @@ public class Ground {
     public BodyDef getGroundBodyDef() {
         BodyDef groundBodyDef = new BodyDef();
         groundBodyDef.type = BodyDef.BodyType.StaticBody;
-        groundBodyDef.position.set(32, -1);
+        groundBodyDef.position.set(groundWidth/2, -1);
         return groundBodyDef;
     }
 
@@ -44,7 +45,7 @@ public class Ground {
         groundFixtureDef.restitution = 0.2f;
         groundFixtureDef.friction = 0.5f;
         PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(32, 2);
+        polygonShape.setAsBox(groundWidth/2, 2);
         groundFixtureDef.shape = polygonShape;
         return groundFixtureDef;
     }
