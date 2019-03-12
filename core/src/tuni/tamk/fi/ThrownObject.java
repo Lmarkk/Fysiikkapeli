@@ -14,19 +14,15 @@ public class ThrownObject {
 
     private SpriteBatch batch;
     private Texture texture;
-    private MyGame game;
-    private BaseLevel baseLevel;
     private Body body;
     private float radius;
     private int objectShape;
 
     public ThrownObject(MyGame g, BaseLevel b, String textureSource, int shape) {
-        game = g;
-        baseLevel = b;
         objectShape = shape;
         batch = g.getBatch();
         texture = new Texture(textureSource);
-        body = baseLevel.getGameWorld().createBody(getBodyDef());
+        body = b.getGameWorld().createBody(getBodyDef());
         if(objectShape == OBJECTSHAPE_CIRCLE) {
             body.createFixture(getFixtureDef());
             radius = (body.getFixtureList().get(0).getShape()).getRadius();
@@ -54,8 +50,8 @@ public class ThrownObject {
     }
     public BodyDef getBodyDef() {
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(8, 3);
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.position.set(0, 0);
         return bodyDef;
     }
     public FixtureDef getFixtureDef() {
