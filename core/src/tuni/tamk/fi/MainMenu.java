@@ -17,7 +17,9 @@ public class MainMenu implements Screen {
     private SpriteBatch batch;
     private Button playButton;
     private Button tutorialButton;
-    private Button settingsButton;
+    private Button musicButton;
+    private Button soundButton;
+    private Button recipeButton;
     private Array<Button> buttonList;
     private OrthographicCamera camera;
     private Texture background;
@@ -67,11 +69,11 @@ public class MainMenu implements Screen {
         batch.begin();
         playButton.draw(batch);
         tutorialButton.draw(batch);
-        settingsButton.draw(batch);
+        recipeButton.draw(batch);
         batch.end();
         playButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("PLAY", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
-        settingsButton.getButtonRect().getCenter(buttonCenter);
+        recipeButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("SETTINGS", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         tutorialButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("TUTORIAL", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
@@ -79,9 +81,9 @@ public class MainMenu implements Screen {
     private void createButtons(){
         playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);
         tutorialButton = new Button(game, "button.png", 1.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_TUTORIAL);
-        settingsButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_SETTINGS);
+        recipeButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_SETTINGS);
         buttonList = new Array<Button>();
-        buttonList.add(playButton, tutorialButton, settingsButton);
+        buttonList.add(playButton, tutorialButton, recipeButton);
     }
     @Override
     public void resize(int width, int height) {
