@@ -17,10 +17,6 @@ public class EndlessLevel extends BaseLevel {
     }
 
     @Override
-    public void show() {
-    }
-
-    @Override
     public void render(float delta) {
         super.render(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -60,11 +56,5 @@ public class EndlessLevel extends BaseLevel {
     @Override
     public void dispose() {
 
-    }
-    private static void createFloor(){
-
-    }
-    private Body createBody(){
-        return null;
     }
 }
