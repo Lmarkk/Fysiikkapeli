@@ -11,6 +11,9 @@ public class Button {
     static final int BUTTONTYPE_RECIPES = 3;
     static final int BUTTONTYPE_SOUND = 4;
     static final int BUTTONTYPE_MUSIC = 5;
+    static final int BUTTONTYPE_MAINMENU = 6;
+    static final int BUTTONTYPE_NEXTIMAGE = 7;
+    static final int BUTTONTYPE_PREVIMAGE = 8;
 
     private MyGame game;
     private int buttonType;
@@ -35,8 +38,17 @@ public class Button {
                     game.setScreen(new EndlessLevel(game));
                     break;
                 case BUTTONTYPE_TUTORIAL:
+                    game.setScreen(new TutorialScreen(game));
                     break;
                 case BUTTONTYPE_RECIPES:
+                    game.setScreen(new RecipeMenu(game));
+                    break;
+                case BUTTONTYPE_MAINMENU:
+                    game.setScreen(new MainMenu(game));
+                    break;
+                case BUTTONTYPE_NEXTIMAGE:
+                    break;
+                case BUTTONTYPE_PREVIMAGE:
                     break;
             }
         }
