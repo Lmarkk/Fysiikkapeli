@@ -39,7 +39,18 @@ public class Button {
             }
         }
     }
+    public void setTexture(int x, int y, boolean pressed) {
+        if(pressed) {
+            Vector3 touch = new Vector3(x, y, 0);
+            game.getCamera().unproject(touch);
+            if(buttonRect.contains(touch.x, touch.y)) {
+                buttonTexture = new Texture("button-pressed.png");
+            }
+        } else {
+            buttonTexture = new Texture("button.png");
+        }
 
+    }
     public Texture getButtonTexture() {
         return buttonTexture;
     }

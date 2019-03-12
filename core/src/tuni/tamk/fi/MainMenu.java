@@ -35,9 +35,18 @@ public class MainMenu implements Screen {
         background = new Texture("phbackground.png");
         Gdx.input.setInputProcessor(new MyInputProcessor() {
             @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                for(Button b: buttonList) {
+                    b.setTexture(screenX, screenY, true);
+                }
+                return super.touchDown(screenX, screenY, pointer, button);
+            }
+
+            @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
                 for(Button b: buttonList) {
                     b.pressFunction(screenX, screenY);
+                    b.setTexture(screenX, screenY, false);
                 }
                 return super.touchUp(screenX, screenY, pointer, button);
             }
