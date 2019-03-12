@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class MainMenu implements Screen {
@@ -62,14 +63,18 @@ public class MainMenu implements Screen {
 
     }
     private void renderButtons(){
+        Vector2 buttonCenter = new Vector2();
         batch.begin();
         playButton.draw(batch);
         tutorialButton.draw(batch);
         settingsButton.draw(batch);
         batch.end();
-        game.getTextRenderer().renderText("PLAY", 800f, 500f, font100);
-        game.getTextRenderer().renderText("SETTINGS", 450f, 250f, font64);
-        game.getTextRenderer().renderText("TUTORIAL", 1150f, 250f, font64);
+        playButton.getButtonRect().getCenter(buttonCenter);
+        game.getTextRenderer().renderText("PLAY", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
+        settingsButton.getButtonRect().getCenter(buttonCenter);
+        game.getTextRenderer().renderText("SETTINGS", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        tutorialButton.getButtonRect().getCenter(buttonCenter);
+        game.getTextRenderer().renderText("TUTORIAL", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
     }
     private void createButtons(){
         playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);

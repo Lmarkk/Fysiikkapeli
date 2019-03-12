@@ -22,7 +22,7 @@ public class TextRenderer {
         GlyphLayout layout = new GlyphLayout();
         layout.setText(font, text);
         batch.begin();
-        font.draw(batch, text, x - layout.width / 2f, y - layout.height / 2f);
+        font.draw(batch, text, x - layout.width / 2f, y + layout.height / 2f);
         batch.end();
     }
 

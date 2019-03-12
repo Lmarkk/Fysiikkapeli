@@ -43,4 +43,8 @@ public class Button {
     public Texture getButtonTexture() {
         return buttonTexture;
     }
+
+    public Rectangle getButtonRect() {
+        return buttonRect;
+    }
 }

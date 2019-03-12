@@ -63,7 +63,6 @@ public class BaseLevel implements Screen {
                 if(isGameRunning()){
                     touchStart = new Vector2(screenX / 100f, screenY / 100f);
                 }
-                System.out.println(touchStart);
                 return super.touchDown(screenX, screenY, pointer, button);
             }
 
