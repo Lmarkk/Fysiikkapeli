@@ -1,4 +1,4 @@
-package tuni.tamk.fi;
+package tiko2g.tamk.fi;
 
 public class SecondLevel extends BaseLevel {
     public SecondLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {

@@ -1,4 +1,4 @@
-package tuni.tamk.fi;
+package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

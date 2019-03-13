@@ -1,6 +1,5 @@
-package tuni.tamk.fi;
+package tiko2g.tamk.fi;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;

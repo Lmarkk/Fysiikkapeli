@@ -1,8 +1,9 @@
-package tuni.tamk.fi.desktop;
+package tiko2g.tamk.fi.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import tuni.tamk.fi.MyGame;
+
+import tiko2g.tamk.fi.MyGame;
 
 public class DesktopLauncher {
 
