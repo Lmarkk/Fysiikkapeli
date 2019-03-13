@@ -56,7 +56,6 @@ public class TutorialScreen implements Screen {
     }
     private void createButtons(){
         mainMenuButton = new Button(game, "button.png", 1, 7, 1.5f, 1.5f, Button.BUTTONTYPE_MAINMENU);
-
         nextImageButton = new Button(game, "button.png", 12.5f, 3, 1.5f, 1.5f, Button.BUTTONTYPE_NEXTIMAGE);
         prevImageButton = new Button(game, "button.png", 2, 3, 1.5f, 1.5f, Button.BUTTONTYPE_PREVIMAGE);
         buttonList = new Array<Button>();

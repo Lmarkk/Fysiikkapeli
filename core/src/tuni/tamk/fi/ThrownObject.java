@@ -25,7 +25,7 @@ public class ThrownObject {
         texture = new Texture(textureSource);
         body = b.getGameWorld().createBody(getBodyDef());
         if(objectShape == OBJECTSHAPE_CIRCLE) {
-            body.createFixture(getFixtureDef());
+            body.createFixture(getCircleFixtureDef());
             radius = (body.getFixtureList().get(0).getShape()).getRadius();
         }
     }
@@ -55,9 +55,9 @@ public class ThrownObject {
         bodyDef.position.set(0, 0);
         return bodyDef;
     }
-    public FixtureDef getFixtureDef() {
+    public FixtureDef getCircleFixtureDef() {
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.density = 1.0f;
+        fixtureDef.density = 0.8f;
         fixtureDef.restitution = 0.3f;
         fixtureDef.friction = 0.3f;
         CircleShape circleShape = new CircleShape();
