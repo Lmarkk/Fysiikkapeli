@@ -10,12 +10,12 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 public class Ground {
     MyGame game;
-    BaseLevel baseLevel;
-    Texture groundTexture;
-    Rectangle groundRect;
     SpriteBatch batch;
-    Body groundBody;
-    float groundWidth = 48;
+    private BaseLevel baseLevel;
+    private Texture groundTexture;
+    private Rectangle groundRect;
+    private Body groundBody;
+    private float groundWidth = 48;
 
 
     public Ground(MyGame g, BaseLevel b, String textureSource) {

@@ -22,6 +22,7 @@ public class BaseLevel implements Screen {
     SpriteBatch batch;
     Texture background;
     Ground ground;
+    Pot pot;
     OrthographicCamera camera;
     private float accumulator;
     private float timeStep;
@@ -39,6 +40,7 @@ public class BaseLevel implements Screen {
     private Vector2 cameraEndPosition = new Vector2(40f, 3);
     private boolean projectileLanded = false;
     private float landingTimer = 0f;
+
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;

@@ -13,8 +13,11 @@ public class EndlessLevel extends BaseLevel {
             getProjectiles().add(object);
         }
         setNextProjectile();
+
         createBorderWall(1, 0);
         createBorderWall(46.5f, 0);
+
+        pot = new Pot(this, game);
     }
 
     @Override
@@ -30,6 +33,7 @@ public class EndlessLevel extends BaseLevel {
         for (ThrownObject object: getProjectiles()) {
             object.draw();
         }
+        pot.draw();
         ground.draw();
         batch.end();
         moveCam();
