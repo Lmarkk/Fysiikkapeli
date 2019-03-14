@@ -1,8 +1,7 @@
-package tuni.tamk.fi;
+package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.physics.box2d.Body;
 
 public class EndlessLevel extends BaseLevel {
 

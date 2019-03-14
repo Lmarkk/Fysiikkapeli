@@ -1,4 +1,4 @@
-package tuni.tamk.fi;
+package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;

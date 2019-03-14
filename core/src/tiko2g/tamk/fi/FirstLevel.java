@@ -1,4 +1,4 @@
-package tuni.tamk.fi;
+package tiko2g.tamk.fi;
 
 public class FirstLevel extends BaseLevel {
 
