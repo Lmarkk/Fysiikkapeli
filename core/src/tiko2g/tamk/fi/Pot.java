@@ -47,16 +47,16 @@ public class Pot {
     }
     public void createPot(float x, float y) {
 
-        leftSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x+0.25f, y+1));
-        rightSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x+2.75f, y+1));
+        leftSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x+0.25f, y+1.75f));
+        rightSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x+2.75f, y+1.75f));
         bottom = baseLevel.getGameWorld().createBody(getPotBodyDef(x+1.5f, y+0.25f));
 
-        leftSide.createFixture(getPotFixtureDef(0.25f,0.5f));
-        rightSide.createFixture(getPotFixtureDef(0.25f,0.5f));
+        leftSide.createFixture(getPotFixtureDef(0.25f,1.25f));
+        rightSide.createFixture(getPotFixtureDef(0.25f,1.25f));
         bottom.createFixture(getPotFixtureDef(1.5f,0.25f));
 
-        leftSideRect = new Rectangle(x, y+0.5f, 0.5f, 1);
-        rightSideRect = new Rectangle(x+2.5f, y+0.5f, 0.5f, 1);
+        leftSideRect = new Rectangle(x, y+0.5f, 0.5f, 2.5f);
+        rightSideRect = new Rectangle(x+2.5f, y+0.5f, 0.5f, 2.5f);
         bottomRect = new Rectangle(x, y, 3, 0.5f);
     }
 
