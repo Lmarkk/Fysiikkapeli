@@ -25,6 +25,7 @@ public class BaseLevel implements Screen {
     Pot pot;
     OrthographicCamera camera;
     ThrownObject currentProjectile;
+    private boolean endGame = false;
     private float accumulator;
     private float timeStep;
     private World gameWorld;
@@ -152,7 +153,8 @@ public class BaseLevel implements Screen {
                 currentProjectileIndex++;
             }
         } else {
-            System.out.println("Out of projectiles");
+            //System.out.println("Out of projectiles");
+            endGame = true;
         }
         projectileLanded = false;
     }
@@ -180,6 +182,9 @@ public class BaseLevel implements Screen {
                 setNextProjectile();
                 landingTimer = 0f;
             }
+        }
+        if(endGame) {
+            game.setScreen(new EndLevelScreen(game));
         }
     }
 
