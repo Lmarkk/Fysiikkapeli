@@ -34,6 +34,7 @@ public class EndlessLevel extends BaseLevel {
         //    object.draw();
         //}
         currentProjectile.draw();
+        mainMenuButton.draw(batch);
         pot.draw();
         ground.draw();
         batch.end();

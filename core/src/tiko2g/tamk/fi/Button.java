@@ -70,6 +70,9 @@ public class Button {
         }
 
     }
+    public void setX(float x) {
+        buttonRect.setX(x);
+    }
     public Texture getButtonTexture() {
         return buttonTexture;
     }

@@ -31,6 +31,7 @@ public class MainMenu implements Screen {
         this.game = game;
         batch = game.getBatch();
         camera = game.getCamera();
+        camera.setToOrtho(false, 16, 9);
 
         createButtons();
         font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);

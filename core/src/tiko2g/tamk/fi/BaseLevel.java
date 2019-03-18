@@ -2,8 +2,10 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -25,6 +27,8 @@ public class BaseLevel implements Screen {
     Pot pot;
     OrthographicCamera camera;
     ThrownObject currentProjectile;
+    Button mainMenuButton;
+    private BitmapFont font64;
     private boolean endGame = false;
     private float accumulator;
     private float timeStep;
@@ -50,9 +54,11 @@ public class BaseLevel implements Screen {
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
-
+        font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
+        mainMenuButton = new Button(game, "button.png", 1.5f , 6, 1.2f, 1.2f, Button.BUTTONTYPE_MAINMENU);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
+
         gameWorld.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
@@ -81,6 +87,9 @@ public class BaseLevel implements Screen {
                 if(isGameRunning()){
                     touchStart = new Vector2(screenX / 100f, screenY / 100f);
                 }
+
+                mainMenuButton.setTexture(screenX, screenY, true);
+
                 return super.touchDown(screenX, screenY, pointer, button);
             }
 
@@ -90,6 +99,10 @@ public class BaseLevel implements Screen {
                     touchEnd = new Vector2(screenX / 100f, screenY / 100f);
                     throwProjectile(currentProjectile);
                 }
+
+                mainMenuButton.pressFunction(screenX, screenY);
+                mainMenuButton.setTexture(screenX, screenY, false);
+
                 return super.touchUp(screenX, screenY, pointer, button);
             }
         });
@@ -132,9 +145,11 @@ public class BaseLevel implements Screen {
         desiredPosition.y = 3f;
         if(desiredPosition.x > cameraStartPosition.x && desiredPosition.x < cameraEndPosition.x) {
             camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
+            mainMenuButton.setX(camera.position.x -7.5f);
             camera.update();
         } else if(desiredPosition.x == projectileStartPos.x){
             camera.position.slerp(new Vector3(cameraStartPosition.x, cameraStartPosition.y ,0), Gdx.graphics.getDeltaTime() * 10);
+            mainMenuButton.setX(camera.position.x -7.5f);
             camera.update();
         }
     }
