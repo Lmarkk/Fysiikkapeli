@@ -15,7 +15,8 @@ public class MainMenu implements Screen {
 
     private MyGame game;
     private SpriteBatch batch;
-    private Button playButton;
+    private Button playEndlessButton;
+    private Button playLevelsButton;
     private Button tutorialButton;
     private Button musicButton;
     private Button soundButton;
@@ -78,14 +79,14 @@ public class MainMenu implements Screen {
     private void renderButtons(){
         Vector2 buttonCenter = new Vector2();
         batch.begin();
-        playButton.draw(batch);
-        tutorialButton.draw(batch);
-        recipeButton.draw(batch);
-        soundButton.draw(batch);
-        musicButton.draw(batch);
+        for(Button button: buttonList) {
+            button.draw(batch);
+        }
         batch.end();
-        playButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("PLAY", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
+        playEndlessButton.getButtonRect().getCenter(buttonCenter);
+        game.getTextRenderer().renderText("ENDLESS", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
+        playLevelsButton.getButtonRect().getCenter(buttonCenter);
+        game.getTextRenderer().renderText("LEVELS", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
         recipeButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText("RECIPES", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         tutorialButton.getButtonRect().getCenter(buttonCenter);
@@ -94,11 +95,12 @@ public class MainMenu implements Screen {
     private void createButtons(){
         soundButton = new Button(game, "button.png", 1.5f , 7, 1.2f, 1.2f, Button.BUTTONTYPE_SOUND);
         musicButton = new Button(game, "button.png", 3.3f, 7, 1.2f, 1.2f, Button.BUTTONTYPE_MUSIC);
-        playButton = new Button(game, "button.png", 4.5f, 3.2f, 7.6f, 2.1f, Button.BUTTONTYPE_PLAY);
+        playEndlessButton = new Button(game, "button.png", 1.5f, 3.2f, 6.6f, 2.1f, Button.BUTTONTYPE_PLAY);
+        playLevelsButton = new Button(game, "button.png", 8.5f, 3.2f, 6.6f, 2.1f, Button.BUTTONTYPE_PLAY);
         tutorialButton = new Button(game, "button.png", 1.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_TUTORIAL);
         recipeButton = new Button(game, "button.png", 8.5f, 1.3f, 6.6f, 1.6f, Button.BUTTONTYPE_RECIPES);
         buttonList = new Array<Button>();
-        buttonList.add(playButton, tutorialButton, recipeButton);
+        buttonList.add(playEndlessButton,playLevelsButton, tutorialButton, recipeButton);
     }
     @Override
     public void resize(int width, int height) {
