@@ -24,6 +24,7 @@ public class BaseLevel implements Screen {
     Ground ground;
     Pot pot;
     OrthographicCamera camera;
+    ThrownObject currentProjectile;
     private float accumulator;
     private float timeStep;
     private World gameWorld;
@@ -31,7 +32,6 @@ public class BaseLevel implements Screen {
     private Vector2 touchEnd = new Vector2();
     private Vector2 throwDirection = new Vector2();
     private boolean gameRunning = false;
-    private ThrownObject currentProjectile;
     private float startTimer = 0f;
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
     private Vector2 projectileStartPos = new Vector2(2, 2);
@@ -140,9 +140,17 @@ public class BaseLevel implements Screen {
 
     public void setNextProjectile() {
         if(currentProjectileIndex < projectiles.size()){
-            currentProjectile = projectiles.get(currentProjectileIndex);
-            currentProjectile.getBody().setTransform(projectileStartPos, 0f);
-            currentProjectileIndex++;
+
+            if(currentProjectileIndex > 0) {
+                projectiles.get(currentProjectileIndex - 1).getTexture().dispose();
+                gameWorld.destroyBody(projectiles.get(currentProjectileIndex - 1).getBody());
+            }
+
+            if(currentProjectileIndex < projectiles.size()) {
+                currentProjectile = projectiles.get(currentProjectileIndex);
+                currentProjectile.getBody().setTransform(projectileStartPos, 0f);
+                currentProjectileIndex++;
+            }
         } else {
             System.out.println("Out of projectiles");
         }

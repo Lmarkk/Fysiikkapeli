@@ -66,6 +66,10 @@ public class ThrownObject {
         return fixtureDef;
     }
 
+    public Texture getTexture() {
+        return texture;
+    }
+
     public Body getBody() {
         return body;
     }

@@ -30,9 +30,10 @@ public class EndlessLevel extends BaseLevel {
         batch.draw(background, 0, 0, 16, 9);
         batch.draw(background, 16, 0, 16, 9);
         batch.draw(background, 32, 0, 16, 9);
-        for (ThrownObject object: getProjectiles()) {
-            object.draw();
-        }
+        //for (ThrownObject object: getProjectiles()) {
+        //    object.draw();
+        //}
+        currentProjectile.draw();
         pot.draw();
         ground.draw();
         batch.end();
