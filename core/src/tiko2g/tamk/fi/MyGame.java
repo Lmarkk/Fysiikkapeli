@@ -32,6 +32,7 @@ public class MyGame extends Game {
         return camera;
     }
 
+
     @Override
 	public void render () {
 		super.render();

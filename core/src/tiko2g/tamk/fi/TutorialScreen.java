@@ -18,7 +18,8 @@ public class TutorialScreen implements Screen {
     private Array<Button> buttonList;
     private Texture background;
     private Texture tutorialImage;
-    private BitmapFont font64;
+    private BitmapFont font42;
+    private BitmapFont font120;
     private OrthographicCamera camera;
     private MyGame game;
     private SpriteBatch batch;
@@ -28,7 +29,8 @@ public class TutorialScreen implements Screen {
         batch = g.getBatch();
         camera = g.getCamera();
         background = new Texture("phbackground.png");
-        font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
+        font42 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 42, Color.BLACK, 4);
+        font120 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 120, Color.BLACK, 4);
 
         createButtons();
         Gdx.input.setInputProcessor(new MyInputProcessor() {
@@ -55,9 +57,9 @@ public class TutorialScreen implements Screen {
 
     }
     private void createButtons(){
-        mainMenuButton = new Button(game, "button.png", 1, 7, 1.5f, 1.5f, Button.BUTTONTYPE_MAINMENU);
-        nextImageButton = new Button(game, "button.png", 12.5f, 3, 1.5f, 1.5f, Button.BUTTONTYPE_NEXTIMAGE);
-        prevImageButton = new Button(game, "button.png", 2, 3, 1.5f, 1.5f, Button.BUTTONTYPE_PREVIMAGE);
+        mainMenuButton = new Button(game, "button.png", 1, 7.5f, 1.5f, 1, Button.BUTTONTYPE_MAINMENU);
+        nextImageButton = new Button(game, "button.png", 13.5f, 3.5f, 1.5f, 1, Button.BUTTONTYPE_NEXTIMAGE);
+        prevImageButton = new Button(game, "button.png", 1, 3.5f, 1.5f, 1, Button.BUTTONTYPE_PREVIMAGE);
         buttonList = new Array<Button>();
         buttonList.add(mainMenuButton, nextImageButton, prevImageButton);
     }
@@ -69,11 +71,11 @@ public class TutorialScreen implements Screen {
         prevImageButton.draw(batch);
         batch.end();
         mainMenuButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("BACK", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText("MENU", buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
         nextImageButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("NEXT", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(">", buttonCenter.x * 100f, buttonCenter.y * 100f, font120);
         prevImageButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("PREV", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText("<", buttonCenter.x * 100f, buttonCenter.y * 100f, font120);
     }
 
     @Override
@@ -87,6 +89,9 @@ public class TutorialScreen implements Screen {
         batch.end();
 
         renderButtons();
+
+    }
+    public void changeImage(boolean goForward) {
 
     }
 
