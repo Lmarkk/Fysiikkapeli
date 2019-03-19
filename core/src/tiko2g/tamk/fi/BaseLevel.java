@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -45,6 +46,7 @@ public class BaseLevel implements Screen {
     private Vector2 cameraEndPosition = new Vector2(40f, 3);
     private boolean projectileLanded = false;
     private float landingTimer = 0f;
+    private Box2DDebugRenderer debugRenderer;
 
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
@@ -58,6 +60,8 @@ public class BaseLevel implements Screen {
         mainMenuButton = new Button(game, "button.png", 1.5f , 6, 1.2f, 1.2f, Button.BUTTONTYPE_MAINMENU);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
+        debugRenderer = new Box2DDebugRenderer();
+
 
         gameWorld.setContactListener(new ContactListener() {
             @Override
@@ -201,6 +205,9 @@ public class BaseLevel implements Screen {
         if(endGame) {
             game.setScreen(new EndLevelScreen(game));
         }
+        batch.begin();
+        debugRenderer.render(getGameWorld(), camera.combined);
+        batch.end();
     }
 
     @Override
