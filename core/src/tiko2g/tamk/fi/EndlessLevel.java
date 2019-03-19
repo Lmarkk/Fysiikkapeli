@@ -22,7 +22,6 @@ public class EndlessLevel extends BaseLevel {
 
     @Override
     public void render(float delta) {
-        super.render(Gdx.graphics.getDeltaTime());
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
@@ -35,11 +34,12 @@ public class EndlessLevel extends BaseLevel {
         //}
         currentProjectile.draw();
         mainMenuButton.draw(batch);
-        pot.draw();
         ground.draw();
+        pot.draw();
         batch.end();
         moveCam();
         doPhysicsStep(Gdx.graphics.getDeltaTime());
+        super.render(Gdx.graphics.getDeltaTime());
     }
 
     @Override
