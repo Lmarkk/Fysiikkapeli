@@ -3,6 +3,7 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -21,6 +22,7 @@ public class Pot {
     private Rectangle leftSideRect;
     private Rectangle rightSideRect;
     private Rectangle bottomRect;
+    private float potWidth;
 
     public Pot(BaseLevel b, MyGame g) {
         game = g;
@@ -53,7 +55,7 @@ public class Pot {
         float sideRectWidth = 0.2f;
         float sideRectHeight = 2.5f;
         float bottomRectHeight = 0.5f;
-        float potWidth = potBottomTexture.getWidth() / 100f * scale;
+        potWidth = potBottomTexture.getWidth() / 100f * scale;
         leftSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x - sideRectWidth / 2f, y + sideRectHeight / 2f));
         rightSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x + (potWidth + sideRectWidth / 2f), y + sideRectHeight / 2f));
         bottom = baseLevel.getGameWorld().createBody(getPotBodyDef(x + potWidth / 2f, y + bottomRectHeight / 2f));
@@ -66,12 +68,14 @@ public class Pot {
         rightSideRect = new Rectangle(x + potWidth, y, sideRectWidth, sideRectHeight);
         bottomRect = new Rectangle(x, y, potWidth, bottomRectHeight);
     }
-
+    public void drawTop(){
+        Vector2 bottomRectCenter = new Vector2();
+        bottomRectCenter = bottomRect.getCenter(bottomRectCenter);
+        batch.draw(potTopTexture, bottomRectCenter.x - ((potWidth / 0.33f) * 0.5f) / 2f, leftSideRect.y - 0.75f, (potWidth / 0.33f) * 0.5f, potTopTexture.getHeight() / 100f * 0.5f);
+    }
     public void draw() {
-        batch.draw(potBottomTexture, bottomRect.x, bottomRect.y - 0.75f, bottomRect.getWidth(), bottomRect.getHeight() * 6);
-        batch.draw(potTopTexture, bottomRect.x, bottomRect.y - 0.75f, bottomRect.getWidth(), bottomRect.getHeight() * 6);
-        batch.draw(debugTexture, leftSideRect.x, leftSideRect.y, leftSideRect.getWidth(), leftSideRect.getHeight());
-        batch.draw(debugTexture, rightSideRect.x, rightSideRect.y, rightSideRect.getWidth(), rightSideRect.getHeight());
-        batch.draw(debugTexture, bottomRect.x, bottomRect.y, bottomRect.getWidth(), bottomRect.getHeight());
+        Vector2 bottomRectCenter = new Vector2();
+        bottomRectCenter = bottomRect.getCenter(bottomRectCenter);
+        batch.draw(potBottomTexture, bottomRectCenter.x - ((potWidth / 0.33f) * 0.5f) / 2f, leftSideRect.y - 0.75f, (potWidth / 0.33f) * 0.5f, potBottomTexture.getHeight() / 100f * 0.5f);
     }
 }

@@ -32,14 +32,15 @@ public class EndlessLevel extends BaseLevel {
         //for (ThrownObject object: getProjectiles()) {
         //    object.draw();
         //}
-        currentProjectile.draw();
         mainMenuButton.draw(batch);
         ground.draw();
+        pot.drawTop();
+        currentProjectile.draw();
         pot.draw();
         batch.end();
         moveCam();
-        doPhysicsStep(Gdx.graphics.getDeltaTime());
-        super.render(Gdx.graphics.getDeltaTime());
+        doPhysicsStep(delta);
+        super.render(delta);
     }
 
     @Override
