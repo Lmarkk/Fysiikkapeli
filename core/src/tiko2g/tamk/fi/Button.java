@@ -19,6 +19,8 @@ public class Button {
     private int buttonType;
     private Rectangle buttonRect;
     private Texture buttonTexture;
+    private TutorialScreen tutorialScreen;
+    private RecipeMenu recipeMenu;
 
     public Button(MyGame g, String textureSource, float x, float y, float width, float height, int bType) {
         game = g;
@@ -36,15 +38,14 @@ public class Button {
             switch(buttonType){
                 case BUTTONTYPE_PLAY:
                     game.setScreen(new EndlessLevel(game));
-                    System.out.println(buttonType);
                     break;
                 case BUTTONTYPE_TUTORIAL:
-                    game.setScreen(new TutorialScreen(game));
-                    System.out.println(buttonType);
+                    tutorialScreen = new TutorialScreen(game);
+                    game.setScreen(tutorialScreen);
                     break;
                 case BUTTONTYPE_RECIPES:
-                    game.setScreen(new RecipeMenu(game));
-                    System.out.println(buttonType);
+                    recipeMenu = new RecipeMenu(game);
+                    game.setScreen(recipeMenu);
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));
