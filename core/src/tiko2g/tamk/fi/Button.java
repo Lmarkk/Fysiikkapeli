@@ -31,30 +31,38 @@ public class Button {
     public void draw(SpriteBatch batch) {
         batch.draw(buttonTexture, buttonRect.getX(), buttonRect.getY(), buttonRect.getWidth(), buttonRect.getHeight());
     }
+    public Button getButton(int x, int y){
+        Vector3 touch = new Vector3(x, y, 0);
+        game.getCamera().unproject(touch);
+        if(buttonRect.contains(touch.x, touch.y)) {
+            return this;
+        }
+        return null;
+    }
     public boolean pressFunction(int x, int y) {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
         if(buttonRect.contains(touch.x, touch.y)) {
-            switch(buttonType){
-                case BUTTONTYPE_PLAY:
-                    game.setScreen(new EndlessLevel(game));
-                    break;
-                case BUTTONTYPE_TUTORIAL:
-                    tutorialScreen = new TutorialScreen(game);
-                    game.setScreen(tutorialScreen);
-                    break;
-                case BUTTONTYPE_RECIPES:
-                    recipeMenu = new RecipeMenu(game);
-                    game.setScreen(recipeMenu);
-                    break;
-                case BUTTONTYPE_MAINMENU:
-                    game.setScreen(new MainMenu(game));
-                    break;
-                case BUTTONTYPE_NEXTIMAGE:
-                    break;
-                case BUTTONTYPE_PREVIMAGE:
-                    break;
-            }
+                switch(buttonType){
+                    case BUTTONTYPE_PLAY:
+                        game.setScreen(new EndlessLevel(game));
+                        break;
+                    case BUTTONTYPE_TUTORIAL:
+                        tutorialScreen = new TutorialScreen(game);
+                        game.setScreen(tutorialScreen);
+                        break;
+                    case BUTTONTYPE_RECIPES:
+                        recipeMenu = new RecipeMenu(game);
+                        game.setScreen(recipeMenu);
+                        break;
+                    case BUTTONTYPE_MAINMENU:
+                        game.setScreen(new MainMenu(game));
+                        break;
+                    case BUTTONTYPE_NEXTIMAGE:
+                        break;
+                    case BUTTONTYPE_PREVIMAGE:
+                        break;
+                }
             return true;
         }
         return false;

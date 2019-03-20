@@ -34,19 +34,26 @@ public class TutorialScreen implements Screen {
 
         createButtons();
         Gdx.input.setInputProcessor(new MyInputProcessor() {
+            Button pressedButton;
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                pressedButton = null;
                 for(Button b: buttonList) {
-                    b.setTexture(screenX, screenY, true);
+                    if(pressedButton == null){
+                        pressedButton = b.getButton(screenX, screenY);
+                        if(pressedButton != null){
+                            pressedButton.setTexture(screenX, screenY, true);
+                        }
+                    }
                 }
                 return super.touchDown(screenX, screenY, pointer, button);
             }
 
             @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                for(Button b: buttonList) {
-                    b.pressFunction(screenX, screenY);
-                    b.setTexture(screenX, screenY, false);
+                if(pressedButton != null){
+                    pressedButton.pressFunction(screenX, screenY);
+                    pressedButton.setTexture(screenX, screenY, false);
                 }
                 return super.touchUp(screenX, screenY, pointer, button);
             }
