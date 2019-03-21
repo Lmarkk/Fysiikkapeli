@@ -9,12 +9,12 @@ public class EndlessLevel extends BaseLevel {
         super(g, "phbackground.png", "groundtexture.png");
 
         for (int i = 0; i < 10; i++) {
-            ThrownObject object = new ThrownObject(game, this, "blueberry.png", ThrownObject.OBJECTSHAPE_CIRCLE);
+            ThrownObject object = new Meat(game, this);
             getProjectiles().add(object);
         }
         setNextProjectile();
 
-        createBorderWall(1, 0);
+//        createBorderWall(1, 0);
         createBorderWall(46.5f, 0);
 
         pot = new Pot(this, game);

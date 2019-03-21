@@ -36,7 +36,6 @@ public class BaseLevel implements Screen {
     private World gameWorld;
     private Vector2 touchStart = new Vector2();
     private Vector2 touchEnd = new Vector2();
-    private Vector2 throwDirection = new Vector2();
     private boolean gameRunning = false;
     private float startTimer = 0f;
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
@@ -47,7 +46,7 @@ public class BaseLevel implements Screen {
     private boolean projectileLanded = false;
     private float landingTimer = 0f;
     private Box2DDebugRenderer debugRenderer;
-
+    private Vector2 menuButtonCenter;
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -61,7 +60,8 @@ public class BaseLevel implements Screen {
         camera.position.set(cameraStartPosition, 0);
         camera.update();
         debugRenderer = new Box2DDebugRenderer();
-
+        menuButtonCenter = new Vector2();
+        menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
 
         gameWorld.setContactListener(new ContactListener() {
             @Override
@@ -114,6 +114,7 @@ public class BaseLevel implements Screen {
         timeStep = 1/60f;
     }
     public void throwProjectile(ThrownObject projectile){
+        Vector2 throwDirection;
         if(projectile != null && !projectile.isThrown()){
             throwDirection = new Vector2(touchStart.sub(touchEnd));
             throwDirection.y *= -1;
@@ -208,6 +209,7 @@ public class BaseLevel implements Screen {
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
+        game.getTextRenderer().renderText("MENU", menuButtonCenter.x * 100f, menuButtonCenter.y * 100f, font64);
     }
 
     @Override
