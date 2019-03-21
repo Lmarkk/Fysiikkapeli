@@ -1,7 +1,5 @@
 package tiko2g.tamk.fi;
 
-import com.badlogic.gdx.math.Vector2;
-
 public class TutorialScreen extends BaseMenu {
     private Button mainMenuButton;
     private Button nextImageButton;

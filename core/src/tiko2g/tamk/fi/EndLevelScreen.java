@@ -22,7 +22,7 @@ public class EndLevelScreen extends BaseMenu {
     }
     public void createButtons(){
         super.createButtons();
-        replayButton = new Button(game, "button.png", "button-pressed.png",4.5f, 3.2f, 3, Button.BUTTONTYPE_PLAY);
+        replayButton = new Button(game, "button.png", "button-pressed.png",4.5f, 3.2f, 3, Button.BUTTONTYPE_PLAYENDLESS);
         mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.5f, 1.3f, 2, Button.BUTTONTYPE_MAINMENU);
         buttonList.add(replayButton, mainMenuButton);
     }

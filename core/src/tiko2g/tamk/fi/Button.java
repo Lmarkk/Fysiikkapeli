@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class Button {
-    static final int BUTTONTYPE_PLAY = 1;
+    static final int BUTTONTYPE_PLAYENDLESS = 1;
     static final int BUTTONTYPE_TUTORIAL = 2;
     static final int BUTTONTYPE_RECIPES = 3;
     static final int BUTTONTYPE_SOUND = 4;
@@ -14,10 +14,13 @@ public class Button {
     static final int BUTTONTYPE_MAINMENU = 6;
     static final int BUTTONTYPE_NEXTIMAGE = 7;
     static final int BUTTONTYPE_PREVIMAGE = 8;
+    static final int BUTTONTYPE_PLAYLEVELONE = 9;
+    static final int BUTTONTYPE_PLAYMODES = 10;
 
-    static final float BUTTONSIZE_SMALL = 1;
+    static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_MEDIUM = 2;
     static final float BUTTONSIZE_LARGE = 3;
+    static final float BUTTONSIZE_SMALL = 4;
 
     private MyGame game;
     private int buttonType;
@@ -41,6 +44,8 @@ public class Button {
             buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
         } else if(buttonSize == 3) {
             buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
+        } else if(buttonSize == 4) {
+            buttonRect = new Rectangle(x, y, 2.5f, 1.2f);
         }
     }
     public void draw(SpriteBatch batch) {
@@ -59,8 +64,11 @@ public class Button {
         game.getCamera().unproject(touch);
         if(buttonRect.contains(touch.x, touch.y)) {
             switch(buttonType){
-                case BUTTONTYPE_PLAY:
+                case BUTTONTYPE_PLAYENDLESS:
                     game.setScreen(new EndlessLevel(game));
+                    break;
+                case BUTTONTYPE_PLAYMODES:
+                    game.setScreen(new LevelSelectScreen(game));
                     break;
                 case BUTTONTYPE_TUTORIAL:
                     tutorialScreen = new TutorialScreen(game);
