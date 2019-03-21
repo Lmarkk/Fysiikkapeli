@@ -57,7 +57,7 @@ public class BaseLevel implements Screen {
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
         font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
-        mainMenuButton = new Button(game, "button.png", 1.5f , 6, 1.2f, 1.2f, Button.BUTTONTYPE_MAINMENU);
+        mainMenuButton = new Button(game, "button.png", "button-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_MAINMENU);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
         debugRenderer = new Box2DDebugRenderer();

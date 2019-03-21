@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 // TODO: tee peli
+//TODO: poista ^
 public class MyGame extends Game {
 	private SpriteBatch batch;
 	private MainMenu mainMenu;

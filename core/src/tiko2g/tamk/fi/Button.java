@@ -15,18 +15,33 @@ public class Button {
     static final int BUTTONTYPE_NEXTIMAGE = 7;
     static final int BUTTONTYPE_PREVIMAGE = 8;
 
+    static final float BUTTONSIZE_SMALL = 1;
+    static final float BUTTONSIZE_MEDIUM = 2;
+    static final float BUTTONSIZE_LARGE = 3;
+
     private MyGame game;
     private int buttonType;
     private Rectangle buttonRect;
     private Texture buttonTexture;
+    private Texture buttonNotPressedTexture;
+    private Texture buttonPressedTexture;
     private TutorialScreen tutorialScreen;
     private RecipeMenu recipeMenu;
 
-    public Button(MyGame g, String textureSource, float x, float y, float width, float height, int bType) {
+    public Button(MyGame g, String notPressedTextureSource, String pressedTextureSource, float x, float y, float buttonSize, int bType) {
         game = g;
         buttonType = bType;
-        buttonTexture = new Texture(textureSource);
-        buttonRect = new Rectangle(x, y, width, height);
+        buttonNotPressedTexture = new Texture(notPressedTextureSource);
+        buttonTexture = buttonNotPressedTexture;
+        buttonPressedTexture = new Texture(pressedTextureSource);
+
+        if(buttonSize == 1) {
+            buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
+        } else if(buttonSize == 2) {
+            buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
+        } else if(buttonSize == 3) {
+            buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
+        }
     }
     public void draw(SpriteBatch batch) {
         batch.draw(buttonTexture, buttonRect.getX(), buttonRect.getY(), buttonRect.getWidth(), buttonRect.getHeight());
@@ -43,41 +58,57 @@ public class Button {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
         if(buttonRect.contains(touch.x, touch.y)) {
-                switch(buttonType){
-                    case BUTTONTYPE_PLAY:
-                        game.setScreen(new EndlessLevel(game));
-                        break;
-                    case BUTTONTYPE_TUTORIAL:
-                        tutorialScreen = new TutorialScreen(game);
-                        game.setScreen(tutorialScreen);
-                        break;
-                    case BUTTONTYPE_RECIPES:
-                        recipeMenu = new RecipeMenu(game);
-                        game.setScreen(recipeMenu);
-                        break;
-                    case BUTTONTYPE_MAINMENU:
-                        game.setScreen(new MainMenu(game));
-                        break;
-                    case BUTTONTYPE_NEXTIMAGE:
-                        break;
-                    case BUTTONTYPE_PREVIMAGE:
-                        break;
-                }
+            switch(buttonType){
+                case BUTTONTYPE_PLAY:
+                    game.setScreen(new EndlessLevel(game));
+                    break;
+                case BUTTONTYPE_TUTORIAL:
+                    tutorialScreen = new TutorialScreen(game);
+                    game.setScreen(tutorialScreen);
+                    break;
+                case BUTTONTYPE_RECIPES:
+                    recipeMenu = new RecipeMenu(game);
+                    game.setScreen(recipeMenu);
+                    break;
+                case BUTTONTYPE_MAINMENU:
+                    game.setScreen(new MainMenu(game));
+                    break;
+                case BUTTONTYPE_NEXTIMAGE:
+                    break;
+                case BUTTONTYPE_PREVIMAGE:
+                    break;
+                case BUTTONTYPE_MUSIC:
+                    break;
+                case BUTTONTYPE_SOUND:
+                    break;
+            }
             return true;
         }
         return false;
     }
     public void setTexture(int x, int y, boolean pressed) {
-        if(pressed) {
-            Vector3 touch = new Vector3(x, y, 0);
-            game.getCamera().unproject(touch);
-            if(buttonRect.contains(touch.x, touch.y)) {
-                buttonTexture = new Texture("button-pressed.png");
+        Vector3 touch = new Vector3(x, y, 0);
+        game.getCamera().unproject(touch);
+
+        if (buttonType != BUTTONTYPE_MUSIC && buttonType != BUTTONTYPE_SOUND) {
+            if (pressed) {
+                if (buttonRect.contains(touch.x, touch.y)) {
+                    buttonTexture = buttonPressedTexture;
+                }
+            } else {
+                buttonTexture = buttonNotPressedTexture;
             }
         } else {
-            buttonTexture = new Texture("button.png");
+            if (pressed) {
+                if (buttonRect.contains(touch.x, touch.y)) {
+                    if(buttonTexture == buttonNotPressedTexture) {
+                        buttonTexture = buttonPressedTexture;
+                    } else {
+                        buttonTexture = buttonNotPressedTexture;
+                    }
+                }
+            }
         }
-
     }
     public void setX(float x) {
         buttonRect.setX(x);

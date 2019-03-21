@@ -12,61 +12,20 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
-public class RecipeMenu implements Screen {
+public class RecipeMenu extends BaseMenu {
     private Button mainMenuButton;
     private Button nextRecipeButton;
     private Button prevRecipeButton;
     private Rectangle recipeNameRect;
     private Rectangle recipeNumberRect;
-    private Array<Button> buttonList;
     private Texture recipeTextBackground;
-    private Texture background;
-    private OrthographicCamera camera;
-    private MyGame game;
-    private SpriteBatch batch;
-    private BitmapFont font42;
-    private BitmapFont font120;
 
     public RecipeMenu(MyGame g) {
-        game = g;
-        batch = g.getBatch();
-        camera = g.getCamera();
-        background = new Texture("phbackground.png");
+        super(g);
         recipeTextBackground = new Texture("groundtexture.png");
         recipeNameRect = new Rectangle(3, 7.5f, 10, 1);
         recipeNumberRect = new Rectangle(6, 0.5f, 4, 1);
-        font42 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 42, Color.BLACK, 4);
-        font120 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 120, Color.BLACK, 4);
-        createButtons();
-
-        Gdx.input.setInputProcessor(new MyInputProcessor() {
-            Button pressedButton;
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                pressedButton = null;
-                for(Button b: buttonList) {
-                    if(pressedButton == null){
-                        pressedButton = b.getButton(screenX, screenY);
-                        if(pressedButton != null){
-                            pressedButton.setTexture(screenX, screenY, true);
-                        }
-                    }
-                }
-                return super.touchDown(screenX, screenY, pointer, button);
-            }
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                if(pressedButton != null){
-                    pressedButton.pressFunction(screenX, screenY);
-                    pressedButton.setTexture(screenX, screenY, false);
-                }
-                return super.touchUp(screenX, screenY, pointer, button);
-            }
-        });
     }
-
-
 
     @Override
     public void show() {
@@ -75,41 +34,26 @@ public class RecipeMenu implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        super.render(delta);
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        batch.draw(background, 0, 0, 16, 9);
         batch.draw(recipeTextBackground, recipeNameRect.x, recipeNameRect.y, recipeNameRect.getWidth(), recipeNameRect.getHeight());
         batch.draw(recipeTextBackground, recipeNumberRect.x, recipeNumberRect.y, recipeNumberRect.getWidth(), recipeNumberRect.getHeight());
         batch.end();
 
-        renderButtons();
         renderText();
     }
-    private void renderButtons(){
-        Vector2 buttonCenter = new Vector2();
-        batch.begin();
-        for(Button button: buttonList) {
-            button.draw(batch);
-        }
-        batch.end();
-        mainMenuButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("MENU", buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-        prevRecipeButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("<", buttonCenter.x * 100f, buttonCenter.y * 100f, font120);
-        nextRecipeButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(">", buttonCenter.x * 100f, buttonCenter.y * 100f, font120);
+    public void renderButtons(){
+        super.renderButtons();
     }
 
-    private void createButtons(){
+    public void createButtons(){
+        super.createButtons();
+        mainMenuButton = new Button(game, "button-home.png", "button-home.png",1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
+        prevRecipeButton = new Button(game, "button-left.png", "button-left.png",1, 3.5f, 1, Button.BUTTONTYPE_PREVIMAGE);
+        nextRecipeButton = new Button(game, "button-right.png", "button-right.png",13.5f, 3.5f, 1, Button.BUTTONTYPE_NEXTIMAGE);
 
-        mainMenuButton = new Button(game, "button.png", 1, 7.5f, 1.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        prevRecipeButton = new Button(game, "button.png", 1, 3.5f, 1.5f, 1, Button.BUTTONTYPE_PREVIMAGE);
-        nextRecipeButton = new Button(game, "button.png", 13.5f, 3.5f, 1.5f, 1, Button.BUTTONTYPE_NEXTIMAGE);
-
-        buttonList = new Array<Button>();
         buttonList.add(mainMenuButton, prevRecipeButton, nextRecipeButton);
     }
 
@@ -144,6 +88,7 @@ public class RecipeMenu implements Screen {
 
     @Override
     public void dispose() {
-        background.dispose();
+        super.dispose();
+        recipeTextBackground.dispose();
     }
 }

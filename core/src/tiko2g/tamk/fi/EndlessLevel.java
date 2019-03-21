@@ -8,7 +8,7 @@ public class EndlessLevel extends BaseLevel {
     public EndlessLevel(MyGame g) {
         super(g, "phbackground.png", "groundtexture.png");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             ThrownObject object = new ThrownObject(game, this, "blueberry.png", ThrownObject.OBJECTSHAPE_CIRCLE);
             getProjectiles().add(object);
         }
