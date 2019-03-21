@@ -17,7 +17,6 @@ public class EndlessLevel extends BaseLevel {
         createBorderWall(1, 0);
         createBorderWall(46.5f, 0);
 
-        pot = new Pot(this, game);
     }
 
     @Override

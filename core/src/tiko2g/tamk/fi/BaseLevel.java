@@ -61,6 +61,7 @@ public class BaseLevel implements Screen {
         camera.position.set(cameraStartPosition, 0);
         camera.update();
         debugRenderer = new Box2DDebugRenderer();
+        pot = new Pot(this, game);
 
 
         gameWorld.setContactListener(new ContactListener() {

@@ -14,9 +14,9 @@ public class TutorialScreen extends BaseMenu {
     }
     public void createButtons(){
         super.createButtons();
-        mainMenuButton = new Button(game, "button-home.png", "button-home.png",1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        nextImageButton = new Button(game, "button-right.png", "button-right.png",13.5f, 3.5f, 1, Button.BUTTONTYPE_NEXTIMAGE);
-        prevImageButton = new Button(game, "button-left.png", "button-left.png",1, 3.5f, 1, Button.BUTTONTYPE_PREVIMAGE);
+        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
+        nextImageButton = new Button(game, "button-right.png", "button-right-pressed.png",13.5f, 3.5f, 1, Button.BUTTONTYPE_NEXTIMAGE);
+        prevImageButton = new Button(game, "button-left.png", "button-left-pressed.png",1, 3.5f, 1, Button.BUTTONTYPE_PREVIMAGE);
         buttonList.add(mainMenuButton, nextImageButton, prevImageButton);
     }
     public void renderButtons(){

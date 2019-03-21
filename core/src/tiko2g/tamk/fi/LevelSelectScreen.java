@@ -17,7 +17,7 @@ public class LevelSelectScreen extends BaseMenu {
     public void createButtons(){
         super.createButtons();
 
-        menuButton = new Button(game, "button-home.png", "button-home.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
+        menuButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
         endlessButton = new Button(game, "button.png", "button-pressed.png", 4.4f, 2, 2, Button.BUTTONTYPE_PLAYENDLESS);
         levelOneButton = new Button(game, "button.png", "button-pressed.png", 2.5f, 6, 4, Button.BUTTONTYPE_PLAYLEVELONE);
         buttonList.add(menuButton, endlessButton, levelOneButton);
