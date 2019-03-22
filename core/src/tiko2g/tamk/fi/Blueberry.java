@@ -3,6 +3,7 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -71,5 +72,10 @@ public class Blueberry implements ThrownObject {
 
     public void setThrown(boolean thrown) {
         this.thrown = thrown;
+    }
+
+    @Override
+    public Rectangle getRect() {
+        return null;
     }
 }

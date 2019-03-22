@@ -3,6 +3,7 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -17,6 +18,7 @@ public class Meat implements ThrownObject {
     private boolean thrown = false;
     private float scale = 0.5f;
     private float textureScale = 0.6f;
+    private Rectangle rect;
 
     public Meat(MyGame g, BaseLevel b){
         batch = g.getBatch();
@@ -25,6 +27,7 @@ public class Meat implements ThrownObject {
         body.createFixture(getFixtureDef());
 //        radius = (body.getFixtureList().get(0).getShape()).getRadius();
         radius = 1f;
+        rect = new Rectangle( body.getPosition().x, body.getPosition().y,0.3f, 0.3f);
     }
     @Override
     public void draw() {
@@ -45,6 +48,8 @@ public class Meat implements ThrownObject {
                 texture.getHeight(),
                 false,
                 false);
+        rect.setPosition(center.x, center.y);
+//        batch.draw(new Texture("badlogic.jpg"), rect.x, rect.y, rect.width, rect.height);
     }
 
     @Override
@@ -58,12 +63,11 @@ public class Meat implements ThrownObject {
     @Override
     public FixtureDef getFixtureDef() {
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.density = 0.8f;
+        fixtureDef.density = 1f;
         fixtureDef.restitution = 0f;
         fixtureDef.friction = 1f;
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.set(getVertices());
-
         fixtureDef.shape = polygonShape;
         return fixtureDef;
     }
@@ -109,5 +113,10 @@ public class Meat implements ThrownObject {
             v2.scl(scale);
         }
         return vertices;
+    }
+
+    @Override
+    public Rectangle getRect() {
+        return rect;
     }
 }
