@@ -92,7 +92,6 @@ public class BaseLevel implements Screen {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(isGameRunning()){
                     touchStart = new Vector2(screenX / 100f, screenY / 100f);
-                    System.out.println(touchStart);
                 }
 
                 mainMenuButton.setTexture(screenX, screenY, true);
