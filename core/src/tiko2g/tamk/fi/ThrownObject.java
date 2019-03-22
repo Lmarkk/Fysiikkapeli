@@ -1,6 +1,7 @@
 package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -20,4 +21,6 @@ interface ThrownObject {
     boolean isThrown();
 
     void setThrown(boolean thrown);
+
+    Rectangle getRect();
 }

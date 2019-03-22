@@ -18,6 +18,7 @@ public class Pot {
     private Texture potTopTexture;
     private Texture debugTexture;
     private Body potBody;
+    private Rectangle potRect;
     private Rectangle leftSideRect;
     private Rectangle rightSideRect;
     private Rectangle bottomRect;
@@ -71,7 +72,6 @@ public class Pot {
         potBody.createFixture(getPotFixtureDef(new Vector2(0.5f * potScale, 0.1f * potScale), new Vector2(2f * potScale, 0.1f * potScale)));
         potBody.createFixture(getPotFixtureDef(new Vector2(2f * potScale, 0.1f * potScale), new Vector2(2.6f * potScale, 0.55f * potScale)));
         potBody.createFixture(getPotFixtureDef( new Vector2(2.6f * potScale, 0.55f * potScale), new Vector2(2.6f * potScale, 1.8f * potScale)));
-
         float sideRectWidth = 0.2f;
         float sideRectHeight = (potBottomTexture.getHeight() / 100f * potScale) - potYOffset / 2f;
         float bottomRectHeight = 0.5f;
@@ -90,6 +90,7 @@ public class Pot {
         leftSideRect = new Rectangle(x - sideRectWidth, y, sideRectWidth, sideRectHeight);
 //        rightSideRect = new Rectangle(x + potWidth, y, sideRectWidth, sideRectHeight);
         bottomRect = new Rectangle(x, y, potWidth, bottomRectHeight);
+        potRect = new Rectangle(x + 0.35f * potScale, y + 0.2f * potScale, 2f * potScale, 1 * potScale);
     }
     public void drawTop(){
         Vector2 bottomRectCenter = new Vector2();
@@ -102,5 +103,9 @@ public class Pot {
         bottomRectCenter = bottomRect.getCenter(bottomRectCenter);
         batch.draw(potBottomTexture, bottomRectCenter.x - (bottomRect.width * potTextureScale) / 2f,
                 leftSideRect.y - potYOffset, potWidth * potTextureScale, potHeight * potTextureScale);
+    }
+
+    public Rectangle getPotRect() {
+        return potRect;
     }
 }

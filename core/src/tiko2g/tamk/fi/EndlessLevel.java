@@ -39,6 +39,9 @@ public class EndlessLevel extends BaseLevel {
         pot.draw();
         batch.end();
         moveCam();
+        if(pot.getPotRect().overlaps(currentProjectile.getRect())){
+            System.out.println("SCORE!");
+        }
         doPhysicsStep(delta);
         super.render(delta);
     }
