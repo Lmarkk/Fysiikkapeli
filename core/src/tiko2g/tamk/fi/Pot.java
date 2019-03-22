@@ -24,7 +24,7 @@ public class Pot {
     private Rectangle bottomRect;
     private float potWidth;
     private float potHeight;
-    private float potScale = 2f;
+    private float potScale = 1.5f;
     private float potTextureScale = 1.2f;
     private float potYOffset = 0.5f;
 
