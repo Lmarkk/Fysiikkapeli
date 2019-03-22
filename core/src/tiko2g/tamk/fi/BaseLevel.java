@@ -21,6 +21,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import java.util.ArrayList;
 
 public class BaseLevel implements Screen {
+    private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
+
     MyGame game;
     SpriteBatch batch;
     Texture background;
@@ -41,7 +43,7 @@ public class BaseLevel implements Screen {
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
     private Vector2 projectileStartPos = new Vector2(2, 2);
     private int currentProjectileIndex = 0;
-    private Vector2 cameraStartPosition = new Vector2(8f, 3);
+    private Vector2 cameraStartPosition = new Vector2(8f, 3f);
     private Vector2 cameraEndPosition = new Vector2(40f, 3);
     private boolean projectileLanded = false;
     private float landingTimer = 0f;
@@ -90,6 +92,7 @@ public class BaseLevel implements Screen {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(isGameRunning()){
                     touchStart = new Vector2(screenX / 100f, screenY / 100f);
+                    System.out.println(touchStart);
                 }
 
                 mainMenuButton.setTexture(screenX, screenY, true);
@@ -118,8 +121,10 @@ public class BaseLevel implements Screen {
         if(projectile != null && !projectile.isThrown()){
             throwDirection = new Vector2(touchStart.sub(touchEnd));
             throwDirection.y *= -1;
-            projectile.getBody().setType(BodyDef.BodyType.DynamicBody);
-            projectile.getBody().applyLinearImpulse(throwDirection, projectile.getBody().getWorldCenter(), true);
+            Body b = projectile.getBody();
+            b.setType(BodyDef.BodyType.DynamicBody);
+            b.applyLinearImpulse(throwDirection, b.getWorldCenter(), true);
+            b.applyAngularImpulse(-1f, true);
             projectile.setThrown(true);
         }
     }
@@ -209,7 +214,7 @@ public class BaseLevel implements Screen {
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
-        game.getTextRenderer().renderText("MENU", menuButtonCenter.x * 100f, menuButtonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText("MENU", menuButtonCenter.x * 100f, (menuButtonCenter.y + (CAM_DEFAULT_POS.y - cameraStartPosition.y)) * 100f, font64);
     }
 
     @Override
