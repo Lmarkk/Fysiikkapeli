@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
+import static tiko2g.tamk.fi.MyGame.playSounds;
+
 public class Button {
     static final int BUTTONTYPE_PLAYENDLESS = 1;
     static final int BUTTONTYPE_TUTORIAL = 2;
@@ -91,6 +93,8 @@ public class Button {
                 case BUTTONTYPE_MUSIC:
                     break;
                 case BUTTONTYPE_SOUND:
+                    playSounds = !playSounds;
+                    System.out.println(playSounds);
                     break;
             }
             return true;
