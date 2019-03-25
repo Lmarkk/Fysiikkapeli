@@ -29,7 +29,9 @@ public class Ground {
 
     }
     public void draw() {
-        batch.draw(groundTexture, groundRect.x, groundRect.y, groundRect.getWidth(), groundRect.getHeight());
+        batch.draw(groundTexture, groundRect.x, groundRect.y, 16, 4);
+        batch.draw(groundTexture, 16, groundRect.y, 16, 4);
+        batch.draw(groundTexture, 32, groundRect.y, 16, 4);
     }
 
     public BodyDef getGroundBodyDef() {
