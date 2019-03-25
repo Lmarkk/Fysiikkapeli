@@ -1,24 +1,24 @@
 package tiko2g.tamk.fi;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 
 public class RecipeMenu extends BaseMenu {
+
+    static final int NEXT_RECIPE = 1;
+    static final int PREVIOUS_RECIPE = -1;
+
     private Button mainMenuButton;
     private Button nextRecipeButton;
     private Button prevRecipeButton;
     private Rectangle recipeNameRect;
     private Rectangle recipeNumberRect;
+    private Rectangle recipeRect;
     private Texture recipeTextBackground;
+    private Texture[] recipes = new Texture[4];
+    private Texture currentRecipe;
+    private int currentRecipeIndex = 0;
 
     public RecipeMenu(MyGame g) {
         super(g);
@@ -26,6 +26,26 @@ public class RecipeMenu extends BaseMenu {
         recipeTextBackground = new Texture("groundtexture.png");
         recipeNameRect = new Rectangle(3, 7.5f, 10, 1);
         recipeNumberRect = new Rectangle(6, 0.5f, 4, 1);
+        recipeRect = new Rectangle(recipeNameRect.x, 1, 10, 6);
+        recipes[0] = new Texture("badlogic.jpg");
+        recipes[1] = new Texture("blueberry.png");
+        recipes[2] = new Texture("meat.png");
+        recipes[3] = new Texture("strawberry.png");
+        currentRecipe = recipes[currentRecipeIndex];
+    }
+
+    public void changeRecipe(int nextImg){
+        int next = currentRecipeIndex + nextImg;
+        System.out.println(next);
+
+        if(next >= recipes.length){
+            currentRecipeIndex = 0;
+        } else if (next < 0){
+            currentRecipeIndex = recipes.length + nextImg;
+        } else {
+            currentRecipeIndex = next;
+        }
+        currentRecipe = recipes[currentRecipeIndex];
     }
 
     @Override
@@ -41,6 +61,7 @@ public class RecipeMenu extends BaseMenu {
         batch.begin();
         batch.draw(recipeTextBackground, recipeNameRect.x, recipeNameRect.y, recipeNameRect.getWidth(), recipeNameRect.getHeight());
         batch.draw(recipeTextBackground, recipeNumberRect.x, recipeNumberRect.y, recipeNumberRect.getWidth(), recipeNumberRect.getHeight());
+        batch.draw(currentRecipe, recipeRect.x, recipeRect.y, recipeRect.getWidth(), recipeRect.getHeight());
         batch.end();
 
         renderText();

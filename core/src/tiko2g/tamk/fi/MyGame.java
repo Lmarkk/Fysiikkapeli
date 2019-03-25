@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MyGame extends Game {
 	private SpriteBatch batch;
 	private MainMenu mainMenu;
+	private RecipeMenu recipeMenu;
     private OrthographicCamera camera;
     private TextRenderer textRenderer;
 
@@ -33,6 +34,14 @@ public class MyGame extends Game {
         return camera;
     }
 
+    public void createRecipeMenu() {
+        recipeMenu = new RecipeMenu(this);
+        setScreen(recipeMenu);
+    }
+
+    public RecipeMenu getRecipeMenu() {
+        return recipeMenu;
+    }
 
     @Override
 	public void render () {
