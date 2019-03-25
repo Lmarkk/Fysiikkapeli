@@ -10,6 +10,7 @@ public class MyGame extends Game {
     public static boolean playMusic;
 	private SpriteBatch batch;
 	private MainMenu mainMenu;
+	private RecipeMenu recipeMenu;
     private OrthographicCamera camera;
     private TextRenderer textRenderer;
 
@@ -37,6 +38,14 @@ public class MyGame extends Game {
         return camera;
     }
 
+    public void createRecipeMenu() {
+        recipeMenu = new RecipeMenu(this);
+        setScreen(recipeMenu);
+    }
+
+    public RecipeMenu getRecipeMenu() {
+        return recipeMenu;
+    }
 
     @Override
 	public void render () {

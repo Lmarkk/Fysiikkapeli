@@ -80,15 +80,16 @@ public class Button {
                     game.setScreen(tutorialScreen);
                     break;
                 case BUTTONTYPE_RECIPES:
-                    recipeMenu = new RecipeMenu(game);
-                    game.setScreen(recipeMenu);
+                    game.createRecipeMenu();
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));
                     break;
                 case BUTTONTYPE_NEXTIMAGE:
+                    game.getRecipeMenu().changeRecipe(RecipeMenu.NEXT_RECIPE);
                     break;
                 case BUTTONTYPE_PREVIMAGE:
+                    game.getRecipeMenu().changeRecipe(RecipeMenu.PREVIOUS_RECIPE);
                     break;
                 case BUTTONTYPE_MUSIC:
                     break;
