@@ -71,7 +71,7 @@ public class Button {
                     game.setScreen(new LevelSelectScreen(game));
                     break;
                 case BUTTONTYPE_PLAYLEVELONE:
-                    game.setScreen(new FirstLevel(game, "phbackground.png", "groundtexture.png"));
+                    game.setScreen(new FirstLevel(game));
                     break;
                 case BUTTONTYPE_TUTORIAL:
                     tutorialScreen = new TutorialScreen(game);

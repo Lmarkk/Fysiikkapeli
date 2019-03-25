@@ -9,6 +9,7 @@ public class LevelSelectScreen extends BaseMenu {
 
     public LevelSelectScreen(MyGame g) {
         super(g);
+        createButtons();
     }
     @Override
     public void render(float delta) {

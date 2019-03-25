@@ -6,10 +6,13 @@ import com.badlogic.gdx.math.Vector2;
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
     private Button mainMenuButton;
+    int currentLevel;
 
-
-    public EndLevelScreen(MyGame g) {
+    public EndLevelScreen(MyGame g, int currLvl) {
         super(g);
+        currentLevel = currLvl;
+        createButtons();
+
     }
     public void renderButtons(){
         super.renderButtons();
@@ -22,7 +25,7 @@ public class EndLevelScreen extends BaseMenu {
     }
     public void createButtons(){
         super.createButtons();
-        replayButton = new Button(game, "button.png", "button-pressed.png",4.5f, 3.2f, 3, Button.BUTTONTYPE_PLAYENDLESS);
+        replayButton = new Button(game, "button.png", "button-pressed.png",4.5f, 3.2f, 3, currentLevel);
         mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.5f, 1.3f, 2, Button.BUTTONTYPE_MAINMENU);
         buttonList.add(replayButton, mainMenuButton);
     }

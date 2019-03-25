@@ -7,6 +7,7 @@ public class TutorialScreen extends BaseMenu {
 
     public TutorialScreen(MyGame g) {
         super(g);
+        createButtons();
     }
     @Override
     public void show() {

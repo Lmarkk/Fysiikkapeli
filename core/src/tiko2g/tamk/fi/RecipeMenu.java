@@ -22,6 +22,7 @@ public class RecipeMenu extends BaseMenu {
 
     public RecipeMenu(MyGame g) {
         super(g);
+        createButtons();
         recipeTextBackground = new Texture("groundtexture.png");
         recipeNameRect = new Rectangle(3, 7.5f, 10, 1);
         recipeNumberRect = new Rectangle(6, 0.5f, 4, 1);

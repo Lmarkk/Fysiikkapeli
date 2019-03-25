@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
-        super(g, "phbackground.png", "groundtexture.png");
+        super(g, "bg-green-hills.png", "groundtexture.png");
 
         for (int i = 0; i < 3; i++) {
-            ThrownObject object = new ThrownObject(game, this, "blueberry.png", ThrownObject.OBJECTSHAPE_CIRCLE);
+            ThrownObject object = new Meat(game, this);
             getProjectiles().add(object);
         }
         setNextProjectile();
@@ -25,9 +25,9 @@ public class EndlessLevel extends BaseLevel {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(background, 0, 0, 16, 9);
-        batch.draw(background, 16, 0, 16, 9);
-        batch.draw(background, 32, 0, 16, 9);
+        batch.draw(background, 0, -1, 16, 9);
+        batch.draw(background, 16, -1, 16, 9);
+        batch.draw(background, 32, -1, 16, 9);
         //for (ThrownObject object: getProjectiles()) {
         //    object.draw();
         //}
@@ -42,6 +42,9 @@ public class EndlessLevel extends BaseLevel {
             System.out.println("SCORE!");
         }
         doPhysicsStep(delta);
+        if(endGame) {
+            game.setScreen(new EndLevelScreen(game, 1));
+        }
         super.render(delta);
     }
 
@@ -67,6 +70,6 @@ public class EndlessLevel extends BaseLevel {
 
     @Override
     public void dispose() {
-
+        super.dispose();
     }
 }

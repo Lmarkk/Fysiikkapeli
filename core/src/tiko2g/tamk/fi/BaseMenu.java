@@ -31,7 +31,7 @@ public class BaseMenu implements Screen {
         font100 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 100, Color.BLACK, 4);
         font42 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 42, Color.BLACK, 4);
         font120 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 120, Color.BLACK, 4);
-        createButtons();
+        //createButtons();
 
         Gdx.input.setInputProcessor(new MyInputProcessor() {
             Button pressedButton;

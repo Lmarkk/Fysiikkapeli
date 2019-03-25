@@ -31,14 +31,12 @@ public class BaseLevel implements Screen {
     OrthographicCamera camera;
     ThrownObject currentProjectile;
     Button mainMenuButton;
-    private BitmapFont font64;
-    private boolean endGame = false;
+    boolean endGame = false;
     private float accumulator;
     private float timeStep;
     private World gameWorld;
     private Vector2 touchStart = new Vector2();
     private Vector2 touchEnd = new Vector2();
-    private Vector2 throwDirection = new Vector2();
     private boolean gameRunning = false;
     private float startTimer = 0f;
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
@@ -58,8 +56,7 @@ public class BaseLevel implements Screen {
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
-        font64 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 64, Color.BLACK, 4);
-        mainMenuButton = new Button(game, "button.png", "button-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_MAINMENU);
+        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_MAINMENU);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
         debugRenderer = new Box2DDebugRenderer();
@@ -210,13 +207,10 @@ public class BaseLevel implements Screen {
                 landingTimer = 0f;
             }
         }
-        if(endGame) {
-            game.setScreen(new EndLevelScreen(game));
-        }
+
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
-        game.getTextRenderer().renderText("MENU", menuButtonCenter.x * 100f, (menuButtonCenter.y + (CAM_DEFAULT_POS.y - cameraStartPosition.y)) * 100f, font64);
     }
 
     @Override

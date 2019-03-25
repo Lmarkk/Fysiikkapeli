@@ -13,6 +13,7 @@ public class MainMenu extends BaseMenu {
 
     public MainMenu(MyGame g) {
         super(g);
+        createButtons();
 
     }
 
