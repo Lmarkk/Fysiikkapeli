@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 // TODO: tee peli
 //TODO: poista ^
 public class MyGame extends Game {
+    public static boolean playSounds;
+    public static boolean playMusic;
 	private SpriteBatch batch;
 	private MainMenu mainMenu;
     private OrthographicCamera camera;
@@ -18,6 +20,8 @@ public class MyGame extends Game {
 	    camera.setToOrtho(false, 16f, 9f);
         textRenderer = new TextRenderer(batch);
         mainMenu = new MainMenu(this);
+        playSounds = true;
+        playMusic = true;
 	    setScreen(mainMenu);
 	}
 

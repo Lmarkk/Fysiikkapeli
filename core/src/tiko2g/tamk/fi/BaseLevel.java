@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,6 +21,8 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 
+import static tiko2g.tamk.fi.MyGame.playSounds;
+
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
 
@@ -31,6 +34,8 @@ public class BaseLevel implements Screen {
     OrthographicCamera camera;
     ThrownObject currentProjectile;
     Button mainMenuButton;
+    Sound scoreGetSound;
+    boolean scoreGetSoundPlayed;
     boolean endGame = false;
     private float accumulator;
     private float timeStep;
@@ -56,6 +61,8 @@ public class BaseLevel implements Screen {
         batch = g.getBatch();
         gameWorld = new World(new Vector2(0, -9.81f), true);
         ground = new Ground(game, this, groundTextureSource);
+        scoreGetSound =  Gdx.audio.newSound(Gdx.files.internal("Osuma.ogg"));
+        scoreGetSoundPlayed = false;
         mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_MAINMENU);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
@@ -165,6 +172,7 @@ public class BaseLevel implements Screen {
 
     public void setNextProjectile() {
         if(currentProjectileIndex < projectiles.size()){
+            scoreGetSoundPlayed = false;
 
             if(currentProjectileIndex > 0) {
                 projectiles.get(currentProjectileIndex - 1).getTexture().dispose();
@@ -205,6 +213,15 @@ public class BaseLevel implements Screen {
             if(landingTimer > 3f){
                 setNextProjectile();
                 landingTimer = 0f;
+            }
+        }
+        if(pot.getPotRect().overlaps(currentProjectile.getRect())){
+            if(playSounds) {
+                if(!scoreGetSoundPlayed) {
+                    scoreGetSound.play();
+                    System.out.println(playSounds);
+                }
+                scoreGetSoundPlayed = true;
             }
         }
 
