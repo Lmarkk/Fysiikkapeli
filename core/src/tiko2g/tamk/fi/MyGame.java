@@ -20,9 +20,9 @@ public class MyGame extends Game {
 	    camera = new OrthographicCamera();
 	    camera.setToOrtho(false, 16f, 9f);
         textRenderer = new TextRenderer(batch);
-        mainMenu = new MainMenu(this);
         playSounds = true;
         playMusic = true;
+        mainMenu = new MainMenu(this);
 	    setScreen(mainMenu);
 	}
 

@@ -37,8 +37,16 @@ public class Button {
         game = g;
         buttonType = bType;
         buttonNotPressedTexture = new Texture(notPressedTextureSource);
-        buttonTexture = buttonNotPressedTexture;
         buttonPressedTexture = new Texture(pressedTextureSource);
+        buttonTexture = buttonNotPressedTexture;
+
+        if(buttonType == BUTTONTYPE_SOUND) {
+            if(playSounds) {
+                buttonTexture = buttonNotPressedTexture;
+            } else {
+                buttonTexture = buttonPressedTexture;
+            }
+        }
 
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
