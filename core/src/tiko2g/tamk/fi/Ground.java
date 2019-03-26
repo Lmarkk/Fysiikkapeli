@@ -51,5 +51,9 @@ public class Ground {
         groundFixtureDef.shape = polygonShape;
         return groundFixtureDef;
     }
+
+    public Body getGroundBody() {
+        return groundBody;
+    }
 }
 

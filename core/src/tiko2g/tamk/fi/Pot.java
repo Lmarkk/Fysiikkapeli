@@ -28,14 +28,14 @@ public class Pot {
     private float potTextureScale = 1.2f;
     private float potYOffset = 0.5f;
 
-    public Pot(BaseLevel b, MyGame g) {
+    public Pot(BaseLevel b, MyGame g, float x, float y) {
         game = g;
         batch = g.getBatch();
         baseLevel = b;
         potBottomTexture = new Texture("cauldron-bottom.png");
         potTopTexture = new Texture("cauldron-top.png");
         debugTexture = new Texture("badlogic.jpg");
-        createPot(10, 1);
+        createPot(x, y);
 
     }
     public BodyDef getPotBodyDef(float x, float y) {

@@ -7,6 +7,7 @@ public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills.png", "ground.png");
+        pot = new Pot(this, game, 14, 1);
 
         for (int i = 0; i < 3; i++) {
             ThrownObject object = new Chicken(game, this);

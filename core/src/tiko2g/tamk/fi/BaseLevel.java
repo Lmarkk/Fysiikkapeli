@@ -35,6 +35,8 @@ public class BaseLevel implements Screen {
     ThrownObject currentProjectile;
     Button mainMenuButton;
     Sound scoreGetSound;
+    private BitmapFont font42;
+    private int score;
     boolean scoreGetSoundPlayed;
     boolean endGame = false;
     private float accumulator;
@@ -69,7 +71,8 @@ public class BaseLevel implements Screen {
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
-        pot = new Pot(this, game);
+        font42 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 42, Color.BLACK, 4);
+        score = 0;
 
 
         gameWorld.setContactListener(new ContactListener() {
@@ -219,7 +222,7 @@ public class BaseLevel implements Screen {
             if(playSounds) {
                 if(!scoreGetSoundPlayed) {
                     scoreGetSound.play();
-                    System.out.println(playSounds);
+                    score += 100;
                 }
                 scoreGetSoundPlayed = true;
             }
@@ -228,6 +231,9 @@ public class BaseLevel implements Screen {
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
+
+        game.getTextRenderer().renderText("SCORE: " + score, 8f * 100f, 8f * 100f, font42);
+
     }
 
     @Override

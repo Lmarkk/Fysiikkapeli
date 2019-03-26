@@ -6,7 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 public class FirstLevel extends BaseLevel {
 
     public FirstLevel(MyGame g) {
-        super(g, "blueberry.png", "groundtexture.png");
+        super(g, "phbackground.png", "groundtexture.png");
+        pot = new Pot(this, game, 12, 1);
 
         for (int i = 0; i < 3; i++) {
             ThrownObject object = new Meat(game, this);
@@ -15,7 +16,7 @@ public class FirstLevel extends BaseLevel {
         setNextProjectile();
 
         createBorderWall(1, 0);
-        createBorderWall(46.5f, 0);
+        createBorderWall(18, 0);
     }
     @Override
     public void render(float delta) {
@@ -36,9 +37,6 @@ public class FirstLevel extends BaseLevel {
         pot.draw();
         batch.end();
         moveCam();
-        if(pot.getPotRect().overlaps(currentProjectile.getRect())){
-            System.out.println("SCORE!");
-        }
         doPhysicsStep(delta);
         if(endGame) {
             game.setScreen(new EndLevelScreen(game, 9));
