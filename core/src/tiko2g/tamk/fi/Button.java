@@ -20,9 +20,9 @@ public class Button {
     static final int BUTTONTYPE_PLAYMODES = 10;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
-    static final float BUTTONSIZE_MEDIUM = 2;
-    static final float BUTTONSIZE_LARGE = 3;
-    static final float BUTTONSIZE_SMALL = 4;
+    static final float BUTTONSIZE_SMALL = 2;
+    static final float BUTTONSIZE_MEDIUM = 3;
+    static final float BUTTONSIZE_LARGE = 4;
 
     private MyGame game;
     private int buttonType;
@@ -51,11 +51,11 @@ public class Button {
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
         } else if(buttonSize == 2) {
-            buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
-        } else if(buttonSize == 3) {
-            buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
-        } else if(buttonSize == 4) {
             buttonRect = new Rectangle(x, y, 2.5f, 1.2f);
+        } else if(buttonSize == 3) {
+            buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
+        } else if(buttonSize == 4) {
+            buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
         }
     }
     public void draw(SpriteBatch batch) {
