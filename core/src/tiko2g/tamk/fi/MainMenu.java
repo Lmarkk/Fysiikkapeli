@@ -31,11 +31,11 @@ public class MainMenu extends BaseMenu {
         super.renderButtons();
         Vector2 buttonCenter = new Vector2();
         playButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("PLAY", buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
+        game.getTextRenderer().renderText(game.getMyBundle().get("play"), buttonCenter.x * 100f, buttonCenter.y * 100f, font100);
         recipeButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("RECIPES", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getMyBundle().get("recipes"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         tutorialButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("TUTORIAL", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getMyBundle().get("tutorial"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
     }
     public void createButtons(){
         super.createButtons();
