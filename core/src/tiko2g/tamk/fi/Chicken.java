@@ -18,12 +18,12 @@ public class Chicken implements ThrownObject {
     private float radius;
     private boolean thrown = false;
     private float scale = 0.5f;
-    private float textureScale = 0.7f;
+    private float textureScale = 0.65f;
     private Rectangle rect;
 
     public Chicken(MyGame g, BaseLevel b){
         batch = g.getBatch();
-        texture = new Texture("chicken.png");
+        texture = new Texture("object-chicken.png");
         body = b.getGameWorld().createBody(getBodyDef());
         body.createFixture(getFixtureDef());
 //        radius = (body.getFixtureList().get(0).getShape()).getRadius();
@@ -57,7 +57,7 @@ public class Chicken implements ThrownObject {
     public BodyDef getBodyDef() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(-4, 2);
+        bodyDef.position.set(-4, 1);
         return bodyDef;
     }
 

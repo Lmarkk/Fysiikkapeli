@@ -1,21 +1,25 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Catapult {
-    private Texture texture;
+    private Texture textureSheet;
     private TextureRegion currentFrame;
-    private Animation<TextureRegion> shootAnimaton;
+    private Animation<TextureRegion> shootAnimation;
+    Rectangle rectangle;
+    boolean shoot;
     private float stateTime;
-    private float flipFrame;
     private float originX;
     private float originY;
 
-    public Catapult() {
-        texture = new Texture("object-animated-catapult");
-        TextureRegion[][] temp = TextureRegion.split(texture, texture.getWidth() /8, texture.getHeight());
+    public Catapult(float x, float y) {
+        textureSheet = new Texture("object-animated-catapult.png");
+        TextureRegion[][] temp = TextureRegion.split(textureSheet, textureSheet.getWidth() /8, textureSheet.getHeight());
         TextureRegion[] frames = new TextureRegion[8];
 
         frames[0] =  temp[0][0];
@@ -27,8 +31,51 @@ public class Catapult {
         frames[6] =  temp[0][6];
         frames[7] =  temp[0][7];
 
-        shootAnimaton = new Animation<TextureRegion>(4 / 40f, frames);
+        shootAnimation = new Animation<TextureRegion>(1 / 100f, frames);
         stateTime = 0.0f;
+
+        float width = (textureSheet.getWidth()/8) / 100f;
+        float height = textureSheet.getHeight() / 100f;
+        rectangle = new Rectangle(x, y, width, height);
+
+        originX = rectangle.getWidth() / 2f;
+        originY = rectangle.getHeight() /2f;
+
+        shoot = false;
+    }
+
+    public void draw(SpriteBatch a) {
+
+        currentFrame = shootAnimation.getKeyFrame(stateTime, false);
+        if(shoot) {
+            stateTime += Gdx.graphics.getDeltaTime();
+        } else {
+            stateTime = 0;
+        }
+        a.draw(currentFrame, getX(), getY(), originX, originY, rectangle.getWidth(), rectangle.getHeight(), 1.5f, 1.5f, 0);
+
+    }
+
+    public Texture getTexture() {
+        return textureSheet;
+    }
+    public float getX() {
+        return rectangle.x;
+    }
+    public float getY() {
+        return rectangle.y;
+    }
+    public Rectangle getRect() {
+        return rectangle;
+    }
+    public void setX(float newX) {
+        rectangle.x = newX;
+    }
+    public void setY(float newY) {
+        rectangle.y = newY;
+    }
+    public void setShoot(boolean value) {
+        shoot = value;
     }
 
 }

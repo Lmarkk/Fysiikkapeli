@@ -56,7 +56,7 @@ public class Meat implements ThrownObject {
     public BodyDef getBodyDef() {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(-4, 2);
+        bodyDef.position.set(-4, 1);
         return bodyDef;
     }
 

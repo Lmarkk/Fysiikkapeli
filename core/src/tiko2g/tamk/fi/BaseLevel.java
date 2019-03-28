@@ -35,9 +35,13 @@ public class BaseLevel implements Screen {
     ThrownObject currentProjectile;
     Button mainMenuButton;
     Sound scoreGetSound;
+
+    Catapult catapult;
+
     private BitmapFont font42;
     private int score;
     boolean scoreGetSoundPlayed;
+    boolean scoreGiven;
     boolean endGame = false;
     private float accumulator;
     private float timeStep;
@@ -47,7 +51,7 @@ public class BaseLevel implements Screen {
     private boolean gameRunning = false;
     private float startTimer = 0f;
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
-    private Vector2 projectileStartPos = new Vector2(2, 2);
+    private Vector2 projectileStartPos = new Vector2(2, 3);
     private int currentProjectileIndex = 0;
     private Vector2 cameraStartPosition = new Vector2(8f, 3f);
     private Vector2 cameraEndPosition = new Vector2(40f, 3);
@@ -65,6 +69,7 @@ public class BaseLevel implements Screen {
         ground = new Ground(game, this, groundTextureSource);
         scoreGetSound =  Gdx.audio.newSound(Gdx.files.internal("Osuma.ogg"));
         scoreGetSoundPlayed = false;
+        scoreGiven = false;
         mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_MAINMENU);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
@@ -82,6 +87,7 @@ public class BaseLevel implements Screen {
                 Body body2 = contact.getFixtureB().getBody();
                 if (body1 == currentProjectile.getBody() || body2 == currentProjectile.getBody()) {
                     projectileLanded = true;
+                    catapult.setShoot(false);
                 }
             }
             @Override
@@ -135,6 +141,7 @@ public class BaseLevel implements Screen {
             b.applyLinearImpulse(throwDirection, b.getWorldCenter(), true);
             b.applyAngularImpulse(-1f, true);
             projectile.setThrown(true);
+            catapult.setShoot(true);
         }
     }
 
@@ -176,6 +183,7 @@ public class BaseLevel implements Screen {
     public void setNextProjectile() {
         if(currentProjectileIndex < projectiles.size()){
             scoreGetSoundPlayed = false;
+            scoreGiven = false;
 
             if(currentProjectileIndex > 0) {
                 projectiles.get(currentProjectileIndex - 1).getTexture().dispose();
@@ -219,10 +227,13 @@ public class BaseLevel implements Screen {
             }
         }
         if(pot.getPotRect().overlaps(currentProjectile.getRect())){
+            if(!scoreGiven) {
+                score += 100;
+                scoreGiven = true;
+            }
             if(playSounds) {
                 if(!scoreGetSoundPlayed) {
                     scoreGetSound.play();
-                    score += 100;
                 }
                 scoreGetSoundPlayed = true;
             }

@@ -7,7 +7,8 @@ public class FirstLevel extends BaseLevel {
 
     public FirstLevel(MyGame g) {
         super(g, "phbackground.png", "groundtexture.png");
-        pot = new Pot(this, game, 12, 1);
+        catapult = new Catapult(1, 0.7f);
+        pot = new Pot(this, game, 12, 0);
 
         for (int i = 0; i < 3; i++) {
             ThrownObject object = new Meat(game, this);
@@ -35,6 +36,7 @@ public class FirstLevel extends BaseLevel {
         pot.drawTop();
         currentProjectile.draw();
         pot.draw();
+        catapult.draw(batch);
         batch.end();
         moveCam();
         doPhysicsStep(delta);

@@ -23,7 +23,7 @@ public class Ground {
         baseLevel = b;
         batch = game.getBatch();
         groundTexture = new Texture(textureSource);
-        groundRect = new Rectangle(0,-3,groundWidth,4);
+        groundRect = new Rectangle(0,-4,groundWidth,4);
         groundBody = baseLevel.getGameWorld().createBody(getGroundBodyDef());
         groundBody.createFixture(getGroundFixtureDef());
 
@@ -37,7 +37,7 @@ public class Ground {
     public BodyDef getGroundBodyDef() {
         BodyDef groundBodyDef = new BodyDef();
         groundBodyDef.type = BodyDef.BodyType.StaticBody;
-        groundBodyDef.position.set(groundWidth/2, -1);
+        groundBodyDef.position.set(groundWidth/2, -2);
         return groundBodyDef;
     }
 

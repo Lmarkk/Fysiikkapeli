@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class EndlessLevel extends BaseLevel {
 
+
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills.png", "ground.png");
-        pot = new Pot(this, game, 14, 1);
+        catapult = new Catapult(1, 0.7f);
+        pot = new Pot(this, game, 14, 0);
 
         for (int i = 0; i < 3; i++) {
             ThrownObject object = new Chicken(game, this);
@@ -17,6 +19,7 @@ public class EndlessLevel extends BaseLevel {
 
         createBorderWall(1, 0);
         createBorderWall(46.5f, 0);
+
 
     }
 
@@ -35,8 +38,11 @@ public class EndlessLevel extends BaseLevel {
         mainMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
-        currentProjectile.draw();
+        if(currentProjectile.isThrown()) {
+            currentProjectile.draw();
+        }
         pot.draw();
+        catapult.draw(batch);
         batch.end();
         moveCam();
         doPhysicsStep(delta);
