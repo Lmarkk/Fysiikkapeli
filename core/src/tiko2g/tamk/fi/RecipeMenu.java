@@ -6,9 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class RecipeMenu extends BaseMenu {
 
-    static final int NEXT_RECIPE = 1;
-    static final int PREVIOUS_RECIPE = -1;
-
     private Button mainMenuButton;
     private Button nextRecipeButton;
     private Button prevRecipeButton;
@@ -33,10 +30,10 @@ public class RecipeMenu extends BaseMenu {
         recipes[3] = new Texture("strawberry.png");
         currentRecipe = recipes[currentRecipeIndex];
     }
-
-    public void changeRecipe(int nextImg){
+    @Override
+    public void changeImage(boolean goForward){
+        int nextImg = goForward ? 1 : -1;
         int next = currentRecipeIndex + nextImg;
-        System.out.println(next);
 
         if(next >= recipes.length){
             currentRecipeIndex = 0;
@@ -112,5 +109,8 @@ public class RecipeMenu extends BaseMenu {
     public void dispose() {
         super.dispose();
         recipeTextBackground.dispose();
+        for (Texture texture: recipes){
+
+        }
     }
 }

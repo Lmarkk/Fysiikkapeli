@@ -1,13 +1,26 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
+
 public class TutorialScreen extends BaseMenu {
     private Button mainMenuButton;
     private Button nextImageButton;
     private Button prevImageButton;
+    private Rectangle tutorialRect;
+    private Texture[] tutorialImages = new Texture[4];
+    private Texture currentImage;
+    private int currentImageIndex = 0;
 
     public TutorialScreen(MyGame g) {
         super(g);
         createButtons();
+        tutorialRect = new Rectangle(3, 2, 8, 4.5f);
+        tutorialImages[0] = new Texture("badlogic.jpg");
+        tutorialImages[1] = new Texture("blueberry.png");
+        tutorialImages[2] = new Texture("meat.png");
+        tutorialImages[3] = new Texture("strawberry.png");
+        currentImage = tutorialImages[currentImageIndex];
     }
     @Override
     public void show() {
@@ -27,9 +40,23 @@ public class TutorialScreen extends BaseMenu {
     @Override
     public void render(float delta) {
         super.render(delta);
-
+        batch.begin();
+        batch.draw(currentImage, tutorialRect.x, tutorialRect.y, tutorialRect.getWidth(), tutorialRect.getHeight());
+        batch.end();
     }
+    @Override
     public void changeImage(boolean goForward) {
+        int nextImg = goForward ? 1 : -1;
+        int next = currentImageIndex + nextImg;
+
+        if(next >= tutorialImages.length){
+            currentImageIndex = 0;
+        } else if (next < 0){
+            currentImageIndex = tutorialImages.length + nextImg;
+        } else {
+            currentImageIndex = next;
+        }
+        currentImage = tutorialImages[currentImageIndex];
     }
 
     @Override

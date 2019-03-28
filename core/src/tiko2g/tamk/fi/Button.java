@@ -1,5 +1,6 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -72,6 +73,7 @@ public class Button {
     public boolean pressFunction(int x, int y) {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
+        Screen currentScreen = game.getScreen();
         if(buttonRect.contains(touch.x, touch.y)) {
             switch(buttonType){
                 case BUTTONTYPE_PLAYENDLESS:
@@ -84,8 +86,7 @@ public class Button {
                     game.setScreen(new FirstLevel(game));
                     break;
                 case BUTTONTYPE_TUTORIAL:
-                    tutorialScreen = new TutorialScreen(game);
-                    game.setScreen(tutorialScreen);
+                    game.createTutorialScreen();
                     break;
                 case BUTTONTYPE_RECIPES:
                     game.createRecipeMenu();
@@ -94,10 +95,10 @@ public class Button {
                     game.setScreen(new MainMenu(game));
                     break;
                 case BUTTONTYPE_NEXTIMAGE:
-                    game.getRecipeMenu().changeRecipe(RecipeMenu.NEXT_RECIPE);
+                    ((BaseMenu)currentScreen).changeImage(true);
                     break;
                 case BUTTONTYPE_PREVIMAGE:
-                    game.getRecipeMenu().changeRecipe(RecipeMenu.PREVIOUS_RECIPE);
+                    ((BaseMenu)currentScreen).changeImage(false);
                     break;
                 case BUTTONTYPE_MUSIC:
                     break;
