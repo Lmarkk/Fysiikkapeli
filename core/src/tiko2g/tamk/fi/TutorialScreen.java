@@ -82,5 +82,8 @@ public class TutorialScreen extends BaseMenu {
     @Override
     public void dispose() {
         super.dispose();
+        for (Texture texture: tutorialImages){
+            texture.dispose();
+        }
     }
 }

@@ -110,7 +110,7 @@ public class RecipeMenu extends BaseMenu {
         super.dispose();
         recipeTextBackground.dispose();
         for (Texture texture: recipes){
-
+            texture.dispose();
         }
     }
 }
