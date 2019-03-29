@@ -1,6 +1,8 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -33,6 +35,7 @@ public class Button {
     private Texture buttonPressedTexture;
     private TutorialScreen tutorialScreen;
     private RecipeMenu recipeMenu;
+    private Sound clickSound;
 
     public Button(MyGame g, String notPressedTextureSource, String pressedTextureSource, float x, float y, float buttonSize, int bType) {
         game = g;
@@ -40,6 +43,7 @@ public class Button {
         buttonNotPressedTexture = new Texture(notPressedTextureSource);
         buttonPressedTexture = new Texture(pressedTextureSource);
         buttonTexture = buttonNotPressedTexture;
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("Klikkaus.ogg"));
 
         if(buttonType == BUTTONTYPE_SOUND) {
             if(playSounds) {
@@ -75,6 +79,9 @@ public class Button {
         game.getCamera().unproject(touch);
         Screen currentScreen = game.getScreen();
         if(buttonRect.contains(touch.x, touch.y)) {
+            if(playSounds) {
+                clickSound.play();
+            }
             switch(buttonType){
                 case BUTTONTYPE_PLAYENDLESS:
                     game.setScreen(new EndlessLevel(game));
@@ -144,5 +151,12 @@ public class Button {
 
     public Rectangle getButtonRect() {
         return buttonRect;
+    }
+
+    public void dispose() {
+        buttonTexture.dispose();
+        buttonPressedTexture.dispose();
+        buttonNotPressedTexture.dispose();
+        clickSound.dispose();
     }
 }

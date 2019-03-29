@@ -117,7 +117,7 @@ public class BaseMenu implements Screen {
     public void dispose() {
         background.dispose();
         for(Button button: buttonList) {
-            button.getButtonTexture().dispose();
+            button.dispose();
         }
         font64.dispose();
         font100.dispose();

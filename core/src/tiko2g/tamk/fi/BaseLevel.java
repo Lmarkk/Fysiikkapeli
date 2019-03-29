@@ -39,6 +39,8 @@ public class BaseLevel implements Screen {
     Vector2 projectileStartPos = new Vector2(2, 3);
     boolean projectileLanded = false;
 
+    private Texture currentProjectileFrame;
+    private float frameXPos;
     private BitmapFont font42;
     private int score;
     boolean scoreGetSoundPlayed;
@@ -76,6 +78,8 @@ public class BaseLevel implements Screen {
         menuButtonCenter = new Vector2();
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
         font42 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 42, Color.BLACK, 4);
+        currentProjectileFrame = new Texture("frame.png");
+        frameXPos = 2.5f;
         score = 0;
 
 
@@ -171,10 +175,12 @@ public class BaseLevel implements Screen {
         if(desiredPosition.x > cameraStartPosition.x && desiredPosition.x < cameraEndPosition.x) {
             camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
             mainMenuButton.setX(camera.position.x -7.5f);
+            frameXPos = camera.position.x-6;
             camera.update();
         } else if(desiredPosition.x == projectileStartPos.x){
             camera.position.slerp(new Vector3(cameraStartPosition.x, cameraStartPosition.y ,0), Gdx.graphics.getDeltaTime() * 10);
             mainMenuButton.setX(camera.position.x -7.5f);
+            frameXPos = camera.position.x-6;
             camera.update();
         }
     }
@@ -239,7 +245,7 @@ public class BaseLevel implements Screen {
         }
 
         batch.begin();
-        debugRenderer.render(getGameWorld(), camera.combined);
+        //debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
         game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8f * 100f, font42);
@@ -271,6 +277,7 @@ public class BaseLevel implements Screen {
         gameWorld.dispose();
         background.dispose();
         game.dispose();
+        mainMenuButton.dispose();
     }
 
     public ArrayList<ThrownObject> getProjectiles() {
