@@ -35,8 +35,9 @@ public class BaseLevel implements Screen {
     ThrownObject currentProjectile;
     Button mainMenuButton;
     Sound scoreGetSound;
-
     Catapult catapult;
+    Vector2 projectileStartPos = new Vector2(2, 3);
+    boolean projectileLanded = false;
 
     private BitmapFont font42;
     private int score;
@@ -51,11 +52,9 @@ public class BaseLevel implements Screen {
     private boolean gameRunning = false;
     private float startTimer = 0f;
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
-    private Vector2 projectileStartPos = new Vector2(2, 3);
     private int currentProjectileIndex = 0;
     private Vector2 cameraStartPosition = new Vector2(8f, 3f);
     private Vector2 cameraEndPosition = new Vector2(40f, 3);
-    private boolean projectileLanded = false;
     private float landingTimer = 0f;
     private Box2DDebugRenderer debugRenderer;
     private Vector2 menuButtonCenter;
@@ -76,7 +75,7 @@ public class BaseLevel implements Screen {
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
-        font42 = game.getTextRenderer().createFont("OptimusPrincepsSemiBold.ttf", 42, Color.BLACK, 4);
+        font42 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 42, Color.BLACK, 4);
         score = 0;
 
 
@@ -243,7 +242,7 @@ public class BaseLevel implements Screen {
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
-        game.getTextRenderer().renderText("SCORE: " + score, 8f * 100f, 8f * 100f, font42);
+        game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8f * 100f, font42);
 
     }
 

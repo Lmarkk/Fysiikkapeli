@@ -27,9 +27,9 @@ public class LevelSelectScreen extends BaseMenu {
         super.renderButtons();
         Vector2 buttonCenter = new Vector2();
         endlessButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("ENDLESS", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getMyBundle().get("endless"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         levelOneButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("LEVEL 1", buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
+        game.getTextRenderer().renderText(game.getMyBundle().get("levelone"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
 
     }
 

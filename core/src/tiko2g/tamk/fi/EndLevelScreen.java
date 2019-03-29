@@ -18,9 +18,9 @@ public class EndLevelScreen extends BaseMenu {
         super.renderButtons();
         Vector2 buttonCenter = new Vector2();
         replayButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("PLAY AGAIN", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getMyBundle().get("playagain"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         mainMenuButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText("MAIN MENU", buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getMyBundle().get("mainmenu"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
 
     }
     public void createButtons(){

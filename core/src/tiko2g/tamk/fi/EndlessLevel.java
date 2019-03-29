@@ -2,19 +2,22 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
+
+import java.util.ArrayList;
 
 public class EndlessLevel extends BaseLevel {
-
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(4);
 
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills.png", "ground.png");
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 14, 0);
 
-        for (int i = 0; i < 3; i++) {
-            ThrownObject object = new Chicken(game, this);
-            getProjectiles().add(object);
-        }
+        thrownObjects.add(new Potato(game, this), new Chicken(game, this), new Meat(game, this), new Tomato(game, this));
+        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).clone();
+
         setNextProjectile();
 
         createBorderWall(1, 0);
@@ -50,6 +53,15 @@ public class EndlessLevel extends BaseLevel {
             game.setScreen(new EndLevelScreen(game, 1));
         }
         super.render(delta);
+    }
+    @Override
+    public void setNextProjectile() {
+        getGameWorld().destroyBody(currentProjectile.getBody());
+        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).clone();
+        scoreGetSoundPlayed = false;
+        scoreGiven = false;
+        projectileLanded = false;
+        currentProjectile.getBody().setTransform(projectileStartPos, 0f);
     }
 
     @Override
