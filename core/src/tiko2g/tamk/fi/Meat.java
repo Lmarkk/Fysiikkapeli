@@ -19,8 +19,12 @@ public class Meat implements ThrownObject {
     private float scale = 0.5f;
     private float textureScale = 0.6f;
     private Rectangle rect;
+    private MyGame game;
+    private BaseLevel baseLevel;
 
     public Meat(MyGame g, BaseLevel b){
+        game = g;
+        baseLevel = b;
         batch = g.getBatch();
         texture = new Texture("meat.png");
         body = b.getGameWorld().createBody(getBodyDef());
@@ -118,5 +122,10 @@ public class Meat implements ThrownObject {
     @Override
     public Rectangle getRect() {
         return rect;
+    }
+
+    @Override
+    public ThrownObject clone() {
+        return new Meat(game, baseLevel);
     }
 }

@@ -23,4 +23,7 @@ interface ThrownObject {
     void setThrown(boolean thrown);
 
     Rectangle getRect();
+
+    ThrownObject clone();
+
 }

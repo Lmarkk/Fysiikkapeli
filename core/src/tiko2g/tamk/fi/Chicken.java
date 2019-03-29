@@ -20,8 +20,12 @@ public class Chicken implements ThrownObject {
     private float scale = 0.5f;
     private float textureScale = 0.65f;
     private Rectangle rect;
+    private MyGame game;
+    private BaseLevel baseLevel;
 
     public Chicken(MyGame g, BaseLevel b){
+        game = g;
+        baseLevel = b;
         batch = g.getBatch();
         texture = new Texture("object-chicken.png");
         body = b.getGameWorld().createBody(getBodyDef());
@@ -112,5 +116,10 @@ public class Chicken implements ThrownObject {
     @Override
     public Rectangle getRect() {
         return rect;
+    }
+
+    @Override
+    public ThrownObject clone() {
+        return new Chicken(game, baseLevel);
     }
 }
