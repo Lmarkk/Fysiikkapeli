@@ -2,19 +2,26 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
 public class FirstLevel extends BaseLevel {
-    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(4);
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    int arrayIndex;
 
     public FirstLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "groundtexture.png");
+        arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
 
-        thrownObjects.add(new Potato(game, this), new Chicken(game, this), new Meat(game, this), new Tomato(game, this));
-        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).clone();
+        //for (int i = 0; i < 3; i++) {
+        //    ThrownObject object = new Carrot(game, this);
+        //    getProjectiles().add(object);
+        //}
+
+        thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
+        thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();
 
@@ -46,6 +53,22 @@ public class FirstLevel extends BaseLevel {
             game.setScreen(new EndLevelScreen(game, 9));
         }
         super.render(delta);
+    }
+
+    @Override
+    public void setNextProjectile() {
+        if(arrayIndex < thrownObjects.size) {
+            getGameWorld().destroyBody(currentProjectile.getBody());
+            currentProjectile = thrownObjects.get(arrayIndex).clone();
+            arrayIndex++;
+            scoreGetSoundPlayed = false;
+            scoreGiven = false;
+            projectileLanded = false;
+            currentProjectile.getBody().setTransform(projectileStartPos, 0f);
+        } else {
+            endGame = true;
+        }
+
     }
 
     @Override
