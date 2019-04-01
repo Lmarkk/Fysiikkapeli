@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-public class Onion implements ThrownObject {
+public class Carrot implements ThrownObject {
     private SpriteBatch batch;
     private Texture texture;
     private Body body;
@@ -22,11 +22,11 @@ public class Onion implements ThrownObject {
     private MyGame game;
     private BaseLevel baseLevel;
 
-    public Onion(MyGame g, BaseLevel b){
+    public Carrot(MyGame g, BaseLevel b){
         game = g;
         baseLevel = b;
         batch = g.getBatch();
-        texture = new Texture("object-onion.png");
+        texture = new Texture("object-carrot.png");
         body = b.getGameWorld().createBody(getBodyDef());
         body.createFixture(getFixtureDef());
 //        radius = (body.getFixtureList().get(0).getShape()).getRadius();
@@ -97,14 +97,14 @@ public class Onion implements ThrownObject {
     }
     private Vector2[] getVertices(){
         Vector2[] vertices = new Vector2[8];
-        vertices[0] = new Vector2(0.83f, 2.56f);
-        vertices[1] = new Vector2(1.74f, 3.2f);
-        vertices[2] = new Vector2(2.34f, 3.2f);
-        vertices[3] = new Vector2(2.73f, 1.97f);
-        vertices[4] = new Vector2(2.61f, 0.56f);
-        vertices[5] = new Vector2(1.04f, 0.05f);
-        vertices[6] = new Vector2(0.11f, 0.78f);
-        vertices[7] = new Vector2(0.09f, 2.08f);
+        vertices[0] = new Vector2(0, 3);
+        vertices[1] = new Vector2(1.17f, 2.32f);
+        vertices[2] = new Vector2(2.32f, 1.27f);
+        vertices[3] = new Vector2(2.95f, 0.55f);
+        vertices[4] = new Vector2(2.63f, 0.18f);
+        vertices[5] = new Vector2(1.37f, 1.15f);
+        vertices[6] = new Vector2(0.49f, 1.89f);
+        vertices[7] = new Vector2(0.06f, 2.64f);
 
         for (Vector2 v2: vertices) {
             v2.scl(scale);
@@ -119,6 +119,6 @@ public class Onion implements ThrownObject {
 
     @Override
     public ThrownObject clone() {
-        return new Onion(game, baseLevel);
+        return new Carrot(game, baseLevel);
     }
 }
