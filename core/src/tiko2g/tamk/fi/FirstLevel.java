@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 public class FirstLevel extends BaseLevel {
 
     public FirstLevel(MyGame g) {
-        super(g, "phbackground.png", "groundtexture.png");
+        super(g, "bg-green-hills2.png", "groundtexture.png");
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
 

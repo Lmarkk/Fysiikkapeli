@@ -11,7 +11,7 @@ public class EndlessLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(4);
 
     public EndlessLevel(MyGame g) {
-        super(g, "bg-green-hills.png", "ground.png");
+        super(g, "bg-green-hills2.png", "ground.png");
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 14, 0);
 
