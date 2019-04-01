@@ -46,6 +46,8 @@ public class EndlessLevel extends BaseLevel {
         }
         pot.draw();
         catapult.draw(batch);
+        batch.draw(currentProjectileFrame, 2.5f, -1.2f, 1.3f, 1.3f);
+        batch.draw(currentProjectile.getTexture(), 2.7f, -1f, 0.8f, 0.8f);
         batch.end();
         moveCam();
         doPhysicsStep(delta);

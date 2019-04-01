@@ -38,9 +38,8 @@ public class BaseLevel implements Screen {
     Catapult catapult;
     Vector2 projectileStartPos = new Vector2(2, 3);
     boolean projectileLanded = false;
+    Texture currentProjectileFrame;
 
-    private Texture currentProjectileFrame;
-    private float frameXPos;
     private BitmapFont font42;
     private int score;
     boolean scoreGetSoundPlayed;
@@ -79,7 +78,6 @@ public class BaseLevel implements Screen {
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
         font42 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 42, Color.BLACK, 4);
         currentProjectileFrame = new Texture("frame.png");
-        frameXPos = 2.5f;
         score = 0;
 
 
@@ -175,12 +173,10 @@ public class BaseLevel implements Screen {
         if(desiredPosition.x > cameraStartPosition.x && desiredPosition.x < cameraEndPosition.x) {
             camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
             mainMenuButton.setX(camera.position.x -7.5f);
-            frameXPos = camera.position.x-6;
             camera.update();
         } else if(desiredPosition.x == projectileStartPos.x){
             camera.position.slerp(new Vector3(cameraStartPosition.x, cameraStartPosition.y ,0), Gdx.graphics.getDeltaTime() * 10);
             mainMenuButton.setX(camera.position.x -7.5f);
-            frameXPos = camera.position.x-6;
             camera.update();
         }
     }

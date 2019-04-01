@@ -93,10 +93,12 @@ public class Button {
                     game.setScreen(new FirstLevel(game));
                     break;
                 case BUTTONTYPE_TUTORIAL:
-                    game.createTutorialScreen();
+                    game.setScreen(new TutorialScreen(game));
+                    //game.createTutorialScreen();
                     break;
                 case BUTTONTYPE_RECIPES:
-                    game.createRecipeMenu();
+                    game.setScreen((new RecipeMenu(game)));
+                    //game.createRecipeMenu();
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));
