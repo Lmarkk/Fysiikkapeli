@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
@@ -12,6 +13,9 @@ public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "ground.png");
+        if(MathUtils.random(1,2) == 1) {
+            background = new Texture("bg-wheat-fields.png");
+        }
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 14, 0);
 
