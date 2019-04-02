@@ -36,11 +36,11 @@ public class BaseLevel implements Screen {
     Sound scoreGetSound;
     Catapult catapult;
     Vector2 projectileStartPos = new Vector2(2, 3);
-    boolean projectileLanded = false;
     Texture currentProjectileFrame;
+    int score;
+    boolean projectileLanded = false;
 
-    private BitmapFont font42;
-    private int score;
+    BitmapFont font32;
     boolean scoreGetSoundPlayed;
     boolean scoreGiven;
     boolean endGame = false;
@@ -75,7 +75,7 @@ public class BaseLevel implements Screen {
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
-        font42 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 42, Color.BLACK, 4);
+        font32 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
         currentProjectileFrame = new Texture("frame.png");
         score = 0;
 
@@ -243,7 +243,7 @@ public class BaseLevel implements Screen {
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
-        game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8f * 100f, font42);
+        game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
 
     }
 

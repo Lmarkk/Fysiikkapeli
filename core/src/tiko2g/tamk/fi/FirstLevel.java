@@ -26,7 +26,7 @@ public class FirstLevel extends BaseLevel {
         setNextProjectile();
 
         createBorderWall(1, 0);
-        createBorderWall(18, 0);
+        createBorderWall(30, 0);
     }
     @Override
     public void render(float delta) {
@@ -53,6 +53,7 @@ public class FirstLevel extends BaseLevel {
             game.setScreen(new EndLevelScreen(game, 9));
         }
         super.render(delta);
+        game.getTextRenderer().renderText(game.getMyBundle().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);
     }
 
     @Override
@@ -66,6 +67,9 @@ public class FirstLevel extends BaseLevel {
             projectileLanded = false;
             currentProjectile.getBody().setTransform(projectileStartPos, 0f);
         } else {
+            if(score > game.getPrefs().getFirstLevelScore()) {
+                game.getPrefs().setFirstLevelScore(score);
+            }
             endGame = true;
         }
 

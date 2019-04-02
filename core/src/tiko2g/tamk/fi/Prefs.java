@@ -8,11 +8,14 @@ public class Prefs {
     private Preferences pref ;
     private boolean soundStatus;
     private boolean musicStatus;
+    private int firstLevelScore;
+    private int secondLevelScore;
 
     public Prefs() {
         pref = Gdx.app.getPreferences("My Preferences");
         soundStatus = pref.getBoolean("soundStatus",true);
         musicStatus = pref.getBoolean("musicStatus", true);
+        firstLevelScore = pref.getInteger("firstLevelScore", 0);
     }
 
 
@@ -27,12 +30,20 @@ public class Prefs {
         pref.putBoolean("musicStatus",musicStatus);
         pref.flush();
     }
+    public void setFirstLevelScore(int score) {
+        firstLevelScore = score;
+        pref.putInteger("firstLevelScore", firstLevelScore);
+        pref.flush();
+    }
 
     public boolean getSoundStatus(){
         return soundStatus;
     }
     public boolean getMusicStatus() {
         return musicStatus;
+    }
+    public int getFirstLevelScore() {
+        return firstLevelScore;
     }
 
 }
