@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-import static tiko2g.tamk.fi.MyGame.playSounds;
 
 public class Button {
     static final int BUTTONTYPE_PLAYENDLESS = 1;
@@ -46,7 +45,7 @@ public class Button {
         clickSound = Gdx.audio.newSound(Gdx.files.internal("Klikkaus.ogg"));
 
         if(buttonType == BUTTONTYPE_SOUND) {
-            if(playSounds) {
+            if(game.getPrefs().getSoundStatus()) {
                 buttonTexture = buttonNotPressedTexture;
             } else {
                 buttonTexture = buttonPressedTexture;
@@ -79,7 +78,7 @@ public class Button {
         game.getCamera().unproject(touch);
         Screen currentScreen = game.getScreen();
         if(buttonRect.contains(touch.x, touch.y)) {
-            if(playSounds) {
+            if(game.getPrefs().getSoundStatus()) {
                 clickSound.play();
             }
             switch(buttonType){
@@ -110,10 +109,10 @@ public class Button {
                     ((BaseMenu)currentScreen).changeImage(false);
                     break;
                 case BUTTONTYPE_MUSIC:
+                    game.getPrefs().toggleMusic();
                     break;
                 case BUTTONTYPE_SOUND:
-                    playSounds = !playSounds;
-                    System.out.println(playSounds);
+                    game.getPrefs().toggleSound();
                     break;
             }
             return true;

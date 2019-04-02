@@ -232,7 +232,7 @@ public class BaseLevel implements Screen {
                 score += 100;
                 scoreGiven = true;
             }
-            if(playSounds) {
+            if(game.getPrefs().getSoundStatus()) {
                 if(!scoreGetSoundPlayed) {
                     scoreGetSound.play();
                 }
