@@ -21,7 +21,6 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 
-import static tiko2g.tamk.fi.MyGame.playSounds;
 
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
