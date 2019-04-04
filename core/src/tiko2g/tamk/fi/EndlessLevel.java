@@ -3,9 +3,8 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-
-import java.util.ArrayList;
 
 public class EndlessLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(4);
@@ -16,7 +15,7 @@ public class EndlessLevel extends BaseLevel {
         pot = new Pot(this, game, 14, 0);
 
         thrownObjects.add(new Potato(game, this), new Chicken(game, this), new Meat(game, this), new Tomato(game, this));
-        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).clone();
+        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).cloneObject();
 
         setNextProjectile();
 
@@ -38,6 +37,9 @@ public class EndlessLevel extends BaseLevel {
         //for (ThrownObject object: getProjectiles()) {
         //    object.draw();
         //}
+        if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
+            arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
+        }
         mainMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
@@ -57,7 +59,7 @@ public class EndlessLevel extends BaseLevel {
     @Override
     public void setNextProjectile() {
         getGameWorld().destroyBody(currentProjectile.getBody());
-        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).clone();
+        currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).cloneObject();
         scoreGetSoundPlayed = false;
         scoreGiven = false;
         projectileLanded = false;
