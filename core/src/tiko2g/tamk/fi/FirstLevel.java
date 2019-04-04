@@ -2,22 +2,31 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.utils.Array;
 
 public class FirstLevel extends BaseLevel {
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    int arrayIndex;
 
     public FirstLevel(MyGame g) {
-        super(g, "phbackground.png", "groundtexture.png");
+        super(g, "bg-green-hills2.png", "groundtexture.png");
+        arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
 
-        for (int i = 0; i < 3; i++) {
-            ThrownObject object = new Meat(game, this);
-            getProjectiles().add(object);
-        }
+        //for (int i = 0; i < 3; i++) {
+        //    ThrownObject object = new Carrot(game, this);
+        //    getProjectiles().add(object);
+        //}
+
+        thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
+        thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        currentProjectile = thrownObjects.get(0);
+
         setNextProjectile();
 
         createBorderWall(1, 0);
-        createBorderWall(18, 0);
+        createBorderWall(30, 0);
     }
     @Override
     public void render(float delta) {
@@ -44,6 +53,26 @@ public class FirstLevel extends BaseLevel {
             game.setScreen(new EndLevelScreen(game, 9));
         }
         super.render(delta);
+        game.getTextRenderer().renderText(game.getMyBundle().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+    }
+
+    @Override
+    public void setNextProjectile() {
+        if(arrayIndex < thrownObjects.size) {
+            getGameWorld().destroyBody(currentProjectile.getBody());
+            currentProjectile = thrownObjects.get(arrayIndex).clone();
+            arrayIndex++;
+            scoreGetSoundPlayed = false;
+            scoreGiven = false;
+            projectileLanded = false;
+            currentProjectile.getBody().setTransform(projectileStartPos, 0f);
+        } else {
+            if(score > game.getPrefs().getFirstLevelScore()) {
+                game.getPrefs().setFirstLevelScore(score);
+            }
+            endGame = true;
+        }
+
     }
 
     @Override

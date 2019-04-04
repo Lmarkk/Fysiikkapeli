@@ -18,7 +18,7 @@ public class BorderWall {
         game = g;
         baseLevel = b;
         batch = game.getBatch();
-        wallRect = new Rectangle(x, y, 1, 9);
+        wallRect = new Rectangle(x, y, 1, 20);
         wallBody = baseLevel.getGameWorld().createBody(getWallBodyDef(x, y));
         wallBody.createFixture(getWallFixtureDef());
     }
@@ -35,7 +35,7 @@ public class BorderWall {
         wallFixtureDef.restitution = 0.2f;
         wallFixtureDef.friction = 0.5f;
         PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(0.2f, 25);
+        polygonShape.setAsBox(0.2f, 20);
         wallFixtureDef.shape = polygonShape;
         return wallFixtureDef;
     }

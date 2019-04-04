@@ -2,19 +2,24 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class EndlessLevel extends BaseLevel {
-    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(4);
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(5);
 
     public EndlessLevel(MyGame g) {
-        super(g, "bg-green-hills.png", "ground.png");
+        super(g, "bg-green-hills2.png", "ground.png");
+        if(MathUtils.random(1,2) == 1) {
+            background = new Texture("bg-wheat-fields.png");
+        }
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 14, 0);
 
         thrownObjects.add(new Potato(game, this), new Chicken(game, this), new Meat(game, this), new Tomato(game, this));
+        thrownObjects.add(new Onion(game, this));
         currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).cloneObject();
 
         setNextProjectile();
@@ -48,6 +53,8 @@ public class EndlessLevel extends BaseLevel {
         }
         pot.draw();
         catapult.draw(batch);
+        batch.draw(currentProjectileFrame, 2.5f, -1.2f, 1.3f, 1.3f);
+        batch.draw(currentProjectile.getTexture(), 2.7f, -1f, 0.8f, 0.8f);
         batch.end();
         moveCam();
         doPhysicsStep(delta);

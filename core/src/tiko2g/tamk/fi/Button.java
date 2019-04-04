@@ -1,12 +1,13 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-import static tiko2g.tamk.fi.MyGame.playSounds;
 
 public class Button {
     static final int BUTTONTYPE_PLAYENDLESS = 1;
@@ -33,6 +34,7 @@ public class Button {
     private Texture buttonPressedTexture;
     private TutorialScreen tutorialScreen;
     private RecipeMenu recipeMenu;
+    private Sound clickSound;
 
     public Button(MyGame g, String notPressedTextureSource, String pressedTextureSource, float x, float y, float buttonSize, int bType) {
         game = g;
@@ -40,9 +42,10 @@ public class Button {
         buttonNotPressedTexture = new Texture(notPressedTextureSource);
         buttonPressedTexture = new Texture(pressedTextureSource);
         buttonTexture = buttonNotPressedTexture;
+        clickSound = Gdx.audio.newSound(Gdx.files.internal("Klikkaus.ogg"));
 
         if(buttonType == BUTTONTYPE_SOUND) {
-            if(playSounds) {
+            if(game.getPrefs().getSoundStatus()) {
                 buttonTexture = buttonNotPressedTexture;
             } else {
                 buttonTexture = buttonPressedTexture;
@@ -75,6 +78,9 @@ public class Button {
         game.getCamera().unproject(touch);
         Screen currentScreen = game.getScreen();
         if(buttonRect.contains(touch.x, touch.y)) {
+            if(game.getPrefs().getSoundStatus()) {
+                clickSound.play();
+            }
             switch(buttonType){
                 case BUTTONTYPE_PLAYENDLESS:
                     game.setScreen(new EndlessLevel(game));
@@ -86,10 +92,12 @@ public class Button {
                     game.setScreen(new FirstLevel(game));
                     break;
                 case BUTTONTYPE_TUTORIAL:
-                    game.createTutorialScreen();
+                    game.setScreen(new TutorialScreen(game));
+                    //game.createTutorialScreen();
                     break;
                 case BUTTONTYPE_RECIPES:
-                    game.createRecipeMenu();
+                    game.setScreen((new RecipeMenu(game)));
+                    //game.createRecipeMenu();
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));
@@ -101,10 +109,10 @@ public class Button {
                     ((BaseMenu)currentScreen).changeImage(false);
                     break;
                 case BUTTONTYPE_MUSIC:
+                    game.getPrefs().toggleMusic();
                     break;
                 case BUTTONTYPE_SOUND:
-                    playSounds = !playSounds;
-                    System.out.println(playSounds);
+                    game.getPrefs().toggleSound();
                     break;
             }
             return true;
@@ -144,5 +152,12 @@ public class Button {
 
     public Rectangle getButtonRect() {
         return buttonRect;
+    }
+
+    public void dispose() {
+        buttonTexture.dispose();
+        buttonPressedTexture.dispose();
+        buttonNotPressedTexture.dispose();
+        clickSound.dispose();
     }
 }

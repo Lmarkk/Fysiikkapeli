@@ -27,7 +27,7 @@ public class BaseMenu implements Screen {
         batch = g.getBatch();
         camera = g.getCamera();
         camera.setToOrtho(false, 16,9);
-        background = new Texture("phbackground.png");
+        background = new Texture("menu-bg.png");
         font64 = game.getTextRenderer().createFont(kreonFont, 64, Color.BLACK, 4);
         font100 = game.getTextRenderer().createFont(kreonFont, 100, Color.BLACK, 4);
         font42 = game.getTextRenderer().createFont(kreonFont, 42, Color.BLACK, 4);
@@ -117,7 +117,7 @@ public class BaseMenu implements Screen {
     public void dispose() {
         background.dispose();
         for(Button button: buttonList) {
-            button.getButtonTexture().dispose();
+            button.dispose();
         }
         font64.dispose();
         font100.dispose();

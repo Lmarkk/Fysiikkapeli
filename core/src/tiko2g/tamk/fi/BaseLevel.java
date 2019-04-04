@@ -21,7 +21,6 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.ArrayList;
 
-import static tiko2g.tamk.fi.MyGame.playSounds;
 
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
@@ -39,10 +38,11 @@ public class BaseLevel implements Screen {
     Sound scoreGetSound;
     Catapult catapult;
     Vector2 projectileStartPos = new Vector2(2, 3);
+    Texture currentProjectileFrame;
+    int score;
     boolean projectileLanded = false;
 
-    private BitmapFont font42;
-    private int score;
+    BitmapFont font32;
     boolean scoreGetSoundPlayed;
     boolean scoreGiven;
     boolean endGame = false;
@@ -78,7 +78,8 @@ public class BaseLevel implements Screen {
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
-        font42 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 42, Color.BLACK, 4);
+        font32 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
+        currentProjectileFrame = new Texture("frame.png");
         score = 0;
         arrow = new Arrow();
 
@@ -246,7 +247,7 @@ public class BaseLevel implements Screen {
                 score += 100;
                 scoreGiven = true;
             }
-            if(playSounds) {
+            if(game.getPrefs().getSoundStatus()) {
                 if(!scoreGetSoundPlayed) {
                     scoreGetSound.play();
                 }
@@ -258,7 +259,7 @@ public class BaseLevel implements Screen {
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
-        game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8f * 100f, font42);
+        game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
 
     }
 
@@ -287,6 +288,7 @@ public class BaseLevel implements Screen {
         gameWorld.dispose();
         background.dispose();
         game.dispose();
+        mainMenuButton.dispose();
     }
 
     public ArrayList<ThrownObject> getProjectiles() {
