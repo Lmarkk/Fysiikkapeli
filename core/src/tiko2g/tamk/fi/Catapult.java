@@ -18,23 +18,24 @@ public class Catapult {
     private float originY;
 
     public Catapult(float x, float y) {
-        textureSheet = new Texture("object-animated-catapult.png");
-        TextureRegion[][] temp = TextureRegion.split(textureSheet, textureSheet.getWidth() /8, textureSheet.getHeight());
-        TextureRegion[] frames = new TextureRegion[8];
+        textureSheet = new Texture("object-catapult-animated.png");
+        TextureRegion[][] temp = TextureRegion.split(textureSheet, textureSheet.getWidth() /9, textureSheet.getHeight());
+        TextureRegion[] frames = new TextureRegion[9];
 
-        frames[0] =  temp[0][0];
-        frames[1] =  temp[0][1];
-        frames[2] =  temp[0][2];
-        frames[3] =  temp[0][3];
-        frames[4] =  temp[0][4];
-        frames[5] =  temp[0][5];
-        frames[6] =  temp[0][6];
-        frames[7] =  temp[0][7];
+        frames[0] = temp[0][0];
+        frames[1] = temp[0][1];
+        frames[2] = temp[0][2];
+        frames[3] = temp[0][3];
+        frames[4] = temp[0][4];
+        frames[5] = temp[0][5];
+        frames[6] = temp[0][6];
+        frames[7] = temp[0][7];
+        frames[8] = temp[0][8];
 
         shootAnimation = new Animation<TextureRegion>(1 / 100f, frames);
         stateTime = 0.0f;
 
-        float width = (textureSheet.getWidth()/8) / 100f;
+        float width = (textureSheet.getWidth()/9) / 100f;
         float height = textureSheet.getHeight() / 100f;
         rectangle = new Rectangle(x, y, width, height);
 

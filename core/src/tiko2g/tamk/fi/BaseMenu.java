@@ -20,6 +20,7 @@ public class BaseMenu implements Screen {
     BitmapFont font100;
     BitmapFont font42;
     BitmapFont font120;
+    BitmapFont font30;
     String kreonFont = "Kreon-Regular.ttf";
 
     public BaseMenu(MyGame g) {
@@ -32,6 +33,7 @@ public class BaseMenu implements Screen {
         font100 = game.getTextRenderer().createFont(kreonFont, 100, Color.BLACK, 4);
         font42 = game.getTextRenderer().createFont(kreonFont, 42, Color.BLACK, 4);
         font120 = game.getTextRenderer().createFont(kreonFont, 120, Color.BLACK, 4);
+        font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);
         //createButtons();
 
         Gdx.input.setInputProcessor(new MyInputProcessor() {

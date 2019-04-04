@@ -25,7 +25,7 @@ public class FirstLevel extends BaseLevel {
 
         setNextProjectile();
 
-        createBorderWall(1, 0);
+        createBorderWall(-0.5f, 0);
         createBorderWall(30, 0);
     }
     @Override

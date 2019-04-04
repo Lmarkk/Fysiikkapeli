@@ -20,6 +20,8 @@ public class Button {
     static final int BUTTONTYPE_PREVIMAGE = 8;
     static final int BUTTONTYPE_PLAYLEVELONE = 9;
     static final int BUTTONTYPE_PLAYMODES = 10;
+    static final int BUTTONTYPE_FIRSTRECIPE = 11;
+    static final int BUTTONTYPE_SECONDRECIPE = 12;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -55,7 +57,7 @@ public class Button {
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
         } else if(buttonSize == 2) {
-            buttonRect = new Rectangle(x, y, 2.5f, 1.2f);
+            buttonRect = new Rectangle(x, y, 2.8f, 1.2f);
         } else if(buttonSize == 3) {
             buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
         } else if(buttonSize == 4) {
@@ -113,6 +115,11 @@ public class Button {
                     break;
                 case BUTTONTYPE_SOUND:
                     game.getPrefs().toggleSound();
+                    break;
+                case BUTTONTYPE_FIRSTRECIPE:
+                    game.setScreen(new FirstRecipe(game));
+                    break;
+                case BUTTONTYPE_SECONDRECIPE:
                     break;
             }
             return true;

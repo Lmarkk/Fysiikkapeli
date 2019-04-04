@@ -24,7 +24,7 @@ public class EndlessLevel extends BaseLevel {
 
         setNextProjectile();
 
-        createBorderWall(1, 0);
+        createBorderWall(-0.5f, 0);
         createBorderWall(46.5f, 0);
 
 
@@ -48,9 +48,7 @@ public class EndlessLevel extends BaseLevel {
         mainMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
-        if(currentProjectile.isThrown()) {
-            currentProjectile.draw();
-        }
+        currentProjectile.draw();
         pot.draw();
         catapult.draw(batch);
         batch.draw(currentProjectileFrame, 2.5f, -1.2f, 1.3f, 1.3f);
