@@ -25,6 +25,8 @@ import static tiko2g.tamk.fi.MyGame.playSounds;
 
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
+    private final Vector2 THROW_MAX_FORCE = new Vector2(25f, 20f);
+    private final float THROW_FORCE_MULTIPLIER = 5f;
 
     MyGame game;
     SpriteBatch batch;
@@ -47,7 +49,7 @@ public class BaseLevel implements Screen {
     private float accumulator;
     private float timeStep;
     private World gameWorld;
-    private Vector2 touchStart = new Vector2();
+    Vector2 touchStart = new Vector2();
     private Vector2 touchEnd = new Vector2();
     private boolean gameRunning = false;
     private float startTimer = 0f;
@@ -58,6 +60,7 @@ public class BaseLevel implements Screen {
     private float landingTimer = 0f;
     private Box2DDebugRenderer debugRenderer;
     private Vector2 menuButtonCenter;
+    Arrow arrow;
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -77,7 +80,7 @@ public class BaseLevel implements Screen {
         menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
         font42 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 42, Color.BLACK, 4);
         score = 0;
-
+        arrow = new Arrow();
 
         gameWorld.setContactListener(new ContactListener() {
             @Override
@@ -134,9 +137,21 @@ public class BaseLevel implements Screen {
         Vector2 throwDirection;
         if(projectile != null && !projectile.isThrown()){
             throwDirection = new Vector2(touchStart.sub(touchEnd));
+            throwDirection = throwDirection.scl(THROW_FORCE_MULTIPLIER);
             throwDirection.y *= -1;
+            if(throwDirection.x < 0){
+                return;
+            } else if(throwDirection.x > THROW_MAX_FORCE.x){
+                throwDirection.x = THROW_MAX_FORCE.x;
+            }
+            if(throwDirection.y < 0){
+                return;
+            } else if(throwDirection.y > THROW_MAX_FORCE.y){
+                throwDirection.y = THROW_MAX_FORCE.y;
+            }
             Body b = projectile.getBody();
             b.setType(BodyDef.BodyType.DynamicBody);
+            System.out.println(throwDirection);
             b.applyLinearImpulse(throwDirection, b.getWorldCenter(), true);
             b.applyAngularImpulse(-1f, true);
             projectile.setThrown(true);
@@ -218,6 +233,7 @@ public class BaseLevel implements Screen {
                 gameRunning = true;
             }
         }
+
         if(projectileLanded){
             landingTimer += delta;
             if(landingTimer > 3f){

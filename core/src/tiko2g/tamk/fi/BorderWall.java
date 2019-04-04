@@ -35,7 +35,7 @@ public class BorderWall {
         wallFixtureDef.restitution = 0.2f;
         wallFixtureDef.friction = 0.5f;
         PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(0.2f, 9);
+        polygonShape.setAsBox(0.2f, 25);
         wallFixtureDef.shape = polygonShape;
         return wallFixtureDef;
     }
