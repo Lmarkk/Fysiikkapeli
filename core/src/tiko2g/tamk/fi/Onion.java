@@ -1,101 +1,19 @@
 package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-public class Onion implements ThrownObject {
-    private SpriteBatch batch;
-    private Texture texture;
-    private Body body;
-    private float radius;
-    private boolean thrown = false;
+public class Onion extends ThrownObject {
     private float scale = 0.45f;
-    private float textureScale = 0.65f;
-    private Rectangle rect;
-    private MyGame game;
-    private BaseLevel baseLevel;
 
     public Onion(MyGame g, BaseLevel b){
-        game = g;
-        baseLevel = b;
-        batch = g.getBatch();
-        texture = new Texture("object-onion.png");
-        body = b.getGameWorld().createBody(getBodyDef());
-        body.createFixture(getFixtureDef());
-//        radius = (body.getFixtureList().get(0).getShape()).getRadius();
-        radius = 1f;
-        rect = new Rectangle( body.getPosition().x, body.getPosition().y,0.3f, 0.3f);
-    }
-    @Override
-    public void draw() {
-        Vector2 center = body.getWorldCenter();
-        batch.draw(texture,
-                center.x - radius,
-                center.y - radius,
-                radius,
-                radius,
-                radius * 2,
-                radius * 2,
-                textureScale,
-                textureScale,
-                body.getTransform().getRotation() * MathUtils.radiansToDegrees,
-                0,
-                0,
-                texture.getWidth(),
-                texture.getHeight(),
-                false,
-                false);
-        rect.setPosition(center.x, center.y);
-//        batch.draw(new Texture("badlogic.jpg"), rect.x, rect.y, rect.width, rect.height);
+        super(g, b, 1f, 0.65f);
+        setTexture(new Texture("object-onion.png"));
+        setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
     }
 
     @Override
-    public BodyDef getBodyDef() {
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(-4, 1);
-        return bodyDef;
-    }
-
-    @Override
-    public FixtureDef getFixtureDef() {
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.density = 1f;
-        fixtureDef.restitution = 0f;
-        fixtureDef.friction = 1f;
-        PolygonShape polygonShape = new PolygonShape();
-        polygonShape.set(getVertices());
-        fixtureDef.shape = polygonShape;
-        return fixtureDef;
-    }
-
-    @Override
-    public Texture getTexture() {
-        return texture;
-    }
-
-    @Override
-    public Body getBody() {
-        return body;
-    }
-
-    @Override
-    public boolean isThrown() {
-        return thrown;
-    }
-
-    @Override
-    public void setThrown(boolean thrown) {
-        this.thrown = thrown;
-    }
-    private Vector2[] getVertices(){
+    public Vector2[] getVertices(){
         Vector2[] vertices = new Vector2[8];
         vertices[0] = new Vector2(0.83f, 2.56f);
         vertices[1] = new Vector2(1.74f, 3.2f);
@@ -112,13 +30,9 @@ public class Onion implements ThrownObject {
         return vertices;
     }
 
-    @Override
-    public Rectangle getRect() {
-        return rect;
-    }
 
     @Override
-    public ThrownObject clone() {
+    public ThrownObject cloneObject() {
         return new Onion(game, baseLevel);
     }
 }

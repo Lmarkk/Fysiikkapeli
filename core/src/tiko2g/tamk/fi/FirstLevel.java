@@ -60,7 +60,7 @@ public class FirstLevel extends BaseLevel {
     public void setNextProjectile() {
         if(arrayIndex < thrownObjects.size) {
             getGameWorld().destroyBody(currentProjectile.getBody());
-            currentProjectile = thrownObjects.get(arrayIndex).clone();
+            currentProjectile = thrownObjects.get(arrayIndex).cloneObject();
             arrayIndex++;
             scoreGetSoundPlayed = false;
             scoreGiven = false;
