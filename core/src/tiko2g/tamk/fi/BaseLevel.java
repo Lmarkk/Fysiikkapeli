@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
     private final Vector2 THROW_MAX_FORCE = new Vector2(25f, 20f);
-    private final float THROW_FORCE_MULTIPLIER = 5f;
+    private final float THROW_FORCE_MULTIPLIER = 3.5f;
 
     MyGame game;
     SpriteBatch batch;
@@ -259,7 +259,7 @@ public class BaseLevel implements Screen {
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
-        game.getTextRenderer().renderText(game.getMyBundle().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
 
     }
 

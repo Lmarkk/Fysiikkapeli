@@ -17,24 +17,29 @@ public class MyGame extends Game {
 	private MainMenu mainMenu;
     private OrthographicCamera camera;
     private TextRenderer textRenderer;
-    private I18NBundle myBundle;
+    private I18NBundle finBundle;
+    private I18NBundle enBundle;
 
 	@Override
 	public void create () {
-	    prefs = new Prefs();
+        finBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), new Locale("fi", "FI"));
+        enBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), new Locale("en", "US"));
+	    prefs = new Prefs(this);
 		batch = new SpriteBatch();
 	    camera = new OrthographicCamera();
 	    camera.setToOrtho(false, 16f, 9f);
         textRenderer = new TextRenderer(batch);
         playMusic = true;
         mainMenu = new MainMenu(this);
-        Locale locale = Locale.getDefault();
-        myBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), locale);
 	    setScreen(mainMenu);
 	}
 
-    public I18NBundle getMyBundle() {
-        return myBundle;
+    public I18NBundle getFinBundle() {
+        return finBundle;
+    }
+
+    public I18NBundle getEnBundle() {
+        return enBundle;
     }
 
     public TextRenderer getTextRenderer() {

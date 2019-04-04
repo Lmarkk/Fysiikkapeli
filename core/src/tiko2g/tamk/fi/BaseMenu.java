@@ -16,12 +16,13 @@ public class BaseMenu implements Screen {
     Array<Button> buttonList;
     OrthographicCamera camera;
     Texture background;
+    String kreonFont = "Kreon-Regular.ttf";
     BitmapFont font64;
     BitmapFont font100;
     BitmapFont font42;
     BitmapFont font120;
     BitmapFont font30;
-    String kreonFont = "Kreon-Regular.ttf";
+
 
     public BaseMenu(MyGame g) {
         game = g;
@@ -29,11 +30,11 @@ public class BaseMenu implements Screen {
         camera = g.getCamera();
         camera.setToOrtho(false, 16,9);
         background = new Texture("menu-bg.png");
-        font64 = game.getTextRenderer().createFont(kreonFont, 64, Color.BLACK, 4);
-        font100 = game.getTextRenderer().createFont(kreonFont, 100, Color.BLACK, 4);
+        font64 = game.getTextRenderer().createFont(kreonFont, 64, Color.BLACK, 4);;
+        font100 = game.getTextRenderer().createFont(kreonFont, 100, Color.BLACK, 4);;
         font42 = game.getTextRenderer().createFont(kreonFont, 42, Color.BLACK, 4);
-        font120 = game.getTextRenderer().createFont(kreonFont, 120, Color.BLACK, 4);
-        font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);
+        font120 = game.getTextRenderer().createFont(kreonFont, 120, Color.BLACK, 4);;
+        font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);;
         //createButtons();
 
         Gdx.input.setInputProcessor(new MyInputProcessor() {
@@ -125,5 +126,6 @@ public class BaseMenu implements Screen {
         font100.dispose();
         font42.dispose();
         font120.dispose();
+        font30.dispose();
     }
 }
