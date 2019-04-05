@@ -263,6 +263,12 @@ public class BaseLevel implements Screen {
 
     }
 
+    public void stopMusic() {
+        game.getMenuTheme().stop();
+        game.getWheatFieldsTheme().stop();
+        game.getGreenHillsTheme().stop();
+    }
+
     @Override
     public void resize(int width, int height) {
 

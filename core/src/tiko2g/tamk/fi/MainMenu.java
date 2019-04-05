@@ -15,7 +15,12 @@ public class MainMenu extends BaseMenu {
     public MainMenu(MyGame g) {
         super(g);
         createButtons();
-
+        if(game.getPrefs().getMusicStatus()) {
+            if (!game.getMenuTheme().isPlaying()) {
+                super.stopMusic();
+                game.getMenuTheme().play();
+            }
+        }
     }
 
     @Override

@@ -10,6 +10,13 @@ public class FirstLevel extends BaseLevel {
 
     public FirstLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "groundtexture.png");
+
+        super.stopMusic();
+        if(game.getPrefs().getMusicStatus()) {
+            game.getGreenHillsTheme().play();
+        }
+
+
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);

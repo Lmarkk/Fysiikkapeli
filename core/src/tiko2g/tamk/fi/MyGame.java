@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.I18NBundle;
@@ -11,17 +12,25 @@ import java.util.Locale;
 // TODO: tee peli
 //TODO: poista ^
 public class MyGame extends Game {
-    public Prefs prefs;
-    public static boolean playMusic;
+    private Prefs prefs;
 	private SpriteBatch batch;
 	private MainMenu mainMenu;
     private OrthographicCamera camera;
     private TextRenderer textRenderer;
     private I18NBundle finBundle;
     private I18NBundle enBundle;
+    private Music greenHillsTheme;
+    private Music wheatFieldsTheme;
+    private Music menuTheme;
 
 	@Override
 	public void create () {
+	    greenHillsTheme = Gdx.audio.newMusic(Gdx.files.internal("music-greenhills.ogg"));
+	    greenHillsTheme.setLooping(true);
+        wheatFieldsTheme = Gdx.audio.newMusic(Gdx.files.internal("music-wheatfields.ogg"));
+        wheatFieldsTheme.setLooping(true);
+        menuTheme = Gdx.audio.newMusic(Gdx.files.internal("music-menu.ogg"));
+        menuTheme.setLooping(true);
         finBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), new Locale("fi", "FI"));
         enBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), new Locale("en", "US"));
 	    prefs = new Prefs(this);
@@ -29,9 +38,9 @@ public class MyGame extends Game {
 	    camera = new OrthographicCamera();
 	    camera.setToOrtho(false, 16f, 9f);
         textRenderer = new TextRenderer(batch);
-        playMusic = true;
         mainMenu = new MainMenu(this);
 	    setScreen(mainMenu);
+
 	}
 
     public I18NBundle getFinBundle() {
@@ -58,6 +67,18 @@ public class MyGame extends Game {
         return prefs;
     }
 
+    public Music getGreenHillsTheme() {
+        return greenHillsTheme;
+    }
+
+    public Music getWheatFieldsTheme() {
+        return wheatFieldsTheme;
+    }
+
+    public Music getMenuTheme() {
+        return menuTheme;
+    }
+
     @Override
 	public void render () {
 		super.render();
@@ -66,5 +87,8 @@ public class MyGame extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		greenHillsTheme.dispose();
+		wheatFieldsTheme.dispose();
+		menuTheme.dispose();
 	}
 }

@@ -74,6 +74,12 @@ public class BaseMenu implements Screen {
         batch.end();
     }
 
+    public void stopMusic() {
+        game.getMenuTheme().stop();
+        game.getWheatFieldsTheme().stop();
+        game.getGreenHillsTheme().stop();
+    }
+
     public void changeImage(boolean goForward){
 
     }

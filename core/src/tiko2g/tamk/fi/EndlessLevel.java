@@ -12,9 +12,20 @@ public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "ground.png");
+
+        super.stopMusic();
+
         if(MathUtils.random(1,2) == 1) {
             background = new Texture("bg-wheat-fields.png");
+            if(game.getPrefs().getMusicStatus()) {
+                game.getWheatFieldsTheme().play();
+            }
+        } else {
+            if(game.getPrefs().getMusicStatus()) {
+                game.getGreenHillsTheme().play();
+            }
         }
+
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 14, 0);
 

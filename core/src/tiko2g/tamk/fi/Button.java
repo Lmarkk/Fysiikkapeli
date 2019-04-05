@@ -54,6 +54,13 @@ public class Button {
                 buttonTexture = buttonPressedTexture;
             }
         }
+        if(buttonType == BUTTONTYPE_MUSIC) {
+            if(game.getPrefs().getMusicStatus()) {
+                buttonTexture = buttonNotPressedTexture;
+            } else {
+                buttonTexture = buttonPressedTexture;
+            }
+        }
 
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
@@ -113,6 +120,11 @@ public class Button {
                     break;
                 case BUTTONTYPE_MUSIC:
                     game.getPrefs().toggleMusic();
+                    if(game.getPrefs().getMusicStatus()) {
+                        game.getMenuTheme().play();
+                    } else {
+                        game.getMenuTheme().stop();
+                    }
                     break;
                 case BUTTONTYPE_SOUND:
                     game.getPrefs().toggleSound();
