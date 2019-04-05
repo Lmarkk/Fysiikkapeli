@@ -8,12 +8,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 public class Recipe implements Screen {
-
+    Vector2 anchorPosition = new Vector2(0f, 0f);
     MyGame game;
     SpriteBatch batch;
     OrthographicCamera camera;
@@ -22,7 +20,8 @@ public class Recipe implements Screen {
     BitmapFont font30;
     String kreonFont = "Kreon-Regular.ttf";
     float previousY;
-
+    float touchStartY;
+    float scrollSpeed = 500f;
     public Recipe(MyGame g) {
         game = g;
         batch = game.getBatch();
@@ -42,6 +41,7 @@ public class Recipe implements Screen {
                         pressedButton.setTexture(screenX, screenY, true);
                     }
                 }
+                touchStartY = screenY;
                 previousY = screenY / 100f;
                 return super.touchDown(screenX, screenY, pointer, button);
             }
@@ -57,23 +57,34 @@ public class Recipe implements Screen {
             }
             @Override
             public boolean touchDragged(int screenX, int screenY, int pointer) {
-                moveCam(screenY - previousY);
-                camera.update();
-                previousY = screenY / 100f;
+                if(screenY > 0 && screenY <= Gdx.graphics.getHeight()){
+                    if(screenY < touchStartY) {
+                        anchorPosition.y -= scrollSpeed * Gdx.graphics.getDeltaTime();
+                        touchStartY = screenY;
+                    } else {
+                        anchorPosition.y += scrollSpeed * Gdx.graphics.getDeltaTime();
+                        touchStartY = screenY;
+
+                    }
+                }
+
+//                camera.update();
+//                previousY = screenY / 100f;
                 return super.touchDragged(screenX, screenY, pointer);
             }
         });
     }
     public void moveCam(float desiredY) {
-        Vector3 desiredPosition = new Vector3();
-        desiredPosition.x = camera.position.x;
-        desiredPosition.y = desiredY;
-        if(desiredPosition.y < 3 && desiredPosition.y > -20) {
-            System.out.println("juu");
-            camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
-            //homeButton.setX(camera.position.x -7.5f);
-            camera.update();
-        }
+//        Vector3 desiredPosition = new Vector3();
+//        desiredPosition.x = camera.position.x;
+//        desiredPosition.y = desiredY;
+//        System.out.println(desiredPosition.y);
+//        if(desiredPosition.y < 3 && desiredPosition.y > -20) {
+//            System.out.println("juu");
+//            camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
+//            homeButton.getButtonRect().setY(anchorPosition.y + 7.5f);
+//            camera.update();
+//        }
     }
 
     @Override
