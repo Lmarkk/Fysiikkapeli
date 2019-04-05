@@ -46,9 +46,9 @@ public class RecipeMenu extends BaseMenu {
     private void renderText() {
         Vector2 rectCenter = new Vector2();
         recipeNameRect.getCenter(rectCenter);
-        game.getTextRenderer().renderText(game.getMyBundle().get("recipes"), rectCenter.x * 100f, rectCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("recipes"), rectCenter.x * 100f, rectCenter.y * 100f, font64);
         firstRecipeButton.getButtonRect().getCenter(rectCenter);
-        game.getTextRenderer().renderText(game.getMyBundle().get("karelianhotpot"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("karelianhotpot"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
     }
 
 

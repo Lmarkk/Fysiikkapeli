@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class EndlessLevel extends BaseLevel {
-    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(5);
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(6);
 
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "ground.png");
@@ -19,7 +19,7 @@ public class EndlessLevel extends BaseLevel {
         pot = new Pot(this, game, 14, 0);
 
         thrownObjects.add(new Potato(game, this), new Chicken(game, this), new Meat(game, this), new Tomato(game, this));
-        thrownObjects.add(new Onion(game, this));
+        thrownObjects.add(new Onion(game, this), new Carrot(game, this));
         currentProjectile = thrownObjects.get(MathUtils.random(0, thrownObjects.size -1)).cloneObject();
 
         setNextProjectile();

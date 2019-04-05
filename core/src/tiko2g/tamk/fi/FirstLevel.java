@@ -53,7 +53,7 @@ public class FirstLevel extends BaseLevel {
             game.setScreen(new EndLevelScreen(game, 9));
         }
         super.render(delta);
-        game.getTextRenderer().renderText(game.getMyBundle().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);
     }
 
     @Override

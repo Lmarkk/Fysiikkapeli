@@ -22,6 +22,7 @@ public class Button {
     static final int BUTTONTYPE_PLAYMODES = 10;
     static final int BUTTONTYPE_FIRSTRECIPE = 11;
     static final int BUTTONTYPE_SECONDRECIPE = 12;
+    static final int BUTTONTYPE_LANGUAGE = 13;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -120,6 +121,9 @@ public class Button {
                     game.setScreen(new FirstRecipe(game));
                     break;
                 case BUTTONTYPE_SECONDRECIPE:
+                    break;
+                case BUTTONTYPE_LANGUAGE:
+                    game.getPrefs().toggleLanguage();
                     break;
             }
             return true;
