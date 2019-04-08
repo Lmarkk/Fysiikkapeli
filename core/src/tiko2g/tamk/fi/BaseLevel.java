@@ -37,7 +37,7 @@ public class BaseLevel implements Screen {
     Button prevMenuButton;
     Sound scoreGetSound;
     Catapult catapult;
-    Vector2 projectileStartPos = new Vector2(2, 3);
+    Vector2 projectileStartPos = new Vector2(1, 2.2f);
     Arrow arrow;
     int score;
     boolean projectileLanded = false;
