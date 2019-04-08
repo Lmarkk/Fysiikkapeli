@@ -34,15 +34,15 @@ public class BaseLevel implements Screen {
     Pot pot;
     OrthographicCamera camera;
     ThrownObject currentProjectile;
-    Button mainMenuButton;
+    Button prevMenuButton;
     Sound scoreGetSound;
     Catapult catapult;
     Vector2 projectileStartPos = new Vector2(2, 3);
-    Texture currentProjectileFrame;
+    Arrow arrow;
     int score;
     boolean projectileLanded = false;
-
     BitmapFont font32;
+
     boolean scoreGetSoundPlayed;
     boolean scoreGiven;
     boolean endGame = false;
@@ -60,7 +60,6 @@ public class BaseLevel implements Screen {
     private float landingTimer = 0f;
     private Box2DDebugRenderer debugRenderer;
     private Vector2 menuButtonCenter;
-    Arrow arrow;
 
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -72,14 +71,13 @@ public class BaseLevel implements Screen {
         scoreGetSound =  Gdx.audio.newSound(Gdx.files.internal("Osuma.ogg"));
         scoreGetSoundPlayed = false;
         scoreGiven = false;
-        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_MAINMENU);
+        prevMenuButton = new Button(game, "button-left.png", "button-left-pressed.png",1.5f , 6, 1, Button.BUTTONTYPE_PLAYMODES);
         camera.position.set(cameraStartPosition, 0);
         camera.update();
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
-        menuButtonCenter = mainMenuButton.getButtonRect().getCenter(menuButtonCenter);
+        menuButtonCenter = prevMenuButton.getButtonRect().getCenter(menuButtonCenter);
         font32 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
-        currentProjectileFrame = new Texture("frame.png");
         score = 0;
         arrow = new Arrow();
 
@@ -113,7 +111,7 @@ public class BaseLevel implements Screen {
                     touchStart = new Vector2(screenX / 100f, screenY / 100f);
                 }
 
-                mainMenuButton.setTexture(screenX, screenY, true);
+                prevMenuButton.setTexture(screenX, screenY, true);
 
                 return super.touchDown(screenX, screenY, pointer, button);
             }
@@ -125,8 +123,8 @@ public class BaseLevel implements Screen {
                     throwProjectile(currentProjectile);
                 }
 
-                mainMenuButton.pressFunction(screenX, screenY);
-                mainMenuButton.setTexture(screenX, screenY, false);
+                prevMenuButton.pressFunction(screenX, screenY);
+                prevMenuButton.setTexture(screenX, screenY, false);
 
                 return super.touchUp(screenX, screenY, pointer, button);
             }
@@ -186,11 +184,11 @@ public class BaseLevel implements Screen {
         desiredPosition.y = 3f;
         if(desiredPosition.x > cameraStartPosition.x && desiredPosition.x < cameraEndPosition.x) {
             camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
-            mainMenuButton.setX(camera.position.x -7.5f);
+            prevMenuButton.setX(camera.position.x -7.5f);
             camera.update();
         } else if(desiredPosition.x == projectileStartPos.x){
             camera.position.slerp(new Vector3(cameraStartPosition.x, cameraStartPosition.y ,0), Gdx.graphics.getDeltaTime() * 10);
-            mainMenuButton.setX(camera.position.x -7.5f);
+            prevMenuButton.setX(camera.position.x -7.5f);
             camera.update();
         }
     }
@@ -256,7 +254,7 @@ public class BaseLevel implements Screen {
         }
 
         batch.begin();
-        debugRenderer.render(getGameWorld(), camera.combined);
+        //debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
@@ -267,6 +265,7 @@ public class BaseLevel implements Screen {
         game.getMenuTheme().stop();
         game.getWheatFieldsTheme().stop();
         game.getGreenHillsTheme().stop();
+        game.getShadyWoodsTheme().stop();
     }
 
     @Override
@@ -294,7 +293,7 @@ public class BaseLevel implements Screen {
         gameWorld.dispose();
         background.dispose();
         game.dispose();
-        mainMenuButton.dispose();
+        prevMenuButton.dispose();
     }
 
     public ArrayList<ThrownObject> getProjectiles() {

@@ -9,7 +9,13 @@ public class SecondLevel extends BaseLevel {
     int arrayIndex;
 
     public SecondLevel(MyGame g) {
-        super(g, "bg-green-hills2.png", "groundtexture.png");
+        super(g, "bg-wheat-fields.png", "ground.png");
+
+        super.stopMusic();
+        if(game.getPrefs().getMusicStatus()) {
+            game.getWheatFieldsTheme().play();
+        }
+
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
@@ -40,7 +46,7 @@ public class SecondLevel extends BaseLevel {
         //for (ThrownObject object: getProjectiles()) {
         //    object.draw();
         //}
-        mainMenuButton.draw(batch);
+        prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
         currentProjectile.draw();

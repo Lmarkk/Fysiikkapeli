@@ -21,6 +21,7 @@ public class MyGame extends Game {
     private I18NBundle enBundle;
     private Music greenHillsTheme;
     private Music wheatFieldsTheme;
+    private Music shadyWoodsTheme;
     private Music menuTheme;
 
 	@Override
@@ -29,6 +30,8 @@ public class MyGame extends Game {
 	    greenHillsTheme.setLooping(true);
         wheatFieldsTheme = Gdx.audio.newMusic(Gdx.files.internal("music-wheatfields.ogg"));
         wheatFieldsTheme.setLooping(true);
+        shadyWoodsTheme = Gdx.audio.newMusic(Gdx.files.internal("ShadiestWoodsEU.ogg"));
+        shadyWoodsTheme.setLooping(true);
         menuTheme = Gdx.audio.newMusic(Gdx.files.internal("music-menu.ogg"));
         menuTheme.setLooping(true);
         finBundle = I18NBundle.createBundle(Gdx.files.internal("MyBundle"), new Locale("fi", "FI"));
@@ -69,6 +72,10 @@ public class MyGame extends Game {
 
     public Music getGreenHillsTheme() {
         return greenHillsTheme;
+    }
+
+    public Music getShadyWoodsTheme() {
+        return shadyWoodsTheme;
     }
 
     public Music getWheatFieldsTheme() {

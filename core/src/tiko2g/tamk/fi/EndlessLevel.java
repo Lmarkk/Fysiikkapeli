@@ -15,10 +15,16 @@ public class EndlessLevel extends BaseLevel {
 
         super.stopMusic();
 
-        if(MathUtils.random(1,2) == 1) {
+        int random = MathUtils.random(1,3);
+        if(random == 1) {
             background = new Texture("bg-wheat-fields.png");
             if(game.getPrefs().getMusicStatus()) {
                 game.getWheatFieldsTheme().play();
+            }
+        } else if(random == 2) {
+            background = new Texture("bg-shady-woods.png");
+            if(game.getPrefs().getMusicStatus()) {
+                game.getShadyWoodsTheme().play();
             }
         } else {
             if(game.getPrefs().getMusicStatus()) {
@@ -56,14 +62,12 @@ public class EndlessLevel extends BaseLevel {
         if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
             arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
         }
-        mainMenuButton.draw(batch);
+        prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
         currentProjectile.draw();
         pot.draw();
         catapult.draw(batch);
-        batch.draw(currentProjectileFrame, 2.5f, -1.2f, 1.3f, 1.3f);
-        batch.draw(currentProjectile.getTexture(), 2.7f, -1f, 0.8f, 0.8f);
         batch.end();
         moveCam();
         doPhysicsStep(delta);
