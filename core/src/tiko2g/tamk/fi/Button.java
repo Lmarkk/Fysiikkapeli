@@ -19,10 +19,12 @@ public class Button {
     static final int BUTTONTYPE_NEXTIMAGE = 7;
     static final int BUTTONTYPE_PREVIMAGE = 8;
     static final int BUTTONTYPE_PLAYLEVELONE = 9;
-    static final int BUTTONTYPE_PLAYMODES = 10;
-    static final int BUTTONTYPE_FIRSTRECIPE = 11;
-    static final int BUTTONTYPE_SECONDRECIPE = 12;
-    static final int BUTTONTYPE_LANGUAGE = 13;
+    static final int BUTTONTYPE_PLAYLEVELTWO = 10;
+    static final int BUTTONTYPE_PLAYLEVELTHREE= 11;
+    static final int BUTTONTYPE_PLAYMODES = 12;
+    static final int BUTTONTYPE_FIRSTRECIPE = 13;
+    static final int BUTTONTYPE_SECONDRECIPE = 14;
+    static final int BUTTONTYPE_LANGUAGE = 15;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -101,13 +103,17 @@ public class Button {
                 case BUTTONTYPE_PLAYLEVELONE:
                     game.setScreen(new FirstLevel(game));
                     break;
+                case BUTTONTYPE_PLAYLEVELTWO:
+                    game.setScreen(new SecondLevel(game));
+                    break;
+                case BUTTONTYPE_PLAYLEVELTHREE:
+                    game.setScreen(new ThirdLevel(game));
+                    break;
                 case BUTTONTYPE_TUTORIAL:
                     game.setScreen(new TutorialScreen(game));
-                    //game.createTutorialScreen();
                     break;
                 case BUTTONTYPE_RECIPES:
                     game.setScreen((new RecipeMenu(game)));
-                    //game.createRecipeMenu();
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));

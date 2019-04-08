@@ -9,22 +9,17 @@ public class FirstLevel extends BaseLevel {
     int arrayIndex;
 
     public FirstLevel(MyGame g) {
-        super(g, "bg-green-hills2.png", "groundtexture.png");
+        super(g, "bg-green-hills2.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
             game.getGreenHillsTheme().play();
         }
 
-
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
 
-        //for (int i = 0; i < 3; i++) {
-        //    ThrownObject object = new Carrot(game, this);
-        //    getProjectiles().add(object);
-        //}
 
         thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
         thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
@@ -47,7 +42,7 @@ public class FirstLevel extends BaseLevel {
         //for (ThrownObject object: getProjectiles()) {
         //    object.draw();
         //}
-        mainMenuButton.draw(batch);
+        prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
         currentProjectile.draw();
