@@ -63,6 +63,13 @@ public class Button {
                 buttonTexture = buttonPressedTexture;
             }
         }
+        if(buttonType == BUTTONTYPE_LANGUAGE) {
+            if(game.getPrefs().getCurrentLanguage() == game.getFinBundle()) {
+                buttonTexture = buttonNotPressedTexture;
+            } else {
+                buttonTexture = buttonPressedTexture;
+            }
+        }
 
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
@@ -152,7 +159,9 @@ public class Button {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
 
-        if (buttonType != BUTTONTYPE_MUSIC && buttonType != BUTTONTYPE_SOUND) {
+        if (buttonType != BUTTONTYPE_MUSIC &&
+                buttonType != BUTTONTYPE_SOUND &&
+                buttonType != BUTTONTYPE_LANGUAGE) {
             if (pressed) {
                 if (buttonRect.contains(touch.x, touch.y)) {
                     buttonTexture = buttonPressedTexture;

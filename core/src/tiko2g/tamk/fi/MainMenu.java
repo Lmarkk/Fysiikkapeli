@@ -47,7 +47,7 @@ public class MainMenu extends BaseMenu {
         super.createButtons();
         soundButton = new Button(game, "button-audio-on.png","button-audio-off.png", 1.5f , 7, 1,  Button.BUTTONTYPE_SOUND);
         musicButton = new Button(game, "button-music-on.png", "button-music-off.png",3.3f, 7, 1,  Button.BUTTONTYPE_MUSIC);
-        languageButton = new Button(game, "button.png", "button-pressed.png", 14, 7, 1, Button.BUTTONTYPE_LANGUAGE);
+        languageButton = new Button(game, "button-lang-fin.png", "button-lang-en.png", 14, 7, 1, Button.BUTTONTYPE_LANGUAGE);
         playButton = new Button(game, "button.png", "button-pressed.png", 4.7f, 3.5f, 3, Button.BUTTONTYPE_PLAYMODES);
         tutorialButton = new Button(game, "button.png", "button-pressed.png",1.3f, 1.3f, 3, Button.BUTTONTYPE_TUTORIAL);
         recipeButton = new Button(game, "button.png", "button-pressed.png",8.1f, 1.3f, 3, Button.BUTTONTYPE_RECIPES);
