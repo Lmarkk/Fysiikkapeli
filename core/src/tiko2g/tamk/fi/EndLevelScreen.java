@@ -7,10 +7,12 @@ public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
     private Button mainMenuButton;
     int currentLevel;
+    int currentScore;
 
-    public EndLevelScreen(MyGame g, int currLvl) {
+    public EndLevelScreen(MyGame g, int currLvl, int currScore) {
         super(g);
         currentLevel = currLvl;
+        currentScore = currScore;
         createButtons();
 
     }
@@ -20,13 +22,14 @@ public class EndLevelScreen extends BaseMenu {
         replayButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("playagain"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         mainMenuButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("mainmenu"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelselect"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("score") + " " + currentScore, 8 * 100f, 7 * 100f, font42);
 
     }
     public void createButtons(){
         super.createButtons();
         replayButton = new Button(game, "button.png", "button-pressed.png",4.5f, 3.2f, 3, currentLevel);
-        mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.5f, 1.3f, 3, Button.BUTTONTYPE_MAINMENU);
+        mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.5f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
         buttonList.add(replayButton, mainMenuButton);
     }
     @Override

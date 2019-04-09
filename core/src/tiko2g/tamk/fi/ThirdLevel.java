@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class ThirdLevel extends BaseLevel {
@@ -43,9 +44,10 @@ public class ThirdLevel extends BaseLevel {
         batch.draw(background, 0, 0, 16, 9);
         batch.draw(background, 16, 0, 16, 9);
         batch.draw(background, 32, 0, 16, 9);
-        //for (ThrownObject object: getProjectiles()) {
-        //    object.draw();
-        //}
+
+        if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
+            arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
+        }
         prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
@@ -56,7 +58,7 @@ public class ThirdLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 9));
+            game.setScreen(new EndLevelScreen(game, 11, score));
         }
         super.render(delta);
     }
@@ -72,6 +74,9 @@ public class ThirdLevel extends BaseLevel {
             projectileLanded = false;
             currentProjectile.getBody().setTransform(projectileStartPos, 0f);
         } else {
+            if(score > game.getPrefs().getThirdLevelScore()) {
+                game.getPrefs().setThirdLevelScore(score);
+            }
             endGame = true;
         }
 

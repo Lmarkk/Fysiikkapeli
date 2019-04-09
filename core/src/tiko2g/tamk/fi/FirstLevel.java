@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class FirstLevel extends BaseLevel {
@@ -39,9 +40,10 @@ public class FirstLevel extends BaseLevel {
         batch.draw(background, 0, 0, 16, 9);
         batch.draw(background, 16, 0, 16, 9);
         batch.draw(background, 32, 0, 16, 9);
-        //for (ThrownObject object: getProjectiles()) {
-        //    object.draw();
-        //}
+
+        if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
+            arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
+        }
         prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
@@ -52,7 +54,7 @@ public class FirstLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 9));
+            game.setScreen(new EndLevelScreen(game, 9, score));
         }
         super.render(delta);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);

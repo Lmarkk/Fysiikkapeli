@@ -209,7 +209,6 @@ public class BaseLevel implements Screen {
                 currentProjectileIndex++;
             }
         } else {
-            //System.out.println("Out of projectiles");
             endGame = true;
         }
         projectileLanded = false;

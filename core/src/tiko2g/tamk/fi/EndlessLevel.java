@@ -56,9 +56,7 @@ public class EndlessLevel extends BaseLevel {
         batch.draw(background, 0, -1, 16, 9);
         batch.draw(background, 16, -1, 16, 9);
         batch.draw(background, 32, -1, 16, 9);
-        //for (ThrownObject object: getProjectiles()) {
-        //    object.draw();
-        //}
+
         if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
             arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
         }
@@ -72,7 +70,7 @@ public class EndlessLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 1));
+            game.setScreen(new EndLevelScreen(game, 1, score));
         }
         super.render(delta);
     }
