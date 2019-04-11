@@ -13,6 +13,34 @@ public class EndLevelScreen extends BaseMenu {
         super(g);
         currentLevel = currLvl;
         currentScore = currScore;
+
+        switch(currentLevel) {
+            case 1:
+                if(currentScore >= 400) {
+                    game.getPrefs().setRecipeOneOpen(true);
+                }
+                break;
+            case 2:
+                if(currentScore >= 400) {
+                    game.getPrefs().setRecipeTwoOpen(true);
+                }
+                break;
+            case 3:
+                if(currentScore >= 400) {
+                    game.getPrefs().setRecipeThreeOpen(true);
+                }
+                break;
+            case 4:
+                if(currentScore >= 400) {
+                    game.getPrefs().setRecipeFourOpen(true);
+                }
+                break;
+            case 5:
+                if(currScore >= 400) {
+                    game.getPrefs().setRecipeFiveOpen(true);
+                }
+                break;
+        }
         createButtons();
 
     }

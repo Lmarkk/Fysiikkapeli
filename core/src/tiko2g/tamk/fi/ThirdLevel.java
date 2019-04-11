@@ -58,7 +58,7 @@ public class ThirdLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 11, score));
+            game.setScreen(new EndLevelScreen(game, 3, score));
         }
         super.render(delta);
     }

@@ -58,7 +58,7 @@ public class SecondLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 10, score));
+            game.setScreen(new EndLevelScreen(game, 2, score));
         }
         super.render(delta);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);

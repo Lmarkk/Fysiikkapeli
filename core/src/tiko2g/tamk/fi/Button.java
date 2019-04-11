@@ -10,21 +10,31 @@ import com.badlogic.gdx.math.Vector3;
 
 
 public class Button {
-    static final int BUTTONTYPE_PLAYENDLESS = 1;
-    static final int BUTTONTYPE_TUTORIAL = 2;
-    static final int BUTTONTYPE_RECIPES = 3;
-    static final int BUTTONTYPE_SOUND = 4;
-    static final int BUTTONTYPE_MUSIC = 5;
+    static final int BUTTONTYPE_PLAYLEVELONE = 1;
+    static final int BUTTONTYPE_PLAYLEVELTWO = 2;
+    static final int BUTTONTYPE_PLAYLEVELTHREE = 3;
+    static final int BUTTONTYPE_PLAYLEVELFOUR = 4;
+    static final int BUTTONTYPE_PLAYLEVELFIVE = 5;
+
     static final int BUTTONTYPE_MAINMENU = 6;
     static final int BUTTONTYPE_NEXTIMAGE = 7;
     static final int BUTTONTYPE_PREVIMAGE = 8;
-    static final int BUTTONTYPE_PLAYLEVELONE = 9;
-    static final int BUTTONTYPE_PLAYLEVELTWO = 10;
-    static final int BUTTONTYPE_PLAYLEVELTHREE= 11;
-    static final int BUTTONTYPE_PLAYMODES = 12;
-    static final int BUTTONTYPE_FIRSTRECIPE = 13;
-    static final int BUTTONTYPE_SECONDRECIPE = 14;
-    static final int BUTTONTYPE_LANGUAGE = 15;
+
+    static final int BUTTONTYPE_PLAYENDLESS = 9;
+    static final int BUTTONTYPE_TUTORIAL = 10;
+    static final int BUTTONTYPE_RECIPES = 11;
+    static final int BUTTONTYPE_SOUND = 12;
+    static final int BUTTONTYPE_MUSIC = 13;
+
+    static final int BUTTONTYPE_PLAYMODES = 14;
+
+    static final int BUTTONTYPE_FIRSTRECIPE = 15;
+    static final int BUTTONTYPE_SECONDRECIPE = 16;
+
+    static final int BUTTONTYPE_LANGUAGE = 17;
+
+    static final int BUTTONTYPE_LOCKED = 18;
+    static final int BUTTONTYPE_DIETMODE = 19;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -74,7 +84,7 @@ public class Button {
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
         } else if(buttonSize == 2) {
-            buttonRect = new Rectangle(x, y, 2.8f, 1.2f);
+            buttonRect = new Rectangle(x, y, 3.5f, 1.2f);
         } else if(buttonSize == 3) {
             buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
         } else if(buttonSize == 4) {
@@ -150,6 +160,11 @@ public class Button {
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();
                     break;
+                case BUTTONTYPE_DIETMODE:
+                    game.getPrefs().toggleDisplayGameMode();
+                    break;
+                case BUTTONTYPE_LOCKED:
+                    break;
             }
             return true;
         }
@@ -183,6 +198,9 @@ public class Button {
     }
     public void setX(float x) {
         buttonRect.setX(x);
+    }
+    public void setButtonType(int type) {
+        buttonType = type;
     }
     public Texture getButtonTexture() {
         return buttonTexture;

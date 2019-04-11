@@ -8,11 +8,16 @@ import com.badlogic.gdx.utils.I18NBundle;
 public class Prefs {
     private MyGame game;
     private Preferences pref ;
+    private boolean displayGameModeVegan;
+
     private boolean soundStatus;
     private boolean musicStatus;
     private boolean recipeOneOpen;
     private boolean recipeTwoOpen;
     private boolean recipeThreeOpen;
+    private boolean recipeFourOpen;
+    private boolean recipeFiveOpen;
+
     private I18NBundle currentLanguage;
     private int storedLanguage;
     private int firstLevelScore;
@@ -26,6 +31,10 @@ public class Prefs {
         recipeOneOpen = pref.getBoolean("recipeOneOpen", false);
         recipeTwoOpen = pref.getBoolean("recipeTwoOpen", false);
         recipeThreeOpen = pref.getBoolean("recipeThreeOpen", false);
+        recipeFourOpen = pref.getBoolean("recipeFourOpen", false);
+        recipeFiveOpen = pref.getBoolean("recipeFiveOpen", false);
+
+        displayGameModeVegan = pref.getBoolean("displayGameModeVegan", false);
 
         soundStatus = pref.getBoolean("soundStatus",true);
         musicStatus = pref.getBoolean("musicStatus", true);
@@ -62,9 +71,14 @@ public class Prefs {
         pref.flush();
     }
 
-    public void toggleMusic (){
+    public void toggleMusic(){
         musicStatus = !musicStatus;
         pref.putBoolean("musicStatus",musicStatus);
+        pref.flush();
+    }
+    public void toggleDisplayGameMode() {
+        displayGameModeVegan = !displayGameModeVegan;
+        pref.putBoolean("displayGameModeVegan", displayGameModeVegan);
         pref.flush();
     }
 
@@ -99,6 +113,16 @@ public class Prefs {
         pref.putBoolean("recipeThreeOpen", recipeThreeOpen);
         pref.flush();
     }
+    public void setRecipeFourOpen(boolean status) {
+        recipeFourOpen = status;
+        pref.putBoolean("recipeFourOpen", recipeFourOpen);
+        pref.flush();
+    }
+    public void setRecipeFiveOpen(boolean status) {
+        recipeFiveOpen = status;
+        pref.putBoolean("recipeFiveOpen", recipeFiveOpen);
+        pref.flush();
+    }
 
     public boolean getSoundStatus(){
         return soundStatus;
@@ -125,6 +149,16 @@ public class Prefs {
     }
     public boolean getRecipeThreeOpen() {
         return recipeThreeOpen;
+    }
+    public boolean getRecipeFourOpen() {
+        return recipeFourOpen;
+    }
+    public boolean getRecipeFiveOpen() {
+        return recipeFiveOpen;
+    }
+
+    public boolean getDisplayGameModeVegan() {
+        return displayGameModeVegan;
     }
 
     public I18NBundle getCurrentLanguage() {

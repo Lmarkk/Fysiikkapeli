@@ -54,7 +54,7 @@ public class FirstLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 9, score));
+            game.setScreen(new EndLevelScreen(game, 1, score));
         }
         super.render(delta);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);

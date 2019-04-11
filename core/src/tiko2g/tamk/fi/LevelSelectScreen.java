@@ -1,19 +1,28 @@
 package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class LevelSelectScreen extends BaseMenu {
-    Button levelOneButton;
-    Button levelTwoButton;
-    Button levelThreeButton;
-    Button veganLevelOneButton;
-    Button veganLevelTwoButton;
-    Button veganLevelThreeButton;
-    Button glutenLevelOneButton;
-    Button glutenLevelTwoButton;
-    Button glutenLevelThreeButton;
-    Button endlessButton;
-    Button menuButton;
+    private Button levelOneButton;
+    private Button levelTwoButton;
+    private Button levelThreeButton;
+    private Button levelFourButton;
+    private Button levelFiveButton;
+
+    private Button veganLevelOneButton;
+    private Button veganLevelTwoButton;
+    private Button veganLevelThreeButton;
+    private Button veganLevelFourButton;
+    private Button veganLevelFiveButton;
+
+    private Button dietToggleButton;
+
+    private Button endlessButton;
+    private Button menuButton;
+
+    private Array<Button> veganButtonList;
+    private Array<Button> normalButtonList;
 
     public LevelSelectScreen(MyGame g) {
         super(g);
@@ -23,59 +32,63 @@ public class LevelSelectScreen extends BaseMenu {
     public void render(float delta) {
         super.render(delta);
     }
+
     public void createButtons(){
         super.createButtons();
 
         menuButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        endlessButton = new Button(game, "button.png", "button-pressed.png", 4.4f, 0.6f, 3, Button.BUTTONTYPE_PLAYENDLESS);
+        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.9f, 2, Button.BUTTONTYPE_DIETMODE);
+        endlessButton = new Button(game, "button.png", "button-pressed.png", 9.8f, 3.6f, 2, Button.BUTTONTYPE_PLAYENDLESS);
 
-        levelOneButton = new Button(game, "button.png", "button-pressed.png", 2.8f, 5.8f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
-        levelTwoButton = new Button(game, "button.png", "button-pressed.png", 2.8f, 4.3f, 2, Button.BUTTONTYPE_PLAYLEVELTWO);
-        levelThreeButton = new Button(game, "button.png", "button-pressed.png", 2.8f, 2.8f, 2, Button.BUTTONTYPE_PLAYLEVELTHREE);
+        levelOneButton = new Button(game, "button.png", "button-pressed.png", 2.7f, 5f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
+        levelTwoButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 5f, 2, Button.BUTTONTYPE_PLAYLEVELTWO);
+        levelThreeButton = new Button(game, "button.png", "button-pressed.png", 9.8f, 5f, 2, Button.BUTTONTYPE_PLAYLEVELTHREE);
+        levelFourButton = new Button(game, "button.png", "button-pressed.png", 2.7f, 3.6f, 2, Button.BUTTONTYPE_LOCKED);
+        levelFiveButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 3.6f, 2, Button.BUTTONTYPE_LOCKED);
 
-        veganLevelOneButton = new Button(game, "button.png", "button-pressed.png", 6.3f, 5.8f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
-        veganLevelTwoButton = new Button(game, "button.png", "button-pressed.png", 6.3f, 4.3f, 2, Button.BUTTONTYPE_PLAYLEVELTWO);
-        veganLevelThreeButton = new Button(game, "button.png", "button-pressed.png", 6.3f, 2.8f, 2, Button.BUTTONTYPE_PLAYLEVELTHREE);
+        buttonList.add(menuButton, endlessButton, dietToggleButton, levelOneButton);
+        buttonList.add(levelTwoButton, levelThreeButton, levelFourButton, levelFiveButton);
 
-        glutenLevelOneButton = new Button(game, "button.png", "button-pressed.png", 9.8f, 5.8f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
-        glutenLevelTwoButton = new Button(game, "button.png", "button-pressed.png", 9.8f, 4.3f, 2, Button.BUTTONTYPE_PLAYLEVELTWO);
-        glutenLevelThreeButton = new Button(game, "button.png", "button-pressed.png", 9.8f, 2.8f, 2, Button.BUTTONTYPE_PLAYLEVELTHREE);
-
-        buttonList.add(menuButton, endlessButton, levelOneButton, levelTwoButton);
-        buttonList.add(levelThreeButton, veganLevelOneButton, veganLevelTwoButton, veganLevelThreeButton);
-        buttonList.add(glutenLevelOneButton, glutenLevelTwoButton, glutenLevelThreeButton);
     }
     public void renderButtons(){
         super.renderButtons();
+
+        if(game.getPrefs().getDisplayGameModeVegan()) {
+            levelOneButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+            levelTwoButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+            levelThreeButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+            levelFourButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+            levelFiveButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+        } else {
+            levelOneButton.setButtonType(Button.BUTTONTYPE_PLAYLEVELONE);
+            levelTwoButton.setButtonType(Button.BUTTONTYPE_PLAYLEVELTWO);
+            levelThreeButton.setButtonType(Button.BUTTONTYPE_PLAYLEVELTHREE);
+            levelFourButton.setButtonType(Button.BUTTONTYPE_PLAYLEVELFOUR);
+            levelFiveButton.setButtonType(Button.BUTTONTYPE_PLAYLEVELFIVE);
+        }
+
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("diet") + " ", 4.6f * 100f, 7.5f * 100f, font42);
+
         Vector2 buttonCenter = new Vector2();
         endlessButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("endless"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
 
+        dietToggleButton.getButtonRect().getCenter(buttonCenter);
+        if(game.getPrefs().getDisplayGameModeVegan()) {
+            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("vegan"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
+        } else {
+            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("normal"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
+        }
         levelOneButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("normal"), buttonCenter.x * 100f, 7.7f * 100f, font42);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelone"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
         levelTwoButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("leveltwo"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
         levelThreeButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelthree"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-
-        veganLevelOneButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("vegan"), buttonCenter.x * 100f, 7.7f * 100f, font42);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelone"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-        veganLevelTwoButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("leveltwo"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-        veganLevelThreeButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelthree"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-
-        glutenLevelOneButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("glutenfree"), buttonCenter.x * 100f, 7.7f * 100f, font42);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelone"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-        glutenLevelTwoButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("leveltwo"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-        glutenLevelThreeButton.getButtonRect().getCenter(buttonCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelthree"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
-
-
+        levelFourButton.getButtonRect().getCenter((buttonCenter));
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelfour"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
+        levelFiveButton.getButtonRect().getCenter((buttonCenter));
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("levelfive"), buttonCenter.x * 100f, buttonCenter.y * 100f, font42);
 
     }
 
