@@ -12,9 +12,26 @@ public class EndlessLevel extends BaseLevel {
 
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "ground.png");
-        if(MathUtils.random(1,2) == 1) {
+
+        super.stopMusic();
+
+        int random = MathUtils.random(1,3);
+        if(random == 1) {
             background = new Texture("bg-wheat-fields.png");
+            if(game.getPrefs().getMusicStatus()) {
+                game.getWheatFieldsTheme().play();
+            }
+        } else if(random == 2) {
+            background = new Texture("bg-shady-woods.png");
+            if(game.getPrefs().getMusicStatus()) {
+                game.getShadyWoodsTheme().play();
+            }
+        } else {
+            if(game.getPrefs().getMusicStatus()) {
+                game.getGreenHillsTheme().play();
+            }
         }
+
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 14, 0);
 
@@ -39,25 +56,21 @@ public class EndlessLevel extends BaseLevel {
         batch.draw(background, 0, -1, 16, 9);
         batch.draw(background, 16, -1, 16, 9);
         batch.draw(background, 32, -1, 16, 9);
-        //for (ThrownObject object: getProjectiles()) {
-        //    object.draw();
-        //}
+
         if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
             arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
         }
-        mainMenuButton.draw(batch);
+        prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
         currentProjectile.draw();
         pot.draw();
         catapult.draw(batch);
-        batch.draw(currentProjectileFrame, 2.5f, -1.2f, 1.3f, 1.3f);
-        batch.draw(currentProjectile.getTexture(), 2.7f, -1f, 0.8f, 0.8f);
         batch.end();
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 1));
+            game.setScreen(new EndLevelScreen(game, 1, score));
         }
         super.render(delta);
     }

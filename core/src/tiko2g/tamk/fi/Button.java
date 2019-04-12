@@ -10,19 +10,31 @@ import com.badlogic.gdx.math.Vector3;
 
 
 public class Button {
-    static final int BUTTONTYPE_PLAYENDLESS = 1;
-    static final int BUTTONTYPE_TUTORIAL = 2;
-    static final int BUTTONTYPE_RECIPES = 3;
-    static final int BUTTONTYPE_SOUND = 4;
-    static final int BUTTONTYPE_MUSIC = 5;
+    static final int BUTTONTYPE_PLAYLEVELONE = 1;
+    static final int BUTTONTYPE_PLAYLEVELTWO = 2;
+    static final int BUTTONTYPE_PLAYLEVELTHREE = 3;
+    static final int BUTTONTYPE_PLAYLEVELFOUR = 4;
+    static final int BUTTONTYPE_PLAYLEVELFIVE = 5;
+
     static final int BUTTONTYPE_MAINMENU = 6;
     static final int BUTTONTYPE_NEXTIMAGE = 7;
     static final int BUTTONTYPE_PREVIMAGE = 8;
-    static final int BUTTONTYPE_PLAYLEVELONE = 9;
-    static final int BUTTONTYPE_PLAYMODES = 10;
-    static final int BUTTONTYPE_FIRSTRECIPE = 11;
-    static final int BUTTONTYPE_SECONDRECIPE = 12;
-    static final int BUTTONTYPE_LANGUAGE = 13;
+
+    static final int BUTTONTYPE_PLAYENDLESS = 9;
+    static final int BUTTONTYPE_TUTORIAL = 10;
+    static final int BUTTONTYPE_RECIPES = 11;
+    static final int BUTTONTYPE_SOUND = 12;
+    static final int BUTTONTYPE_MUSIC = 13;
+
+    static final int BUTTONTYPE_PLAYMODES = 14;
+
+    static final int BUTTONTYPE_FIRSTRECIPE = 15;
+    static final int BUTTONTYPE_SECONDRECIPE = 16;
+
+    static final int BUTTONTYPE_LANGUAGE = 17;
+
+    static final int BUTTONTYPE_LOCKED = 18;
+    static final int BUTTONTYPE_DIETMODE = 19;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -54,11 +66,25 @@ public class Button {
                 buttonTexture = buttonPressedTexture;
             }
         }
+        if(buttonType == BUTTONTYPE_MUSIC) {
+            if(game.getPrefs().getMusicStatus()) {
+                buttonTexture = buttonNotPressedTexture;
+            } else {
+                buttonTexture = buttonPressedTexture;
+            }
+        }
+        if(buttonType == BUTTONTYPE_LANGUAGE) {
+            if(game.getPrefs().getCurrentLanguage() == game.getFinBundle()) {
+                buttonTexture = buttonNotPressedTexture;
+            } else {
+                buttonTexture = buttonPressedTexture;
+            }
+        }
 
         if(buttonSize == 1) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
         } else if(buttonSize == 2) {
-            buttonRect = new Rectangle(x, y, 2.8f, 1.2f);
+            buttonRect = new Rectangle(x, y, 3.5f, 1.2f);
         } else if(buttonSize == 3) {
             buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
         } else if(buttonSize == 4) {
@@ -94,13 +120,17 @@ public class Button {
                 case BUTTONTYPE_PLAYLEVELONE:
                     game.setScreen(new FirstLevel(game));
                     break;
+                case BUTTONTYPE_PLAYLEVELTWO:
+                    game.setScreen(new SecondLevel(game));
+                    break;
+                case BUTTONTYPE_PLAYLEVELTHREE:
+                    game.setScreen(new ThirdLevel(game));
+                    break;
                 case BUTTONTYPE_TUTORIAL:
                     game.setScreen(new TutorialScreen(game));
-                    //game.createTutorialScreen();
                     break;
                 case BUTTONTYPE_RECIPES:
                     game.setScreen((new RecipeMenu(game)));
-                    //game.createRecipeMenu();
                     break;
                 case BUTTONTYPE_MAINMENU:
                     game.setScreen(new MainMenu(game));
@@ -113,6 +143,11 @@ public class Button {
                     break;
                 case BUTTONTYPE_MUSIC:
                     game.getPrefs().toggleMusic();
+                    if(game.getPrefs().getMusicStatus()) {
+                        game.getMenuTheme().play();
+                    } else {
+                        game.getMenuTheme().stop();
+                    }
                     break;
                 case BUTTONTYPE_SOUND:
                     game.getPrefs().toggleSound();
@@ -126,6 +161,11 @@ public class Button {
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();
                     break;
+                case BUTTONTYPE_DIETMODE:
+                    game.getPrefs().toggleDisplayGameMode();
+                    break;
+                case BUTTONTYPE_LOCKED:
+                    break;
             }
             return true;
         }
@@ -135,7 +175,9 @@ public class Button {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
 
-        if (buttonType != BUTTONTYPE_MUSIC && buttonType != BUTTONTYPE_SOUND) {
+        if (buttonType != BUTTONTYPE_MUSIC &&
+                buttonType != BUTTONTYPE_SOUND &&
+                buttonType != BUTTONTYPE_LANGUAGE) {
             if (pressed) {
                 if (buttonRect.contains(touch.x, touch.y)) {
                     buttonTexture = buttonPressedTexture;
@@ -157,6 +199,9 @@ public class Button {
     }
     public void setX(float x) {
         buttonRect.setX(x);
+    }
+    public void setButtonType(int type) {
+        buttonType = type;
     }
     public Texture getButtonTexture() {
         return buttonTexture;

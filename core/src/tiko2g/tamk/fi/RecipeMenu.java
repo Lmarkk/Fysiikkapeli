@@ -8,6 +8,9 @@ public class RecipeMenu extends BaseMenu {
     private Button mainMenuButton;
     private Button firstRecipeButton;
     private Button secondRecipeButton;
+    private Button thirdRecipeButton;
+    private Button fourthRecipeButton;
+    private Button fifthRecipeButton;
     private Rectangle recipeNameRect;
 
 
@@ -35,9 +38,21 @@ public class RecipeMenu extends BaseMenu {
 
     public void createButtons(){
         super.createButtons();
+
+        if(game.getPrefs().getRecipeOneOpen()) {
+            firstRecipeButton = new Button(game, "button.png", "button-pressed.png",1, 4.5f, 2, Button.BUTTONTYPE_FIRSTRECIPE);
+        } else {
+            firstRecipeButton = new Button(game, "button-pressed.png", "button-pressed.png",1, 4.5f, 2, Button.BUTTONTYPE_LOCKED);
+        }
+
+        if(game.getPrefs().getRecipeTwoOpen()) {
+            secondRecipeButton = new Button(game, "button.png", "button-pressed.png",6, 4.5f, 2, Button.BUTTONTYPE_SECONDRECIPE);
+        } else {
+            secondRecipeButton = new Button(game, "button-pressed.png", "button-pressed.png",6, 4.5f, 2, Button.BUTTONTYPE_LOCKED);
+        }
+
         mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        firstRecipeButton = new Button(game, "button.png", "button-pressed.png",3, 4.5f, 2, Button.BUTTONTYPE_FIRSTRECIPE);
-        secondRecipeButton = new Button(game, "button.png", "button-pressed.png",7, 4.5f, 2, Button.BUTTONTYPE_SECONDRECIPE);
+
 
         buttonList.add(mainMenuButton, firstRecipeButton, secondRecipeButton);
     }
@@ -48,6 +63,8 @@ public class RecipeMenu extends BaseMenu {
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("recipes"), rectCenter.x * 100f, rectCenter.y * 100f, font64);
         firstRecipeButton.getButtonRect().getCenter(rectCenter);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("karelianhotpot"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+        secondRecipeButton.getButtonRect().getCenter(rectCenter);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("meatsoup"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
     }
 
 

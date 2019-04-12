@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class FirstLevel extends BaseLevel {
@@ -9,15 +10,17 @@ public class FirstLevel extends BaseLevel {
     int arrayIndex;
 
     public FirstLevel(MyGame g) {
-        super(g, "bg-green-hills2.png", "groundtexture.png");
+        super(g, "bg-green-hills2.png", "ground.png");
+
+        super.stopMusic();
+        if(game.getPrefs().getMusicStatus()) {
+            game.getGreenHillsTheme().play();
+        }
+
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
 
-        //for (int i = 0; i < 3; i++) {
-        //    ThrownObject object = new Carrot(game, this);
-        //    getProjectiles().add(object);
-        //}
 
         thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
         thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
@@ -37,10 +40,11 @@ public class FirstLevel extends BaseLevel {
         batch.draw(background, 0, 0, 16, 9);
         batch.draw(background, 16, 0, 16, 9);
         batch.draw(background, 32, 0, 16, 9);
-        //for (ThrownObject object: getProjectiles()) {
-        //    object.draw();
-        //}
-        mainMenuButton.draw(batch);
+
+        if(!currentProjectile.isThrown() && Gdx.input.isTouched()){
+            arrow.draw(batch, touchStart, new Vector2(Gdx.input.getX() / 100f, Gdx.input.getY() / 100f));
+        }
+        prevMenuButton.draw(batch);
         ground.draw();
         pot.drawTop();
         currentProjectile.draw();
@@ -50,7 +54,7 @@ public class FirstLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 9));
+            game.setScreen(new EndLevelScreen(game, 1, score));
         }
         super.render(delta);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 11f * 100f, 8.4f * 100f, font32);
