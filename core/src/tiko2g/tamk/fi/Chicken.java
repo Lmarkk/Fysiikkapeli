@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Chicken extends ThrownObject{
 
-    private float scale = 0.5f;
+    private float scale = 0.42f;
 
     public Chicken(MyGame g, BaseLevel b){
-        super(g, b, 1f, 0.65f);
+        super(g, b, 1f, 0.56f);
         setTexture(new Texture("object-chicken.png"));
         setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
     }
