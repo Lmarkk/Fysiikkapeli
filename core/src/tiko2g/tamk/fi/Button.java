@@ -118,9 +118,10 @@ public class Button {
                     game.getPrefs().toggleSound();
                     break;
                 case BUTTONTYPE_FIRSTRECIPE:
-                    game.setScreen(new FirstRecipe(game));
+                    game.setScreen(new Recipe(game, recipeType.hotPot));
                     break;
                 case BUTTONTYPE_SECONDRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.chickenSalad));
                     break;
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();

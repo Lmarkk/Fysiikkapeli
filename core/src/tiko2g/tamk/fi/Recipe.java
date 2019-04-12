@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+enum recipeType { hotPot, chickenSalad, meatSoup, vegetableStew, filledBellPeppers}
+
 public class Recipe implements Screen {
     Vector2 anchorPosition = new Vector2(0f, 0f);
     MyGame game;
@@ -22,13 +24,44 @@ public class Recipe implements Screen {
     float previousY;
     float touchStartY;
     float scrollSpeed = 500f;
-    public Recipe(MyGame g) {
+    private String ingredients;
+    private String instructions;
+    private final Vector2 ingredientPos = new Vector2(250f, 850f);
+    private final Vector2 instructionPos = new Vector2(50f, 450f);
+
+
+    public Recipe(MyGame g, recipeType recipeType) {
         game = g;
         batch = game.getBatch();
         camera = game.getCamera();
         background = new Texture("menu-bg.png");
         homeButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
         font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);
+
+        switch (recipeType){
+            case hotPot:
+                ingredients = g.getPrefs().getCurrentLanguage().get("hotPotIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("hotPotInstructions");
+                break;
+            case meatSoup:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("meatSoupIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("meatSoupInstructions");
+                break;
+            case chickenSalad:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("chickenSaladIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("chickenSaladInstructions");
+                break;
+            case vegetableStew:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("vegetableStewIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("vegetableStewInstructions");
+                break;
+            case filledBellPeppers:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("filledBellPepperIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("filledBellPepperInstructions");
+                break;
+        }
+
+
 
         Gdx.input.setInputProcessor(new MyInputProcessor() {
             Button pressedButton;
@@ -99,10 +132,15 @@ public class Recipe implements Screen {
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        //batch.draw(background, 0, 0, 16, 9);
+        batch.draw(background, 0, 0, 16, 9);
+        batch.end();
+        game.getTextRenderer().renderText(instructions, instructionPos.x, anchorPosition.y + instructionPos.y, font30);
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(background, 0, 5f, 16, 4f);
         homeButton.draw(batch);
         batch.end();
-
+        game.getTextRenderer().renderText(ingredients, ingredientPos.x, ingredientPos.y, font30);
     }
 
     @Override
