@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.math.Matrix4;
 
 public class TextRenderer {
     private OrthographicCamera camera;
@@ -18,12 +17,20 @@ public class TextRenderer {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1600, 900);
     }
-    public void renderText(String text, float x, float y, BitmapFont font){
+    public void renderTextCenter(String text, float x, float y, BitmapFont font){
         batch.setProjectionMatrix(camera.combined);
         GlyphLayout layout = new GlyphLayout();
         layout.setText(font, text);
         batch.begin();
         font.draw(batch, text, x - layout.width / 2f, y + layout.height / 2f);
+        batch.end();
+    }
+    public void renderText(String text, float x, float y, BitmapFont font){
+        batch.setProjectionMatrix(camera.combined);
+        GlyphLayout layout = new GlyphLayout();
+        layout.setText(font, text);
+        batch.begin();
+        font.draw(batch, text, x, y);
         batch.end();
     }
 

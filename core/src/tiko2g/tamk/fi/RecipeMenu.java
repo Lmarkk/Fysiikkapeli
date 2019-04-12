@@ -1,6 +1,5 @@
 package tiko2g.tamk.fi;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -46,9 +45,9 @@ public class RecipeMenu extends BaseMenu {
     private void renderText() {
         Vector2 rectCenter = new Vector2();
         recipeNameRect.getCenter(rectCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("recipes"), rectCenter.x * 100f, rectCenter.y * 100f, font64);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("recipes"), rectCenter.x * 100f, rectCenter.y * 100f, font64);
         firstRecipeButton.getButtonRect().getCenter(rectCenter);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("karelianhotpot"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("karelianhotpot"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
     }
 
 
