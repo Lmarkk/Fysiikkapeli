@@ -156,7 +156,7 @@ public class Button {
                     game.setScreen(new Recipe(game, recipeType.hotPot));
                     break;
                 case BUTTONTYPE_SECONDRECIPE:
-                    game.setScreen(new Recipe(game, recipeType.chickenSalad));
+                    game.setScreen(new Recipe(game, recipeType.meatSoup));
                     break;
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();
