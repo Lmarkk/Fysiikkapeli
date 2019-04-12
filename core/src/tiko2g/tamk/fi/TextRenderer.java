@@ -26,11 +26,15 @@ public class TextRenderer {
         batch.end();
     }
     public void renderText(String text, float x, float y, BitmapFont font){
+        String[] splitText = text.split("SPLIT_HERE");
         batch.setProjectionMatrix(camera.combined);
         GlyphLayout layout = new GlyphLayout();
-        layout.setText(font, text);
+        layout.setText(font, splitText[0]);
         batch.begin();
-        font.draw(batch, text, x, y);
+        font.draw(batch, splitText[0], x, y);
+        if(splitText.length > 1) {
+            font.draw(batch, splitText[1], x + layout.width + 50f, y);
+        }
         batch.end();
     }
 

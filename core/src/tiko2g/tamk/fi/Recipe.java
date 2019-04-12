@@ -35,7 +35,7 @@ public class Recipe implements Screen {
         batch = game.getBatch();
         camera = game.getCamera();
         background = new Texture("menu-bg.png");
-        homeButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
+        homeButton = new Button(game, "button-left.png", "button-left-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_RECIPES);
         font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);
 
         switch (recipeType){
@@ -92,10 +92,10 @@ public class Recipe implements Screen {
             public boolean touchDragged(int screenX, int screenY, int pointer) {
                 if(screenY > 0 && screenY <= Gdx.graphics.getHeight()){
                     if(screenY < touchStartY) {
-                        anchorPosition.y -= scrollSpeed * Gdx.graphics.getDeltaTime();
+//                        anchorPosition.y -= scrollSpeed * Gdx.graphics.getDeltaTime();
                         touchStartY = screenY;
                     } else {
-                        anchorPosition.y += scrollSpeed * Gdx.graphics.getDeltaTime();
+//                        anchorPosition.y += scrollSpeed * Gdx.graphics.getDeltaTime();
                         touchStartY = screenY;
 
                     }
@@ -137,7 +137,7 @@ public class Recipe implements Screen {
         game.getTextRenderer().renderText(instructions, instructionPos.x, anchorPosition.y + instructionPos.y, font30);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(background, 0, 5f, 16, 4f);
+//        batch.draw(background, 0, 5f, 16, 4f);
         homeButton.draw(batch);
         batch.end();
         game.getTextRenderer().renderText(ingredients, ingredientPos.x, ingredientPos.y, font30);
