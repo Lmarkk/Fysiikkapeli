@@ -30,11 +30,14 @@ public class Button {
 
     static final int BUTTONTYPE_FIRSTRECIPE = 15;
     static final int BUTTONTYPE_SECONDRECIPE = 16;
+    static final int BUTTONTYPE_THIRDRECIPE = 17;
+    static final int BUTTONTYPE_FOURTHRECIPE = 18;
+    static final int BUTTONTYPE_FIFTHRECIPE = 19;
 
-    static final int BUTTONTYPE_LANGUAGE = 17;
+    static final int BUTTONTYPE_LANGUAGE = 20;
 
-    static final int BUTTONTYPE_LOCKED = 18;
-    static final int BUTTONTYPE_DIETMODE = 19;
+    static final int BUTTONTYPE_LOCKED = 21;
+    static final int BUTTONTYPE_DIETMODE = 22;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -47,8 +50,7 @@ public class Button {
     private Texture buttonTexture;
     private Texture buttonNotPressedTexture;
     private Texture buttonPressedTexture;
-    private TutorialScreen tutorialScreen;
-    private RecipeMenu recipeMenu;
+    private Texture buttonLock;
     private Sound clickSound;
 
     public Button(MyGame g, String notPressedTextureSource, String pressedTextureSource, float x, float y, float buttonSize, int bType) {
@@ -58,6 +60,7 @@ public class Button {
         buttonPressedTexture = new Texture(pressedTextureSource);
         buttonTexture = buttonNotPressedTexture;
         clickSound = Gdx.audio.newSound(Gdx.files.internal("Klikkaus.ogg"));
+        buttonLock = new Texture("lock.png");
 
         if(buttonType == BUTTONTYPE_SOUND) {
             if(game.getPrefs().getSoundStatus()) {
@@ -81,18 +84,21 @@ public class Button {
             }
         }
 
-        if(buttonSize == 1) {
+        if(buttonSize == BUTTONSIZE_VERYSMALL) {
             buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
-        } else if(buttonSize == 2) {
+        } else if(buttonSize == BUTTONSIZE_SMALL) {
             buttonRect = new Rectangle(x, y, 3.5f, 1.2f);
-        } else if(buttonSize == 3) {
+        } else if(buttonSize == BUTTONSIZE_MEDIUM) {
             buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
-        } else if(buttonSize == 4) {
+        } else if(buttonSize == BUTTONSIZE_LARGE) {
             buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
         }
     }
     public void draw(SpriteBatch batch) {
         batch.draw(buttonTexture, buttonRect.getX(), buttonRect.getY(), buttonRect.getWidth(), buttonRect.getHeight());
+        if(buttonType == BUTTONTYPE_LOCKED) {
+            batch.draw(buttonLock, buttonRect.getX() + 1.1f, buttonRect.getY() + 0.05f, 1.2f, 1.2f);
+        }
     }
     public Button getButton(int x, int y){
         Vector3 touch = new Vector3(x, y, 0);
@@ -157,6 +163,15 @@ public class Button {
                     break;
                 case BUTTONTYPE_SECONDRECIPE:
                     game.setScreen(new Recipe(game, recipeType.meatSoup));
+                    break;
+                case BUTTONTYPE_THIRDRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.chickenSalad));
+                    break;
+                case BUTTONTYPE_FOURTHRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.filledBellPeppers));
+                    break;
+                case BUTTONTYPE_FIFTHRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.vegetableStew));
                     break;
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();

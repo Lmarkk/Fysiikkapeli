@@ -61,6 +61,8 @@ public class ThirdLevel extends BaseLevel {
             game.setScreen(new EndLevelScreen(game, 3, score));
         }
         super.render(delta);
+        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
 
     @Override

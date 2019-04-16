@@ -12,21 +12,66 @@ public class Prefs {
 
     private boolean soundStatus;
     private boolean musicStatus;
+
+    private boolean levelOneOpen;
+    private boolean levelTwoOpen;
+    private boolean levelThreeOpen;
+    private boolean levelFourOpen;
+    private boolean levelFiveOpen;
+
+    private boolean veganLevelOneOpen;
+    private boolean veganLevelTwoOpen;
+    private boolean veganLevelThreeOpen;
+    private boolean veganLevelFourOpen;
+    private boolean veganLevelFiveOpen;
+
     private boolean recipeOneOpen;
     private boolean recipeTwoOpen;
     private boolean recipeThreeOpen;
     private boolean recipeFourOpen;
     private boolean recipeFiveOpen;
 
+    private boolean veganRecipeOneOpen;
+    private boolean veganRecipeTwoOpen;
+    private boolean veganRecipeThreeOpen;
+    private boolean veganRecipeFourOpen;
+    private boolean veganRecipeFiveOpen;
+
+    private int normalRecipesOpen;
+    private int veganRecipesOpen;
+
     private I18NBundle currentLanguage;
     private int storedLanguage;
     private int firstLevelScore;
     private int secondLevelScore;
     private int thirdLevelScore;
+    private int fourthLevelScore;
+    private int fifthLevelScore;
 
     public Prefs(MyGame g) {
         game = g;
         pref = Gdx.app.getPreferences("My Preferences");
+
+        normalRecipesOpen = pref.getInteger("recipesOpen", 0);
+        veganRecipesOpen = pref.getInteger("veganRecipesOpen", 0);
+
+        levelOneOpen = pref.getBoolean("levelOneOpen", true);
+        levelTwoOpen = pref.getBoolean("levelTwoOpen", true);
+        levelThreeOpen = pref.getBoolean("levelThreeOpen", true);
+        levelFourOpen = pref.getBoolean("levelFourOpen", false);
+        levelFiveOpen = pref.getBoolean("levelFiveOpen", false);
+
+        veganLevelOneOpen = pref.getBoolean("veganLevelOneOpen", false);
+        veganLevelTwoOpen = pref.getBoolean("veganLevelTwoOpen", false);
+        veganLevelThreeOpen = pref.getBoolean("veganLevelThreeOpen", false);
+        veganLevelFourOpen = pref.getBoolean("veganLevelFourOpen", false);
+        veganLevelFiveOpen = pref.getBoolean("veganLevelFiveOpen", false);
+
+        veganRecipeOneOpen = pref.getBoolean("veganRecipeOneOpen", false);
+        veganRecipeTwoOpen = pref.getBoolean("veganRecipeTwoOpen", false);
+        veganRecipeThreeOpen = pref.getBoolean("veganRecipeThreeOpen", false);
+        veganRecipeFourOpen = pref.getBoolean("veganRecipeFourOpen", false);
+        veganRecipeFiveOpen = pref.getBoolean("veganRecipeFiveOpen", false);
 
         recipeOneOpen = pref.getBoolean("recipeOneOpen", false);
         recipeTwoOpen = pref.getBoolean("recipeTwoOpen", false);
@@ -42,6 +87,8 @@ public class Prefs {
         firstLevelScore = pref.getInteger("firstLevelScore", 0);
         secondLevelScore = pref.getInteger("secondLevelScore", 0);
         thirdLevelScore = pref.getInteger("thirdLevelScore", 0);
+        fourthLevelScore = pref.getInteger("fourthLevelScore", 0);
+        fifthLevelScore = pref.getInteger("fifthLevelScore", 0);
 
         storedLanguage = pref.getInteger("storedLanguage", 0);
         if(storedLanguage == 0) {
@@ -97,32 +144,141 @@ public class Prefs {
         pref.putInteger("thirdLevelScore", thirdLevelScore);
         pref.flush();
     }
+    public void setFourthLevelScore(int score) {
+        fourthLevelScore = score;
+        pref.putInteger("fourthLevelScore", fourthLevelScore);
+        pref.flush();
+    }
+    public void setFifthLevelScore(int score) {
+        fifthLevelScore = score;
+        pref.putInteger("fifthLevelScore", fifthLevelScore);
+        pref.flush();
+    }
+
+    public void setLevelOneOpen(boolean status) {
+        levelOneOpen = status;
+        pref.putBoolean("levelOneOpen", levelOneOpen);
+        pref.flush();
+    }
+    public void setLevelTwoOpen(boolean status) {
+        levelTwoOpen = status;
+        pref.putBoolean("levelTwoOpen", levelTwoOpen);
+        pref.flush();
+    }
+    public void setLevelThreeOpen(boolean status) {
+        levelThreeOpen = status;
+        pref.putBoolean("levelThreeOpen", levelThreeOpen);
+        pref.flush();
+    }
+    public void setLevelFourOpen(boolean status) {
+        levelFourOpen = status;
+        pref.putBoolean("levelFourOpen", levelFourOpen);
+        pref.flush();
+    }
+    public void setLevelFiveOpen(boolean status) {
+        levelFiveOpen = status;
+        pref.putBoolean("levelFiveOpen", levelFiveOpen);
+        pref.flush();
+    }
+
+    public void setVeganLevelOneOpen(boolean status) {
+        veganLevelOneOpen = status;
+        pref.putBoolean("veganLevelOneOpen", veganLevelOneOpen);
+        pref.flush();
+    }
+    public void setVeganLevelTwoOpen(boolean status) {
+        veganLevelTwoOpen = status;
+        pref.putBoolean("veganLevelTwoOpen", veganLevelTwoOpen);
+        pref.flush();
+    }
+    public void setVeganLevelThreeOpen(boolean status) {
+        veganLevelThreeOpen = status;
+        pref.putBoolean("veganLevelThreeOpen", veganLevelThreeOpen);
+        pref.flush();
+    }
+    public void setVeganLevelFourOpen(boolean status) {
+        veganLevelFourOpen = status;
+        pref.putBoolean("veganLevelFourOpen", veganLevelFourOpen);
+        pref.flush();
+    }
+    public void setVeganLevelFiveOpen(boolean status) {
+        veganLevelFiveOpen = status;
+        pref.putBoolean("veganLevelFiveOpen", veganLevelFiveOpen);
+        pref.flush();
+    }
 
     public void setRecipeOneOpen(boolean status) {
         recipeOneOpen = status;
+        normalRecipesOpen++;
+        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeOneOpen", recipeOneOpen);
         pref.flush();
     }
     public void setRecipeTwoOpen(boolean status) {
         recipeTwoOpen = status;
+        normalRecipesOpen++;
+        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeTwoOpen", recipeTwoOpen);
         pref.flush();
     }
     public void setRecipeThreeOpen(boolean status) {
         recipeThreeOpen = status;
+        normalRecipesOpen++;
+        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeThreeOpen", recipeThreeOpen);
         pref.flush();
     }
     public void setRecipeFourOpen(boolean status) {
         recipeFourOpen = status;
+        normalRecipesOpen++;
+        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeFourOpen", recipeFourOpen);
         pref.flush();
     }
     public void setRecipeFiveOpen(boolean status) {
         recipeFiveOpen = status;
+        normalRecipesOpen++;
+        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeFiveOpen", recipeFiveOpen);
         pref.flush();
     }
+
+    public void setVeganRecipeOneOpen(boolean status) {
+        veganRecipeOneOpen = status;
+        veganRecipesOpen++;
+        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
+        pref.putBoolean("veganRecipeOneOpen", veganRecipeOneOpen);
+        pref.flush();
+    }
+    public void setVeganRecipeTwoOpen(boolean status) {
+        veganRecipeTwoOpen = status;
+        veganRecipesOpen++;
+        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
+        pref.putBoolean("veganRecipeTwoOpen", veganRecipeTwoOpen);
+        pref.flush();
+    }
+    public void setVeganRecipeThreeOpen(boolean status) {
+        veganRecipeThreeOpen = status;
+        veganRecipesOpen++;
+        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
+        pref.putBoolean("veganRecipeThreeOpen", veganRecipeThreeOpen);
+        pref.flush();
+    }
+    public void setVeganRecipeFourOpen(boolean status) {
+        veganRecipeFourOpen = status;
+        veganRecipesOpen++;
+        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
+        pref.putBoolean("veganRecipeFourOpen", veganRecipeFourOpen);
+        pref.flush();
+    }
+    public void setVeganRecipeFiveOpen(boolean status) {
+        veganRecipeFiveOpen = status;
+        veganRecipesOpen++;
+        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
+        pref.putBoolean("veganRecipeFiveOpen", veganRecipeFiveOpen);
+        pref.flush();
+    }
+
 
     public boolean getSoundStatus(){
         return soundStatus;
@@ -140,7 +296,51 @@ public class Prefs {
     public int getThirdLevelScore() {
         return thirdLevelScore;
     }
+    public int getFourthLevelScore() {
+        return fourthLevelScore;
+    }
+    public int getFifthLevelScore() {
+        return fifthLevelScore;
+    }
 
+    public boolean getLevelOneOpen() {
+        return levelOneOpen;
+    }
+    public boolean getLevelTwoOpen() {
+        return levelTwoOpen;
+    }
+    public boolean getLevelThreeOpen() {
+        return levelThreeOpen;
+    }
+    public boolean getLevelFourOpen() {
+        return levelFourOpen;
+    }
+    public boolean getLevelFiveOpen() {
+        return levelFiveOpen;
+    }
+
+    public boolean getVeganLevelOneOpen() {
+        return veganLevelOneOpen;
+    }
+    public boolean getVeganLevelTwoOpen() {
+        return veganLevelTwoOpen;
+    }
+    public boolean getVeganLevelThreeOpen() {
+        return veganLevelThreeOpen;
+    }
+    public boolean getVeganLevelFourOpen() {
+        return veganLevelFourOpen;
+    }
+    public boolean getVeganLevelFiveOpen() {
+        return veganLevelFiveOpen;
+    }
+
+    public int getRecipesOpen() {
+        return normalRecipesOpen;
+    }
+    public int getVeganRecipesOpen() {
+        return veganRecipesOpen;
+    }
     public boolean getRecipeOneOpen() {
         return recipeOneOpen;
     }
@@ -155,6 +355,22 @@ public class Prefs {
     }
     public boolean getRecipeFiveOpen() {
         return recipeFiveOpen;
+    }
+
+    public boolean getVeganRecipeOneOpen() {
+        return veganRecipeOneOpen;
+    }
+    public boolean getVeganRecipeTwoOpen() {
+        return veganRecipeTwoOpen;
+    }
+    public boolean getVeganRecipeThreeOpen() {
+        return veganRecipeThreeOpen;
+    }
+    public boolean getVeganRecipeFourOpen() {
+        return veganRecipeFourOpen;
+    }
+    public boolean getVeganRecipeFiveOpen() {
+        return veganRecipeFiveOpen;
     }
 
     public boolean getDisplayGameModeVegan() {
