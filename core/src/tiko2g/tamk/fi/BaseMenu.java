@@ -78,6 +78,7 @@ public class BaseMenu implements Screen {
         game.getMenuTheme().stop();
         game.getWheatFieldsTheme().stop();
         game.getGreenHillsTheme().stop();
+        game.getShadyWoodsTheme().stop();
     }
 
     public void changeImage(boolean goForward){

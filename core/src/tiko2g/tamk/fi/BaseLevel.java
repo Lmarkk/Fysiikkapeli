@@ -1,6 +1,7 @@
 package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -251,6 +252,9 @@ public class BaseLevel implements Screen {
                 scoreGetSoundPlayed = true;
             }
         }
+        //if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        //    game.setScreen(new EndLevelScreen(game, 2, 800));
+        //}
 
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);

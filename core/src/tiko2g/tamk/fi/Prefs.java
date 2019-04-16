@@ -56,8 +56,8 @@ public class Prefs {
         veganRecipesOpen = pref.getInteger("veganRecipesOpen", 0);
 
         levelOneOpen = pref.getBoolean("levelOneOpen", true);
-        levelTwoOpen = pref.getBoolean("levelTwoOpen", true);
-        levelThreeOpen = pref.getBoolean("levelThreeOpen", true);
+        levelTwoOpen = pref.getBoolean("levelTwoOpen", false);
+        levelThreeOpen = pref.getBoolean("levelThreeOpen", false);
         levelFourOpen = pref.getBoolean("levelFourOpen", false);
         levelFiveOpen = pref.getBoolean("levelFiveOpen", false);
 

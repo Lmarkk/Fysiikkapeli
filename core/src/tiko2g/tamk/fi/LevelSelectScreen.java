@@ -31,7 +31,7 @@ public class LevelSelectScreen extends BaseMenu {
         super.createButtons();
 
         menuButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.9f, 2, Button.BUTTONTYPE_DIETMODE);
+        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.5f, 2, Button.BUTTONTYPE_DIETMODE);
         endlessButton = new Button(game, "button.png", "button-pressed.png", 10.25f, 2.5f, 2, Button.BUTTONTYPE_PLAYENDLESS);
 
         levelOneButton = new Button(game, "button.png", "button-pressed.png", 2.25f, 4.5f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
@@ -102,8 +102,7 @@ public class LevelSelectScreen extends BaseMenu {
             }
 
         }
-
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("diet") + " ", 4.6f * 100f, 7.5f * 100f, font42);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("diet") + " ", 8f * 100f, 8.2f * 100f, font42);
 
         Vector2 buttonCenter = new Vector2();
         endlessButton.getButtonRect().getCenter(buttonCenter);

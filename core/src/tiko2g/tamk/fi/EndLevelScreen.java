@@ -1,11 +1,14 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
     private Button mainMenuButton;
+    private Rectangle unlockMessageRect;
+    boolean firstUnlock;
     int currentLevel;
     int currentScore;
 
@@ -13,30 +16,51 @@ public class EndLevelScreen extends BaseMenu {
         super(g);
         currentLevel = currLvl;
         currentScore = currScore;
+        firstUnlock = false;
+        unlockMessageRect = new Rectangle(4, 4, 4, 1);
 
         switch(currentLevel) {
             case 1:
-                if(currentScore >= 400) {
+                if(currentScore >= 300) {
+                    if(!game.getPrefs().getRecipeOneOpen()) {
+                        firstUnlock = true;
+                    }
                     game.getPrefs().setRecipeOneOpen(true);
+                    game.getPrefs().setLevelTwoOpen(true);
                 }
                 break;
             case 2:
-                if(currentScore >= 400) {
+                if(currentScore >= 300) {
+                    if(!game.getPrefs().getRecipeTwoOpen()) {
+                        firstUnlock = true;
+                    }
                     game.getPrefs().setRecipeTwoOpen(true);
+                    game.getPrefs().setLevelThreeOpen(true);
                 }
                 break;
             case 3:
                 if(currentScore >= 400) {
+                    if(!game.getPrefs().getRecipeThreeOpen()) {
+                        firstUnlock = true;
+                    }
                     game.getPrefs().setRecipeThreeOpen(true);
+                    game.getPrefs().setLevelFourOpen(true);
                 }
                 break;
             case 4:
                 if(currentScore >= 400) {
+                    if(!game.getPrefs().getRecipeFourOpen()) {
+                        firstUnlock = true;
+                    }
                     game.getPrefs().setRecipeFourOpen(true);
+                    game.getPrefs().setLevelFiveOpen(true);
                 }
                 break;
             case 5:
-                if(currScore >= 400) {
+                if(currScore >= 500) {
+                    if(!game.getPrefs().getRecipeFiveOpen()) {
+                        firstUnlock = true;
+                    }
                     game.getPrefs().setRecipeFiveOpen(true);
                 }
                 break;
@@ -56,8 +80,8 @@ public class EndLevelScreen extends BaseMenu {
     }
     public void createButtons(){
         super.createButtons();
-        replayButton = new Button(game, "button.png", "button-pressed.png",4.5f, 3.2f, 3, currentLevel);
-        mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.5f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
+        replayButton = new Button(game, "button.png", "button-pressed.png",4.7f, 3.2f, 3, currentLevel);
+        mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.7f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
         buttonList.add(replayButton, mainMenuButton);
     }
     @Override
@@ -68,6 +92,43 @@ public class EndLevelScreen extends BaseMenu {
     @Override
     public void render(float delta) {
         super.render(delta);
+        switch(currentLevel) {
+            case 1:
+                if(currentScore >= 300) {
+                    if(firstUnlock) {
+                        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                    }
+                }
+                break;
+            case 2:
+                if(currentScore >= 300) {
+                    if(firstUnlock) {
+                        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                    }
+                }
+                break;
+            case 3:
+                if(currentScore >= 400) {
+                    if(firstUnlock) {
+                        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                    }
+                }
+                break;
+            case 4:
+                if(currentScore >= 400) {
+                    if(firstUnlock) {
+                        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                    }
+                }
+                break;
+            case 5:
+                if(currentScore >= 500) {
+                    if(firstUnlock) {
+                        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                    }
+                }
+                break;
+        }
     }
 
     @Override
