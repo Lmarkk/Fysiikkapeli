@@ -7,8 +7,10 @@ import com.badlogic.gdx.math.Vector2;
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
     private Button mainMenuButton;
+    private Button nextLevelButton;
     private Rectangle unlockMessageRect;
     boolean firstUnlock;
+    boolean displayNextLevelButton;
     int currentLevel;
     int currentScore;
     boolean veganModeOn;
@@ -19,6 +21,7 @@ public class EndLevelScreen extends BaseMenu {
         currentLevel = currLvl;
         currentScore = currScore;
         firstUnlock = false;
+        displayNextLevelButton = false;
         unlockMessageRect = new Rectangle(4, 4, 4, 1);
 
         if(veganModeOn) {
@@ -31,6 +34,9 @@ public class EndLevelScreen extends BaseMenu {
                         game.getPrefs().setVeganRecipeOneOpen(true);
                         game.getPrefs().setVeganLevelTwoOpen(true);
                     }
+                    if(game.getPrefs().getVeganLevelTwoOpen()) {
+                        displayNextLevelButton = true;
+                    }
                     break;
                 case 2:
                     if(currentScore >= 300) {
@@ -39,6 +45,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setVeganRecipeTwoOpen(true);
                         game.getPrefs().setVeganLevelThreeOpen(true);
+                    }
+                    if(game.getPrefs().getVeganLevelThreeOpen()) {
+                        displayNextLevelButton = true;
                     }
                     break;
                 case 3:
@@ -49,6 +58,9 @@ public class EndLevelScreen extends BaseMenu {
                         game.getPrefs().setVeganRecipeThreeOpen(true);
                         game.getPrefs().setVeganLevelFourOpen(true);
                     }
+                    if(game.getPrefs().getVeganLevelFourOpen()) {
+                        displayNextLevelButton = true;
+                    }
                     break;
                 case 4:
                     if(currentScore >= 400) {
@@ -57,6 +69,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setVeganRecipeFourOpen(true);
                         game.getPrefs().setVeganLevelFiveOpen(true);
+                    }
+                    if(game.getPrefs().getVeganLevelFiveOpen()) {
+                        displayNextLevelButton = true;
                     }
                     break;
                 case 5:
@@ -78,6 +93,9 @@ public class EndLevelScreen extends BaseMenu {
                         game.getPrefs().setRecipeOneOpen(true);
                         game.getPrefs().setLevelTwoOpen(true);
                     }
+                    if(game.getPrefs().getLevelTwoOpen()) {
+                        displayNextLevelButton = true;
+                    }
                     break;
                 case 2:
                     if (currentScore >= 300) {
@@ -86,6 +104,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setRecipeTwoOpen(true);
                         game.getPrefs().setLevelThreeOpen(true);
+                    }
+                    if(game.getPrefs().getLevelThreeOpen()) {
+                        displayNextLevelButton = true;
                     }
                     break;
                 case 3:
@@ -96,6 +117,9 @@ public class EndLevelScreen extends BaseMenu {
                         game.getPrefs().setRecipeThreeOpen(true);
                         game.getPrefs().setLevelFourOpen(true);
                     }
+                    if(game.getPrefs().getLevelFourOpen()) {
+                        displayNextLevelButton = true;
+                    }
                     break;
                 case 4:
                     if (currentScore >= 400) {
@@ -104,6 +128,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setRecipeFourOpen(true);
                         game.getPrefs().setLevelFiveOpen(true);
+                    }
+                    if(game.getPrefs().getLevelFiveOpen()) {
+                        displayNextLevelButton = true;
                     }
                     break;
                 case 5:
@@ -132,13 +159,27 @@ public class EndLevelScreen extends BaseMenu {
     public void createButtons(){
         super.createButtons();
         if(!veganModeOn) {
-            replayButton = new Button(game, "button.png", "button-pressed.png",4.7f, 3.2f, 3, currentLevel);
+            replayButton = new Button(game, "button.png", "button-pressed.png",1f, 3.2f, 3, currentLevel);
+            if(currentLevel < 5 && displayNextLevelButton) {
+                nextLevelButton = new Button(game, "button.png", "button-pressed.png", 8.4f, 3.2f, 3, currentLevel + 1);
+            } else {
+                replayButton.setX(4.7f);
+            }
         } else {
-            replayButton = new Button(game, "button.png", "button-pressed.png",4.7f, 3.2f, 3, currentLevel + 5);
+            replayButton = new Button(game, "button.png", "button-pressed.png",1f, 3.2f, 3, currentLevel + 5);
+            if(currentLevel < 5 && displayNextLevelButton) {
+                nextLevelButton = new Button(game, "button.png", "button-pressed.png", 8.4f, 3.2f, 3, currentLevel + 6);
+            } else {
+                replayButton.setX(4.7f);
+            }
         }
+
 
         mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.7f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
         buttonList.add(replayButton, mainMenuButton);
+        if(displayNextLevelButton) {
+            buttonList.add(nextLevelButton);
+        }
     }
     @Override
     public void show() {
