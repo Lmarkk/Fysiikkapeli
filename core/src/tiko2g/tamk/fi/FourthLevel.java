@@ -5,16 +5,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
-public class ThirdLevel extends BaseLevel {
+public class FourthLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
     int arrayIndex;
 
-    public ThirdLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-shady-woods.png", "ground.png");
+    public FourthLevel(MyGame g, boolean veganStatus) {
+        super(g, "bg-green-hills2.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getShadyWoodsTheme().play();
+            game.getGreenHillsTheme().play();
         }
 
         arrayIndex = 0;
@@ -27,8 +27,8 @@ public class ThirdLevel extends BaseLevel {
         //    getProjectiles().add(object);
         //}
 
-        thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
-        thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        thrownObjects.add(new BellPepper(game, this), new BellPepper(game, this), new BellPepper(game, this), new Meat(game, this));
+        thrownObjects.add(new Meat(game, this), new BellPepper(game, this), new BellPepper(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();
@@ -59,13 +59,13 @@ public class ThirdLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 3, score, veganMode));
+            game.setScreen(new EndLevelScreen(game, 4, score, veganMode));
         }
         super.render(delta);
         if(veganMode) {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganThirdLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFourthLevelScore(), 11f * 100f, 8.4f * 100f, font32);
         } else {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getThirdLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFourthLevelScore(), 11f * 100f, 8.4f * 100f, font32);
         }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
@@ -81,8 +81,8 @@ public class ThirdLevel extends BaseLevel {
             projectileLanded = false;
             currentProjectile.getBody().setTransform(projectileStartPos, 0f);
         } else {
-            if(score > game.getPrefs().getThirdLevelScore()) {
-                game.getPrefs().setThirdLevelScore(score);
+            if(score > game.getPrefs().getFourthLevelScore()) {
+                game.getPrefs().setFourthLevelScore(score);
             }
             endGame = true;
         }

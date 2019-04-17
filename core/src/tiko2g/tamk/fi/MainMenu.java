@@ -1,5 +1,6 @@
 package tiko2g.tamk.fi;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public class MainMenu extends BaseMenu {
@@ -10,11 +11,13 @@ public class MainMenu extends BaseMenu {
     private Button soundButton;
     private Button recipeButton;
     private Button languageButton;
+    private Texture title;
 
 
     public MainMenu(MyGame g) {
         super(g);
         createButtons();
+        title = new Texture("title.png");
         if(game.getPrefs().getMusicStatus()) {
             if (!game.getMenuTheme().isPlaying()) {
                 super.stopMusic();
@@ -31,6 +34,11 @@ public class MainMenu extends BaseMenu {
     @Override
     public void render(float delta) {
         super.render(delta);
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        batch.draw(title, 3.1f, 5.3f, 9.89f, 1.98f);
+        batch.end();
+
 
     }
     public void renderButtons(){

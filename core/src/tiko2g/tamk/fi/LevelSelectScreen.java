@@ -49,27 +49,27 @@ public class LevelSelectScreen extends BaseMenu {
 
         if(game.getPrefs().getDisplayGameModeVegan()) {
             if(game.getPrefs().getVeganLevelOneOpen()) {
-                levelOneButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+                levelOneButton.setButtonType(Button.BUTTONTYPE_PLAYVEGANLEVELONE);
             } else {
                 levelOneButton.setButtonType(Button.BUTTONTYPE_LOCKED);
             }
             if(game.getPrefs().getVeganLevelTwoOpen()) {
-                levelTwoButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+                levelTwoButton.setButtonType(Button.BUTTONTYPE_PLAYVEGANLEVELTWO);
             } else {
                 levelTwoButton.setButtonType(Button.BUTTONTYPE_LOCKED);
             }
             if(game.getPrefs().getVeganLevelThreeOpen()) {
-                levelThreeButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+                levelThreeButton.setButtonType(Button.BUTTONTYPE_PLAYVEGANLEVELTHREE);
             } else {
                 levelThreeButton.setButtonType(Button.BUTTONTYPE_LOCKED);
             }
             if(game.getPrefs().getVeganLevelFourOpen()) {
-                levelFourButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+                levelFourButton.setButtonType(Button.BUTTONTYPE_PLAYVEGANLEVELFOUR);
             } else {
                 levelFourButton.setButtonType(Button.BUTTONTYPE_LOCKED);
             }
             if(game.getPrefs().getVeganLevelFiveOpen()) {
-                levelFiveButton.setButtonType(Button.BUTTONTYPE_LOCKED);
+                levelFiveButton.setButtonType(Button.BUTTONTYPE_PLAYVEGANLEVELFIVE);
             } else {
                 levelFiveButton.setButtonType(Button.BUTTONTYPE_LOCKED);
             }

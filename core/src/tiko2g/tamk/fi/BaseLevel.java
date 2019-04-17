@@ -42,6 +42,7 @@ public class BaseLevel implements Screen {
     Arrow arrow;
     int score;
     boolean projectileLanded = false;
+    boolean veganMode;
     BitmapFont font32;
 
     boolean scoreGetSoundPlayed;
@@ -81,6 +82,7 @@ public class BaseLevel implements Screen {
         font32 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
         score = 0;
         arrow = new Arrow();
+
 
         gameWorld.setContactListener(new ContactListener() {
             @Override

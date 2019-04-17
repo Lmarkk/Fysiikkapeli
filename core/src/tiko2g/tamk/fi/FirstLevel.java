@@ -9,7 +9,7 @@ public class FirstLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
     int arrayIndex;
 
-    public FirstLevel(MyGame g) {
+    public FirstLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-green-hills2.png", "ground.png");
 
         super.stopMusic();
@@ -20,6 +20,7 @@ public class FirstLevel extends BaseLevel {
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
+        veganMode = veganStatus;
 
 
         thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
@@ -54,10 +55,14 @@ public class FirstLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 1, score));
+            game.setScreen(new EndLevelScreen(game, 1, score, veganMode));
         }
         super.render(delta);
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 12f * 100f, 8.4f * 100f, font32);
+        if(veganMode) {
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFirstLevelScore(), 12f * 100f, 8.4f * 100f, font32);
+        } else {
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 12f * 100f, 8.4f * 100f, font32);
+        }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
 
