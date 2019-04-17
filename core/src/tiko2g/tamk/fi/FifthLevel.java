@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.Array;
 public class FifthLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
     int arrayIndex;
+    Obstacle topObstacle;
+    Obstacle botObstacle;
 
     public FifthLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-green-hills2.png", "ground.png");
@@ -18,6 +20,8 @@ public class FifthLevel extends BaseLevel {
         }
 
         arrayIndex = 0;
+        topObstacle = new Obstacle(game, this, 7.4f, 5.5f, 0.65f, 10);
+        botObstacle = new Obstacle(game, this, 7.4f, 0, 0.65f, 3);
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
         veganMode = veganStatus;
@@ -51,6 +55,8 @@ public class FifthLevel extends BaseLevel {
         }
         prevMenuButton.draw(batch);
         ground.draw();
+        topObstacle.draw();
+        botObstacle.draw();
         pot.drawTop();
         currentProjectile.draw();
         pot.draw();

@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Array;
 public class FourthLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
     int arrayIndex;
+    Obstacle obstacle;
 
     public FourthLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-green-hills2.png", "ground.png");
@@ -18,8 +19,9 @@ public class FourthLevel extends BaseLevel {
         }
 
         arrayIndex = 0;
+        obstacle = new Obstacle(game, this, 8,0, 0.65f, 5.7f);
         catapult = new Catapult(1, 0.7f);
-        pot = new Pot(this, game, 12, 0);
+        pot = new Pot(this, game, 10.5f, 0);
         veganMode = veganStatus;
 
         //for (int i = 0; i < 3; i++) {
@@ -51,6 +53,7 @@ public class FourthLevel extends BaseLevel {
         }
         prevMenuButton.draw(batch);
         ground.draw();
+        obstacle.draw();
         pot.drawTop();
         currentProjectile.draw();
         pot.draw();

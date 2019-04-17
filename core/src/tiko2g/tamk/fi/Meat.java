@@ -9,7 +9,7 @@ public class Meat extends ThrownObject {
     public Meat(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.6f);
         setTexture(new Texture("meat.png"));
-        setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(1.3f, 0, 1f, getVertices()));
     }
     @Override
     public Vector2[] getVertices(){
