@@ -153,6 +153,10 @@ public class EndLevelScreen extends BaseMenu {
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("playagain"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         mainMenuButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("levelselect"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        if(displayNextLevelButton) {
+            nextLevelButton.getButtonRect().getCenter(buttonCenter);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("nextlevel"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
+        }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " + currentScore, 8 * 100f, 7 * 100f, font42);
 
     }
