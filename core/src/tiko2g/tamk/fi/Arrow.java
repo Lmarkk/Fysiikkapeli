@@ -6,18 +6,29 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The type Arrow.
+ * Arrow displays the angle and force of a throw.
+ *
+ * @author Arttu Knuutinen
+ * @version 2019.0418
  */
 public class Arrow {
 
+    /**
+     * The texture of the arrow.
+     */
     private Texture texture;
+    /**
+     * The rectangle of the arrow.
+     */
     private Rectangle rectangle;
+    /**
+     * The rotation of the arrow.
+     */
     private float rotation;
 
     /**
      * Instantiates a new Arrow.
      */
-//
     public Arrow(){
         texture = new Texture("arrow.png");
         rectangle = new Rectangle(3, 3, 2.56f, 1f);
@@ -33,21 +44,21 @@ public class Arrow {
     }
 
     /**
-     * Draw.
+     * Draws the arrow.
      *
-     * @param batch    the batch
+     * Draws the arrow starting from the start position and ending on the end position.
+     *
+     * @param batch    the SpriteBatch
      * @param startPos the start pos
      * @param endPos   the end pos
      */
     public void draw(SpriteBatch batch, Vector2 startPos, Vector2 endPos){
         Vector2 startPos2 = new Vector2(startPos.x, startPos.y);
         Vector2 endPos2 = new Vector2(endPos.x, endPos.y);
-        float length = getMagnitude(startPos2.sub(endPos2));
+        float length = new Vector2(startPos2.sub(endPos2)).len();
         startPos2.y *= -1;
         float angle = startPos2.angle();
         rotation = angle;
-//        float length = startPos2.sub(endPos2).len();
-//        System.out.println(length);
         batch.draw(texture,
                 rectangle.x,
                 rectangle.y,
@@ -64,12 +75,5 @@ public class Arrow {
                 texture.getHeight(),
                 false,
                 false);
-    }
-
-    private void setRotation(){
-
-    }
-    private float getMagnitude(Vector2 v){
-        return (float)Math.sqrt((double)(v.x * v.x + v.y * v.y));
     }
 }
