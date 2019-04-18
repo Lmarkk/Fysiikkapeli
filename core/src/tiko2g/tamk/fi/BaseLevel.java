@@ -79,7 +79,7 @@ public class BaseLevel implements Screen {
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
         menuButtonCenter = prevMenuButton.getButtonRect().getCenter(menuButtonCenter);
-        font32 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
+        font32 = game.getFont32();
         score = 0;
         arrow = new Arrow();
 
@@ -262,7 +262,7 @@ public class BaseLevel implements Screen {
         debugRenderer.render(getGameWorld(), camera.combined);
         batch.end();
 
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " + score, 8f * 100f, 8.04f * 100f, font32);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
 
     }
 
