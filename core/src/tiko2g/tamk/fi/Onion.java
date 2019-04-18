@@ -15,14 +15,14 @@ public class Onion extends ThrownObject {
     @Override
     public Vector2[] getVertices(){
         Vector2[] vertices = new Vector2[8];
-        vertices[0] = new Vector2(0.83f, 2.56f);
-        vertices[1] = new Vector2(1.74f, 3.2f);
-        vertices[2] = new Vector2(2.34f, 3.2f);
-        vertices[3] = new Vector2(2.73f, 1.97f);
-        vertices[4] = new Vector2(2.61f, 0.56f);
+        vertices[0] = new Vector2(0.83f, 0.5f);
+        vertices[1] = new Vector2(1.74f, 2.5f);
+        vertices[2] = new Vector2(2.34f, 2.5f);
+        vertices[3] = new Vector2(2.73f, 1f);
+        vertices[4] = new Vector2(2.61f, 0.36f);
         vertices[5] = new Vector2(1.04f, 0.05f);
-        vertices[6] = new Vector2(0.11f, 0.78f);
-        vertices[7] = new Vector2(0.09f, 2.08f);
+        vertices[6] = new Vector2(0.11f, 0.38f);
+        vertices[7] = new Vector2(0.09f, 1.58f);
 
         for (Vector2 v2: vertices) {
             v2.scl(scale);
