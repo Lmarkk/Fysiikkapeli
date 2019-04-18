@@ -177,7 +177,6 @@ public class ThrownObject {
      *
      * @return the thrown object
      */
-// Override these
     public ThrownObject cloneObject(){
         return null;
     }
