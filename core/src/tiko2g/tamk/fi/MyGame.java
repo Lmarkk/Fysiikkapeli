@@ -34,6 +34,7 @@ public class MyGame extends Game {
     private BitmapFont font42;
     private BitmapFont font120;
     private BitmapFont font30;
+    private BitmapFont font32;
 
 	@Override
 	public void create () {
@@ -57,6 +58,7 @@ public class MyGame extends Game {
         font42 = getTextRenderer().createFont(kreonFont, 42, Color.BLACK, 3);
         font120 = getTextRenderer().createFont(kreonFont, 120, Color.BLACK, 3);
         font30 = getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 3);
+        font32 = getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
         mainMenu = new MainMenu(this);
 	    setScreen(mainMenu);
 
@@ -204,6 +206,10 @@ public class MyGame extends Game {
      */
     public BitmapFont getFont120() {
         return font120;
+    }
+
+    public BitmapFont getFont32() {
+        return font32;
     }
 
     @Override
