@@ -31,8 +31,8 @@ public class FifthLevel extends BaseLevel {
         //    getProjectiles().add(object);
         //}
 
-        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Chicken(game, this), new Chicken(game, this));
-        thrownObjects.add(new BellPepper(game, this), new BellPepper(game, this), new BellPepper(game, this));
+        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Chicken(game, this), new Lettuce(game, this));
+        thrownObjects.add(new Lettuce(game, this), new BellPepper(game, this), new BellPepper(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();
