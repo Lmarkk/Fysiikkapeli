@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class ThirdLevel extends BaseLevel {
-    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(9);
     int arrayIndex;
 
     public ThirdLevel(MyGame g, boolean veganStatus) {
@@ -27,8 +27,9 @@ public class ThirdLevel extends BaseLevel {
         //    getProjectiles().add(object);
         //}
 
-        thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
-        thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Tomato(game, this), new Tomato(game, this));
+        thrownObjects.add(new Tomato(game, this), new Peach(game, this), new Peach(game, this), new Lettuce(game, this));
+        thrownObjects.add(new Lettuce(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();
@@ -63,9 +64,9 @@ public class ThirdLevel extends BaseLevel {
         }
         super.render(delta);
         if(veganMode) {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganThirdLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganThirdLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         } else {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getThirdLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getThirdLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }

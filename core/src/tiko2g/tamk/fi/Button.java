@@ -204,9 +204,10 @@ public class Button {
                     game.setScreen(new Recipe(game, recipeType.filledBellPeppers));
                     break;
                 case BUTTONTYPE_FIFTHRECIPE:
-                    game.setScreen(new Recipe(game, recipeType.vegetableStew));
+
                     break;
                 case BUTTONTYPE_VEGANFIRSTRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.vegetableStew));
                     break;
                 case BUTTONTYPE_VEGANSECONDRECIPE:
                     break;

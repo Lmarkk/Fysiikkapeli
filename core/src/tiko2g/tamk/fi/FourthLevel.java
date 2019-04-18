@@ -66,9 +66,9 @@ public class FourthLevel extends BaseLevel {
         }
         super.render(delta);
         if(veganMode) {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFourthLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFourthLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         } else {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFourthLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFourthLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }

@@ -21,6 +21,13 @@ public class LevelSelectScreen extends BaseMenu {
     public LevelSelectScreen(MyGame g) {
         super(g);
         createButtons();
+        if(game.getPrefs().getMusicStatus()) {
+            if(!game.getMenuTheme().isPlaying()) {
+                super.stopMusic();
+                game.getMenuTheme().play();
+            }
+        }
+
     }
     @Override
     public void render(float delta) {
