@@ -16,28 +16,40 @@ public class Button {
     static final int BUTTONTYPE_PLAYLEVELFOUR = 4;
     static final int BUTTONTYPE_PLAYLEVELFIVE = 5;
 
-    static final int BUTTONTYPE_MAINMENU = 6;
-    static final int BUTTONTYPE_NEXTIMAGE = 7;
-    static final int BUTTONTYPE_PREVIMAGE = 8;
+    static final int BUTTONTYPE_PLAYVEGANLEVELONE = 6;
+    static final int BUTTONTYPE_PLAYVEGANLEVELTWO = 7;
+    static final int BUTTONTYPE_PLAYVEGANLEVELTHREE = 8;
+    static final int BUTTONTYPE_PLAYVEGANLEVELFOUR = 9;
+    static final int BUTTONTYPE_PLAYVEGANLEVELFIVE = 10;
 
-    static final int BUTTONTYPE_PLAYENDLESS = 9;
-    static final int BUTTONTYPE_TUTORIAL = 10;
-    static final int BUTTONTYPE_RECIPES = 11;
-    static final int BUTTONTYPE_SOUND = 12;
-    static final int BUTTONTYPE_MUSIC = 13;
+    static final int BUTTONTYPE_MAINMENU = 11;
+    static final int BUTTONTYPE_NEXTIMAGE = 12;
+    static final int BUTTONTYPE_PREVIMAGE = 13;
 
-    static final int BUTTONTYPE_PLAYMODES = 14;
+    static final int BUTTONTYPE_PLAYENDLESS = 14;
+    static final int BUTTONTYPE_TUTORIAL = 15;
+    static final int BUTTONTYPE_RECIPES = 16;
+    static final int BUTTONTYPE_SOUND = 17;
+    static final int BUTTONTYPE_MUSIC = 18;
 
-    static final int BUTTONTYPE_FIRSTRECIPE = 15;
-    static final int BUTTONTYPE_SECONDRECIPE = 16;
-    static final int BUTTONTYPE_THIRDRECIPE = 17;
-    static final int BUTTONTYPE_FOURTHRECIPE = 18;
-    static final int BUTTONTYPE_FIFTHRECIPE = 19;
+    static final int BUTTONTYPE_PLAYMODES = 19;
 
-    static final int BUTTONTYPE_LANGUAGE = 20;
+    static final int BUTTONTYPE_FIRSTRECIPE = 20;
+    static final int BUTTONTYPE_SECONDRECIPE = 21;
+    static final int BUTTONTYPE_THIRDRECIPE = 22;
+    static final int BUTTONTYPE_FOURTHRECIPE = 23;
+    static final int BUTTONTYPE_FIFTHRECIPE = 24;
 
-    static final int BUTTONTYPE_LOCKED = 21;
-    static final int BUTTONTYPE_DIETMODE = 22;
+    static final int BUTTONTYPE_VEGANFIRSTRECIPE = 25;
+    static final int BUTTONTYPE_VEGANSECONDRECIPE = 26;
+    static final int BUTTONTYPE_VEGANTHIRDRECIPE = 27;
+    static final int BUTTONTYPE_VEGANFOURTHRECIPE = 28;
+    static final int BUTTONTYPE_VEGANFIFTHRECIPE = 29;
+
+    static final int BUTTONTYPE_LANGUAGE = 30;
+
+    static final int BUTTONTYPE_LOCKED = 31;
+    static final int BUTTONTYPE_DIETMODE = 32;
 
     static final float BUTTONSIZE_VERYSMALL = 1;
     static final float BUTTONSIZE_SMALL = 2;
@@ -124,13 +136,34 @@ public class Button {
                     game.setScreen(new LevelSelectScreen(game));
                     break;
                 case BUTTONTYPE_PLAYLEVELONE:
-                    game.setScreen(new FirstLevel(game));
+                    game.setScreen(new FirstLevel(game, false));
                     break;
                 case BUTTONTYPE_PLAYLEVELTWO:
-                    game.setScreen(new SecondLevel(game));
+                    game.setScreen(new SecondLevel(game, false));
                     break;
                 case BUTTONTYPE_PLAYLEVELTHREE:
-                    game.setScreen(new ThirdLevel(game));
+                    game.setScreen(new ThirdLevel(game, false));
+                    break;
+                case BUTTONTYPE_PLAYLEVELFOUR:
+                    game.setScreen(new FourthLevel(game, false));
+                    break;
+                case BUTTONTYPE_PLAYLEVELFIVE:
+                    game.setScreen(new FifthLevel(game, false));
+                    break;
+                case BUTTONTYPE_PLAYVEGANLEVELONE:
+                    game.setScreen(new FirstLevel(game, true));
+                    break;
+                case BUTTONTYPE_PLAYVEGANLEVELTWO:
+                    game.setScreen(new SecondLevel(game, true));
+                    break;
+                case BUTTONTYPE_PLAYVEGANLEVELTHREE:
+                    game.setScreen(new ThirdLevel(game, true));
+                    break;
+                case BUTTONTYPE_PLAYVEGANLEVELFOUR:
+                    game.setScreen(new FourthLevel(game, true));
+                    break;
+                case BUTTONTYPE_PLAYVEGANLEVELFIVE:
+                    game.setScreen(new FifthLevel(game, true));
                     break;
                 case BUTTONTYPE_TUTORIAL:
                     game.setScreen(new TutorialScreen(game));
@@ -172,6 +205,16 @@ public class Button {
                     break;
                 case BUTTONTYPE_FIFTHRECIPE:
                     game.setScreen(new Recipe(game, recipeType.vegetableStew));
+                    break;
+                case BUTTONTYPE_VEGANFIRSTRECIPE:
+                    break;
+                case BUTTONTYPE_VEGANSECONDRECIPE:
+                    break;
+                case BUTTONTYPE_VEGANTHIRDRECIPE:
+                    break;
+                case BUTTONTYPE_VEGANFOURTHRECIPE:
+                    break;
+                case BUTTONTYPE_VEGANFIFTHRECIPE:
                     break;
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();

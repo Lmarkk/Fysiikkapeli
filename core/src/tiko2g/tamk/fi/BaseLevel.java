@@ -1,6 +1,7 @@
 package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -41,6 +42,7 @@ public class BaseLevel implements Screen {
     Arrow arrow;
     int score;
     boolean projectileLanded = false;
+    boolean veganMode;
     BitmapFont font32;
 
     boolean scoreGetSoundPlayed;
@@ -80,6 +82,7 @@ public class BaseLevel implements Screen {
         font32 = game.getTextRenderer().createFont("Kreon-Regular.ttf", 32, Color.BLACK, 4);
         score = 0;
         arrow = new Arrow();
+
 
         gameWorld.setContactListener(new ContactListener() {
             @Override
@@ -251,6 +254,9 @@ public class BaseLevel implements Screen {
                 scoreGetSoundPlayed = true;
             }
         }
+        //if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        //    game.setScreen(new EndLevelScreen(game, 2, 800));
+        //}
 
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);

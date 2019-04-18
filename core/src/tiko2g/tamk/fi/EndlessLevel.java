@@ -70,7 +70,7 @@ public class EndlessLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 1, score));
+            game.setScreen(new EndLevelScreen(game, 1, score, false));
         }
         super.render(delta);
     }

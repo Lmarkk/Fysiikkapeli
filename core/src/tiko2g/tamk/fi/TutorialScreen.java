@@ -15,11 +15,11 @@ public class TutorialScreen extends BaseMenu {
     public TutorialScreen(MyGame g) {
         super(g);
         createButtons();
-        tutorialRect = new Rectangle(3, 2, 8, 4.5f);
-        tutorialImages[0] = new Texture("badlogic.jpg");
-        tutorialImages[1] = new Texture("blueberry.png");
-        tutorialImages[2] = new Texture("meat.png");
-        tutorialImages[3] = new Texture("strawberry.png");
+        tutorialRect = new Rectangle(3.4f, 1.6f, 9.11f, 4.21f);
+        tutorialImages[0] = new Texture("TutorialSampleScreen1.png");
+        tutorialImages[1] = new Texture("TutorialSampleScreen2.png");
+        tutorialImages[2] = new Texture("TutorialSampleScreen3.png");
+        tutorialImages[3] = new Texture("TutorialSampleScreen4.png");
         currentImage = tutorialImages[currentImageIndex];
     }
     @Override
@@ -43,6 +43,8 @@ public class TutorialScreen extends BaseMenu {
         batch.begin();
         batch.draw(currentImage, tutorialRect.x, tutorialRect.y, tutorialRect.getWidth(), tutorialRect.getHeight());
         batch.end();
+        game.getTextRenderer().renderTextCenter((currentImageIndex+1) + "/4", 8f * 100f, 0.7f * 100f, font30);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("tutorialtext"), 8.2f * 100f, 6.7f * 100f, font30);
     }
     @Override
     public void changeImage(boolean goForward) {

@@ -9,7 +9,7 @@ public class SecondLevel extends BaseLevel {
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
     int arrayIndex;
 
-    public SecondLevel(MyGame g) {
+    public SecondLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-wheat-fields.png", "ground.png");
 
         super.stopMusic();
@@ -20,6 +20,7 @@ public class SecondLevel extends BaseLevel {
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
         pot = new Pot(this, game, 12, 0);
+        veganMode = veganStatus;
 
         //for (int i = 0; i < 3; i++) {
         //    ThrownObject object = new Carrot(game, this);
@@ -32,8 +33,8 @@ public class SecondLevel extends BaseLevel {
 
         setNextProjectile();
 
-        createBorderWall(1, 0);
-        createBorderWall(18, 0);
+        createBorderWall(-0.5f, 0);
+        createBorderWall(30, 0);
     }
     @Override
     public void render(float delta) {
@@ -58,10 +59,14 @@ public class SecondLevel extends BaseLevel {
         moveCam();
         doPhysicsStep(delta);
         if(endGame) {
-            game.setScreen(new EndLevelScreen(game, 2, score));
+            game.setScreen(new EndLevelScreen(game, 2, score, veganMode));
         }
         super.render(delta);
-        game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+        if(veganMode) {
+            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+        } else {
+            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+        }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
 

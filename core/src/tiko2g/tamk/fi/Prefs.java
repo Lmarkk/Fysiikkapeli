@@ -47,6 +47,12 @@ public class Prefs {
     private int thirdLevelScore;
     private int fourthLevelScore;
     private int fifthLevelScore;
+    private int veganFirstLevelScore;
+    private int veganSecondLevelScore;
+    private int veganThirdLevelScore;
+    private int veganFourthLevelScore;
+    private int veganFifthLevelScore;
+
 
     public Prefs(MyGame g) {
         game = g;
@@ -56,12 +62,12 @@ public class Prefs {
         veganRecipesOpen = pref.getInteger("veganRecipesOpen", 0);
 
         levelOneOpen = pref.getBoolean("levelOneOpen", true);
-        levelTwoOpen = pref.getBoolean("levelTwoOpen", true);
-        levelThreeOpen = pref.getBoolean("levelThreeOpen", true);
+        levelTwoOpen = pref.getBoolean("levelTwoOpen", false);
+        levelThreeOpen = pref.getBoolean("levelThreeOpen", false);
         levelFourOpen = pref.getBoolean("levelFourOpen", false);
         levelFiveOpen = pref.getBoolean("levelFiveOpen", false);
 
-        veganLevelOneOpen = pref.getBoolean("veganLevelOneOpen", false);
+        veganLevelOneOpen = pref.getBoolean("veganLevelOneOpen", true);
         veganLevelTwoOpen = pref.getBoolean("veganLevelTwoOpen", false);
         veganLevelThreeOpen = pref.getBoolean("veganLevelThreeOpen", false);
         veganLevelFourOpen = pref.getBoolean("veganLevelFourOpen", false);
@@ -89,6 +95,12 @@ public class Prefs {
         thirdLevelScore = pref.getInteger("thirdLevelScore", 0);
         fourthLevelScore = pref.getInteger("fourthLevelScore", 0);
         fifthLevelScore = pref.getInteger("fifthLevelScore", 0);
+
+        veganFirstLevelScore = pref.getInteger("veganFirstLevelScore", 0);
+        veganSecondLevelScore = pref.getInteger("veganSecondLevelScore", 0);
+        veganThirdLevelScore = pref.getInteger("veganThirdLevelScore", 0);
+        veganFourthLevelScore = pref.getInteger("veganFourthLevelScore", 0);
+        veganFifthLevelScore = pref.getInteger("veganFifthLevelScore", 0);
 
         storedLanguage = pref.getInteger("storedLanguage", 0);
         if(storedLanguage == 0) {
@@ -152,6 +164,31 @@ public class Prefs {
     public void setFifthLevelScore(int score) {
         fifthLevelScore = score;
         pref.putInteger("fifthLevelScore", fifthLevelScore);
+        pref.flush();
+    }
+    public void setVeganFirstLevelScore(int score) {
+        veganFirstLevelScore = score;
+        pref.putInteger("veganFirstLevelScore", veganFirstLevelScore);
+        pref.flush();
+    }
+    public void setVeganSecondLevelScore(int score) {
+        veganSecondLevelScore = score;
+        pref.putInteger("veganSecondLevelScore", veganSecondLevelScore);
+        pref.flush();
+    }
+    public void setVeganThirdLevelScore(int score) {
+        veganThirdLevelScore = score;
+        pref.putInteger("veganThirdLevelScore", veganThirdLevelScore);
+        pref.flush();
+    }
+    public void setVeganFourthLevelScore(int score) {
+        veganFourthLevelScore = score;
+        pref.putInteger("veganFourthLevelScore", veganFourthLevelScore);
+        pref.flush();
+    }
+    public void setVeganFifthLevelScore(int score) {
+        veganFifthLevelScore = score;
+        pref.putInteger("veganFifthLevelScore", veganFifthLevelScore);
         pref.flush();
     }
 
@@ -301,6 +338,22 @@ public class Prefs {
     }
     public int getFifthLevelScore() {
         return fifthLevelScore;
+    }
+
+    public int getVeganFirstLevelScore() {
+        return veganFirstLevelScore;
+    }
+    public int getVeganSecondLevelScore() {
+        return veganSecondLevelScore;
+    }
+    public int getVeganThirdLevelScore() {
+        return veganThirdLevelScore;
+    }
+    public int getVeganFourthLevelScore() {
+        return veganFourthLevelScore;
+    }
+    public int getVeganFifthLevelScore() {
+        return veganFifthLevelScore;
     }
 
     public boolean getLevelOneOpen() {
