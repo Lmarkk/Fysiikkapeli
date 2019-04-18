@@ -29,8 +29,14 @@ public class FourthLevel extends BaseLevel {
         //    getProjectiles().add(object);
         //}
 
-        thrownObjects.add(new BellPepper(game, this), new BellPepper(game, this), new BellPepper(game, this), new Meat(game, this));
-        thrownObjects.add(new Meat(game, this), new BellPepper(game, this), new BellPepper(game, this));
+        if(!veganMode) {
+            thrownObjects.add(new BellPepper(game, this), new BellPepper(game, this), new BellPepper(game, this), new Meat(game, this));
+            thrownObjects.add(new Meat(game, this), new BellPepper(game, this), new BellPepper(game, this));
+        } else {
+            thrownObjects.add(new Onion(game, this), new Onion(game, this), new Tomato(game, this), new Tomato(game, this));
+            thrownObjects.add(new BellPepper(game, this), new BellPepper(game, this), new BellPepper(game, this));
+        }
+
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();

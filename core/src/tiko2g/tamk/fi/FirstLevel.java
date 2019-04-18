@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 public class FirstLevel extends BaseLevel {
-    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(6);
     int arrayIndex;
 
     public FirstLevel(MyGame g, boolean veganStatus) {
@@ -22,9 +22,14 @@ public class FirstLevel extends BaseLevel {
         pot = new Pot(this, game, 12, 0);
         veganMode = veganStatus;
 
+        if(!veganMode) {
+            thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
+            thrownObjects.add(new Carrot(game, this), new Carrot(game, this));
+        } else {
+            thrownObjects.add(new Potato(game, this), new Potato(game, this), new Onion(game, this), new Onion(game, this));
+            thrownObjects.add(new Tomato(game, this), new Tomato(game, this));
+        }
 
-        thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
-        thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();

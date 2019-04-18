@@ -16,7 +16,7 @@ public class Peach extends ThrownObject {
     @Override
     public Vector2[] getVertices(){
         Vector2[] vertices = new Vector2[8];
-        vertices[0] = new Vector2(0.59f, 3.1f);
+        vertices[0] = new Vector2(0.59f, 3.10f);
         vertices[1] = new Vector2(1.88f, 3.46f);
         vertices[2] = new Vector2(3.27f, 2.97f);
         vertices[3] = new Vector2(3.69f, 1.88f);
