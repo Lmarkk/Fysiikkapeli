@@ -5,11 +5,29 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Fourth level.
+ */
 public class FourthLevel extends BaseLevel {
+    /**
+     * The Thrown objects.
+     */
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    /**
+     * The Array index.
+     */
     int arrayIndex;
+    /**
+     * The Obstacle.
+     */
     Obstacle obstacle;
 
+    /**
+     * Instantiates a new Fourth level.
+     *
+     * @param g           the g
+     * @param veganStatus the vegan status
+     */
     public FourthLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-wheat-fields.png", "ground.png");
 

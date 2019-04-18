@@ -3,6 +3,9 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Level select screen.
+ */
 public class LevelSelectScreen extends BaseMenu {
     private Button levelOneButton;
     private Button levelTwoButton;
@@ -18,6 +21,11 @@ public class LevelSelectScreen extends BaseMenu {
     private Array<Button> veganButtonList;
     private Array<Button> normalButtonList;
 
+    /**
+     * Instantiates a new Level select screen.
+     *
+     * @param g the g
+     */
     public LevelSelectScreen(MyGame g) {
         super(g);
         createButtons();

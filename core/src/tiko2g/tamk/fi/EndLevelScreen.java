@@ -4,17 +4,43 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 
+/**
+ * The type End level screen.
+ */
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
     private Button mainMenuButton;
     private Button nextLevelButton;
     private Rectangle unlockMessageRect;
+    /**
+     * The First unlock.
+     */
     boolean firstUnlock;
+    /**
+     * The Display next level button.
+     */
     boolean displayNextLevelButton;
+    /**
+     * The Current level.
+     */
     int currentLevel;
+    /**
+     * The Current score.
+     */
     int currentScore;
+    /**
+     * The Vegan mode on.
+     */
     boolean veganModeOn;
 
+    /**
+     * Instantiates a new End level screen.
+     *
+     * @param g           the g
+     * @param currLvl     the curr lvl
+     * @param currScore   the curr score
+     * @param veganStatus the vegan status
+     */
     public EndLevelScreen(MyGame g, int currLvl, int currScore, boolean veganStatus) {
         super(g);
         veganModeOn = veganStatus;

@@ -3,10 +3,19 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Bell pepper.
+ */
 public class BellPepper extends ThrownObject {
 
     private float scale = 0.17f;
 
+    /**
+     * Instantiates a new Bell pepper.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public BellPepper(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.67f);
         setTexture(new Texture("object-bellpepper.png"));

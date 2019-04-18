@@ -7,13 +7,39 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
+/**
+ * The type Border wall.
+ */
 public class BorderWall {
+    /**
+     * The Game.
+     */
     MyGame game;
+    /**
+     * The Base level.
+     */
     BaseLevel baseLevel;
+    /**
+     * The Wall rect.
+     */
     Rectangle wallRect;
+    /**
+     * The Batch.
+     */
     SpriteBatch batch;
+    /**
+     * The Wall body.
+     */
     Body wallBody;
 
+    /**
+     * Instantiates a new Border wall.
+     *
+     * @param g the g
+     * @param b the b
+     * @param x the x
+     * @param y the y
+     */
     public BorderWall(MyGame g, BaseLevel b, float x, float y) {
         game = g;
         baseLevel = b;
@@ -22,6 +48,14 @@ public class BorderWall {
         wallBody = baseLevel.getGameWorld().createBody(getWallBodyDef(x, y));
         wallBody.createFixture(getWallFixtureDef());
     }
+
+    /**
+     * Gets wall body def.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the wall body def
+     */
     public BodyDef getWallBodyDef(float x, float y) {
         BodyDef wallBodyDef = new BodyDef();
         wallBodyDef.type = BodyDef.BodyType.StaticBody;
@@ -29,6 +63,11 @@ public class BorderWall {
         return wallBodyDef;
     }
 
+    /**
+     * Gets wall fixture def.
+     *
+     * @return the wall fixture def
+     */
     public FixtureDef getWallFixtureDef() {
         FixtureDef wallFixtureDef = new FixtureDef();
         wallFixtureDef.density = 1.0f;

@@ -5,10 +5,25 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Second level.
+ */
 public class SecondLevel extends BaseLevel {
+    /**
+     * The Thrown objects.
+     */
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    /**
+     * The Array index.
+     */
     int arrayIndex;
 
+    /**
+     * Instantiates a new Second level.
+     *
+     * @param g           the g
+     * @param veganStatus the vegan status
+     */
     public SecondLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-green-hills2.png", "ground.png");
 

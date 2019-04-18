@@ -2,7 +2,6 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -10,20 +9,61 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Base menu.
+ */
 public class BaseMenu implements Screen {
+    /**
+     * The Game.
+     */
     MyGame game;
+    /**
+     * The Batch.
+     */
     SpriteBatch batch;
+    /**
+     * The Button list.
+     */
     Array<Button> buttonList;
+    /**
+     * The Camera.
+     */
     OrthographicCamera camera;
+    /**
+     * The Background.
+     */
     Texture background;
+    /**
+     * The Kreon font.
+     */
     String kreonFont = "Kreon-Regular.ttf";
+    /**
+     * The Font 64.
+     */
     BitmapFont font64;
+    /**
+     * The Font 100.
+     */
     BitmapFont font100;
+    /**
+     * The Font 42.
+     */
     BitmapFont font42;
+    /**
+     * The Font 120.
+     */
     BitmapFont font120;
+    /**
+     * The Font 30.
+     */
     BitmapFont font30;
 
 
+    /**
+     * Instantiates a new Base menu.
+     *
+     * @param g the g
+     */
     public BaseMenu(MyGame g) {
         game = g;
         batch = g.getBatch();
@@ -63,9 +103,17 @@ public class BaseMenu implements Screen {
             }
         });
     }
+
+    /**
+     * Create buttons.
+     */
     public void createButtons() {
         buttonList = new Array<Button>();
     }
+
+    /**
+     * Render buttons.
+     */
     public void renderButtons() {
         batch.begin();
         for(Button button: buttonList) {
@@ -74,6 +122,9 @@ public class BaseMenu implements Screen {
         batch.end();
     }
 
+    /**
+     * Stop music.
+     */
     public void stopMusic() {
         game.getMenuTheme().stop();
         game.getWheatFieldsTheme().stop();
@@ -81,6 +132,11 @@ public class BaseMenu implements Screen {
         game.getShadyWoodsTheme().stop();
     }
 
+    /**
+     * Change image.
+     *
+     * @param goForward the go forward
+     */
     public void changeImage(boolean goForward){
 
     }

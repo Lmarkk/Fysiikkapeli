@@ -8,8 +8,17 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
+/**
+ * The type Ground.
+ */
 public class Ground {
+    /**
+     * The Game.
+     */
     MyGame game;
+    /**
+     * The Batch.
+     */
     SpriteBatch batch;
     private BaseLevel baseLevel;
     private Texture groundTexture;
@@ -18,6 +27,13 @@ public class Ground {
     private float groundWidth = 48;
 
 
+    /**
+     * Instantiates a new Ground.
+     *
+     * @param g             the g
+     * @param b             the b
+     * @param textureSource the texture source
+     */
     public Ground(MyGame g, BaseLevel b, String textureSource) {
         game = g;
         baseLevel = b;
@@ -28,12 +44,21 @@ public class Ground {
         groundBody.createFixture(getGroundFixtureDef());
 
     }
+
+    /**
+     * Draw.
+     */
     public void draw() {
         batch.draw(groundTexture, groundRect.x, groundRect.y, 16, 4);
         batch.draw(groundTexture, 16, groundRect.y, 16, 4);
         batch.draw(groundTexture, 32, groundRect.y, 16, 4);
     }
 
+    /**
+     * Gets ground body def.
+     *
+     * @return the ground body def
+     */
     public BodyDef getGroundBodyDef() {
         BodyDef groundBodyDef = new BodyDef();
         groundBodyDef.type = BodyDef.BodyType.StaticBody;
@@ -41,6 +66,11 @@ public class Ground {
         return groundBodyDef;
     }
 
+    /**
+     * Gets ground fixture def.
+     *
+     * @return the ground fixture def
+     */
     public FixtureDef getGroundFixtureDef() {
         FixtureDef groundFixtureDef = new FixtureDef();
         groundFixtureDef.density = 1.0f;
@@ -52,6 +82,11 @@ public class Ground {
         return groundFixtureDef;
     }
 
+    /**
+     * Gets ground body.
+     *
+     * @return the ground body
+     */
     public Body getGroundBody() {
         return groundBody;
     }

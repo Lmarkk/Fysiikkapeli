@@ -3,6 +3,9 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Recipe menu.
+ */
 public class RecipeMenu extends BaseMenu {
 
     private Button mainMenuButton;
@@ -17,6 +20,11 @@ public class RecipeMenu extends BaseMenu {
     private Rectangle recipesOpenRect;
 
 
+    /**
+     * Instantiates a new Recipe menu.
+     *
+     * @param g the g
+     */
     public RecipeMenu(MyGame g) {
         super(g);
         createButtons();
@@ -198,7 +206,7 @@ public class RecipeMenu extends BaseMenu {
             }
             if(game.getPrefs().getRecipeFiveOpen()) {
                 fifthRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("vegetablestew"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("chickenRice"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
         }
     }

@@ -5,12 +5,33 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Fifth level.
+ */
 public class FifthLevel extends BaseLevel {
+    /**
+     * The Thrown objects.
+     */
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(7);
+    /**
+     * The Array index.
+     */
     int arrayIndex;
+    /**
+     * The Top obstacle.
+     */
     Obstacle topObstacle;
+    /**
+     * The Bot obstacle.
+     */
     Obstacle botObstacle;
 
+    /**
+     * Instantiates a new Fifth level.
+     *
+     * @param g           the g
+     * @param veganStatus the vegan status
+     */
     public FifthLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-shady-woods.png", "ground.png");
 

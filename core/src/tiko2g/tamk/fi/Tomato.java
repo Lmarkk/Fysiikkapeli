@@ -3,9 +3,18 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Tomato.
+ */
 public class Tomato extends ThrownObject {
     private float scale = 0.35f;
 
+    /**
+     * Instantiates a new Tomato.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public Tomato(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);
         setTexture(new Texture("object-tomato.png"));

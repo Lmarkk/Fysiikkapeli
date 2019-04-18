@@ -5,10 +5,25 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type First level.
+ */
 public class FirstLevel extends BaseLevel {
+    /**
+     * The Thrown objects.
+     */
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(6);
+    /**
+     * The Array index.
+     */
     int arrayIndex;
 
+    /**
+     * Instantiates a new First level.
+     *
+     * @param g           the g
+     * @param veganStatus the vegan status
+     */
     public FirstLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-green-hills2.png", "ground.png");
 

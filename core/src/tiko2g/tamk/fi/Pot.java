@@ -10,6 +10,9 @@ import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
+/**
+ * The type Pot.
+ */
 public class Pot {
     private MyGame game;
     private SpriteBatch batch;
@@ -28,6 +31,14 @@ public class Pot {
     private float potTextureScale = 1.2f;
     private float potYOffset = 0.5f;
 
+    /**
+     * Instantiates a new Pot.
+     *
+     * @param b the b
+     * @param g the g
+     * @param x the x
+     * @param y the y
+     */
     public Pot(BaseLevel b, MyGame g, float x, float y) {
         game = g;
         batch = g.getBatch();
@@ -38,6 +49,14 @@ public class Pot {
         createPot(x, y);
 
     }
+
+    /**
+     * Gets pot body def.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the pot body def
+     */
     public BodyDef getPotBodyDef(float x, float y) {
         BodyDef potBodyDef = new BodyDef();
         potBodyDef.type = BodyDef.BodyType.StaticBody;
@@ -45,6 +64,13 @@ public class Pot {
         return potBodyDef;
     }
 
+    /**
+     * Gets pot fixture def.
+     *
+     * @param hX the h x
+     * @param hY the h y
+     * @return the pot fixture def
+     */
     public FixtureDef getPotFixtureDef(float hX, float hY) {
         FixtureDef potFixtureDef = new FixtureDef();
         potFixtureDef.density = 1.0f;
@@ -65,6 +91,13 @@ public class Pot {
         potFixtureDef.shape = edgeShape;
         return potFixtureDef;
     }
+
+    /**
+     * Create pot.
+     *
+     * @param x the x
+     * @param y the y
+     */
     public void createPot(float x, float y) {
         potBody = baseLevel.getGameWorld().createBody(getPotBodyDef(x, y));
         potBody.createFixture(getPotFixtureDef(new Vector2(0, 1.8f * potScale), new Vector2(0f, 0.55f * potScale)));
@@ -92,12 +125,20 @@ public class Pot {
         bottomRect = new Rectangle(x, y, potWidth, bottomRectHeight);
         potRect = new Rectangle(x + 0.35f * potScale, y + 0.2f * potScale, 2f * potScale, 1 * potScale);
     }
+
+    /**
+     * Draw top.
+     */
     public void drawTop(){
         Vector2 bottomRectCenter = new Vector2();
         bottomRectCenter = bottomRect.getCenter(bottomRectCenter);
         batch.draw(potTopTexture, bottomRectCenter.x - (bottomRect.width * potTextureScale) / 2f,
                 leftSideRect.y - potYOffset, potWidth * potTextureScale, potHeight * potTextureScale);
     }
+
+    /**
+     * Draw.
+     */
     public void draw() {
         Vector2 bottomRectCenter = new Vector2();
         bottomRectCenter = bottomRect.getCenter(bottomRectCenter);
@@ -105,6 +146,11 @@ public class Pot {
                 leftSideRect.y - potYOffset, potWidth * potTextureScale, potHeight * potTextureScale);
     }
 
+    /**
+     * Gets pot rect.
+     *
+     * @return the pot rect
+     */
     public Rectangle getPotRect() {
         return potRect;
     }

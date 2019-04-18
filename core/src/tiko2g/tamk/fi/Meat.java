@@ -3,9 +3,18 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Meat.
+ */
 public class Meat extends ThrownObject {
     private float scale = 0.5f;
 
+    /**
+     * Instantiates a new Meat.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public Meat(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.6f);
         setTexture(new Texture("meat.png"));

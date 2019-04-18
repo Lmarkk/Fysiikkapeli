@@ -11,6 +11,9 @@ import com.badlogic.gdx.utils.I18NBundle;
 
 import java.util.Locale;
 
+/**
+ * The type My game.
+ */
 // TODO: tee peli
 //TODO: poista ^
 public class MyGame extends Game {
@@ -61,66 +64,146 @@ public class MyGame extends Game {
 
 	}
 
+    /**
+     * Gets fin bundle.
+     *
+     * @return the fin bundle
+     */
     public I18NBundle getFinBundle() {
         return finBundle;
     }
 
+    /**
+     * Gets en bundle.
+     *
+     * @return the en bundle
+     */
     public I18NBundle getEnBundle() {
         return enBundle;
     }
 
+    /**
+     * Gets text renderer.
+     *
+     * @return the text renderer
+     */
     public TextRenderer getTextRenderer() {
         return textRenderer;
     }
 
+    /**
+     * Gets batch.
+     *
+     * @return the batch
+     */
     public SpriteBatch getBatch() {
         return batch;
     }
 
+    /**
+     * Gets camera.
+     *
+     * @return the camera
+     */
     public OrthographicCamera getCamera() {
         return camera;
     }
 
+    /**
+     * Gets prefs.
+     *
+     * @return the prefs
+     */
     public Prefs getPrefs() {
         return prefs;
     }
 
+    /**
+     * Gets green hills theme.
+     *
+     * @return the green hills theme
+     */
     public Music getGreenHillsTheme() {
         return greenHillsTheme;
     }
 
+    /**
+     * Gets shady woods theme.
+     *
+     * @return the shady woods theme
+     */
     public Music getShadyWoodsTheme() {
         return shadyWoodsTheme;
     }
 
+    /**
+     * Gets wheat fields theme.
+     *
+     * @return the wheat fields theme
+     */
     public Music getWheatFieldsTheme() {
         return wheatFieldsTheme;
     }
 
+    /**
+     * Gets menu theme.
+     *
+     * @return the menu theme
+     */
     public Music getMenuTheme() {
         return menuTheme;
     }
 
+    /**
+     * Gets kreon font.
+     *
+     * @return the kreon font
+     */
     public String getKreonFont() {
         return kreonFont;
     }
 
+    /**
+     * Gets font 30.
+     *
+     * @return the font 30
+     */
     public BitmapFont getFont30() {
         return font30;
     }
 
+    /**
+     * Gets font 42.
+     *
+     * @return the font 42
+     */
     public BitmapFont getFont42() {
         return font42;
     }
 
+    /**
+     * Gets font 64.
+     *
+     * @return the font 64
+     */
     public BitmapFont getFont64() {
         return font64;
     }
 
+    /**
+     * Gets font 100.
+     *
+     * @return the font 100
+     */
     public BitmapFont getFont100() {
         return font100;
     }
 
+    /**
+     * Gets font 120.
+     *
+     * @return the font 120
+     */
     public BitmapFont getFont120() {
         return font120;
     }

@@ -1,7 +1,6 @@
 package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
@@ -23,34 +22,97 @@ import com.badlogic.gdx.physics.box2d.World;
 import java.util.ArrayList;
 
 
+/**
+ * The type Base level.
+ */
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
     private final Vector2 THROW_MAX_FORCE = new Vector2(25f, 20f);
     private final float THROW_FORCE_MULTIPLIER = 3.5f;
 
+    /**
+     * The Game.
+     */
     MyGame game;
+    /**
+     * The Batch.
+     */
     SpriteBatch batch;
+    /**
+     * The Background.
+     */
     Texture background;
+    /**
+     * The Ground.
+     */
     Ground ground;
+    /**
+     * The Pot.
+     */
     Pot pot;
+    /**
+     * The Camera.
+     */
     OrthographicCamera camera;
+    /**
+     * The Current projectile.
+     */
     ThrownObject currentProjectile;
+    /**
+     * The Prev menu button.
+     */
     Button prevMenuButton;
+    /**
+     * The Score get sound.
+     */
     Sound scoreGetSound;
+    /**
+     * The Catapult.
+     */
     Catapult catapult;
+    /**
+     * The Projectile start pos.
+     */
     Vector2 projectileStartPos = new Vector2(1, 2.2f);
+    /**
+     * The Arrow.
+     */
     Arrow arrow;
+    /**
+     * The Score.
+     */
     int score;
+    /**
+     * The Projectile landed.
+     */
     boolean projectileLanded = false;
+    /**
+     * The Vegan mode.
+     */
     boolean veganMode;
+    /**
+     * The Font 32.
+     */
     BitmapFont font32;
 
+    /**
+     * The Score get sound played.
+     */
     boolean scoreGetSoundPlayed;
+    /**
+     * The Score given.
+     */
     boolean scoreGiven;
+    /**
+     * The End game.
+     */
     boolean endGame = false;
     private float accumulator;
     private float timeStep;
     private World gameWorld;
+    /**
+     * The Touch start.
+     */
     Vector2 touchStart = new Vector2();
     private Vector2 touchEnd = new Vector2();
     private boolean gameRunning = false;
@@ -63,6 +125,13 @@ public class BaseLevel implements Screen {
     private Box2DDebugRenderer debugRenderer;
     private Vector2 menuButtonCenter;
 
+    /**
+     * Instantiates a new Base level.
+     *
+     * @param g                       the g
+     * @param backgroundTextureSource the background texture source
+     * @param groundTextureSource     the ground texture source
+     */
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
         camera = g.getCamera();
@@ -135,6 +204,12 @@ public class BaseLevel implements Screen {
         accumulator = 0;
         timeStep = 1/60f;
     }
+
+    /**
+     * Throw projectile.
+     *
+     * @param projectile the projectile
+     */
     public void throwProjectile(ThrownObject projectile){
         Vector2 throwDirection;
         if(projectile != null && !projectile.isThrown()){
@@ -153,7 +228,6 @@ public class BaseLevel implements Screen {
             }
             Body b = projectile.getBody();
             b.setType(BodyDef.BodyType.DynamicBody);
-            System.out.println(throwDirection);
             b.applyLinearImpulse(throwDirection, b.getWorldCenter(), true);
             b.applyAngularImpulse(-1f, true);
             projectile.setThrown(true);
@@ -161,14 +235,30 @@ public class BaseLevel implements Screen {
         }
     }
 
+    /**
+     * Is game running boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGameRunning() {
         return gameRunning;
     }
 
+    /**
+     * Create border wall.
+     *
+     * @param x the x
+     * @param y the y
+     */
     public void createBorderWall(float x, float y) {
         BorderWall borderWall = new BorderWall(game, this, x, y);
     }
 
+    /**
+     * Do physics step.
+     *
+     * @param deltaTime the delta time
+     */
     public void doPhysicsStep(float deltaTime) {
         float frameTime = deltaTime;
         if(deltaTime > 1 / 4f) {
@@ -181,6 +271,10 @@ public class BaseLevel implements Screen {
             accumulator -= timeStep;
         }
     }
+
+    /**
+     * Move cam.
+     */
     public void moveCam() {
         Vector3 desiredPosition = new Vector3();
         desiredPosition.x = currentProjectile.getBody().getPosition().x;
@@ -189,13 +283,16 @@ public class BaseLevel implements Screen {
             camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
             prevMenuButton.setX(camera.position.x -7.5f);
             camera.update();
-        } else if(desiredPosition.x == projectileStartPos.x){
+        } else if(desiredPosition.x <= projectileStartPos.x){
             camera.position.slerp(new Vector3(cameraStartPosition.x, cameraStartPosition.y ,0), Gdx.graphics.getDeltaTime() * 10);
             prevMenuButton.setX(camera.position.x -7.5f);
             camera.update();
         }
     }
 
+    /**
+     * Sets next projectile.
+     */
     public void setNextProjectile() {
         if(currentProjectileIndex < projectiles.size()){
             scoreGetSoundPlayed = false;
@@ -217,6 +314,11 @@ public class BaseLevel implements Screen {
         projectileLanded = false;
     }
 
+    /**
+     * Gets game world.
+     *
+     * @return the game world
+     */
     public World getGameWorld() {
         return gameWorld;
     }
@@ -266,6 +368,9 @@ public class BaseLevel implements Screen {
 
     }
 
+    /**
+     * Stop music.
+     */
     public void stopMusic() {
         game.getMenuTheme().stop();
         game.getWheatFieldsTheme().stop();
@@ -301,6 +406,11 @@ public class BaseLevel implements Screen {
         prevMenuButton.dispose();
     }
 
+    /**
+     * Gets projectiles.
+     *
+     * @return the projectiles
+     */
     public ArrayList<ThrownObject> getProjectiles() {
         return projectiles;
     }

@@ -10,19 +10,89 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-enum recipeType { hotPot, chickenSalad, meatSoup, vegetableStew, filledBellPeppers, lentilSoup, chiliSinCarne, chickenRice, vegetableCurry, beanBolognese}
+/**
+ * The enum Recipe type.
+ */
+enum recipeType {
+    /**
+     * Hot pot recipe type.
+     */
+    hotPot, /**
+     * Chicken salad recipe type.
+     */
+    chickenSalad, /**
+     * Meat soup recipe type.
+     */
+    meatSoup, /**
+     * Vegetable stew recipe type.
+     */
+    vegetableStew, /**
+     * Filled bell peppers recipe type.
+     */
+    filledBellPeppers, /**
+     * Lentil soup recipe type.
+     */
+    lentilSoup, /**
+     * Chili sin carne recipe type.
+     */
+    chiliSinCarne, /**
+     * Chicken rice recipe type.
+     */
+    chickenRice, /**
+     * Vegetable curry recipe type.
+     */
+    vegetableCurry, /**
+     * Bean bolognese recipe type.
+     */
+    beanBolognese}
 
+/**
+ * The type Recipe.
+ */
 public class Recipe implements Screen {
+    /**
+     * The Anchor position.
+     */
     Vector2 anchorPosition = new Vector2(0f, 0f);
+    /**
+     * The Game.
+     */
     MyGame game;
+    /**
+     * The Batch.
+     */
     SpriteBatch batch;
+    /**
+     * The Camera.
+     */
     OrthographicCamera camera;
+    /**
+     * The Home button.
+     */
     Button homeButton;
+    /**
+     * The Background.
+     */
     Texture background;
+    /**
+     * The Font 30.
+     */
     BitmapFont font30;
+    /**
+     * The Kreon font.
+     */
     String kreonFont = "Kreon-Regular.ttf";
+    /**
+     * The Previous y.
+     */
     float previousY;
+    /**
+     * The Touch start y.
+     */
     float touchStartY;
+    /**
+     * The Scroll speed.
+     */
     float scrollSpeed = 500f;
     private String ingredients;
     private String instructions;
@@ -30,6 +100,12 @@ public class Recipe implements Screen {
     private final Vector2 instructionPos = new Vector2(50f, 450f);
 
 
+    /**
+     * Instantiates a new Recipe.
+     *
+     * @param g          the g
+     * @param recipeType the recipe type
+     */
     public Recipe(MyGame g, recipeType recipeType) {
         game = g;
         batch = game.getBatch();
@@ -127,6 +203,12 @@ public class Recipe implements Screen {
             }
         });
     }
+
+    /**
+     * Move cam.
+     *
+     * @param desiredY the desired y
+     */
     public void moveCam(float desiredY) {
 //        Vector3 desiredPosition = new Vector3();
 //        desiredPosition.x = camera.position.x;

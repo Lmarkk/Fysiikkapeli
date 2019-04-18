@@ -3,9 +3,18 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Carrot.
+ */
 public class Carrot extends ThrownObject {
     private float scale = 0.24f;
 
+    /**
+     * Instantiates a new Carrot.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public Carrot(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);
         setTexture(new Texture("object-carrot.png"));

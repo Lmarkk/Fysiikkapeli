@@ -2,6 +2,9 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.InputProcessor;
 
+/**
+ * The type My input processor.
+ */
 public abstract class MyInputProcessor implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
