@@ -157,23 +157,23 @@ public class RecipeMenu extends BaseMenu {
 
             if(game.getPrefs().getVeganRecipeOneOpen()) {
                 firstRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("karelianhotpot"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("vegetablestew"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
             if(game.getPrefs().getVeganRecipeTwoOpen()) {
                 secondRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("meatsoup"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("beanBolognese"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
             if(game.getPrefs().getVeganRecipeThreeOpen()) {
                 thirdRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("chickensalad"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("vegetableCurry"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
             if(game.getPrefs().getVeganRecipeFourOpen()) {
                 fourthRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("filledbellpeppers"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("chiliSinCarne"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
             if(game.getPrefs().getVeganRecipeFiveOpen()) {
                 fifthRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("vegetablestew"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("lentilSoup"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
         } else {
             recipesOpenRect.getCenter(rectCenter);

@@ -204,17 +204,22 @@ public class Button {
                     game.setScreen(new Recipe(game, recipeType.filledBellPeppers));
                     break;
                 case BUTTONTYPE_FIFTHRECIPE:
-                    game.setScreen(new Recipe(game, recipeType.vegetableStew));
+                    game.setScreen(new Recipe(game, recipeType.chickenRice));
                     break;
                 case BUTTONTYPE_VEGANFIRSTRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.vegetableStew));
                     break;
                 case BUTTONTYPE_VEGANSECONDRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.beanBolognese));
                     break;
                 case BUTTONTYPE_VEGANTHIRDRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.vegetableCurry));
                     break;
                 case BUTTONTYPE_VEGANFOURTHRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.chiliSinCarne));
                     break;
                 case BUTTONTYPE_VEGANFIFTHRECIPE:
+                    game.setScreen(new Recipe(game, recipeType.lentilSoup));
                     break;
                 case BUTTONTYPE_LANGUAGE:
                     game.getPrefs().toggleLanguage();

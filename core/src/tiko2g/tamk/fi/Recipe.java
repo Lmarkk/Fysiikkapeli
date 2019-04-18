@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-enum recipeType { hotPot, chickenSalad, meatSoup, vegetableStew, filledBellPeppers}
+enum recipeType { hotPot, chickenSalad, meatSoup, vegetableStew, filledBellPeppers, lentilSoup, chiliSinCarne, chickenRice, vegetableCurry, beanBolognese}
 
 public class Recipe implements Screen {
     Vector2 anchorPosition = new Vector2(0f, 0f);
@@ -58,6 +58,26 @@ public class Recipe implements Screen {
             case filledBellPeppers:
                 ingredients = g.getPrefs().getCurrentLanguage().get ("filledBellPepperIngredients");
                 instructions = g.getPrefs().getCurrentLanguage().get("filledBellPepperInstructions");
+                break;
+            case lentilSoup:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("lentilSoupIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("lentilSoupInstructions");
+                break;
+            case chickenRice:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("chickenRiceIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("chickenRiceInstructions");
+                break;
+            case chiliSinCarne:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("chiliSinCarneIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("chiliSinCarneInstructions");
+                break;
+            case beanBolognese:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("beanBologneseIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("beanBologneseInstructions");
+                break;
+            case vegetableCurry:
+                ingredients = g.getPrefs().getCurrentLanguage().get ("vegetableCurryIngredients");
+                instructions = g.getPrefs().getCurrentLanguage().get("vegetableCurryInstructions");
                 break;
         }
 

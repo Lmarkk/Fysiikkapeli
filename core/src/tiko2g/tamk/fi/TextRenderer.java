@@ -52,7 +52,7 @@ public class TextRenderer {
      * @param font the font
      */
     public void renderText(String text, float x, float y, BitmapFont font){
-        String[] splitText = text.split("SPLIT_HERE");
+        String[] splitText = text.split("_SPLIT_");
         batch.setProjectionMatrix(camera.combined);
         GlyphLayout layout = new GlyphLayout();
         layout.setText(font, splitText[0]);
