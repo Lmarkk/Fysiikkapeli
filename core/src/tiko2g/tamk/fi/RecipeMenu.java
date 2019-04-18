@@ -198,7 +198,7 @@ public class RecipeMenu extends BaseMenu {
             }
             if(game.getPrefs().getRecipeFiveOpen()) {
                 fifthRecipeButton.getButtonRect().getCenter(rectCenter);
-                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("vegetablestew"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
+                game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("chickenRice"), rectCenter.x * 100f, rectCenter.y * 100f, font30);
             }
         }
     }
