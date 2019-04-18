@@ -4,10 +4,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 
+/**
+ * The type Chicken.
+ */
 public class Chicken extends ThrownObject{
 
     private float scale = 0.42f;
 
+    /**
+     * Instantiates a new Chicken.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public Chicken(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.56f);
         setTexture(new Texture("object-chicken.png"));
