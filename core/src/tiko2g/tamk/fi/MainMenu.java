@@ -3,6 +3,9 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Main menu.
+ */
 public class MainMenu extends BaseMenu {
 
     private Button playButton;
@@ -14,6 +17,11 @@ public class MainMenu extends BaseMenu {
     private Texture title;
 
 
+    /**
+     * Instantiates a new Main menu.
+     *
+     * @param g the g
+     */
     public MainMenu(MyGame g) {
         super(g);
         createButtons();
@@ -41,6 +49,7 @@ public class MainMenu extends BaseMenu {
 
 
     }
+
     public void renderButtons(){
         super.renderButtons();
         Vector2 buttonCenter = new Vector2();
