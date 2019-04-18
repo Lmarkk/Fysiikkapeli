@@ -9,51 +9,162 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 
+/**
+ * The type Button.
+ */
 public class Button {
+    /**
+     * The Buttontype playlevelone.
+     */
     static final int BUTTONTYPE_PLAYLEVELONE = 1;
+    /**
+     * The Buttontype playleveltwo.
+     */
     static final int BUTTONTYPE_PLAYLEVELTWO = 2;
+    /**
+     * The Buttontype playlevelthree.
+     */
     static final int BUTTONTYPE_PLAYLEVELTHREE = 3;
+    /**
+     * The Buttontype playlevelfour.
+     */
     static final int BUTTONTYPE_PLAYLEVELFOUR = 4;
+    /**
+     * The Buttontype playlevelfive.
+     */
     static final int BUTTONTYPE_PLAYLEVELFIVE = 5;
 
+    /**
+     * The Buttontype playveganlevelone.
+     */
     static final int BUTTONTYPE_PLAYVEGANLEVELONE = 6;
+    /**
+     * The Buttontype playveganleveltwo.
+     */
     static final int BUTTONTYPE_PLAYVEGANLEVELTWO = 7;
+    /**
+     * The Buttontype playveganlevelthree.
+     */
     static final int BUTTONTYPE_PLAYVEGANLEVELTHREE = 8;
+    /**
+     * The Buttontype playveganlevelfour.
+     */
     static final int BUTTONTYPE_PLAYVEGANLEVELFOUR = 9;
+    /**
+     * The Buttontype playveganlevelfive.
+     */
     static final int BUTTONTYPE_PLAYVEGANLEVELFIVE = 10;
 
+    /**
+     * The Buttontype mainmenu.
+     */
     static final int BUTTONTYPE_MAINMENU = 11;
+    /**
+     * The Buttontype nextimage.
+     */
     static final int BUTTONTYPE_NEXTIMAGE = 12;
+    /**
+     * The Buttontype previmage.
+     */
     static final int BUTTONTYPE_PREVIMAGE = 13;
 
+    /**
+     * The Buttontype playendless.
+     */
     static final int BUTTONTYPE_PLAYENDLESS = 14;
+    /**
+     * The Buttontype tutorial.
+     */
     static final int BUTTONTYPE_TUTORIAL = 15;
+    /**
+     * The Buttontype recipes.
+     */
     static final int BUTTONTYPE_RECIPES = 16;
+    /**
+     * The Buttontype sound.
+     */
     static final int BUTTONTYPE_SOUND = 17;
+    /**
+     * The Buttontype music.
+     */
     static final int BUTTONTYPE_MUSIC = 18;
 
+    /**
+     * The Buttontype playmodes.
+     */
     static final int BUTTONTYPE_PLAYMODES = 19;
 
+    /**
+     * The Buttontype firstrecipe.
+     */
     static final int BUTTONTYPE_FIRSTRECIPE = 20;
+    /**
+     * The Buttontype secondrecipe.
+     */
     static final int BUTTONTYPE_SECONDRECIPE = 21;
+    /**
+     * The Buttontype thirdrecipe.
+     */
     static final int BUTTONTYPE_THIRDRECIPE = 22;
+    /**
+     * The Buttontype fourthrecipe.
+     */
     static final int BUTTONTYPE_FOURTHRECIPE = 23;
+    /**
+     * The Buttontype fifthrecipe.
+     */
     static final int BUTTONTYPE_FIFTHRECIPE = 24;
 
+    /**
+     * The Buttontype veganfirstrecipe.
+     */
     static final int BUTTONTYPE_VEGANFIRSTRECIPE = 25;
+    /**
+     * The Buttontype vegansecondrecipe.
+     */
     static final int BUTTONTYPE_VEGANSECONDRECIPE = 26;
+    /**
+     * The Buttontype veganthirdrecipe.
+     */
     static final int BUTTONTYPE_VEGANTHIRDRECIPE = 27;
+    /**
+     * The Buttontype veganfourthrecipe.
+     */
     static final int BUTTONTYPE_VEGANFOURTHRECIPE = 28;
+    /**
+     * The Buttontype veganfifthrecipe.
+     */
     static final int BUTTONTYPE_VEGANFIFTHRECIPE = 29;
 
+    /**
+     * The Buttontype language.
+     */
     static final int BUTTONTYPE_LANGUAGE = 30;
 
+    /**
+     * The Buttontype locked.
+     */
     static final int BUTTONTYPE_LOCKED = 31;
+    /**
+     * The Buttontype dietmode.
+     */
     static final int BUTTONTYPE_DIETMODE = 32;
 
+    /**
+     * The Buttonsize verysmall.
+     */
     static final float BUTTONSIZE_VERYSMALL = 1;
+    /**
+     * The Buttonsize small.
+     */
     static final float BUTTONSIZE_SMALL = 2;
+    /**
+     * The Buttonsize medium.
+     */
     static final float BUTTONSIZE_MEDIUM = 3;
+    /**
+     * The Buttonsize large.
+     */
     static final float BUTTONSIZE_LARGE = 4;
 
     private MyGame game;
@@ -65,6 +176,17 @@ public class Button {
     private Texture buttonLock;
     private Sound clickSound;
 
+    /**
+     * Instantiates a new Button.
+     *
+     * @param g                       the g
+     * @param notPressedTextureSource the not pressed texture source
+     * @param pressedTextureSource    the pressed texture source
+     * @param x                       the x
+     * @param y                       the y
+     * @param buttonSize              the button size
+     * @param bType                   the b type
+     */
     public Button(MyGame g, String notPressedTextureSource, String pressedTextureSource, float x, float y, float buttonSize, int bType) {
         game = g;
         buttonType = bType;
@@ -106,12 +228,26 @@ public class Button {
             buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
         }
     }
+
+    /**
+     * Draw.
+     *
+     * @param batch the batch
+     */
     public void draw(SpriteBatch batch) {
         batch.draw(buttonTexture, buttonRect.getX(), buttonRect.getY(), buttonRect.getWidth(), buttonRect.getHeight());
         if(buttonType == BUTTONTYPE_LOCKED) {
             batch.draw(buttonLock, buttonRect.getX() + 1.1f, buttonRect.getY() + 0.05f, 1.2f, 1.2f);
         }
     }
+
+    /**
+     * Get button button.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the button
+     */
     public Button getButton(int x, int y){
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
@@ -120,6 +256,14 @@ public class Button {
         }
         return null;
     }
+
+    /**
+     * Press function boolean.
+     *
+     * @param x the x
+     * @param y the y
+     * @return the boolean
+     */
     public boolean pressFunction(int x, int y) {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
@@ -234,6 +378,14 @@ public class Button {
         }
         return false;
     }
+
+    /**
+     * Sets texture.
+     *
+     * @param x       the x
+     * @param y       the y
+     * @param pressed the pressed
+     */
     public void setTexture(int x, int y, boolean pressed) {
         Vector3 touch = new Vector3(x, y, 0);
         game.getCamera().unproject(touch);
@@ -260,20 +412,46 @@ public class Button {
             }
         }
     }
+
+    /**
+     * Sets x.
+     *
+     * @param x the x
+     */
     public void setX(float x) {
         buttonRect.setX(x);
     }
+
+    /**
+     * Sets button type.
+     *
+     * @param type the type
+     */
     public void setButtonType(int type) {
         buttonType = type;
     }
+
+    /**
+     * Gets button texture.
+     *
+     * @return the button texture
+     */
     public Texture getButtonTexture() {
         return buttonTexture;
     }
 
+    /**
+     * Gets button rect.
+     *
+     * @return the button rect
+     */
     public Rectangle getButtonRect() {
         return buttonRect;
     }
 
+    /**
+     * Dispose.
+     */
     public void dispose() {
         buttonTexture.dispose();
         buttonPressedTexture.dispose();

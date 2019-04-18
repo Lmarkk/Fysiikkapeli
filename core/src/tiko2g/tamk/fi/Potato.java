@@ -3,9 +3,18 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Potato.
+ */
 public class Potato extends ThrownObject {
     private float scale = 0.37f;
 
+    /**
+     * Instantiates a new Potato.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public Potato(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.6f);
         setTexture(new Texture("object-potato.png"));

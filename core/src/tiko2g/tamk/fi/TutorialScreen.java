@@ -3,6 +3,9 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * The type Tutorial screen.
+ */
 public class TutorialScreen extends BaseMenu {
     private Button mainMenuButton;
     private Button nextImageButton;
@@ -12,6 +15,11 @@ public class TutorialScreen extends BaseMenu {
     private Texture currentImage;
     private int currentImageIndex = 0;
 
+    /**
+     * Instantiates a new Tutorial screen.
+     *
+     * @param g the g
+     */
     public TutorialScreen(MyGame g) {
         super(g);
         createButtons();

@@ -7,9 +7,20 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Endless level.
+ */
 public class EndlessLevel extends BaseLevel {
+    /**
+     * The Thrown objects.
+     */
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(9);
 
+    /**
+     * Instantiates a new Endless level.
+     *
+     * @param g the g
+     */
     public EndlessLevel(MyGame g) {
         super(g, "bg-green-hills2.png", "ground.png");
 

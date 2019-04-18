@@ -7,16 +7,31 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
+/**
+ * The type Catapult.
+ */
 public class Catapult {
     private Texture textureSheet;
     private TextureRegion currentFrame;
     private Animation<TextureRegion> shootAnimation;
+    /**
+     * The Rectangle.
+     */
     Rectangle rectangle;
+    /**
+     * The Shoot.
+     */
     boolean shoot;
     private float stateTime;
     private float originX;
     private float originY;
 
+    /**
+     * Instantiates a new Catapult.
+     *
+     * @param x the x
+     * @param y the y
+     */
     public Catapult(float x, float y) {
         textureSheet = new Texture("object-catapult-animated.png");
         TextureRegion[][] temp = TextureRegion.split(textureSheet, textureSheet.getWidth() /9, textureSheet.getHeight());
@@ -45,6 +60,11 @@ public class Catapult {
         shoot = false;
     }
 
+    /**
+     * Draw.
+     *
+     * @param a the a
+     */
     public void draw(SpriteBatch a) {
 
         currentFrame = shootAnimation.getKeyFrame(stateTime, false);
@@ -57,24 +77,65 @@ public class Catapult {
 
     }
 
+    /**
+     * Gets texture.
+     *
+     * @return the texture
+     */
     public Texture getTexture() {
         return textureSheet;
     }
+
+    /**
+     * Gets x.
+     *
+     * @return the x
+     */
     public float getX() {
         return rectangle.x;
     }
+
+    /**
+     * Gets y.
+     *
+     * @return the y
+     */
     public float getY() {
         return rectangle.y;
     }
+
+    /**
+     * Gets rect.
+     *
+     * @return the rect
+     */
     public Rectangle getRect() {
         return rectangle;
     }
+
+    /**
+     * Sets x.
+     *
+     * @param newX the new x
+     */
     public void setX(float newX) {
         rectangle.x = newX;
     }
+
+    /**
+     * Sets y.
+     *
+     * @param newY the new y
+     */
     public void setY(float newY) {
         rectangle.y = newY;
     }
+
+    /**
+     * Sets shoot.
+     *
+     * @param value the value
+     */
     public void setShoot(boolean value) {
         shoot = value;
     }

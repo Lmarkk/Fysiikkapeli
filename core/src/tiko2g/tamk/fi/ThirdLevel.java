@@ -5,10 +5,25 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * The type Third level.
+ */
 public class ThirdLevel extends BaseLevel {
+    /**
+     * The Thrown objects.
+     */
     Array<ThrownObject> thrownObjects = new Array<ThrownObject>(9);
+    /**
+     * The Array index.
+     */
     int arrayIndex;
 
+    /**
+     * Instantiates a new Third level.
+     *
+     * @param g           the g
+     * @param veganStatus the vegan status
+     */
     public ThirdLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-wheat-fields.png", "ground.png");
 

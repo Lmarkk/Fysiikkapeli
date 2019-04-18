@@ -3,9 +3,18 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Onion.
+ */
 public class Onion extends ThrownObject {
     private float scale = 0.45f;
 
+    /**
+     * Instantiates a new Onion.
+     *
+     * @param g the g
+     * @param b the b
+     */
     public Onion(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);
         setTexture(new Texture("object-onion.png"));

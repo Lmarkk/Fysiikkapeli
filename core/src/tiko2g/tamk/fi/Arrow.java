@@ -5,20 +5,40 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Arrow.
+ */
 public class Arrow {
 
     private Texture texture;
     private Rectangle rectangle;
     private float rotation;
+
+    /**
+     * Instantiates a new Arrow.
+     */
 //
     public Arrow(){
         texture = new Texture("arrow.png");
         rectangle = new Rectangle(3, 3, 2.56f, 1f);
     }
 
+    /**
+     * Gets texture.
+     *
+     * @return the texture
+     */
     public Texture getTexture() {
         return texture;
     }
+
+    /**
+     * Draw.
+     *
+     * @param batch    the batch
+     * @param startPos the start pos
+     * @param endPos   the end pos
+     */
     public void draw(SpriteBatch batch, Vector2 startPos, Vector2 endPos){
         Vector2 startPos2 = new Vector2(startPos.x, startPos.y);
         Vector2 endPos2 = new Vector2(endPos.x, endPos.y);

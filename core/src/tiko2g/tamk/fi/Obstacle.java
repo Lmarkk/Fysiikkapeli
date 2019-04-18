@@ -8,8 +8,17 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
+/**
+ * The type Obstacle.
+ */
 public class Obstacle {
+    /**
+     * The Game.
+     */
     MyGame game;
+    /**
+     * The Batch.
+     */
     SpriteBatch batch;
     private BaseLevel baseLevel;
     private Texture texture;
@@ -19,6 +28,16 @@ public class Obstacle {
     private float obstacleHeight;
 
 
+    /**
+     * Instantiates a new Obstacle.
+     *
+     * @param g      the g
+     * @param b      the b
+     * @param x      the x
+     * @param y      the y
+     * @param width  the width
+     * @param height the height
+     */
     public Obstacle(MyGame g, BaseLevel b, float x, float y, float width, float height) {
         game = g;
         baseLevel = b;
@@ -31,11 +50,20 @@ public class Obstacle {
         obstacleBody.createFixture(getObstacleFixtureDef());
 
     }
+
+    /**
+     * Draw.
+     */
     public void draw() {
         batch.draw(texture, obstacleRect.x, obstacleRect.y, obstacleRect.getWidth(), obstacleRect.getHeight());
 
     }
 
+    /**
+     * Gets obstacle body def.
+     *
+     * @return the obstacle body def
+     */
     public BodyDef getObstacleBodyDef() {
         BodyDef groundBodyDef = new BodyDef();
         groundBodyDef.type = BodyDef.BodyType.StaticBody;
@@ -43,6 +71,11 @@ public class Obstacle {
         return groundBodyDef;
     }
 
+    /**
+     * Gets obstacle fixture def.
+     *
+     * @return the obstacle fixture def
+     */
     public FixtureDef getObstacleFixtureDef() {
         FixtureDef groundFixtureDef = new FixtureDef();
         groundFixtureDef.density = 1.0f;
@@ -54,6 +87,11 @@ public class Obstacle {
         return groundFixtureDef;
     }
 
+    /**
+     * Gets body.
+     *
+     * @return the body
+     */
     public Body getBody() {
         return obstacleBody;
     }

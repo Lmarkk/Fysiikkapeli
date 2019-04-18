@@ -3,6 +3,9 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * The type Recipe menu.
+ */
 public class RecipeMenu extends BaseMenu {
 
     private Button mainMenuButton;
@@ -17,6 +20,11 @@ public class RecipeMenu extends BaseMenu {
     private Rectangle recipesOpenRect;
 
 
+    /**
+     * Instantiates a new Recipe menu.
+     *
+     * @param g the g
+     */
     public RecipeMenu(MyGame g) {
         super(g);
         createButtons();
