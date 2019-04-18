@@ -12,11 +12,11 @@ public class FifthLevel extends BaseLevel {
     Obstacle botObstacle;
 
     public FifthLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-green-hills2.png", "ground.png");
+        super(g, "bg-shady-woods.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getGreenHillsTheme().play();
+            game.getShadyWoodsTheme().play();
         }
 
         arrayIndex = 0;
@@ -31,8 +31,8 @@ public class FifthLevel extends BaseLevel {
         //    getProjectiles().add(object);
         //}
 
-        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Chicken(game, this), new Chicken(game, this));
-        thrownObjects.add(new BellPepper(game, this), new BellPepper(game, this), new BellPepper(game, this));
+        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Chicken(game, this), new Lettuce(game, this));
+        thrownObjects.add(new Lettuce(game, this), new BellPepper(game, this), new BellPepper(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();
@@ -69,9 +69,9 @@ public class FifthLevel extends BaseLevel {
         }
         super.render(delta);
         if(veganMode) {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFifthLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFifthLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         } else {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFifthLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFifthLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }

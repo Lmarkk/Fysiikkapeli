@@ -30,11 +30,11 @@ public class BaseMenu implements Screen {
         camera = g.getCamera();
         camera.setToOrtho(false, 16,9);
         background = new Texture("menu-bg.png");
-        font64 = game.getTextRenderer().createFont(kreonFont, 64, Color.BLACK, 3);;
-        font100 = game.getTextRenderer().createFont(kreonFont, 100, Color.BLACK, 3);;
-        font42 = game.getTextRenderer().createFont(kreonFont, 42, Color.BLACK, 3);
-        font120 = game.getTextRenderer().createFont(kreonFont, 120, Color.BLACK, 3);;
-        font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 3);;
+        font64 = game.getFont64();
+        font100 = game.getFont100();
+        font42 = game.getFont42();
+        font120 = game.getFont120();
+        font30 = game.getFont30();
         //createButtons();
 
         Gdx.input.setInputProcessor(new MyInputProcessor() {

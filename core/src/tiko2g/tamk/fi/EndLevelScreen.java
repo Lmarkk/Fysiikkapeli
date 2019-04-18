@@ -23,7 +23,10 @@ public class EndLevelScreen extends BaseMenu {
         firstUnlock = false;
         displayNextLevelButton = false;
         unlockMessageRect = new Rectangle(4, 4, 4, 1);
-
+        if(game.getPrefs().getMusicStatus()) {
+            super.stopMusic();
+            game.getMenuTheme().play();
+        }
         if(veganModeOn) {
             switch(currentLevel) {
                 case 1:

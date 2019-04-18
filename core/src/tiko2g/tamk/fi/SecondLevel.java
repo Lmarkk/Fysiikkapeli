@@ -10,11 +10,11 @@ public class SecondLevel extends BaseLevel {
     int arrayIndex;
 
     public SecondLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-wheat-fields.png", "ground.png");
+        super(g, "bg-green-hills2.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getWheatFieldsTheme().play();
+            game.getGreenHillsTheme().play();
         }
 
         arrayIndex = 0;
@@ -63,9 +63,9 @@ public class SecondLevel extends BaseLevel {
         }
         super.render(delta);
         if(veganMode) {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganSecondLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         } else {
-            game.getTextRenderer().renderText(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getSecondLevelScore(), 11f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getSecondLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         }
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
