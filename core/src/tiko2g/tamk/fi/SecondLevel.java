@@ -26,9 +26,13 @@ public class SecondLevel extends BaseLevel {
         //    ThrownObject object = new Carrot(game, this);
         //    getProjectiles().add(object);
         //}
-
-        thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
-        thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        if(!veganMode) {
+            thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
+            thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        } else {
+            thrownObjects.add(new Tomato(game, this), new Tomato(game, this), new Onion(game, this), new Onion(game, this));
+            thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
+        }
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();

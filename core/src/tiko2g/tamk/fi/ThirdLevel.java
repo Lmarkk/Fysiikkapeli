@@ -19,17 +19,23 @@ public class ThirdLevel extends BaseLevel {
 
         arrayIndex = 0;
         catapult = new Catapult(1, 0.7f);
-        pot = new Pot(this, game, 12, 0);
+        pot = new Pot(this, game, 15, 0);
         veganMode = veganStatus;
 
         //for (int i = 0; i < 3; i++) {
         //    ThrownObject object = new Carrot(game, this);
         //    getProjectiles().add(object);
         //}
+        if(!veganMode) {
+            thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Tomato(game, this), new Tomato(game, this));
+            thrownObjects.add(new Tomato(game, this), new Peach(game, this), new Peach(game, this), new Lettuce(game, this));
+            thrownObjects.add(new Lettuce(game, this));
+        } else {
+            thrownObjects.add(new Onion(game, this), new Onion(game, this), new Onion(game, this), new Potato(game,this));
+            thrownObjects.add(new Potato(game,this), new Potato(game,this), new Carrot(game, this), new Carrot(game, this));
+            thrownObjects.add(new Carrot(game, this));
+        }
 
-        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Tomato(game, this), new Tomato(game, this));
-        thrownObjects.add(new Tomato(game, this), new Peach(game, this), new Peach(game, this), new Lettuce(game, this));
-        thrownObjects.add(new Lettuce(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();

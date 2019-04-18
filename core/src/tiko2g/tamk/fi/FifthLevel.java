@@ -30,9 +30,14 @@ public class FifthLevel extends BaseLevel {
         //    ThrownObject object = new Carrot(game, this);
         //    getProjectiles().add(object);
         //}
+        if(!veganMode) {
+            thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Chicken(game, this), new Lettuce(game, this));
+            thrownObjects.add(new Lettuce(game, this), new BellPepper(game, this), new BellPepper(game, this));
+        } else {
+            thrownObjects.add(new Onion(game, this), new Onion(game, this), new Tomato(game, this), new Tomato(game, this));
+            thrownObjects.add(new Tomato(game, this), new Potato(game, this), new Potato(game, this));
+        }
 
-        thrownObjects.add(new Chicken(game, this), new Chicken(game, this), new Chicken(game, this), new Lettuce(game, this));
-        thrownObjects.add(new Lettuce(game, this), new BellPepper(game, this), new BellPepper(game, this));
         currentProjectile = thrownObjects.get(0);
 
         setNextProjectile();
