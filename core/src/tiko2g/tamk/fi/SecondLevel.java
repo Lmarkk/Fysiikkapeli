@@ -10,11 +10,11 @@ public class SecondLevel extends BaseLevel {
     int arrayIndex;
 
     public SecondLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-wheat-fields.png", "ground.png");
+        super(g, "bg-green-hills2.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getWheatFieldsTheme().play();
+            game.getGreenHillsTheme().play();
         }
 
         arrayIndex = 0;

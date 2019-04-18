@@ -12,11 +12,11 @@ public class FifthLevel extends BaseLevel {
     Obstacle botObstacle;
 
     public FifthLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-green-hills2.png", "ground.png");
+        super(g, "bg-shady-woods.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getGreenHillsTheme().play();
+            game.getShadyWoodsTheme().play();
         }
 
         arrayIndex = 0;

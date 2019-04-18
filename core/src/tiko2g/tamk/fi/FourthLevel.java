@@ -11,11 +11,11 @@ public class FourthLevel extends BaseLevel {
     Obstacle obstacle;
 
     public FourthLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-green-hills2.png", "ground.png");
+        super(g, "bg-wheat-fields.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getGreenHillsTheme().play();
+            game.getWheatFieldsTheme().play();
         }
 
         arrayIndex = 0;

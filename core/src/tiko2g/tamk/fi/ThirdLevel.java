@@ -10,11 +10,11 @@ public class ThirdLevel extends BaseLevel {
     int arrayIndex;
 
     public ThirdLevel(MyGame g, boolean veganStatus) {
-        super(g, "bg-shady-woods.png", "ground.png");
+        super(g, "bg-wheat-fields.png", "ground.png");
 
         super.stopMusic();
         if(game.getPrefs().getMusicStatus()) {
-            game.getShadyWoodsTheme().play();
+            game.getWheatFieldsTheme().play();
         }
 
         arrayIndex = 0;
