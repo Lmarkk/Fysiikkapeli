@@ -17,7 +17,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "tuni.tamk.fi"
+        applicationId "tiko2g.tamk.fi"
         minSdkVersion 9
         targetSdkVersion 27
         versionCode 1
