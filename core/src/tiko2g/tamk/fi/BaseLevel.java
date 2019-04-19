@@ -67,7 +67,7 @@ public class BaseLevel implements Screen {
     /**
      * Sound that plays when the player lands a projectile into the pot.
      */
-    Sound scoreGetSound;
+    private Sound scoreGetSound;
     /**
      * Animated catapult used to visualize the projectile "thrower" for the player.
      */
@@ -256,7 +256,7 @@ public class BaseLevel implements Screen {
      *
      * @param projectile the projectile used for throwing.
      */
-    public void throwProjectile(ThrownObject projectile){
+    private void throwProjectile(ThrownObject projectile){
         Vector2 throwDirection;
         if(projectile != null && !projectile.isThrown()){
             throwDirection = new Vector2(touchStart.sub(touchEnd));
@@ -286,7 +286,7 @@ public class BaseLevel implements Screen {
      *
      * @return boolean value.
      */
-    public boolean isGameRunning() {
+    private boolean isGameRunning() {
         return gameRunning;
     }
 
@@ -296,7 +296,7 @@ public class BaseLevel implements Screen {
      * @param x the x-coordinate.
      * @param y the y-coordinate.
      */
-    public void createBorderWall(float x, float y) {
+    private void createBorderWall(float x, float y) {
         BorderWall borderWall = new BorderWall(game, this, x, y);
     }
 
@@ -305,7 +305,7 @@ public class BaseLevel implements Screen {
      *
      * @param deltaTime the deltatime variable.
      */
-    public void doPhysicsStep(float deltaTime) {
+    private void doPhysicsStep(float deltaTime) {
         float frameTime = deltaTime;
         if(deltaTime > 1 / 4f) {
             frameTime = 1 / 4f;
@@ -323,7 +323,7 @@ public class BaseLevel implements Screen {
      * the current projectile's x coordinate. Camera.slerp is used to achieve a smooth tracking
      * action.
      */
-    public void moveCam() {
+    private void moveCam() {
         Vector3 desiredPosition = new Vector3();
         desiredPosition.x = currentProjectile.getBody().getPosition().x;
         desiredPosition.y = 3f;
