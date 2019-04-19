@@ -6,61 +6,180 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.I18NBundle;
 
 /**
- * The type Prefs.
+ * Class used to store and manage all information that persists between play sessions.
+ *
+ * @author Lassi Markkinen
+ * @version 2019.0419
  */
 public class Prefs {
+    /**
+     * MyGame, received as a parameter in constructor and used to retrieve language bundles.
+     */
     private MyGame game;
+    /**
+     * Preferences file used to store persistent data.
+     */
     private Preferences pref ;
+    /**
+     * Boolean for managing diet-based menu output.
+     */
     private boolean displayGameModeVegan;
-
+    /**
+     * Whether sounds are enabled in the game.
+     */
     private boolean soundStatus;
+    /**
+     * Whether music is enabled in the game.
+     */
     private boolean musicStatus;
 
+    /**
+     * Level 1's unlock status.
+     */
     private boolean levelOneOpen;
+    /**
+     * Level 2's unlock status.
+     */
     private boolean levelTwoOpen;
+    /**
+     * Level 3's unlock status.
+     */
     private boolean levelThreeOpen;
+    /**
+     * Level 4's unlock status.
+     */
     private boolean levelFourOpen;
+    /**
+     * Level 5's unlock status.
+     */
     private boolean levelFiveOpen;
 
+    /**
+     * Vegan Level 1's unlock status.
+     */
     private boolean veganLevelOneOpen;
+    /**
+     * Vegan Level 2's unlock status.
+     */
     private boolean veganLevelTwoOpen;
+    /**
+     * Vegan Level 3's unlock status.
+     */
     private boolean veganLevelThreeOpen;
+    /**
+     * Vegan Level 4's unlock status.
+     */
     private boolean veganLevelFourOpen;
+    /**
+     * Vegan Level 5's unlock status.
+     */
     private boolean veganLevelFiveOpen;
 
+    /**
+     * Recipe 1's unlock status.
+     */
     private boolean recipeOneOpen;
+    /**
+     * Recipe 2's unlock status.
+     */
     private boolean recipeTwoOpen;
+    /**
+     * Recipe 3's unlock status.
+     */
     private boolean recipeThreeOpen;
+    /**
+     * Recipe 4's unlock status.
+     */
     private boolean recipeFourOpen;
+    /**
+     * Recipe 5's unlock status.
+     */
     private boolean recipeFiveOpen;
 
+    /**
+     * Vegan recipe 1's unlock status.
+     */
     private boolean veganRecipeOneOpen;
+    /**
+     * Vegan recipe 2's unlock status.
+     */
     private boolean veganRecipeTwoOpen;
+    /**
+     * Vegan recipe 3's unlock status.
+     */
     private boolean veganRecipeThreeOpen;
+    /**
+     * Vegan recipe 4's unlock status.
+     */
     private boolean veganRecipeFourOpen;
+    /**
+     * Vegan recipe 5's unlock status.
+     */
     private boolean veganRecipeFiveOpen;
 
+    /**
+     * Variable for tracking how many regular recipes are currently unlocked by the player.
+     */
     private int normalRecipesOpen;
+    /**
+     * Variable for tracking how many vegan recipes are currently unlocked by the player.
+     */
     private int veganRecipesOpen;
 
+    /**
+     * Variable that holds the language bundle that is currently used in the game.
+     */
     private I18NBundle currentLanguage;
+    /**
+     * Variable used for toggling between the used languages.
+     */
     private int storedLanguage;
+    /**
+     * Variable that holds the highest achieved score for the first level.
+     */
     private int firstLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the second level.
+     */
     private int secondLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the third level.
+     */
     private int thirdLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the fourth level.
+     */
     private int fourthLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the fifth level.
+     */
     private int fifthLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the first vegan level.
+     */
     private int veganFirstLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the second vegan level.
+     */
     private int veganSecondLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the third vegan level.
+     */
     private int veganThirdLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the fourth vegan level.
+     */
     private int veganFourthLevelScore;
+    /**
+     * Variable that holds the highest achieved score for the fifth vegan level.
+     */
     private int veganFifthLevelScore;
 
 
     /**
-     * Instantiates a new Prefs.
+     * Instantiates a new Prefs. Sets the status for recipes and levels 2-5 to be initially locked.
      *
-     * @param g the g
+     * @param g the MyGame used for retrieving language bundles.
      */
     public Prefs(MyGame g) {
         game = g;
@@ -119,7 +238,7 @@ public class Prefs {
     }
 
     /**
-     * Toggle language.
+     * Toggles the currently used language bundle.
      */
     public void toggleLanguage() {
         if(storedLanguage == 0) {
@@ -136,7 +255,7 @@ public class Prefs {
     }
 
     /**
-     * Toggle sound.
+     * Toggles whether sound is enabled in game.
      */
     public void toggleSound (){
         soundStatus = !soundStatus;
@@ -145,7 +264,7 @@ public class Prefs {
     }
 
     /**
-     * Toggle music.
+     * Toggles whether music is enabled in game.
      */
     public void toggleMusic(){
         musicStatus = !musicStatus;
@@ -154,7 +273,8 @@ public class Prefs {
     }
 
     /**
-     * Toggle display game mode.
+     * Toggle between displaying regular and vegan levels in level selection and recipes in
+     * recipe menu.
      */
     public void toggleDisplayGameMode() {
         displayGameModeVegan = !displayGameModeVegan;
@@ -163,9 +283,9 @@ public class Prefs {
     }
 
     /**
-     * Sets first level score.
+     * Sets first level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setFirstLevelScore(int score) {
         firstLevelScore = score;
@@ -174,9 +294,9 @@ public class Prefs {
     }
 
     /**
-     * Sets second level score.
+     * Sets second level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setSecondLevelScore(int score) {
         secondLevelScore = score;
@@ -185,9 +305,9 @@ public class Prefs {
     }
 
     /**
-     * Sets third level score.
+     * Sets third level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setThirdLevelScore(int score) {
         thirdLevelScore = score;
@@ -196,9 +316,9 @@ public class Prefs {
     }
 
     /**
-     * Sets fourth level score.
+     * Sets fourth level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setFourthLevelScore(int score) {
         fourthLevelScore = score;
@@ -207,9 +327,9 @@ public class Prefs {
     }
 
     /**
-     * Sets fifth level score.
+     * Sets fifth level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setFifthLevelScore(int score) {
         fifthLevelScore = score;
@@ -218,9 +338,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan first level score.
+     * Sets vegan first level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setVeganFirstLevelScore(int score) {
         veganFirstLevelScore = score;
@@ -229,9 +349,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan second level score.
+     * Sets vegan second level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setVeganSecondLevelScore(int score) {
         veganSecondLevelScore = score;
@@ -240,9 +360,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan third level score.
+     * Sets vegan third level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setVeganThirdLevelScore(int score) {
         veganThirdLevelScore = score;
@@ -251,9 +371,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan fourth level score.
+     * Sets vegan fourth level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setVeganFourthLevelScore(int score) {
         veganFourthLevelScore = score;
@@ -262,9 +382,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan fifth level score.
+     * Sets vegan fifth level highscore.
      *
-     * @param score the score
+     * @param score the score.
      */
     public void setVeganFifthLevelScore(int score) {
         veganFifthLevelScore = score;
@@ -273,9 +393,9 @@ public class Prefs {
     }
 
     /**
-     * Sets level one open.
+     * Sets level one open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setLevelOneOpen(boolean status) {
         levelOneOpen = status;
@@ -284,9 +404,9 @@ public class Prefs {
     }
 
     /**
-     * Sets level two open.
+     * Sets level two open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setLevelTwoOpen(boolean status) {
         levelTwoOpen = status;
@@ -295,9 +415,9 @@ public class Prefs {
     }
 
     /**
-     * Sets level three open.
+     * Sets level three open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setLevelThreeOpen(boolean status) {
         levelThreeOpen = status;
@@ -306,9 +426,9 @@ public class Prefs {
     }
 
     /**
-     * Sets level four open.
+     * Sets level four open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setLevelFourOpen(boolean status) {
         levelFourOpen = status;
@@ -317,9 +437,9 @@ public class Prefs {
     }
 
     /**
-     * Sets level five open.
+     * Sets level five open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setLevelFiveOpen(boolean status) {
         levelFiveOpen = status;
@@ -328,9 +448,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan level one open.
+     * Sets vegan level one open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganLevelOneOpen(boolean status) {
         veganLevelOneOpen = status;
@@ -339,9 +459,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan level two open.
+     * Sets vegan level two open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganLevelTwoOpen(boolean status) {
         veganLevelTwoOpen = status;
@@ -350,9 +470,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan level three open.
+     * Sets vegan level three open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganLevelThreeOpen(boolean status) {
         veganLevelThreeOpen = status;
@@ -361,9 +481,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan level four open.
+     * Sets vegan level four open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganLevelFourOpen(boolean status) {
         veganLevelFourOpen = status;
@@ -372,9 +492,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan level five open.
+     * Sets vegan level five open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganLevelFiveOpen(boolean status) {
         veganLevelFiveOpen = status;
@@ -383,9 +503,9 @@ public class Prefs {
     }
 
     /**
-     * Sets recipe one open.
+     * Sets recipe one open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setRecipeOneOpen(boolean status) {
         recipeOneOpen = status;
@@ -396,9 +516,9 @@ public class Prefs {
     }
 
     /**
-     * Sets recipe two open.
+     * Sets recipe two open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setRecipeTwoOpen(boolean status) {
         recipeTwoOpen = status;
@@ -409,9 +529,9 @@ public class Prefs {
     }
 
     /**
-     * Sets recipe three open.
+     * Sets recipe three open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setRecipeThreeOpen(boolean status) {
         recipeThreeOpen = status;
@@ -422,9 +542,9 @@ public class Prefs {
     }
 
     /**
-     * Sets recipe four open.
+     * Sets recipe four open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setRecipeFourOpen(boolean status) {
         recipeFourOpen = status;
@@ -435,9 +555,9 @@ public class Prefs {
     }
 
     /**
-     * Sets recipe five open.
+     * Sets recipe five open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setRecipeFiveOpen(boolean status) {
         recipeFiveOpen = status;
@@ -448,9 +568,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan recipe one open.
+     * Sets vegan recipe one open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganRecipeOneOpen(boolean status) {
         veganRecipeOneOpen = status;
@@ -461,9 +581,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan recipe two open.
+     * Sets vegan recipe two open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganRecipeTwoOpen(boolean status) {
         veganRecipeTwoOpen = status;
@@ -474,9 +594,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan recipe three open.
+     * Sets vegan recipe three open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganRecipeThreeOpen(boolean status) {
         veganRecipeThreeOpen = status;
@@ -487,9 +607,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan recipe four open.
+     * Sets vegan recipe four open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganRecipeFourOpen(boolean status) {
         veganRecipeFourOpen = status;
@@ -500,9 +620,9 @@ public class Prefs {
     }
 
     /**
-     * Sets vegan recipe five open.
+     * Sets vegan recipe five open status.
      *
-     * @param status the status
+     * @param status the status to set.
      */
     public void setVeganRecipeFiveOpen(boolean status) {
         veganRecipeFiveOpen = status;
@@ -514,315 +634,315 @@ public class Prefs {
 
 
     /**
-     * Get sound status boolean.
+     * Getter for sound status boolean.
      *
-     * @return the boolean
+     * @return the boolean value.
      */
     public boolean getSoundStatus(){
         return soundStatus;
     }
 
     /**
-     * Gets music status.
+     * Getter for music status boolean.
      *
-     * @return the music status
+     * @return the boolean value.
      */
     public boolean getMusicStatus() {
         return musicStatus;
     }
 
     /**
-     * Gets first level score.
+     * Gets first level highscore.
      *
-     * @return the first level score
+     * @return the first level highscore.
      */
     public int getFirstLevelScore() {
         return firstLevelScore;
     }
 
     /**
-     * Gets second level score.
+     * Gets second level highscore.
      *
-     * @return the second level score
+     * @return the second level highscore.
      */
     public int getSecondLevelScore() {
         return secondLevelScore;
     }
 
     /**
-     * Gets third level score.
+     * Gets third level highscore.
      *
-     * @return the third level score
+     * @return the third level highscore.
      */
     public int getThirdLevelScore() {
         return thirdLevelScore;
     }
 
     /**
-     * Gets fourth level score.
+     * Gets fourth level highscore.
      *
-     * @return the fourth level score
+     * @return the fourth level highscore.
      */
     public int getFourthLevelScore() {
         return fourthLevelScore;
     }
 
     /**
-     * Gets fifth level score.
+     * Gets fifth level highscore.
      *
-     * @return the fifth level score
+     * @return the fifth level highscore.
      */
     public int getFifthLevelScore() {
         return fifthLevelScore;
     }
 
     /**
-     * Gets vegan first level score.
+     * Gets vegan first level highscore.
      *
-     * @return the vegan first level score
+     * @return the vegan first level highscore.
      */
     public int getVeganFirstLevelScore() {
         return veganFirstLevelScore;
     }
 
     /**
-     * Gets vegan second level score.
+     * Gets vegan second level highscore.
      *
-     * @return the vegan second level score
+     * @return the vegan second level highscore.
      */
     public int getVeganSecondLevelScore() {
         return veganSecondLevelScore;
     }
 
     /**
-     * Gets vegan third level score.
+     * Gets vegan third level highscore.
      *
-     * @return the vegan third level score
+     * @return the vegan third level highscore.
      */
     public int getVeganThirdLevelScore() {
         return veganThirdLevelScore;
     }
 
     /**
-     * Gets vegan fourth level score.
+     * Gets vegan fourth level highscore.
      *
-     * @return the vegan fourth level score
+     * @return the vegan fourth level highscore.
      */
     public int getVeganFourthLevelScore() {
         return veganFourthLevelScore;
     }
 
     /**
-     * Gets vegan fifth level score.
+     * Gets vegan fifth level highscore.
      *
-     * @return the vegan fifth level score
+     * @return the vegan fifth level highscore.
      */
     public int getVeganFifthLevelScore() {
         return veganFifthLevelScore;
     }
 
     /**
-     * Gets level one open.
+     * Gets level one open status.
      *
-     * @return the level one open
+     * @return the level one open status.
      */
     public boolean getLevelOneOpen() {
         return levelOneOpen;
     }
 
     /**
-     * Gets level two open.
+     * Gets level two open status.
      *
-     * @return the level two open
+     * @return the level two open status.
      */
     public boolean getLevelTwoOpen() {
         return levelTwoOpen;
     }
 
     /**
-     * Gets level three open.
+     * Gets level three open status.
      *
-     * @return the level three open
+     * @return the level three open status.
      */
     public boolean getLevelThreeOpen() {
         return levelThreeOpen;
     }
 
     /**
-     * Gets level four open.
+     * Gets level four open status.
      *
-     * @return the level four open
+     * @return the level four open status.
      */
     public boolean getLevelFourOpen() {
         return levelFourOpen;
     }
 
     /**
-     * Gets level five open.
+     * Gets level five open status.
      *
-     * @return the level five open
+     * @return the level five open status.
      */
     public boolean getLevelFiveOpen() {
         return levelFiveOpen;
     }
 
     /**
-     * Gets vegan level one open.
+     * Gets vegan level one open status.
      *
-     * @return the vegan level one open
+     * @return the vegan level one open status.
      */
     public boolean getVeganLevelOneOpen() {
         return veganLevelOneOpen;
     }
 
     /**
-     * Gets vegan level two open.
+     * Gets vegan level two open status.
      *
-     * @return the vegan level two open
+     * @return the vegan level two open status.
      */
     public boolean getVeganLevelTwoOpen() {
         return veganLevelTwoOpen;
     }
 
     /**
-     * Gets vegan level three open.
+     * Gets vegan level three open status.
      *
-     * @return the vegan level three open
+     * @return the vegan level three open status.
      */
     public boolean getVeganLevelThreeOpen() {
         return veganLevelThreeOpen;
     }
 
     /**
-     * Gets vegan level four open.
+     * Gets vegan level four open status.
      *
-     * @return the vegan level four open
+     * @return the vegan level four open status.
      */
     public boolean getVeganLevelFourOpen() {
         return veganLevelFourOpen;
     }
 
     /**
-     * Gets vegan level five open.
+     * Gets vegan level five open status.
      *
-     * @return the vegan level five open
+     * @return the vegan level five open status.
      */
     public boolean getVeganLevelFiveOpen() {
         return veganLevelFiveOpen;
     }
 
     /**
-     * Gets recipes open.
+     * Gets amount of regular recipes open.
      *
-     * @return the recipes open
+     * @return the amount of regular recipes open
      */
     public int getRecipesOpen() {
         return normalRecipesOpen;
     }
 
     /**
-     * Gets vegan recipes open.
+     * Gets amount of vegan recipes open.
      *
-     * @return the vegan recipes open
+     * @return the amount of vegan recipes open
      */
     public int getVeganRecipesOpen() {
         return veganRecipesOpen;
     }
 
     /**
-     * Gets recipe one open.
+     * Gets recipe one open status.
      *
-     * @return the recipe one open
+     * @return the recipe one open status.
      */
     public boolean getRecipeOneOpen() {
         return recipeOneOpen;
     }
 
     /**
-     * Gets recipe two open.
+     * Gets recipe two open status.
      *
-     * @return the recipe two open
+     * @return the recipe two open status.
      */
     public boolean getRecipeTwoOpen() {
         return recipeTwoOpen;
     }
 
     /**
-     * Gets recipe three open.
+     * Gets recipe three open status.
      *
-     * @return the recipe three open
+     * @return the recipe three open status.
      */
     public boolean getRecipeThreeOpen() {
         return recipeThreeOpen;
     }
 
     /**
-     * Gets recipe four open.
+     * Gets recipe four open status.
      *
-     * @return the recipe four open
+     * @return the recipe four open status.
      */
     public boolean getRecipeFourOpen() {
         return recipeFourOpen;
     }
 
     /**
-     * Gets recipe five open.
+     * Gets recipe five open status.
      *
-     * @return the recipe five open
+     * @return the recipe five open status.
      */
     public boolean getRecipeFiveOpen() {
         return recipeFiveOpen;
     }
 
     /**
-     * Gets vegan recipe one open.
+     * Gets vegan recipe one open status.
      *
-     * @return the vegan recipe one open
+     * @return the vegan recipe one open status.
      */
     public boolean getVeganRecipeOneOpen() {
         return veganRecipeOneOpen;
     }
 
     /**
-     * Gets vegan recipe two open.
+     * Gets vegan recipe two open status.
      *
-     * @return the vegan recipe two open
+     * @return the vegan recipe two open status.
      */
     public boolean getVeganRecipeTwoOpen() {
         return veganRecipeTwoOpen;
     }
 
     /**
-     * Gets vegan recipe three open.
+     * Gets vegan recipe three open status.
      *
-     * @return the vegan recipe three open
+     * @return the vegan recipe three open status.
      */
     public boolean getVeganRecipeThreeOpen() {
         return veganRecipeThreeOpen;
     }
 
     /**
-     * Gets vegan recipe four open.
+     * Gets vegan recipe four open status.
      *
-     * @return the vegan recipe four open
+     * @return the vegan recipe four open status.
      */
     public boolean getVeganRecipeFourOpen() {
         return veganRecipeFourOpen;
     }
 
     /**
-     * Gets vegan recipe five open.
+     * Gets vegan recipe five open status.
      *
-     * @return the vegan recipe five open
+     * @return the vegan recipe five open status.
      */
     public boolean getVeganRecipeFiveOpen() {
         return veganRecipeFiveOpen;
     }
 
     /**
-     * Gets display game mode vegan.
+     * Gets whether the displayed game mode is vegan.
      *
-     * @return the display game mode vegan
+     * @return true if the displayed game mode is vegan.
      */
     public boolean getDisplayGameModeVegan() {
         return displayGameModeVegan;
@@ -831,7 +951,7 @@ public class Prefs {
     /**
      * Gets current language.
      *
-     * @return the current language
+     * @return the current language bundle in use.
      */
     public I18NBundle getCurrentLanguage() {
         return currentLanguage;
