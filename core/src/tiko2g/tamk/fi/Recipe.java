@@ -2,7 +2,6 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,93 +16,97 @@ enum recipeType {
     /**
      * Hot pot recipe type.
      */
-    hotPot, /**
+    hotPot,
+    /**
      * Chicken salad recipe type.
      */
-    chickenSalad, /**
+    chickenSalad,
+    /**
      * Meat soup recipe type.
      */
-    meatSoup, /**
+    meatSoup,
+    /**
      * Vegetable stew recipe type.
      */
-    vegetableStew, /**
+    vegetableStew,
+    /**
      * Filled bell peppers recipe type.
      */
-    filledBellPeppers, /**
+    filledBellPeppers,
+    /**
      * Lentil soup recipe type.
      */
-    lentilSoup, /**
+    lentilSoup,
+    /**
      * Chili sin carne recipe type.
      */
-    chiliSinCarne, /**
+    chiliSinCarne,
+    /**
      * Chicken rice recipe type.
      */
-    chickenRice, /**
+    chickenRice,
+    /**
      * Vegetable curry recipe type.
      */
-    vegetableCurry, /**
+    vegetableCurry,
+    /**
      * Bean bolognese recipe type.
      */
-    beanBolognese}
+    beanBolognese
+}
 
 /**
- * The type Recipe.
+ * Recipe displays a recipe on a screen specified by recipeType.
+ *
+ * @author Arttu Knuutinen
+ * @version 2019.0418
  */
 public class Recipe implements Screen {
     /**
-     * The Anchor position.
+     * MyGame reference used for various utilities.
      */
-    Vector2 anchorPosition = new Vector2(0f, 0f);
+    private MyGame game;
     /**
-     * The Game.
+     * Reference to the SpriteBatch instance.
      */
-    MyGame game;
+    private SpriteBatch batch;
     /**
-     * The Batch.
+     * Reference to the Camera instance.
      */
-    SpriteBatch batch;
+    private OrthographicCamera camera;
     /**
-     * The Camera.
+     * Button that returns user to the recipe menu.
      */
-    OrthographicCamera camera;
+    private Button recipeMenuButton;
     /**
-     * The Home button.
+     * The Background texture of a recipe.
      */
-    Button homeButton;
+    private Texture background;
     /**
-     * The Background.
+     * The font used to render recipe texts.
      */
-    Texture background;
+    private BitmapFont font30;
     /**
-     * The Font 30.
+     * The ingredients of a recipe.
      */
-    BitmapFont font30;
-    /**
-     * The Kreon font.
-     */
-    String kreonFont = "Kreon-Regular.ttf";
-    /**
-     * The Previous y.
-     */
-    float previousY;
-    /**
-     * The Touch start y.
-     */
-    float touchStartY;
-    /**
-     * The Scroll speed.
-     */
-    float scrollSpeed = 500f;
     private String ingredients;
+    /**
+     * The instructions of a recipe.
+     */
     private String instructions;
+    /**
+     * The position in pixels on the screen where to draw ingredients text.
+     */
     private final Vector2 ingredientPos = new Vector2(250f, 850f);
+    /**
+     * The position in pixels on the screen where to draw instructions text.
+     */
     private final Vector2 instructionPos = new Vector2(50f, 450f);
-
 
     /**
      * Instantiates a new Recipe.
      *
-     * @param g          the g
+     * @param g          the game
      * @param recipeType the recipe type
      */
     public Recipe(MyGame g, recipeType recipeType) {
@@ -111,9 +114,8 @@ public class Recipe implements Screen {
         batch = game.getBatch();
         camera = game.getCamera();
         background = new Texture("menu-bg.png");
-        homeButton = new Button(game, "button-left.png", "button-left-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_RECIPES);
-        font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);
-
+        recipeMenuButton = new Button(game, "button-left.png", "button-left-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_RECIPES);
+        font30 = game.getFont30();
         switch (recipeType){
             case hotPot:
                 ingredients = g.getPrefs().getCurrentLanguage().get("hotPotIngredients");
@@ -157,21 +159,16 @@ public class Recipe implements Screen {
                 break;
         }
 
-
-
         Gdx.input.setInputProcessor(new MyInputProcessor() {
             Button pressedButton;
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 pressedButton = null;
-                if(pressedButton == null){
-                    pressedButton = homeButton.getButton(screenX, screenY);
-                    if(pressedButton != null){
-                        pressedButton.setTexture(screenX, screenY, true);
-                    }
+
+                pressedButton = recipeMenuButton.getButton(screenX, screenY);
+                if(pressedButton != null){
+                    pressedButton.setTexture(screenX, screenY, true);
                 }
-                touchStartY = screenY;
-                previousY = screenY / 100f;
                 return super.touchDown(screenX, screenY, pointer, button);
             }
 
@@ -184,42 +181,7 @@ public class Recipe implements Screen {
 
                 return super.touchUp(screenX, screenY, pointer, button);
             }
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-                if(screenY > 0 && screenY <= Gdx.graphics.getHeight()){
-                    if(screenY < touchStartY) {
-//                        anchorPosition.y -= scrollSpeed * Gdx.graphics.getDeltaTime();
-                        touchStartY = screenY;
-                    } else {
-//                        anchorPosition.y += scrollSpeed * Gdx.graphics.getDeltaTime();
-                        touchStartY = screenY;
-
-                    }
-                }
-
-//                camera.update();
-//                previousY = screenY / 100f;
-                return super.touchDragged(screenX, screenY, pointer);
-            }
         });
-    }
-
-    /**
-     * Move cam.
-     *
-     * @param desiredY the desired y
-     */
-    public void moveCam(float desiredY) {
-//        Vector3 desiredPosition = new Vector3();
-//        desiredPosition.x = camera.position.x;
-//        desiredPosition.y = desiredY;
-//        System.out.println(desiredPosition.y);
-//        if(desiredPosition.y < 3 && desiredPosition.y > -20) {
-//            System.out.println("juu");
-//            camera.position.slerp(desiredPosition, Gdx.graphics.getDeltaTime() * 10);
-//            homeButton.getButtonRect().setY(anchorPosition.y + 7.5f);
-//            camera.update();
-//        }
     }
 
     @Override
@@ -227,6 +189,11 @@ public class Recipe implements Screen {
 
     }
 
+    /**
+     * https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/Screen.html#render-float-
+     *
+     * @param delta graphics delta time
+     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -236,11 +203,10 @@ public class Recipe implements Screen {
         batch.begin();
         batch.draw(background, 0, 0, 16, 9);
         batch.end();
-        game.getTextRenderer().renderText(instructions, instructionPos.x, anchorPosition.y + instructionPos.y, font30);
+        game.getTextRenderer().renderText(instructions, instructionPos.x, instructionPos.y, font30);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-//        batch.draw(background, 0, 5f, 16, 4f);
-        homeButton.draw(batch);
+        recipeMenuButton.draw(batch);
         batch.end();
         game.getTextRenderer().renderText(ingredients, ingredientPos.x, ingredientPos.y, font30);
     }
