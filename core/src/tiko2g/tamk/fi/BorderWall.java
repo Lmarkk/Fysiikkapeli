@@ -8,37 +8,41 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
- * The type Border wall.
+ * Class used to create invisible static Bodies in game levels to prevent projectiles from flying
+ * too far.
+ *
+ * @author Lassi Markkinen
+ * @version 2019.0419
  */
 public class BorderWall {
     /**
-     * The Game.
+     * The MyGame instance received as a parameter for the contructor.
      */
     MyGame game;
     /**
-     * The Base level.
+     * The BaseLevel instance received as a parameter for the contructor.
      */
     BaseLevel baseLevel;
     /**
-     * The Wall rect.
+     * Rectangle for wall texture drawing.
      */
     Rectangle wallRect;
     /**
-     * The Batch.
+     * The SpriteBatch used for drawing the wall.
      */
     SpriteBatch batch;
     /**
-     * The Wall body.
+     * The wall body.
      */
     Body wallBody;
 
     /**
-     * Instantiates a new Border wall.
+     * Instantiates a new BorderWall.
      *
-     * @param g the g
-     * @param b the b
-     * @param x the x
-     * @param y the y
+     * @param g the MyGame, used to get the SpriteBatch.
+     * @param b the BaseLevel, used to create the body with World.
+     * @param x the x-coordinate for wall creation.
+     * @param y the y-coordinate for wall creation.
      */
     public BorderWall(MyGame g, BaseLevel b, float x, float y) {
         game = g;
@@ -50,11 +54,11 @@ public class BorderWall {
     }
 
     /**
-     * Gets wall body def.
+     * Creates and returns a new BodyDef with static BodyType for the wall's Body.
      *
-     * @param x the x
-     * @param y the y
-     * @return the wall body def
+     * @param x the x-coordinate.
+     * @param y the y-coordinate.
+     * @return the created BodyDef.
      */
     public BodyDef getWallBodyDef(float x, float y) {
         BodyDef wallBodyDef = new BodyDef();
@@ -64,9 +68,9 @@ public class BorderWall {
     }
 
     /**
-     * Gets wall fixture def.
+     * Creates and returns a FixtureDef for the wall's body.
      *
-     * @return the wall fixture def
+     * @return the created FixtureDef.
      */
     public FixtureDef getWallFixtureDef() {
         FixtureDef wallFixtureDef = new FixtureDef();

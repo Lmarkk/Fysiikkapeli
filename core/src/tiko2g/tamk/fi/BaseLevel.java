@@ -3,7 +3,6 @@ package tiko2g.tamk.fi;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -23,7 +22,10 @@ import java.util.ArrayList;
 
 
 /**
- * The type Base level.
+ * BaseLevel is the superclass for all level classes such as FirstLevel and EndlessLevel.
+ *
+ * @author Lassi Markkinen, Arttu Knuutinen
+ * @version 2019.0418
  */
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
@@ -31,106 +33,149 @@ public class BaseLevel implements Screen {
     private final float THROW_FORCE_MULTIPLIER = 3.5f;
 
     /**
-     * The Game.
+     * Instance of MyGame received as a parameter in constructor.
      */
     MyGame game;
     /**
-     * The Batch.
+     * SpriteBatch used for rendering.
      */
     SpriteBatch batch;
     /**
-     * The Background.
+     * Background texture for the current level.
      */
     Texture background;
     /**
-     * The Ground.
+     * The Ground for the current level.
      */
     Ground ground;
     /**
-     * The Pot.
+     * The Pot for the current level, used as a target for the player.
      */
     Pot pot;
     /**
-     * The Camera.
+     * The Camera that follows the projectiles the player throws.
      */
     OrthographicCamera camera;
     /**
-     * The Current projectile.
+     * The current projectile held on the catapult or being thrown by the player.
      */
     ThrownObject currentProjectile;
     /**
-     * The Prev menu button.
+     * Menu button for returning to previous menu screen.
      */
     Button prevMenuButton;
     /**
-     * The Score get sound.
+     * Sound that plays when the player lands a projectile into the pot.
      */
-    Sound scoreGetSound;
+    private Sound scoreGetSound;
     /**
-     * The Catapult.
+     * Animated catapult used to visualize the projectile "thrower" for the player.
      */
     Catapult catapult;
     /**
-     * The Projectile start pos.
+     * Coordinates that determine where the projectile is held before launched by the player.
      */
     Vector2 projectileStartPos = new Vector2(1, 2.2f);
     /**
-     * The Arrow.
+     * Arrow that illustrates the power and angle of the player's throw to them.
      */
     Arrow arrow;
     /**
-     * The Score.
+     * Score of the current run of the current level.
      */
     int score;
     /**
-     * The Projectile landed.
+     * Value for determining whether the current projectile has touched ground/pot bottom or not.
      */
     boolean projectileLanded = false;
     /**
-     * The Vegan mode.
+     * Value that determines whether the level uses vegan objects and tracks vegan recipe unlock progress.
      */
     boolean veganMode;
     /**
-     * The Font 32.
+     * BitmapFont used for rendering text in levels.
      */
     BitmapFont font32;
 
     /**
-     * The Score get sound played.
+     * Value used to ensure that the score get sound is only played once per throw.
      */
     boolean scoreGetSoundPlayed;
     /**
-     * The Score given.
+     * Value used to ensure that the player only receives points once per throw.
      */
     boolean scoreGiven;
     /**
-     * The End game.
+     * Value that determines whether the current level is over.
      */
     boolean endGame = false;
+    /**
+     * Value used with World physics steps.
+     */
     private float accumulator;
+    /**
+     * Value used with World physics steps.
+     */
     private float timeStep;
+    /**
+     * World used for physics handling within the levels.
+     */
     private World gameWorld;
     /**
-     * The Touch start.
+     * Variable that holds the start coordinates of the player's touch action.
      */
     Vector2 touchStart = new Vector2();
+    /**
+     * Variable that holds the end coordinates of the player's touch action.
+     */
     private Vector2 touchEnd = new Vector2();
-    private boolean gameRunning = false;
-    private float startTimer = 0f;
+    /**
+     * Value for whether game is running or not.
+     */
+    private boolean gameRunning = true;
+
+    //private float startTimer = 0f;
+
+    /**
+     * Array that holds all the projectiles for the current level.
+     */
     private ArrayList<ThrownObject> projectiles = new ArrayList<ThrownObject>();
+    /**
+     * Index that tracks the position of the current projectile in the array
+     */
     private int currentProjectileIndex = 0;
+    /**
+     * The leftmost limit for Camera tracking.
+     */
     private Vector2 cameraStartPosition = new Vector2(8f, 3f);
+    /**
+     * The rightmost limit for Camera tracking.
+     */
     private Vector2 cameraEndPosition = new Vector2(40f, 3);
+    /**
+     * Timer that forces the Camera to wait before moving to the position of the new projectile.
+     */
     private float landingTimer = 0f;
+    /**
+     * Box2DDebugRenderer used for testing hitboxes etc.
+     */
     private Box2DDebugRenderer debugRenderer;
+    /**
+     * Vector2 that holds the x and y coordinates of the center of the menu button.
+     */
     private Vector2 menuButtonCenter;
 
     /**
-     * Instantiates a new Base level.
+     * Instantiates a new BaseLevel.
      *
-     * @param g                       the g
-     * @param backgroundTextureSource the background texture source
-     * @param groundTextureSource     the ground texture source
+     * Camera, SpriteBatch and BitmapFont are retrieved using the MyGame instance. It is
+     * also given to any contructors that require it. GameWorld is set as ContactListener to
+     * enable collision detection. BaseLevel is also set as InputProcessor. This allows for projectile
+     * throwing mechanics.
+     *
+     * @param g                       the MyGame used to retrieve spriteBatch, font, etc.
+     * @param backgroundTextureSource the background texture source path.
+     * @param groundTextureSource     the ground texture source path.
      */
     public BaseLevel(MyGame g, String backgroundTextureSource, String groundTextureSource) {
         game = g;
@@ -206,9 +251,10 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Throw projectile.
+     * Method for throwing projectiles. Also limits the force and direction of the throw for a
+     * better play experience.
      *
-     * @param projectile the projectile
+     * @param projectile the projectile used for throwing.
      */
     public void throwProjectile(ThrownObject projectile){
         Vector2 throwDirection;
@@ -236,28 +282,28 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Is game running boolean.
+     * Getter for isGameRunning boolean.
      *
-     * @return the boolean
+     * @return boolean value.
      */
-    public boolean isGameRunning() {
+    private boolean isGameRunning() {
         return gameRunning;
     }
 
     /**
-     * Create border wall.
+     * Creates border walls for the level based on x and y coordinates.
      *
-     * @param x the x
-     * @param y the y
+     * @param x the x-coordinate.
+     * @param y the y-coordinate.
      */
     public void createBorderWall(float x, float y) {
         BorderWall borderWall = new BorderWall(game, this, x, y);
     }
 
     /**
-     * Do physics step.
+     * Handles the Box2d World physics stepping through the use of deltaTime and timeStep variables.
      *
-     * @param deltaTime the delta time
+     * @param deltaTime the deltatime variable.
      */
     public void doPhysicsStep(float deltaTime) {
         float frameTime = deltaTime;
@@ -273,7 +319,9 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Move cam.
+     * Method for moving Camera. The Camera constantly updates it's desired position based on
+     * the current projectile's x coordinate. Camera.slerp is used to achieve a smooth tracking
+     * action.
      */
     public void moveCam() {
         Vector3 desiredPosition = new Vector3();
@@ -291,7 +339,8 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Sets next projectile.
+     * Sets next projectile to be thrown. Also handles score system and sets endGame = true if
+     * the player is out of projectiles.
      */
     public void setNextProjectile() {
         if(currentProjectileIndex < projectiles.size()){
@@ -315,9 +364,9 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Gets game world.
+     * Getter for gameWorld.
      *
-     * @return the game world
+     * @return gameWorld.
      */
     public World getGameWorld() {
         return gameWorld;
@@ -330,12 +379,12 @@ public class BaseLevel implements Screen {
 
     @Override
     public void render(float delta) {
-        if(!isGameRunning()){
-            startTimer += delta;
-            if(startTimer >= 0.1f){
-                gameRunning = true;
-            }
-        }
+        //if(!isGameRunning()){
+        //    startTimer += delta;
+        //    if(startTimer >= 0.1f){
+        //        gameRunning = true;
+        //    }
+        //}
 
         if(projectileLanded){
             landingTimer += delta;
@@ -356,9 +405,7 @@ public class BaseLevel implements Screen {
                 scoreGetSoundPlayed = true;
             }
         }
-        //if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-        //    game.setScreen(new EndLevelScreen(game, 2, 800));
-        //}
+
 
         batch.begin();
         debugRenderer.render(getGameWorld(), camera.combined);
@@ -369,7 +416,7 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Stop music.
+     * Stops all music.
      */
     public void stopMusic() {
         game.getMenuTheme().stop();
@@ -407,9 +454,9 @@ public class BaseLevel implements Screen {
     }
 
     /**
-     * Gets projectiles.
+     * Getter for projectile ArrayList.
      *
-     * @return the projectiles
+     * @return projectile ArrayList.
      */
     public ArrayList<ThrownObject> getProjectiles() {
         return projectiles;

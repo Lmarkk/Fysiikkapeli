@@ -10,51 +10,50 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * The type Base menu.
+ * BaseMenu is the superclass for all menu classes such as MainMenu and RecipeMenu.
+ *
+ * @author Lassi Markkinen, Arttu Knuutinen
+ * @version 2019.0419
  */
 public class BaseMenu implements Screen {
     /**
-     * The Game.
+     * Instance of MyGame received as a parameter in constructor.
      */
     MyGame game;
     /**
-     * The Batch.
+     * SpriteBatch used for rendering.
      */
     SpriteBatch batch;
     /**
-     * The Button list.
+     * Array containing every button on the menu screen.
      */
     Array<Button> buttonList;
     /**
-     * The Camera.
+     * OrthographicCamera used to set viewport for rendering.
      */
     OrthographicCamera camera;
     /**
-     * The Background.
+     * Background texture for all menus.
      */
     Texture background;
     /**
-     * The Kreon font.
-     */
-    String kreonFont = "Kreon-Regular.ttf";
-    /**
-     * The Font 64.
+     * The BitmapFont with size 64.
      */
     BitmapFont font64;
     /**
-     * The Font 100.
+     * The BitmapFont with size 100.
      */
     BitmapFont font100;
     /**
-     * The Font 42.
+     * The BitmapFont with size 42.
      */
     BitmapFont font42;
     /**
-     * The Font 120.
+     * The BitmapFont with size 120.
      */
     BitmapFont font120;
     /**
-     * The Font 30.
+     * The BitmapFont with size 30.
      */
     BitmapFont font30;
 
@@ -62,7 +61,7 @@ public class BaseMenu implements Screen {
     /**
      * Instantiates a new Base menu.
      *
-     * @param g the g
+     * @param g the MyGame used for retrieving fonts, prefs, music, etc.
      */
     public BaseMenu(MyGame g) {
         game = g;
@@ -105,14 +104,14 @@ public class BaseMenu implements Screen {
     }
 
     /**
-     * Create buttons.
+     * Creates the Array that holds all buttons.
      */
     public void createButtons() {
         buttonList = new Array<Button>();
     }
 
     /**
-     * Render buttons.
+     * Calls draw method for every button on the Array.
      */
     public void renderButtons() {
         batch.begin();
@@ -123,7 +122,7 @@ public class BaseMenu implements Screen {
     }
 
     /**
-     * Stop music.
+     * Stops all music.
      */
     public void stopMusic() {
         game.getMenuTheme().stop();
@@ -133,9 +132,9 @@ public class BaseMenu implements Screen {
     }
 
     /**
-     * Change image.
+     * Used for changing images in TutorialScreen.
      *
-     * @param goForward the go forward
+     * @param goForward Whether the replacing image should be the next one or the previous one.
      */
     public void changeImage(boolean goForward){
 
