@@ -60,7 +60,7 @@ public class FourthLevel extends BaseLevel {
         setNextProjectile();
 
         createBorderWall(-0.5f, 0);
-        createBorderWall(30, 0);
+        createBorderWall(46.5f, 0);
     }
     @Override
     public void render(float delta) {
