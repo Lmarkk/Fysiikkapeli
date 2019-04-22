@@ -219,7 +219,7 @@ public class Button {
         }
 
         if(buttonSize == BUTTONSIZE_VERYSMALL) {
-            buttonRect = new Rectangle(x, y, 1.2f, 1.2f);
+            buttonRect = new Rectangle(x, y, 1.5f, 1.5f);
         } else if(buttonSize == BUTTONSIZE_SMALL) {
             buttonRect = new Rectangle(x, y, 3.5f, 1.2f);
         } else if(buttonSize == BUTTONSIZE_MEDIUM) {

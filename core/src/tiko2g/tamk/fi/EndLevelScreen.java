@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
-    private Button mainMenuButton;
+    private Button levelSelectButton;
     private Button nextLevelButton;
     private Rectangle unlockMessageRect;
     /**
@@ -180,7 +180,7 @@ public class EndLevelScreen extends BaseMenu {
         Vector2 buttonCenter = new Vector2();
         replayButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("playagain"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
-        mainMenuButton.getButtonRect().getCenter(buttonCenter);
+        levelSelectButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("levelselect"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         if(displayNextLevelButton) {
             nextLevelButton.getButtonRect().getCenter(buttonCenter);
@@ -208,8 +208,8 @@ public class EndLevelScreen extends BaseMenu {
         }
 
 
-        mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.7f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
-        buttonList.add(replayButton, mainMenuButton);
+        levelSelectButton = new Button(game, "button.png", "button-pressed.png",4.7f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
+        buttonList.add(replayButton, levelSelectButton);
         if(displayNextLevelButton) {
             buttonList.add(nextLevelButton);
         }
@@ -227,6 +227,11 @@ public class EndLevelScreen extends BaseMenu {
                 if(currentScore >= 300) {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                        if(!veganModeOn) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        } else {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                 }
                 break;
@@ -234,6 +239,11 @@ public class EndLevelScreen extends BaseMenu {
                 if(currentScore >= 300) {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                        if(!veganModeOn) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        } else {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                 }
                 break;
@@ -241,6 +251,11 @@ public class EndLevelScreen extends BaseMenu {
                 if(currentScore >= 400) {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                        if(!veganModeOn) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        } else {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                 }
                 break;
@@ -248,6 +263,11 @@ public class EndLevelScreen extends BaseMenu {
                 if(currentScore >= 400) {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                        if(!veganModeOn) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        } else {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                 }
                 break;
@@ -255,6 +275,11 @@ public class EndLevelScreen extends BaseMenu {
                 if(currentScore >= 500) {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
+                        if(!veganModeOn) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        } else {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                 }
                 break;

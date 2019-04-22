@@ -28,7 +28,7 @@ public class RecipeMenu extends BaseMenu {
     public RecipeMenu(MyGame g) {
         super(g);
         createButtons();
-        recipeNameRect = new Rectangle(1, 7.7f, 6, 1);
+        recipeNameRect = new Rectangle(1.1f, 7.7f, 6, 1);
         recipesOpenRect = new Rectangle(3, 0.6f, 10, 1);
     }
 
@@ -137,7 +137,7 @@ public class RecipeMenu extends BaseMenu {
         }
 
         dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.5f, 2, Button.BUTTONTYPE_DIETMODE);
-        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
+        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7, 1, Button.BUTTONTYPE_MAINMENU);
 
 
         buttonList.add(mainMenuButton, firstRecipeButton, secondRecipeButton, thirdRecipeButton);

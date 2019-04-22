@@ -509,8 +509,6 @@ public class Prefs {
      */
     public void setRecipeOneOpen(boolean status) {
         recipeOneOpen = status;
-        normalRecipesOpen++;
-        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeOneOpen", recipeOneOpen);
         pref.flush();
     }
@@ -522,8 +520,6 @@ public class Prefs {
      */
     public void setRecipeTwoOpen(boolean status) {
         recipeTwoOpen = status;
-        normalRecipesOpen++;
-        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeTwoOpen", recipeTwoOpen);
         pref.flush();
     }
@@ -535,8 +531,6 @@ public class Prefs {
      */
     public void setRecipeThreeOpen(boolean status) {
         recipeThreeOpen = status;
-        normalRecipesOpen++;
-        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeThreeOpen", recipeThreeOpen);
         pref.flush();
     }
@@ -548,8 +542,6 @@ public class Prefs {
      */
     public void setRecipeFourOpen(boolean status) {
         recipeFourOpen = status;
-        normalRecipesOpen++;
-        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeFourOpen", recipeFourOpen);
         pref.flush();
     }
@@ -561,8 +553,6 @@ public class Prefs {
      */
     public void setRecipeFiveOpen(boolean status) {
         recipeFiveOpen = status;
-        normalRecipesOpen++;
-        pref.putInteger("recipesOpen", normalRecipesOpen);
         pref.putBoolean("recipeFiveOpen", recipeFiveOpen);
         pref.flush();
     }
@@ -574,8 +564,6 @@ public class Prefs {
      */
     public void setVeganRecipeOneOpen(boolean status) {
         veganRecipeOneOpen = status;
-        veganRecipesOpen++;
-        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
         pref.putBoolean("veganRecipeOneOpen", veganRecipeOneOpen);
         pref.flush();
     }
@@ -587,8 +575,6 @@ public class Prefs {
      */
     public void setVeganRecipeTwoOpen(boolean status) {
         veganRecipeTwoOpen = status;
-        veganRecipesOpen++;
-        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
         pref.putBoolean("veganRecipeTwoOpen", veganRecipeTwoOpen);
         pref.flush();
     }
@@ -600,8 +586,6 @@ public class Prefs {
      */
     public void setVeganRecipeThreeOpen(boolean status) {
         veganRecipeThreeOpen = status;
-        veganRecipesOpen++;
-        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
         pref.putBoolean("veganRecipeThreeOpen", veganRecipeThreeOpen);
         pref.flush();
     }
@@ -613,8 +597,6 @@ public class Prefs {
      */
     public void setVeganRecipeFourOpen(boolean status) {
         veganRecipeFourOpen = status;
-        veganRecipesOpen++;
-        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
         pref.putBoolean("veganRecipeFourOpen", veganRecipeFourOpen);
         pref.flush();
     }
@@ -626,13 +608,21 @@ public class Prefs {
      */
     public void setVeganRecipeFiveOpen(boolean status) {
         veganRecipeFiveOpen = status;
-        veganRecipesOpen++;
-        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
         pref.putBoolean("veganRecipeFiveOpen", veganRecipeFiveOpen);
         pref.flush();
     }
 
 
+    public void addToNormalRecipesOpen() {
+        normalRecipesOpen++;
+        pref.putInteger("recipesOpen", normalRecipesOpen);
+        pref.flush();
+    }
+    public void addToVeganRecipesOpen() {
+        veganRecipesOpen++;
+        pref.putInteger("veganRecipesOpen", veganRecipesOpen);
+        pref.flush();
+    }
     /**
      * Getter for sound status boolean.
      *
