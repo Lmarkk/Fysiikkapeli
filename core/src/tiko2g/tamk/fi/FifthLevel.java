@@ -64,7 +64,7 @@ public class FifthLevel extends BaseLevel {
         setNextProjectile();
 
         createBorderWall(-0.5f, 0);
-        createBorderWall(30, 0);
+        createBorderWall(48f, 0);
     }
     @Override
     public void render(float delta) {
@@ -95,11 +95,12 @@ public class FifthLevel extends BaseLevel {
         }
         super.render(delta);
         if(veganMode) {
-            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFifthLevelScore(), 12f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getVeganFifthLevelScore(), 12f * 100f, 8.4f * 100f, font35);
         } else {
-            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFifthLevelScore(), 12f * 100f, 8.4f * 100f, font32);
+            game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFifthLevelScore(), 12f * 100f, 8.4f * 100f, font35);
         }
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " +  score, 8f * 100f, 8.4f * 100f, font35);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font35);
     }
 
     @Override

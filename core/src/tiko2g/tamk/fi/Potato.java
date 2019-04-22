@@ -18,7 +18,7 @@ public class Potato extends ThrownObject {
     public Potato(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.6f);
         setTexture(new Texture("object-potato.png"));
-        setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(1.1f, 0, 1f, getVertices()));
     }
     @Override
     public Vector2[] getVertices(){

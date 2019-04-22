@@ -23,7 +23,7 @@ public class TutorialScreen extends BaseMenu {
     public TutorialScreen(MyGame g) {
         super(g);
         createButtons();
-        tutorialRect = new Rectangle(3.4f, 1.6f, 9.11f, 4.21f);
+        tutorialRect = new Rectangle(3.4f, 1.2f, 9.11f, 4.21f);
         tutorialImages[0] = new Texture("TutorialSampleScreen1.png");
         tutorialImages[1] = new Texture("TutorialSampleScreen2.png");
         tutorialImages[2] = new Texture("TutorialSampleScreen3.png");
@@ -36,9 +36,9 @@ public class TutorialScreen extends BaseMenu {
     }
     public void createButtons(){
         super.createButtons();
-        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        nextImageButton = new Button(game, "button-right.png", "button-right-pressed.png",13.5f, 3.5f, 1, Button.BUTTONTYPE_NEXTIMAGE);
-        prevImageButton = new Button(game, "button-left.png", "button-left-pressed.png",1, 3.5f, 1, Button.BUTTONTYPE_PREVIMAGE);
+        mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7f, 1, Button.BUTTONTYPE_MAINMENU);
+        nextImageButton = new Button(game, "button-right.png", "button-right-pressed.png",13.5f, 3.2f, 1, Button.BUTTONTYPE_NEXTIMAGE);
+        prevImageButton = new Button(game, "button-left.png", "button-left-pressed.png",1, 3.2f, 1, Button.BUTTONTYPE_PREVIMAGE);
         buttonList.add(mainMenuButton, nextImageButton, prevImageButton);
     }
     public void renderButtons(){
@@ -51,8 +51,8 @@ public class TutorialScreen extends BaseMenu {
         batch.begin();
         batch.draw(currentImage, tutorialRect.x, tutorialRect.y, tutorialRect.getWidth(), tutorialRect.getHeight());
         batch.end();
-        game.getTextRenderer().renderTextCenter((currentImageIndex+1) + "/4", 8f * 100f, 0.7f * 100f, font30);
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("tutorialtext"), 8.2f * 100f, 6.7f * 100f, font30);
+        game.getTextRenderer().renderTextCenter((currentImageIndex+1) + "/4", 8f * 100f, 0.7f * 100f, font35);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("tutorialtext"), 8.9f * 100f, 7.3f * 100f, font35);
     }
     @Override
     public void changeImage(boolean goForward) {

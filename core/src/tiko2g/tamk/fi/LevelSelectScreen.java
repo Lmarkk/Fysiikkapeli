@@ -45,15 +45,15 @@ public class LevelSelectScreen extends BaseMenu {
     public void createButtons(){
         super.createButtons();
 
-        menuButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_MAINMENU);
-        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.5f, 2, Button.BUTTONTYPE_DIETMODE);
-        endlessButton = new Button(game, "button.png", "button-pressed.png", 10.25f, 2.5f, 2, Button.BUTTONTYPE_PLAYENDLESS);
+        menuButton = new Button(game, "button-home.png", "button-home-pressed.png", 1, 7f, 1, Button.BUTTONTYPE_MAINMENU);
+        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.15f, 6.3f, 2, Button.BUTTONTYPE_DIETMODE);
+        endlessButton = new Button(game, "button.png", "button-pressed.png", 10.15f, 2.3f, 2, Button.BUTTONTYPE_PLAYENDLESS);
 
-        levelOneButton = new Button(game, "button.png", "button-pressed.png", 2.25f, 4.5f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
-        levelTwoButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 4.5f, 2, Button.BUTTONTYPE_PLAYLEVELTWO);
-        levelThreeButton = new Button(game, "button.png", "button-pressed.png", 10.25f, 4.5f, 2, Button.BUTTONTYPE_PLAYLEVELTHREE);
-        levelFourButton = new Button(game, "button.png", "button-pressed.png", 2.25f, 2.5f, 2, Button.BUTTONTYPE_PLAYLEVELFOUR);
-        levelFiveButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 2.5f, 2, Button.BUTTONTYPE_PLAYLEVELFIVE);
+        levelOneButton = new Button(game, "button.png", "button-pressed.png", 2.15f, 4.3f, 2, Button.BUTTONTYPE_PLAYLEVELONE);
+        levelTwoButton = new Button(game, "button.png", "button-pressed.png", 6.15f, 4.3f, 2, Button.BUTTONTYPE_PLAYLEVELTWO);
+        levelThreeButton = new Button(game, "button.png", "button-pressed.png", 10.15f, 4.3f, 2, Button.BUTTONTYPE_PLAYLEVELTHREE);
+        levelFourButton = new Button(game, "button.png", "button-pressed.png", 2.15f, 2.3f, 2, Button.BUTTONTYPE_PLAYLEVELFOUR);
+        levelFiveButton = new Button(game, "button.png", "button-pressed.png", 6.15f, 2.3f, 2, Button.BUTTONTYPE_PLAYLEVELFIVE);
 
         buttonList.add(menuButton, endlessButton, dietToggleButton, levelOneButton);
         buttonList.add(levelTwoButton, levelThreeButton, levelFourButton, levelFiveButton);

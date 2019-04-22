@@ -20,7 +20,7 @@ public class Chicken extends ThrownObject{
     public Chicken(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.56f);
         setTexture(new Texture("object-chicken.png"));
-        setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(1.25f, 0, 1f, getVertices()));
     }
 
 

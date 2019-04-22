@@ -95,7 +95,7 @@ public class BaseLevel implements Screen {
     /**
      * BitmapFont used for rendering text in levels.
      */
-    BitmapFont font32;
+    BitmapFont font35;
 
     /**
      * Value used to ensure that the score get sound is only played once per throw.
@@ -193,7 +193,7 @@ public class BaseLevel implements Screen {
         debugRenderer = new Box2DDebugRenderer();
         menuButtonCenter = new Vector2();
         menuButtonCenter = prevMenuButton.getButtonRect().getCenter(menuButtonCenter);
-        font32 = game.getFont32();
+        font35 = game.getFont35();
         score = 0;
         arrow = new Arrow();
 
@@ -406,12 +406,6 @@ public class BaseLevel implements Screen {
             }
         }
 
-
-        batch.begin();
-        debugRenderer.render(getGameWorld(), camera.combined);
-        batch.end();
-
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
 
     }
 

@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;
-    private Button mainMenuButton;
+    private Button levelSelectButton;
     private Button nextLevelButton;
     private Rectangle unlockMessageRect;
     /**
@@ -62,6 +62,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setVeganRecipeOneOpen(true);
                         game.getPrefs().setVeganLevelTwoOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getVeganLevelTwoOpen()) {
                         displayNextLevelButton = true;
@@ -74,6 +77,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setVeganRecipeTwoOpen(true);
                         game.getPrefs().setVeganLevelThreeOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getVeganLevelThreeOpen()) {
                         displayNextLevelButton = true;
@@ -86,6 +92,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setVeganRecipeThreeOpen(true);
                         game.getPrefs().setVeganLevelFourOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getVeganLevelFourOpen()) {
                         displayNextLevelButton = true;
@@ -98,6 +107,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setVeganRecipeFourOpen(true);
                         game.getPrefs().setVeganLevelFiveOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getVeganLevelFiveOpen()) {
                         displayNextLevelButton = true;
@@ -109,6 +121,9 @@ public class EndLevelScreen extends BaseMenu {
                             firstUnlock = true;
                         }
                         game.getPrefs().setVeganRecipeFiveOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToVeganRecipesOpen();
+                        }
                     }
                     break;
             }
@@ -121,6 +136,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setRecipeOneOpen(true);
                         game.getPrefs().setLevelTwoOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getLevelTwoOpen()) {
                         displayNextLevelButton = true;
@@ -133,6 +151,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setRecipeTwoOpen(true);
                         game.getPrefs().setLevelThreeOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getLevelThreeOpen()) {
                         displayNextLevelButton = true;
@@ -145,6 +166,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setRecipeThreeOpen(true);
                         game.getPrefs().setLevelFourOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getLevelFourOpen()) {
                         displayNextLevelButton = true;
@@ -157,6 +181,9 @@ public class EndLevelScreen extends BaseMenu {
                         }
                         game.getPrefs().setRecipeFourOpen(true);
                         game.getPrefs().setLevelFiveOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        }
                     }
                     if(game.getPrefs().getLevelFiveOpen()) {
                         displayNextLevelButton = true;
@@ -168,6 +195,9 @@ public class EndLevelScreen extends BaseMenu {
                             firstUnlock = true;
                         }
                         game.getPrefs().setRecipeFiveOpen(true);
+                        if(firstUnlock) {
+                            game.getPrefs().addToNormalRecipesOpen();
+                        }
                     }
                     break;
             }
@@ -180,7 +210,7 @@ public class EndLevelScreen extends BaseMenu {
         Vector2 buttonCenter = new Vector2();
         replayButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("playagain"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
-        mainMenuButton.getButtonRect().getCenter(buttonCenter);
+        levelSelectButton.getButtonRect().getCenter(buttonCenter);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("levelselect"), buttonCenter.x * 100f, buttonCenter.y * 100f, font64);
         if(displayNextLevelButton) {
             nextLevelButton.getButtonRect().getCenter(buttonCenter);
@@ -208,8 +238,8 @@ public class EndLevelScreen extends BaseMenu {
         }
 
 
-        mainMenuButton = new Button(game, "button.png", "button-pressed.png",4.7f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
-        buttonList.add(replayButton, mainMenuButton);
+        levelSelectButton = new Button(game, "button.png", "button-pressed.png",4.7f, 1.3f, 3, Button.BUTTONTYPE_PLAYMODES);
+        buttonList.add(replayButton, levelSelectButton);
         if(displayNextLevelButton) {
             buttonList.add(nextLevelButton);
         }
@@ -228,6 +258,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeOneOpen() && !game.getPrefs().getVeganLevelTwoOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeOneOpen() && !game.getPrefs().getLevelTwoOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 2:
@@ -235,6 +269,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeTwoOpen() && !game.getPrefs().getVeganLevelThreeOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeTwoOpen() && !game.getPrefs().getLevelThreeOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 3:
@@ -242,6 +280,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeThreeOpen() && !game.getPrefs().getVeganLevelFourOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeThreeOpen() && !game.getPrefs().getLevelFourOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 4:
@@ -249,6 +291,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeFourOpen() && !game.getPrefs().getVeganLevelFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeFourOpen() && !game.getPrefs().getLevelFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 5:
@@ -256,6 +302,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("500 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("500 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
         }
