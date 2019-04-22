@@ -97,7 +97,7 @@ public class Recipe implements Screen {
     /**
      * The position in pixels on the screen where to draw ingredients text.
      */
-    private final Vector2 ingredientPos = new Vector2(250f, 850f);
+    private final Vector2 ingredientPos = new Vector2(280f, 850f);
     /**
      * The position in pixels on the screen where to draw instructions text.
      */
