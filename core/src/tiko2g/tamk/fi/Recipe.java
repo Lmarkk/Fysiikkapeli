@@ -93,7 +93,7 @@ public class Recipe implements Screen {
 
     private String ingredients;
     private String instructions;
-    private final Vector2 ingredientPos = new Vector2(250f, 850f);
+    private final Vector2 ingredientPos = new Vector2(280f, 850f);
     private final Vector2 instructionPos = new Vector2(50f, 450f);
 
 
@@ -108,7 +108,7 @@ public class Recipe implements Screen {
         batch = game.getBatch();
         camera = game.getCamera();
         background = new Texture("menu-bg.png");
-        homeButton = new Button(game, "button-left.png", "button-left-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_RECIPES);
+        homeButton = new Button(game, "button-left.png", "button-left-pressed.png", 1, 7f, 1, Button.BUTTONTYPE_RECIPES);
         font30 = game.getFont30();
 
         switch (recipeType){
