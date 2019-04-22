@@ -18,7 +18,7 @@ public class Peach extends ThrownObject {
     public Peach(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.67f);
         setTexture(new Texture("Object-Peach.png"));
-        setBody(getBodyDef(), getFixtureDef(0.85f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(0.83f, 0, 1f, getVertices()));
     }
 
 

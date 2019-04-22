@@ -19,7 +19,7 @@ public class BellPepper extends ThrownObject {
     public BellPepper(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.67f);
         setTexture(new Texture("object-bellpepper.png"));
-        setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(1.1f, 0, 1f, getVertices()));
     }
 
 

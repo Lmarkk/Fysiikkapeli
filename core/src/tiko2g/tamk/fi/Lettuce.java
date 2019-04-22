@@ -18,7 +18,7 @@ public class Lettuce extends ThrownObject {
     public Lettuce(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.67f);
         setTexture(new Texture("Object-Lettuce.png"));
-        setBody(getBodyDef(), getFixtureDef(0.85f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(0.87f, 0, 1f, getVertices()));
     }
 
 
