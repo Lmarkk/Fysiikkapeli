@@ -221,11 +221,11 @@ public class Button {
         if(buttonSize == BUTTONSIZE_VERYSMALL) {
             buttonRect = new Rectangle(x, y, 1.5f, 1.5f);
         } else if(buttonSize == BUTTONSIZE_SMALL) {
-            buttonRect = new Rectangle(x, y, 3.6f, 1.4f);
+            buttonRect = new Rectangle(x, y, 3.7f, 1.40f);
         } else if(buttonSize == BUTTONSIZE_MEDIUM) {
-            buttonRect = new Rectangle(x, y, 6.6f, 1.6f);
+            buttonRect = new Rectangle(x, y, 6.7f, 1.7f);
         } else if(buttonSize == BUTTONSIZE_LARGE) {
-            buttonRect = new Rectangle(x, y, 6.6f, 2.1f);
+            buttonRect = new Rectangle(x, y, 6.7f, 2.2f);
         }
     }
 

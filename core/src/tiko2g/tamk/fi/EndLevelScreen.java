@@ -258,6 +258,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeOneOpen() && !game.getPrefs().getVeganLevelTwoOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeOneOpen() && !game.getPrefs().getLevelTwoOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 2:
@@ -265,6 +269,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeTwoOpen() && !game.getPrefs().getVeganLevelThreeOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeTwoOpen() && !game.getPrefs().getLevelThreeOpen()) {
+                    game.getTextRenderer().renderTextCenter("300 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 3:
@@ -272,6 +280,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeThreeOpen() && !game.getPrefs().getVeganLevelFourOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeThreeOpen() && !game.getPrefs().getLevelFourOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 4:
@@ -279,6 +291,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeFourOpen() && !game.getPrefs().getVeganLevelFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeFourOpen() && !game.getPrefs().getLevelFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("400 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
             case 5:
@@ -286,6 +302,10 @@ public class EndLevelScreen extends BaseMenu {
                     if(firstUnlock) {
                         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("unlocked"), 8 * 100f, 6 * 100f, font42);
                     }
+                } else if(veganModeOn && !game.getPrefs().getVeganRecipeFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("500 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
+                } else if(!veganModeOn && !game.getPrefs().getRecipeFiveOpen()) {
+                    game.getTextRenderer().renderTextCenter("500 " + game.getPrefs().getCurrentLanguage().get("pointsneeded"), 8 * 100f, 8 * 100f, font42);
                 }
                 break;
         }

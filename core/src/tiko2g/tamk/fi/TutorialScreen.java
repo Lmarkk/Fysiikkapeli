@@ -51,8 +51,8 @@ public class TutorialScreen extends BaseMenu {
         batch.begin();
         batch.draw(currentImage, tutorialRect.x, tutorialRect.y, tutorialRect.getWidth(), tutorialRect.getHeight());
         batch.end();
-        game.getTextRenderer().renderTextCenter((currentImageIndex+1) + "/4", 8f * 100f, 0.7f * 100f, font30);
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("tutorialtext"), 8.6f * 100f, 7.5f * 100f, font30);
+        game.getTextRenderer().renderTextCenter((currentImageIndex+1) + "/4", 8f * 100f, 0.7f * 100f, font35);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("tutorialtext"), 8.9f * 100f, 7.3f * 100f, font35);
     }
     @Override
     public void changeImage(boolean goForward) {

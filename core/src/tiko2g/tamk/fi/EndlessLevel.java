@@ -84,7 +84,7 @@ public class EndlessLevel extends BaseLevel {
         if(endGame) {
             game.setScreen(new EndLevelScreen(game, 1, score, false));
         }
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " +  score, 8f * 100f, 8.4f * 100f, font32);
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " +  score, 8f * 100f, 8.4f * 100f, font35);
         super.render(delta);
     }
     @Override

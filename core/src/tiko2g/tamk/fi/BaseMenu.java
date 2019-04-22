@@ -56,7 +56,14 @@ public class BaseMenu implements Screen {
      * The BitmapFont with size 30.
      */
     BitmapFont font30;
-
+    /**
+     * The BitmapFont with size 32.
+     */
+    BitmapFont font32;
+    /**
+     * the BitmapFont with size 35.
+     */
+    BitmapFont font35;
 
     /**
      * Instantiates a new Base menu.
@@ -74,6 +81,8 @@ public class BaseMenu implements Screen {
         font42 = game.getFont42();
         font120 = game.getFont120();
         font30 = game.getFont30();
+        font32 = game.getFont32();
+        font35 = game.getFont35();
         //createButtons();
 
         Gdx.input.setInputProcessor(new MyInputProcessor() {
