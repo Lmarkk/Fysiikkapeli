@@ -90,10 +90,7 @@ public class Recipe implements Screen {
      * The Touch start y.
      */
     float touchStartY;
-    /**
-     * The Scroll speed.
-     */
-    float scrollSpeed = 500f;
+
     private String ingredients;
     private String instructions;
     private final Vector2 ingredientPos = new Vector2(250f, 850f);
@@ -112,7 +109,7 @@ public class Recipe implements Screen {
         camera = game.getCamera();
         background = new Texture("menu-bg.png");
         homeButton = new Button(game, "button-left.png", "button-left-pressed.png", 1, 7.5f, 1, Button.BUTTONTYPE_RECIPES);
-        font30 = game.getTextRenderer().createFont(kreonFont, 30, Color.BLACK, 4);
+        font30 = game.getFont30();
 
         switch (recipeType){
             case hotPot:

@@ -107,36 +107,36 @@ public class RecipeMenu extends BaseMenu {
         super.createButtons();
 
         if(game.getPrefs().getRecipeOneOpen()) {
-            firstRecipeButton = new Button(game, "button.png", "button-pressed.png",2.25f, 4.5f, 2, Button.BUTTONTYPE_FIRSTRECIPE);
+            firstRecipeButton = new Button(game, "button.png", "button-pressed.png",2.25f, 4.3f, 2, Button.BUTTONTYPE_FIRSTRECIPE);
         } else {
-            firstRecipeButton = new Button(game, "button.png", "button-pressed.png",2.25f, 4.5f, 2, Button.BUTTONTYPE_LOCKED);
+            firstRecipeButton = new Button(game, "button.png", "button-pressed.png",2.25f, 4.3f, 2, Button.BUTTONTYPE_LOCKED);
         }
 
         if(game.getPrefs().getRecipeTwoOpen()) {
-            secondRecipeButton = new Button(game, "button.png", "button-pressed.png",6.25f, 4.5f, 2, Button.BUTTONTYPE_SECONDRECIPE);
+            secondRecipeButton = new Button(game, "button.png", "button-pressed.png",6.25f, 4.3f, 2, Button.BUTTONTYPE_SECONDRECIPE);
         } else {
-            secondRecipeButton = new Button(game, "button.png", "button-pressed.png",6.25f, 4.5f, 2, Button.BUTTONTYPE_LOCKED);
+            secondRecipeButton = new Button(game, "button.png", "button-pressed.png",6.25f, 4.3f, 2, Button.BUTTONTYPE_LOCKED);
         }
 
         if(game.getPrefs().getRecipeThreeOpen()) {
-            thirdRecipeButton = new Button(game, "button.png", "button-pressed.png",10.25f, 4.5f, 2, Button.BUTTONTYPE_THIRDRECIPE);
+            thirdRecipeButton = new Button(game, "button.png", "button-pressed.png",10.25f, 4.3f, 2, Button.BUTTONTYPE_THIRDRECIPE);
         } else {
-            thirdRecipeButton = new Button(game, "button.png", "button-pressed.png",10.25f, 4.5f, 2, Button.BUTTONTYPE_LOCKED);
+            thirdRecipeButton = new Button(game, "button.png", "button-pressed.png",10.25f, 4.3f, 2, Button.BUTTONTYPE_LOCKED);
         }
 
         if(game.getPrefs().getRecipeFourOpen()) {
-            fourthRecipeButton = new Button(game, "button.png", "button-pressed.png",4.25f, 2.5f, 2, Button.BUTTONTYPE_FOURTHRECIPE);
+            fourthRecipeButton = new Button(game, "button.png", "button-pressed.png",4.25f, 2.3f, 2, Button.BUTTONTYPE_FOURTHRECIPE);
         } else {
-            fourthRecipeButton = new Button(game, "button.png", "button-pressed.png",4.25f, 2.5f, 2, Button.BUTTONTYPE_LOCKED);
+            fourthRecipeButton = new Button(game, "button.png", "button-pressed.png",4.25f, 2.3f, 2, Button.BUTTONTYPE_LOCKED);
         }
 
         if(game.getPrefs().getRecipeFiveOpen()) {
-            fifthRecipeButton = new Button(game, "button.png", "button-pressed.png",8.25f, 2.5f, 2, Button.BUTTONTYPE_FIFTHRECIPE);
+            fifthRecipeButton = new Button(game, "button.png", "button-pressed.png",8.25f, 2.3f, 2, Button.BUTTONTYPE_FIFTHRECIPE);
         } else {
-            fifthRecipeButton = new Button(game, "button.png", "button-pressed.png",8.25f, 2.5f, 2, Button.BUTTONTYPE_LOCKED);
+            fifthRecipeButton = new Button(game, "button.png", "button-pressed.png",8.25f, 2.3f, 2, Button.BUTTONTYPE_LOCKED);
         }
 
-        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.5f, 2, Button.BUTTONTYPE_DIETMODE);
+        dietToggleButton = new Button(game, "button.png", "button-pressed.png", 6.25f, 6.3f, 2, Button.BUTTONTYPE_DIETMODE);
         mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7, 1, Button.BUTTONTYPE_MAINMENU);
 
 
