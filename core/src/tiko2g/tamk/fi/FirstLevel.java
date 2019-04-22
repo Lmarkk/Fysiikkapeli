@@ -83,6 +83,7 @@ public class FirstLevel extends BaseLevel {
         } else {
             game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getFirstLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         }
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " +  score + "/300", 8f * 100f, 8.4f * 100f, font32);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
 

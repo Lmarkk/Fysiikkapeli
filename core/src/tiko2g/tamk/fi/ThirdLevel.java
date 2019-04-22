@@ -12,11 +12,11 @@ public class ThirdLevel extends BaseLevel {
     /**
      * The Thrown objects.
      */
-    Array<ThrownObject> thrownObjects = new Array<ThrownObject>(9);
+    private Array<ThrownObject> thrownObjects = new Array<ThrownObject>(9);
     /**
      * The Array index.
      */
-    int arrayIndex;
+    private int arrayIndex;
 
     /**
      * Instantiates a new Third level.
@@ -24,7 +24,7 @@ public class ThirdLevel extends BaseLevel {
      * @param g           the g
      * @param veganStatus the vegan status
      */
-    public ThirdLevel(MyGame g, boolean veganStatus) {
+    ThirdLevel(MyGame g, boolean veganStatus) {
         super(g, "bg-wheat-fields.png", "ground.png");
 
         super.stopMusic();
@@ -89,6 +89,7 @@ public class ThirdLevel extends BaseLevel {
         } else {
             game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("highscore") + " " + game.getPrefs().getThirdLevelScore(), 12f * 100f, 8.4f * 100f, font32);
         }
+        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " +  score + "/400", 8f * 100f, 8.4f * 100f, font32);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("ingredients") + " " + (thrownObjects.size - arrayIndex), 12f * 100f, 0.7f * 100f, font32);
     }
 

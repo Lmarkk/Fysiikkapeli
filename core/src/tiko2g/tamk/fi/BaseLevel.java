@@ -407,8 +407,6 @@ public class BaseLevel implements Screen {
         }
 
 
-        game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("score") + " " + score, 8f * 100f, 8.4f * 100f, font32);
-
     }
 
     /**

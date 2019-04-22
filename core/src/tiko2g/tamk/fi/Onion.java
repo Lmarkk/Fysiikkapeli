@@ -18,7 +18,7 @@ public class Onion extends ThrownObject {
     public Onion(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);
         setTexture(new Texture("object-onion.png"));
-        setBody(getBodyDef(), getFixtureDef(0.9f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(1f, 0, 1f, getVertices()));
     }
 
     @Override

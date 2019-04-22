@@ -18,7 +18,7 @@ public class Carrot extends ThrownObject {
     public Carrot(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);
         setTexture(new Texture("object-carrot.png"));
-        setBody(getBodyDef(), getFixtureDef(1.7f, 0, 1f, getVertices()));
+        setBody(getBodyDef(), getFixtureDef(1.8f, 0, 1f, getVertices()));
     }
     @Override
     public Vector2[] getVertices(){
