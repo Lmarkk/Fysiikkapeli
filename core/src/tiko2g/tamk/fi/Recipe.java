@@ -63,11 +63,11 @@ enum recipeType {
  */
 public class Recipe implements Screen {
     /**
-     * MyGame reference used for various utilities.
+     * Instance of MyGame received as a parameter in constructor.
      */
     private MyGame game;
     /**
-     * Reference to the SpriteBatch instance.
+     * SpriteBatch used for rendering.
      */
     private SpriteBatch batch;
     /**

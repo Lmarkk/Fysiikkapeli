@@ -11,23 +11,47 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
- * The type Thrown object.
+ * ThrownObject is a superclass for objects that are thrown in game.
+ *
+ * @author Arttu Knuutinen
+ * @version 2019.0420
  */
 public class ThrownObject {
+    /**
+     * Texture of the object.
+     */
     private Texture texture;
+    /**
+     * Box2D Body of the object.
+     */
     private Body body;
+    /**
+     * Value to check if the object has been thrown.
+     */
     private boolean thrown;
+    /**
+     * Math Rectangle of the object, used to check overlapping with goal-object "Pot".
+     */
     private Rectangle rect;
     /**
-     * The Game.
+     * Instance of MyGame received as a parameter in constructor.
      */
-    MyGame game;
+    private MyGame game;
     /**
-     * The Base level.
+     * The Base level reference used for Body creation.
      */
-    BaseLevel baseLevel;
+    private BaseLevel baseLevel;
+    /**
+     * SpriteBatch used for rendering.
+     */
     private SpriteBatch batch;
+    /**
+     *
+     */
     private float radius;
+    /**
+     * Affects the visual size of the object.
+     */
     private float textureScale;
 
     /**
@@ -60,7 +84,7 @@ public class ThrownObject {
     }
 
     /**
-     * Sets texture.
+     * Sets the object texture.
      *
      * @param texture the texture
      */
@@ -69,7 +93,7 @@ public class ThrownObject {
     }
 
     /**
-     * Draw.
+     * Draw method of the object.
      */
     public void draw(){
         Vector2 center = body.getWorldCenter();
@@ -90,9 +114,6 @@ public class ThrownObject {
                 false,
                 false);
         rect.setPosition(center.x, center.y);
-
-        // Placeholder used to visualize the overlap check rectangle
-//        batch.draw(new Texture("badlogic.jpg"), rect.x, rect.y, rect.width, rect.height);
     }
 
     /**
@@ -101,7 +122,7 @@ public class ThrownObject {
      * @param density     the density
      * @param restitution the restitution
      * @param friction    the friction
-     * @param vertices    the vertices
+     * @param vertices    the vertices used to form a polygon shape
      * @return the fixture def
      */
     public FixtureDef getFixtureDef(float density, float restitution, float friction, Vector2[] vertices) {
@@ -188,5 +209,23 @@ public class ThrownObject {
      */
     public Vector2[] getVertices(){
         return null;
+    }
+
+    /**
+     * Gets the MyGame instance.
+     *
+     * @return the game
+     */
+    public MyGame getGame() {
+        return game;
+    }
+
+    /**
+     * Gets base level reference.
+     *
+     * @return the base level
+     */
+    public BaseLevel getBaseLevel() {
+        return baseLevel;
     }
 }
