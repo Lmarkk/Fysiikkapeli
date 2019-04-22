@@ -24,7 +24,7 @@ public class Ground {
     private Texture groundTexture;
     private Rectangle groundRect;
     private Body groundBody;
-    private float groundWidth = 48;
+    private float groundWidth = 120;
 
 
     /**

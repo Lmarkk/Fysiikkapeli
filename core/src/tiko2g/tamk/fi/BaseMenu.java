@@ -61,7 +61,7 @@ public class BaseMenu implements Screen {
      */
     BitmapFont font32;
     /**
-     * the BitmapFont with size 35.
+     * The BitmapFont with size 35.
      */
     BitmapFont font35;
 

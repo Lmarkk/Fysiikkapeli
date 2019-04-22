@@ -10,7 +10,9 @@ import com.badlogic.gdx.math.Vector3;
 
 
 /**
- * The type Button.
+ * Class used for creating and handling pressable buttons in menus and levels in the game.
+ * @author Lassi Markkinen, Arttu Knuutinen
+ * @version 2019.0422
  */
 public class Button {
     /**
@@ -167,25 +169,50 @@ public class Button {
      */
     static final float BUTTONSIZE_LARGE = 4;
 
+    /**
+     * MyGame instance received in the constructor.
+     */
     private MyGame game;
+    /**
+     * Integer variable that determines a button's function.
+     */
     private int buttonType;
+    /**
+     * Rectangle used for button texture and text rendering.
+     */
     private Rectangle buttonRect;
+    /**
+     * Currently active texture of the button, changed depending on conditions.
+     */
     private Texture buttonTexture;
+    /**
+     * Texture assigned to buttonTexture when the button is not pressed down.
+     */
     private Texture buttonNotPressedTexture;
+    /**
+     * Texture assigned to buttonTexture when the button is pressed down.
+     */
     private Texture buttonPressedTexture;
+    /**
+     * Texture that is drawn on top of buttonTexture for buttons whose type is "locked".
+     */
     private Texture buttonLock;
+    /**
+     * Sound that plays whenever a button is pressed.
+     */
     private Sound clickSound;
 
     /**
-     * Instantiates a new Button.
+     * Instantiates a new Button. If-statements are used to handle toggling persistent texture states for audio buttons
+     * as well as setting the button's dimensions based on the buttonSize variable.
      *
-     * @param g                       the g
-     * @param notPressedTextureSource the not pressed texture source
-     * @param pressedTextureSource    the pressed texture source
-     * @param x                       the x
-     * @param y                       the y
-     * @param buttonSize              the button size
-     * @param bType                   the b type
+     * @param g                       the MyGame, used for getting audio files and prefs.
+     * @param notPressedTextureSource the not pressed texture source.
+     * @param pressedTextureSource    the pressed texture source.
+     * @param x                       the x-position for the button.
+     * @param y                       the y-position fot the button.
+     * @param buttonSize              the button size.
+     * @param bType                   the button type.
      */
     public Button(MyGame g, String notPressedTextureSource, String pressedTextureSource, float x, float y, float buttonSize, int bType) {
         game = g;
@@ -230,7 +257,7 @@ public class Button {
     }
 
     /**
-     * Draw.
+     * Draws the button.
      *
      * @param batch the batch
      */
@@ -242,11 +269,11 @@ public class Button {
     }
 
     /**
-     * Get button button.
+     * Method used for retrieving a button if it can be found on the given x and y coordinates.
      *
-     * @param x the x
-     * @param y the y
-     * @return the button
+     * @param x the x-coordinate.
+     * @param y the y-coordinate.
+     * @return the button if it is within the x and y, null otherwise.
      */
     public Button getButton(int x, int y){
         Vector3 touch = new Vector3(x, y, 0);
@@ -258,11 +285,12 @@ public class Button {
     }
 
     /**
-     * Press function boolean.
+     * Method that checks whether a button was pressed and then uses a switch case to check the button's
+     * buttonType and performs a function based on that variable.
      *
-     * @param x the x
-     * @param y the y
-     * @return the boolean
+     * @param x the x-coordinate.
+     * @param y the y-coordinate.
+     * @return True if the button was pressed and function performed, false otherwise.
      */
     public boolean pressFunction(int x, int y) {
         Vector3 touch = new Vector3(x, y, 0);
@@ -380,11 +408,11 @@ public class Button {
     }
 
     /**
-     * Sets texture.
+     * Method that handles button texture changing and toggling.
      *
-     * @param x       the x
-     * @param y       the y
-     * @param pressed the pressed
+     * @param x       the x-coordinate.
+     * @param y       the y-coordinate.
+     * @param pressed Whether the button has just been pressed.
      */
     public void setTexture(int x, int y, boolean pressed) {
         Vector3 touch = new Vector3(x, y, 0);
@@ -414,9 +442,9 @@ public class Button {
     }
 
     /**
-     * Sets x.
+     * Sets the button's position on the x-axis.
      *
-     * @param x the x
+     * @param x the x-coordinate.
      */
     public void setX(float x) {
         buttonRect.setX(x);
@@ -441,17 +469,14 @@ public class Button {
     }
 
     /**
-     * Gets button rect.
+     * Gets button Rectangle.
      *
-     * @return the button rect
+     * @return the button Rectangle.
      */
     public Rectangle getButtonRect() {
         return buttonRect;
     }
 
-    /**
-     * Dispose.
-     */
     public void dispose() {
         buttonTexture.dispose();
         buttonPressedTexture.dispose();

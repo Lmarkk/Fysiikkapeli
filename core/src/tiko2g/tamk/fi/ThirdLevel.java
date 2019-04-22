@@ -56,7 +56,7 @@ public class ThirdLevel extends BaseLevel {
         setNextProjectile();
 
         createBorderWall(-0.5f, 0);
-        createBorderWall(48f, 0);
+        createBorderWall(120f, 0);
     }
     @Override
     public void render(float delta) {
