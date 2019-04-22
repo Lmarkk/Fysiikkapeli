@@ -39,6 +39,6 @@ public class Meat extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Meat(game, baseLevel);
+        return new Meat(getGame(), getBaseLevel());
     }
 }

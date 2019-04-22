@@ -43,6 +43,6 @@ public class BellPepper extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new BellPepper(game, baseLevel);
+        return new BellPepper(getGame(), getBaseLevel());
     }
 }

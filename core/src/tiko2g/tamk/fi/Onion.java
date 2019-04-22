@@ -42,6 +42,6 @@ public class Onion extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Onion(game, baseLevel);
+        return new Onion(getGame(), getBaseLevel());
     }
 }
