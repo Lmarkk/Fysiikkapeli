@@ -54,7 +54,7 @@ public class EndlessLevel extends BaseLevel {
         setNextProjectile();
 
         createBorderWall(-0.5f, 0);
-        createBorderWall(48f, 0);
+        createBorderWall(120f, 0);
 
 
     }
