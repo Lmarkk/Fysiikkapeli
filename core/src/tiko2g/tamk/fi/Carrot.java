@@ -7,13 +7,16 @@ import com.badlogic.gdx.math.Vector2;
  * The type Carrot.
  */
 public class Carrot extends ThrownObject {
+    /**
+     * Scale affects the "physical" size of the object.
+     */
     private float scale = 0.24f;
 
     /**
      * Instantiates a new Carrot.
      *
-     * @param g the g
-     * @param b the b
+     * @param g the MyGame instance
+     * @param b the BaseLevel reference
      */
     public Carrot(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);
@@ -40,6 +43,6 @@ public class Carrot extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Carrot(game, baseLevel);
+        return new Carrot(getGame(), getBaseLevel());
     }
 }

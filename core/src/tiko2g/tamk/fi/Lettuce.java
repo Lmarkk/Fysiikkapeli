@@ -42,6 +42,6 @@ public class Lettuce extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Lettuce(game, baseLevel);
+        return new Lettuce(getGame(), getBaseLevel());
     }
 }

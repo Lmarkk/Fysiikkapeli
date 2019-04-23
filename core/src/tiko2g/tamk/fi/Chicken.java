@@ -44,6 +44,6 @@ public class Chicken extends ThrownObject{
 
     @Override
     public ThrownObject cloneObject() {
-        return new Chicken(game, baseLevel);
+        return new Chicken(getGame(), getBaseLevel());
     }
 }

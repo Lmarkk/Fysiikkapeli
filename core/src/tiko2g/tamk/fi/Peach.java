@@ -42,6 +42,6 @@ public class Peach extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Peach(game, baseLevel);
+        return new Peach(getGame(), getBaseLevel());
     }
 }

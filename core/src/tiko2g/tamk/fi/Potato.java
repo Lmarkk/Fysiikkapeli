@@ -40,6 +40,6 @@ public class Potato extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Potato(game, baseLevel);
+        return new Potato(getGame(), getBaseLevel());
     }
 }

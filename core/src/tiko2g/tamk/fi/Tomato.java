@@ -41,6 +41,6 @@ public class Tomato extends ThrownObject {
 
     @Override
     public ThrownObject cloneObject() {
-        return new Tomato(game, baseLevel);
+        return new Tomato(getGame(), getBaseLevel());
     }
 }
