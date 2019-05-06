@@ -9,30 +9,48 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
- * The type Ground.
+ * Class used to  create a static body serving as a ground for collisions on levels.
+ *
+ * @author Lassi Markkinen
+ * @version 2019.0423
  */
 public class Ground {
     /**
-     * The Game.
+     * MyGame instance received in the constructor.
      */
     MyGame game;
     /**
-     * The Batch.
+     * SpriteBatch received from MyGame.
      */
     SpriteBatch batch;
+    /**
+     * BaseLevel instance received in the constructor.
+     */
     private BaseLevel baseLevel;
+    /**
+     * Texture for the ground rendering.
+     */
     private Texture groundTexture;
+    /**
+     * Rectangle used for drawing the texture.
+     */
     private Rectangle groundRect;
+    /**
+     * Box2d Body used for physics.
+     */
     private Body groundBody;
+    /**
+     * Float value that determines the width of the ground.
+     */
     private float groundWidth = 120;
 
 
     /**
      * Instantiates a new Ground.
      *
-     * @param g             the g
-     * @param b             the b
-     * @param textureSource the texture source
+     * @param g             the MyGame, used for getting the SpriteBatch.
+     * @param b             the BaseLevel, used for accessing the Box2d World.
+     * @param textureSource the source path for the texture.
      */
     public Ground(MyGame g, BaseLevel b, String textureSource) {
         game = g;
@@ -46,7 +64,7 @@ public class Ground {
     }
 
     /**
-     * Draw.
+     * Draws the part of the ground that is visible to the player.
      */
     public void draw() {
         batch.draw(groundTexture, groundRect.x, groundRect.y, 16, 4);
@@ -55,9 +73,9 @@ public class Ground {
     }
 
     /**
-     * Gets ground body def.
+     * Creates a new BodyDef for the Ground instance.
      *
-     * @return the ground body def
+     * @return the created BodyDef.
      */
     public BodyDef getGroundBodyDef() {
         BodyDef groundBodyDef = new BodyDef();
@@ -67,9 +85,9 @@ public class Ground {
     }
 
     /**
-     * Gets ground fixture def.
+     * Creates a new FixtureDef for the Ground instance.
      *
-     * @return the ground fixture def
+     * @return the created FixtureDef.
      */
     public FixtureDef getGroundFixtureDef() {
         FixtureDef groundFixtureDef = new FixtureDef();
@@ -83,9 +101,9 @@ public class Ground {
     }
 
     /**
-     * Gets ground body.
+     * Getter for ground Body.
      *
-     * @return the ground body
+     * @return groundBody.
      */
     public Body getGroundBody() {
         return groundBody;

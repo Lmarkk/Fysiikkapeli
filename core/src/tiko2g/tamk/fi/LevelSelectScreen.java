@@ -4,18 +4,45 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * The type Level select screen.
+ * Menu that represents the different level options of the game to the player.
+ *
+ * @author Lassi Markkinen
+ * @version 2019.0423
  */
 public class LevelSelectScreen extends BaseMenu {
+    /**
+     * Button that changes the screen to level one.
+     */
     private Button levelOneButton;
+    /**
+     * Button that changes the screen to level two.
+     */
     private Button levelTwoButton;
+    /**
+     * Button that changes the screen to level three.
+     */
     private Button levelThreeButton;
+    /**
+     * Button that changes the screen to level four.
+     */
     private Button levelFourButton;
+    /**
+     * Button that changes the screen to level five.
+     */
     private Button levelFiveButton;
 
+    /**
+     * Button that toggles the button of every level between normal and vegan mode levels.
+     */
     private Button dietToggleButton;
 
+    /**
+     * Button that changes the screen to an endless level.
+     */
     private Button endlessButton;
+    /**
+     * Button for returning to the main menu.
+     */
     private Button menuButton;
 
     private Array<Button> veganButtonList;
@@ -24,7 +51,7 @@ public class LevelSelectScreen extends BaseMenu {
     /**
      * Instantiates a new Level select screen.
      *
-     * @param g the g
+     * @param g the MyGame, used to access prefs.
      */
     public LevelSelectScreen(MyGame g) {
         super(g);
@@ -42,6 +69,10 @@ public class LevelSelectScreen extends BaseMenu {
         super.render(delta);
     }
 
+    /**
+     * Calls the superclass method which creates an array for holding all buttons.
+     * Creates every button on the screen and adds them to the array.
+     */
     public void createButtons(){
         super.createButtons();
 
@@ -59,6 +90,12 @@ public class LevelSelectScreen extends BaseMenu {
         buttonList.add(levelTwoButton, levelThreeButton, levelFourButton, levelFiveButton);
 
     }
+
+    /**
+     * Calls the superclass method which calls draw on every button on the list of buttons.
+     * Checks for the gamemode(vegan/normal) and changes button types based on those if-statements.
+     * Renders text for every button, again checking for unlock status when determining whether to render text.
+     */
     public void renderButtons(){
         super.renderButtons();
 

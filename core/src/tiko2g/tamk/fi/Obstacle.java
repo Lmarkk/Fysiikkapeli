@@ -9,34 +9,52 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
- * The type Obstacle.
+ * Class used to create obstacles in game levels.
  */
 public class Obstacle {
     /**
-     * The Game.
+     * The MyGame, received in constructor.
      */
     MyGame game;
     /**
-     * The Batch.
+     * The SpriteBatch, received from game.
      */
     SpriteBatch batch;
+    /**
+     * The BaseLevel, received in the constructor.
+     */
     private BaseLevel baseLevel;
+    /**
+     * Texture for drawing the Obstacle.
+     */
     private Texture texture;
+    /**
+     * Rectangle used when rendering the texture.
+     */
     private Rectangle obstacleRect;
+    /**
+     * Body used for Obstacle physics.
+     */
     private Body obstacleBody;
+    /**
+     * Float value that determines the width of an Obstacle.
+     */
     private float obstacleWidth;
+    /**
+     * Float value that determines the height of an Obstacle.
+     */
     private float obstacleHeight;
 
 
     /**
      * Instantiates a new Obstacle.
      *
-     * @param g      the g
-     * @param b      the b
-     * @param x      the x
-     * @param y      the y
-     * @param width  the width
-     * @param height the height
+     * @param g      the MyGame, used to get SpriteBatch.
+     * @param b      the BaseLevel, used to get World for Body/Fixture creation.
+     * @param x      the position of the Obstacle on the x-axis.
+     * @param y      the position of the Obstacle on the y-axis.
+     * @param width  the width of the Obstacle.
+     * @param height the height of the Obstacle.
      */
     public Obstacle(MyGame g, BaseLevel b, float x, float y, float width, float height) {
         game = g;
@@ -52,7 +70,7 @@ public class Obstacle {
     }
 
     /**
-     * Draw.
+     * Draws the Obstacle using batch.
      */
     public void draw() {
         batch.draw(texture, obstacleRect.x, obstacleRect.y, obstacleRect.getWidth(), obstacleRect.getHeight());
@@ -60,37 +78,37 @@ public class Obstacle {
     }
 
     /**
-     * Gets obstacle body def.
+     * Creates a new BodyDef for the Obstacle.
      *
-     * @return the obstacle body def
+     * @return the created BodyDef.
      */
     public BodyDef getObstacleBodyDef() {
-        BodyDef groundBodyDef = new BodyDef();
-        groundBodyDef.type = BodyDef.BodyType.StaticBody;
-        groundBodyDef.position.set(obstacleRect.x + obstacleWidth / 2, obstacleRect.y + obstacleHeight/2);
-        return groundBodyDef;
+        BodyDef obstacleBodyDef = new BodyDef();
+        obstacleBodyDef.type = BodyDef.BodyType.StaticBody;
+        obstacleBodyDef.position.set(obstacleRect.x + obstacleWidth / 2, obstacleRect.y + obstacleHeight/2);
+        return obstacleBodyDef;
     }
 
     /**
-     * Gets obstacle fixture def.
+     * Creates a new FixtureDef for the Obstacle.
      *
-     * @return the obstacle fixture def
+     * @return the created FixtureDef.
      */
     public FixtureDef getObstacleFixtureDef() {
-        FixtureDef groundFixtureDef = new FixtureDef();
-        groundFixtureDef.density = 1.0f;
-        groundFixtureDef.restitution = 0.2f;
-        groundFixtureDef.friction = 0.5f;
+        FixtureDef obstacleFixtureDef = new FixtureDef();
+        obstacleFixtureDef.density = 1.0f;
+        obstacleFixtureDef.restitution = 0.2f;
+        obstacleFixtureDef.friction = 0.5f;
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.setAsBox(obstacleWidth/2, obstacleHeight/2);
-        groundFixtureDef.shape = polygonShape;
-        return groundFixtureDef;
+        obstacleFixtureDef.shape = polygonShape;
+        return obstacleFixtureDef;
     }
 
     /**
-     * Gets body.
+     * Getter for the Obstacle's Body.
      *
-     * @return the body
+     * @return the Body.
      */
     public Body getBody() {
         return obstacleBody;
