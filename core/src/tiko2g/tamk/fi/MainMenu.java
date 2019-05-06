@@ -5,6 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * The type Main menu.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class MainMenu extends BaseMenu {
 
@@ -20,7 +23,7 @@ public class MainMenu extends BaseMenu {
     /**
      * Instantiates a new Main menu.
      *
-     * @param g the g
+     * @param g the MyGame instance
      */
     public MainMenu(MyGame g) {
         super(g);

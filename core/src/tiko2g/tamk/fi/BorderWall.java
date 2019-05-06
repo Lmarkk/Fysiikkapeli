@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * too far.
  *
  * @author Lassi Markkinen
- * @version 2019.0419
+ * @version 2.0
  */
 public class BorderWall {
     /**

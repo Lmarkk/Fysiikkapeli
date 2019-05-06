@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The type Carrot.
+ * ThrownObject type of Carrot.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Carrot extends ThrownObject {
     /**

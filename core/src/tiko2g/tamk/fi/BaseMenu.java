@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Array;
  * BaseMenu is the superclass for all menu classes such as MainMenu and RecipeMenu.
  *
  * @author Lassi Markkinen, Arttu Knuutinen
- * @version 2019.0419
+ * @version 2.0
  */
 public class BaseMenu implements Screen {
     /**

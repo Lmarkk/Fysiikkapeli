@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * The type End level screen.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class EndLevelScreen extends BaseMenu {
     private Button replayButton;

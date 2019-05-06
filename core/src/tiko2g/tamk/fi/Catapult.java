@@ -9,6 +9,9 @@ import com.badlogic.gdx.math.Rectangle;
 
 /**
  * The type Catapult.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class Catapult {
     private Texture textureSheet;
@@ -138,6 +141,10 @@ public class Catapult {
      */
     public void setShoot(boolean value) {
         shoot = value;
+    }
+
+    public void dispose(){
+        textureSheet.dispose();
     }
 
 }

@@ -4,6 +4,9 @@ import com.badlogic.gdx.InputProcessor;
 
 /**
  * The type My input processor.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public abstract class MyInputProcessor implements InputProcessor {
     @Override

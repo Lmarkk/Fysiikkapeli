@@ -59,7 +59,7 @@ enum recipeType {
  * Recipe displays a recipe on a screen specified by recipeType.
  *
  * @author Arttu Knuutinen
- * @version 2019.0418
+ * @version 2.0
  */
 public class Recipe implements Screen {
     /**
@@ -189,11 +189,6 @@ public class Recipe implements Screen {
 
     }
 
-    /**
-     * https://libgdx.badlogicgames.com/ci/nightlies/docs/api/com/badlogic/gdx/Screen.html#render-float-
-     *
-     * @param delta graphics delta time
-     */
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);

@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * The type Third level.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class ThirdLevel extends BaseLevel {
     /**
@@ -134,6 +137,9 @@ public class ThirdLevel extends BaseLevel {
 
     @Override
     public void dispose() {
+        for (ThrownObject ob : thrownObjects) {
+            ob.dispose();
+        }
         super.dispose();
     }
 }

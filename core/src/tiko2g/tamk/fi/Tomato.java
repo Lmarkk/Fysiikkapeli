@@ -4,16 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The type Tomato.
+ * ThrownObject type of Tomato.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Tomato extends ThrownObject {
+    /**
+     * Scale affects the "physical" size of the object.
+     */
     private float scale = 0.35f;
 
     /**
      * Instantiates a new Tomato.
      *
-     * @param g the g
-     * @param b the b
+     * @param g the MyGame instance
+     * @param b the BaseLevel reference
      */
     public Tomato(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);

@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * Class used to  create a static body serving as a ground for collisions on levels.
  *
  * @author Lassi Markkinen
- * @version 2019.0423
+ * @version 2.0
  */
 public class Ground {
     /**
@@ -107,6 +107,11 @@ public class Ground {
      */
     public Body getGroundBody() {
         return groundBody;
+    }
+
+    public void dispose(){
+        baseLevel.getGameWorld().destroyBody(groundBody);
+        groundTexture.dispose();
     }
 }
 

@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.I18NBundle;
  * Class used to store and manage all information that persists between play sessions.
  *
  * @author Lassi Markkinen
- * @version 2019.0419
+ * @version 2.0
  */
 public class Prefs {
     /**

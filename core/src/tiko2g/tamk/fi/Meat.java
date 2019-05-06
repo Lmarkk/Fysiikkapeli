@@ -4,16 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The type Meat.
+ * ThrownObject type of Meat.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Meat extends ThrownObject {
+    /**
+     * Scale affects the "physical" size of the object.
+     */
     private float scale = 0.5f;
 
     /**
      * Instantiates a new Meat.
      *
-     * @param g the g
-     * @param b the b
+     * @param g the MyGame instance
+     * @param b the BaseLevel reference
      */
     public Meat(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.6f);

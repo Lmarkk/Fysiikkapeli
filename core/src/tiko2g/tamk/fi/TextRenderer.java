@@ -9,7 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 /**
- * The type Text renderer.
+ * TextRenderer handles rendering text.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class TextRenderer {
     private OrthographicCamera camera;
@@ -27,7 +30,7 @@ public class TextRenderer {
     }
 
     /**
-     * Render text center.
+     * Render text centered on given coordinates.
      *
      * @param text the text
      * @param x    the x
@@ -44,7 +47,7 @@ public class TextRenderer {
     }
 
     /**
-     * Render text.
+     * Render text starting from given coordinates.
      *
      * @param text the text
      * @param x    the x

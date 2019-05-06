@@ -9,6 +9,9 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * The type Endless level.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class EndlessLevel extends BaseLevel {
     /**
@@ -119,6 +122,9 @@ public class EndlessLevel extends BaseLevel {
 
     @Override
     public void dispose() {
+        for (ThrownObject ob : thrownObjects) {
+            ob.dispose();
+        }
         super.dispose();
     }
 }

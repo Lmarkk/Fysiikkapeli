@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * ThrownObject is a superclass for objects that are thrown in game.
  *
  * @author Arttu Knuutinen
- * @version 2019.0420
+ * @version 2.0
  */
 public class ThrownObject {
     /**
@@ -227,5 +227,10 @@ public class ThrownObject {
      */
     public BaseLevel getBaseLevel() {
         return baseLevel;
+    }
+
+    public void dispose(){
+        texture.dispose();
+        baseLevel.getGameWorld().destroyBody(body);
     }
 }

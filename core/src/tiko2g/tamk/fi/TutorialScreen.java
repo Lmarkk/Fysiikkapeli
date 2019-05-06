@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 /**
- * The type Tutorial screen.
+ * TutorialScreen displays images and text that teaches player the mechanics
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class TutorialScreen extends BaseMenu {
     private Button mainMenuButton;
@@ -18,7 +21,7 @@ public class TutorialScreen extends BaseMenu {
     /**
      * Instantiates a new Tutorial screen.
      *
-     * @param g the g
+     * @param g the MyGame instance
      */
     public TutorialScreen(MyGame g) {
         super(g);
@@ -34,6 +37,10 @@ public class TutorialScreen extends BaseMenu {
     public void show() {
 
     }
+
+    /**
+     * Creates buttons for the screen.
+     */
     public void createButtons(){
         super.createButtons();
         mainMenuButton = new Button(game, "button-home.png", "button-home-pressed.png",1, 7f, 1, Button.BUTTONTYPE_MAINMENU);
@@ -54,6 +61,12 @@ public class TutorialScreen extends BaseMenu {
         game.getTextRenderer().renderTextCenter((currentImageIndex+1) + "/4", 8f * 100f, 0.7f * 100f, font35);
         game.getTextRenderer().renderTextCenter(game.getPrefs().getCurrentLanguage().get("tutorialtext"), 8.9f * 100f, 7.3f * 100f, font35);
     }
+
+    /**
+     * Changes the image displayed on screen.
+     *
+     * @param goForward Whether the replacing image should be the next one or the previous one.
+     */
     @Override
     public void changeImage(boolean goForward) {
         int nextImg = goForward ? 1 : -1;

@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * The type Fifth level.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class FifthLevel extends BaseLevel {
     /**
@@ -144,6 +147,9 @@ public class FifthLevel extends BaseLevel {
 
     @Override
     public void dispose() {
+        for (ThrownObject ob : thrownObjects) {
+            ob.dispose();
+        }
         super.dispose();
     }
 }

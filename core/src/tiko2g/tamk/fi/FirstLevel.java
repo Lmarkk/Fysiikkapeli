@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * The type First level.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class FirstLevel extends BaseLevel {
     /**
@@ -128,6 +131,9 @@ public class FirstLevel extends BaseLevel {
 
     @Override
     public void dispose() {
+        for (ThrownObject ob : thrownObjects) {
+            ob.dispose();
+        }
         super.dispose();
     }
 }

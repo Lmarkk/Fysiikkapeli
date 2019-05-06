@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Array;
  * Menu that represents the different level options of the game to the player.
  *
  * @author Lassi Markkinen
- * @version 2019.0423
+ * @version 2.0
  */
 public class LevelSelectScreen extends BaseMenu {
     /**

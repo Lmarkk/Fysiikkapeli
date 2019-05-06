@@ -5,6 +5,9 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * The type Recipe menu.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class RecipeMenu extends BaseMenu {
 

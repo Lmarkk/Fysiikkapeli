@@ -4,16 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The type Peach.
+ * ThrownObject type of Peach.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Peach extends ThrownObject {
+    /**
+     * Scale affects the "physical" size of the object.
+     */
     private float scale = 0.4f;
 
     /**
      * Instantiates a new Peach.
      *
-     * @param g the g
-     * @param b the b
+     * @param g the MyGame instance
+     * @param b the BaseLevel reference
      */
     public Peach(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.67f);

@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.Array;
 
 /**
  * The type Second level.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class SecondLevel extends BaseLevel {
     /**
@@ -37,10 +40,6 @@ public class SecondLevel extends BaseLevel {
         pot = new Pot(this, game, 12, 0);
         veganMode = veganStatus;
 
-        //for (int i = 0; i < 3; i++) {
-        //    ThrownObject object = new Carrot(game, this);
-        //    getProjectiles().add(object);
-        //}
         if(!veganMode) {
             thrownObjects.add(new Meat(game, this), new Meat(game, this), new Onion(game, this), new Onion(game, this));
             thrownObjects.add(new Carrot(game, this), new Carrot(game, this), new Carrot(game, this));
@@ -131,6 +130,9 @@ public class SecondLevel extends BaseLevel {
 
     @Override
     public void dispose() {
+        for (ThrownObject ob : thrownObjects) {
+            ob.dispose();
+        }
         super.dispose();
     }
 }

@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * Class used for creating and handling pressable buttons in menus and levels in the game.
  * @author Lassi Markkinen, Arttu Knuutinen
- * @version 2019.0422
+ * @version 2.0
  */
 public class Button {
     /**

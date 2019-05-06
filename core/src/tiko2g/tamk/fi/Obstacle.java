@@ -10,6 +10,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
  * Class used to create obstacles in game levels.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class Obstacle {
     /**

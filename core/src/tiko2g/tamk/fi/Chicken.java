@@ -5,17 +5,22 @@ import com.badlogic.gdx.math.Vector2;
 
 
 /**
- * The type Chicken.
+ * ThrownObject type of Chicken.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Chicken extends ThrownObject{
-
+    /**
+     * Scale affects the "physical" size of the object.
+     */
     private float scale = 0.42f;
 
     /**
      * Instantiates a new Chicken.
      *
-     * @param g the g
-     * @param b the b
+     * @param g the MyGame instance
+     * @param b the BaseLevel reference
      */
     public Chicken(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.56f);

@@ -25,7 +25,7 @@ import java.util.ArrayList;
  * BaseLevel is the superclass for all level classes such as FirstLevel and EndlessLevel.
  *
  * @author Lassi Markkinen, Arttu Knuutinen
- * @version 2019.0418
+ * @version 2.0
  */
 public class BaseLevel implements Screen {
     private final Vector2 CAM_DEFAULT_POS = new Vector2(8, 4.5f);
@@ -379,12 +379,6 @@ public class BaseLevel implements Screen {
 
     @Override
     public void render(float delta) {
-        //if(!isGameRunning()){
-        //    startTimer += delta;
-        //    if(startTimer >= 0.1f){
-        //        gameRunning = true;
-        //    }
-        //}
 
         if(projectileLanded){
             landingTimer += delta;
@@ -441,10 +435,13 @@ public class BaseLevel implements Screen {
 
     @Override
     public void dispose() {
+        ground.dispose();
         gameWorld.dispose();
         background.dispose();
         game.dispose();
         prevMenuButton.dispose();
+        scoreGetSound.dispose();
+        catapult.dispose();
     }
 
     /**

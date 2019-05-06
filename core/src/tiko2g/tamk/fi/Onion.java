@@ -4,16 +4,22 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The type Onion.
+ * ThrownObject type of Onion.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Onion extends ThrownObject {
+    /**
+     * Scale affects the "physical" size of the object.
+     */
     private float scale = 0.45f;
 
     /**
      * Instantiates a new Onion.
      *
-     * @param g the g
-     * @param b the b
+     * @param g the MyGame instance
+     * @param b the BaseLevel reference
      */
     public Onion(MyGame g, BaseLevel b){
         super(g, b, 1f, 0.65f);

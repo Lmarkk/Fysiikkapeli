@@ -14,6 +14,9 @@ import java.util.Locale;
 
 /**
  * The type My game.
+ *
+ * @author Lassi Markkinen
+ * @version 2.0
  */
 public class MyGame extends Game {
     private Prefs prefs;
@@ -161,15 +164,6 @@ public class MyGame extends Game {
      */
     public Music getMenuTheme() {
         return menuTheme;
-    }
-
-    /**
-     * Gets kreon font.
-     *
-     * @return the kreon font
-     */
-    public String getKreonFont() {
-        return kreonFont;
     }
 
     /**

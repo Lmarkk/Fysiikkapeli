@@ -8,10 +8,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 /**
- * The type Pot.
+ * Pot is the "goal" object inside the game.
+ *
+ * @author Arttu Knuutinen
+ * @version 2.0
  */
 public class Pot {
     private MyGame game;
@@ -19,11 +21,9 @@ public class Pot {
     private BaseLevel baseLevel;
     private Texture potBottomTexture;
     private Texture potTopTexture;
-    private Texture debugTexture;
     private Body potBody;
     private Rectangle potRect;
     private Rectangle leftSideRect;
-    private Rectangle rightSideRect;
     private Rectangle bottomRect;
     private float potWidth;
     private float potHeight;
@@ -34,10 +34,10 @@ public class Pot {
     /**
      * Instantiates a new Pot.
      *
-     * @param b the b
-     * @param g the g
-     * @param x the x
-     * @param y the y
+     * @param b the BaseLevel reference
+     * @param g the MyGame instance
+     * @param x the x position of the Pot
+     * @param y the y position of the Pot
      */
     public Pot(BaseLevel b, MyGame g, float x, float y) {
         game = g;
@@ -45,7 +45,6 @@ public class Pot {
         baseLevel = b;
         potBottomTexture = new Texture("cauldron-bottom.png");
         potTopTexture = new Texture("cauldron-top.png");
-        debugTexture = new Texture("badlogic.jpg");
         createPot(x, y);
 
     }
@@ -53,8 +52,8 @@ public class Pot {
     /**
      * Gets pot body def.
      *
-     * @param x the x
-     * @param y the y
+     * @param x the x position
+     * @param y the y position
      * @return the pot body def
      */
     public BodyDef getPotBodyDef(float x, float y) {
@@ -65,22 +64,12 @@ public class Pot {
     }
 
     /**
-     * Gets pot fixture def.
+     * Gets the FixtureDef of the pot and creates an edgeshape in given coordinates.
      *
-     * @param hX the h x
-     * @param hY the h y
-     * @return the pot fixture def
+     * @param v1 the start position for edgeshape
+     * @param v2 the end position for edgeshape
+     * @return the fixture def in the shape of an "edge"
      */
-    public FixtureDef getPotFixtureDef(float hX, float hY) {
-        FixtureDef potFixtureDef = new FixtureDef();
-        potFixtureDef.density = 1.0f;
-        potFixtureDef.restitution = 0f;
-        potFixtureDef.friction = 1f;
-        PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(hX, hY);
-        potFixtureDef.shape = polygonShape;
-        return potFixtureDef;
-    }
     private FixtureDef getPotFixtureDef(Vector2 v1, Vector2 v2){
         FixtureDef potFixtureDef = new FixtureDef();
         potFixtureDef.density = 1.0f;
@@ -93,10 +82,10 @@ public class Pot {
     }
 
     /**
-     * Create pot.
+     * Creates the pot and its colliders in given coordinates.
      *
-     * @param x the x
-     * @param y the y
+     * @param x the x position
+     * @param y the y position
      */
     public void createPot(float x, float y) {
         potBody = baseLevel.getGameWorld().createBody(getPotBodyDef(x, y));
@@ -104,30 +93,21 @@ public class Pot {
         potBody.createFixture(getPotFixtureDef(new Vector2(0, 0.55f * potScale), new Vector2(0.5f * potScale, 0.1f * potScale)));
         potBody.createFixture(getPotFixtureDef(new Vector2(0.5f * potScale, 0.1f * potScale), new Vector2(2f * potScale, 0.1f * potScale)));
         potBody.createFixture(getPotFixtureDef(new Vector2(2f * potScale, 0.1f * potScale), new Vector2(2.6f * potScale, 0.55f * potScale)));
-        potBody.createFixture(getPotFixtureDef( new Vector2(2.6f * potScale, 0.55f * potScale), new Vector2(2.6f * potScale, 1.8f * potScale)));
+        potBody.createFixture(getPotFixtureDef(new Vector2(2.6f * potScale, 0.55f * potScale), new Vector2(2.6f * potScale, 1.8f * potScale)));
+
         float sideRectWidth = 0.2f;
         float sideRectHeight = (potBottomTexture.getHeight() / 100f * potScale) - potYOffset / 2f;
         float bottomRectHeight = 0.5f;
         potWidth = potBottomTexture.getWidth() / 100f * potScale;
         potHeight = potBottomTexture.getHeight() / 100f * potScale;
-//        leftSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x - sideRectWidth / 2f, y + sideRectHeight / 2f));
-//        rightSide = baseLevel.getGameWorld().createBody(getPotBodyDef(x + (potWidth + sideRectWidth / 2f), y + sideRectHeight / 2f));
-//        bottom = baseLevel.getGameWorld().createBody(getPotBodyDef(x + potWidth / 2f, y + bottomRectHeight / 2f));
-//
-////        leftSide.setTransform(leftSide.getPosition(), 45f);
-//
-//        leftSide.createFixture(getPotFixtureDef(sideRectWidth / 2f, sideRectHeight / 2f));
-//        rightSide.createFixture(getPotFixtureDef(sideRectWidth / 2f,sideRectHeight / 2f));
-//        bottom.createFixture(getPotFixtureDef(potWidth / 2f,bottomRectHeight / 2f));
-//
+
         leftSideRect = new Rectangle(x - sideRectWidth, y, sideRectWidth, sideRectHeight);
-//        rightSideRect = new Rectangle(x + potWidth, y, sideRectWidth, sideRectHeight);
         bottomRect = new Rectangle(x, y, potWidth, bottomRectHeight);
         potRect = new Rectangle(x + 0.35f * potScale, y + 0.2f * potScale, 2f * potScale, 1 * potScale);
     }
 
     /**
-     * Draw top.
+     * Draws the top part of Pot texture.
      */
     public void drawTop(){
         Vector2 bottomRectCenter = new Vector2();
@@ -137,7 +117,7 @@ public class Pot {
     }
 
     /**
-     * Draw.
+     * Draws the bottom part of Pot texture.
      */
     public void draw() {
         Vector2 bottomRectCenter = new Vector2();

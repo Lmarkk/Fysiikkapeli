@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  * Arrow displays the angle and force of a throw.
  *
  * @author Arttu Knuutinen
- * @version 2019.0418
+ * @version 2.0
  */
 public class Arrow {
 
@@ -47,6 +47,7 @@ public class Arrow {
      * Draws the arrow.
      *
      * Draws the arrow starting from the start position and ending on the end position.
+     * Arrow indicates the force and direction of a throw.
      *
      * @param batch    the SpriteBatch
      * @param startPos the start pos
