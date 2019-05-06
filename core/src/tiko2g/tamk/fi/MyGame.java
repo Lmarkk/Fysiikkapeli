@@ -2,6 +2,7 @@ package tiko2g.tamk.fi;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -14,8 +15,6 @@ import java.util.Locale;
 /**
  * The type My game.
  */
-// TODO: tee peli
-//TODO: poista ^
 public class MyGame extends Game {
     private Prefs prefs;
 	private SpriteBatch batch;
@@ -63,8 +62,16 @@ public class MyGame extends Game {
         font35 = getTextRenderer().createFont(kreonFont, 35, Color.BLACK, 3);
         mainMenu = new MainMenu(this);
 	    setScreen(mainMenu);
-
 	}
+
+    @Override
+    public void setScreen(Screen screen) {
+	    Screen prevScreen = getScreen();
+	    if(prevScreen != null){
+            prevScreen.dispose();
+        }
+        super.setScreen(screen);
+    }
 
     /**
      * Gets fin bundle.
@@ -225,9 +232,9 @@ public class MyGame extends Game {
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
 		greenHillsTheme.dispose();
 		wheatFieldsTheme.dispose();
+		shadyWoodsTheme.dispose();
 		menuTheme.dispose();
 	}
 }

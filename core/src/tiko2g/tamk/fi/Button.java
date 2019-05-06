@@ -481,6 +481,7 @@ public class Button {
         buttonTexture.dispose();
         buttonPressedTexture.dispose();
         buttonNotPressedTexture.dispose();
+        buttonLock.dispose();
         clickSound.dispose();
     }
 }

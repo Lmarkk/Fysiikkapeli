@@ -193,10 +193,5 @@ public class BaseMenu implements Screen {
         for(Button button: buttonList) {
             button.dispose();
         }
-        font64.dispose();
-        font100.dispose();
-        font42.dispose();
-        font120.dispose();
-        font30.dispose();
     }
 }
